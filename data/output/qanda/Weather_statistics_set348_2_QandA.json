@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set348_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2022' AND State = 'Georgia' AND City = 'Chicago')) AND ((Characteristic = 'Wind' AND Intensity = '0-10'))",
+      "GTresult": "Value=13.49",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Chicago ==,==Georgia in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2022' AND State = 'Georgia' AND City = 'Chicago')) AND ((Characteristic = 'Temperature' AND Intensity = '11-20') OR (Characteristic = 'Temperature' AND Intensity = '31-40') OR (Characteristic = 'Wind' AND Intensity = 'Breeze') OR (Characteristic = 'Temperature' AND Intensity = 'Calm') OR (Characteristic = 'Wind' AND Intensity = 'Storm'))",
+      "GTresult": "Value=12.52; Value=15.45; Value=15.05; Value=17.78; Value=15.55",
+      "NLquestions": [
+        "How many days with__ Temperature or Wind were there in__Chicago ==,==Georgia in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2022' AND State = 'Georgia' AND City = 'Chicago') OR (Year = '2018' AND State = 'Illinois' AND City = 'Springfield')) AND ((Characteristic = 'Temperature' AND Intensity = '31-40'))",
+      "GTresult": "Value=15.45; Value=25.47",
+      "NLquestions": [
+        "How many days with__ Temperature were there in__Chicago or Springfield ==,==Georgia or Illinois in_2022 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2022' AND State = 'Georgia' AND City = 'Albany') OR (Year = '2018' AND State = 'Illinois' AND City = 'Washington') OR (Year = '2022' AND State = 'Georgia' AND City = 'Chicago') OR (Year = '2018' AND State = 'Illinois' AND City = 'Springfield')) AND ((Characteristic = 'Temperature' AND Intensity = 'Calm'))",
+      "GTresult": "sum_Value=56.63, avg_Value=14.1575",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature in__Albany or Washington or Chicago or Springfield ==,==Georgia or Illinois in_2022 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2022' AND State = 'Georgia' AND City = 'Albany') OR (Year = '2018' AND State = 'Illinois' AND City = 'Washington') OR (Year = '2022' AND State = 'Georgia' AND City = 'Chicago') OR (Year = '2018' AND State = 'Illinois' AND City = 'Springfield')) AND ((Characteristic = 'Temperature' AND Intensity = '11-20') OR (Characteristic = 'Wind' AND Intensity = '0-10') OR (Characteristic = 'Temperature' AND Intensity = '31-40'))",
+      "GTresult": "Value=1.28; Value=2.45; Value=2.35; Value=6.43; Value=3.89; Value=9.11; Value=12.52; Value=13.49; Value=15.45; Value=19.27; Value=24.46; Value=25.47",
+      "NLquestions": [
+        "How many days with__ Temperature or Wind were there in__Albany or Washington or Chicago or Springfield ==,==Georgia or Illinois in_2022 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2022' AND State = 'Georgia' AND City = 'Albany')) AND ((Characteristic = 'Wind' AND Intensity = '0-10') OR (Characteristic = 'Temperature' AND Intensity = '31-40') OR (Characteristic = 'Wind' AND Intensity = 'Storm'))",
+      "GTresult": "avg_Value=2.0900000000000003, min_Value=1.47",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Albany ==,==Georgia in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, min(Value) AS min_Value, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2018' AND State = 'Illinois' AND City = 'Washington') OR (Year = '2022' AND State = 'Georgia' AND City = 'Chicago') OR (Year = '2018' AND State = 'Illinois' AND City = 'Springfield')) AND ((Characteristic = 'Temperature' AND Intensity = '11-20') OR (Characteristic = 'Wind' AND Intensity = '0-10') OR (Characteristic = 'Temperature' AND Intensity = '31-40') OR (Characteristic = 'Wind' AND Intensity = 'Breeze') OR (Characteristic = 'Temperature' AND Intensity = 'Calm')) GROUP BY Year, State, City",
+      "GTresult": "Year=2018, State=Illinois, City=Springfield, min_Value=5.93, max_Value=27.76; Year=2018, State=Illinois, City=Washington, min_Value=3.89, max_Value=10.35; Year=2022, State=Georgia, City=Chicago, min_Value=12.52, max_Value=17.78",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Washington or Chicago or Springfield ==,==Illinois or Georgia in_2018 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2018' AND State = 'Illinois' AND City = 'Springfield')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "min_Value=19.27; min_Value=0.08",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Springfield ==,==Illinois in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2018' AND State = 'Illinois' AND City = 'Washington')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Temperature, sum_Value=20.939999999999998; Characteristic=Wind, sum_Value=26.37",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Washington ==,==Illinois in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2018' AND State = 'Illinois' AND City = 'Washington') OR (Year = '2022' AND State = 'Georgia' AND City = 'Chicago') OR (Year = '2018' AND State = 'Illinois' AND City = 'Springfield')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Temperature, Year=2018, State=Illinois, City=Springfield, sum_Value=72.5; Characteristic=Temperature, Year=2018, State=Illinois, City=Washington, sum_Value=20.939999999999998; Characteristic=Temperature, Year=2022, State=Georgia, City=Chicago, sum_Value=45.75; Characteristic=Wind, Year=2018, State=Illinois, City=Springfield, sum_Value=30.47; Characteristic=Wind, Year=2018, State=Illinois, City=Washington, sum_Value=26.37; Characteristic=Wind, Year=2022, State=Georgia, City=Chicago, sum_Value=44.09",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Washington or Chicago or Springfield ==,==Illinois or Georgia in_2018 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2018' AND State = 'Illinois' AND City = 'Springfield')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=27.76; Value=25.47; Value=24.46; Value=19.27; Value=5.93",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Temperature or Wind in__Springfield ==,==Illinois in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2018' AND State = 'Illinois' AND City = 'Washington')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) ORDER BY Value ASC",
+      "GTresult": "Value=3.89; Value=5.4; Value=6.43; Value=9.11; Value=10.35; Value=12.13",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Temperature or Wind in__Washington ==,==Illinois in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2018' AND State = 'Illinois' AND City = 'Springfield')) AND Value < 10.73",
+      "GTresult": "Characteristic=Wind, Intensity=Breeze; Characteristic=Wind, Intensity=Storm",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Springfield ==,==Illinois in_2018 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2018' AND State = 'Illinois' AND City = 'Washington')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2018' AND State = 'Illinois' AND City = 'Springfield')) AND Value < 10.73)",
+      "GTresult": "Characteristic=Wind, Intensity=Breeze, Value=10.35; Characteristic=Wind, Intensity=Storm, Value=12.13",
+      "NLquestions": []
+    }
+  ]
+}

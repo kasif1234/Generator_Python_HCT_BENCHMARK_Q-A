@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set282_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Maryland' AND City = 'Aberdeen')) AND ((Characteristic = 'Humidity' AND Intensity = 'High'))",
+      "GTresult": "Value=20.79",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Aberdeen ==,==Maryland in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Maryland' AND City = 'Aberdeen')) AND ((Characteristic = 'Temperature' AND Intensity = '31-40') OR (Characteristic = 'Temperature' AND Intensity = 'Medium'))",
+      "GTresult": "Value=17.34; Value=23.47",
+      "NLquestions": [
+        "How many days with__ Temperature were there in__Aberdeen ==,==Maryland in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Massachusetts' AND City = 'Cambridge') OR (Year = '2020' AND State = 'Massachusetts' AND City = 'Columbia') OR (Year = '2020' AND State = 'Massachusetts' AND City = 'Baltimore')) AND ((Characteristic = 'Humidity' AND Intensity = 'Low'))",
+      "GTresult": "Value=1.64; Value=9.45; Value=26.38",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Cambridge or Columbia or Baltimore ==,==Massachusetts in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2020' AND State = 'Massachusetts' AND City = 'Cambridge') OR (Year = '2021' AND State = 'Maryland' AND City = 'Lenox') OR (Year = '2020' AND State = 'Massachusetts' AND City = 'Columbia') OR (Year = '2021' AND State = 'Maryland' AND City = 'Aberdeen') OR (Year = '2020' AND State = 'Massachusetts' AND City = 'Baltimore')) AND ((Characteristic = 'Humidity' AND Intensity = 'Low'))",
+      "GTresult": "avg_Value=13.065999999999999, sum_Value=65.33",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity in__Cambridge or Lenox or Columbia or Aberdeen or Baltimore ==,==Massachusetts or Maryland in_2020 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Massachusetts' AND City = 'Cambridge') OR (Year = '2021' AND State = 'Maryland' AND City = 'Lenox') OR (Year = '2020' AND State = 'Massachusetts' AND City = 'Columbia') OR (Year = '2021' AND State = 'Maryland' AND City = 'Aberdeen') OR (Year = '2020' AND State = 'Massachusetts' AND City = 'Baltimore')) AND ((Characteristic = 'Temperature' AND Intensity = '31-40') OR (Characteristic = 'Temperature' AND Intensity = '11-20'))",
+      "GTresult": "Value=0.58; Value=0.27; Value=5.54; Value=9.77; Value=13.86; Value=15.66; Value=17.34; Value=20.09; Value=25.15; Value=25.2",
+      "NLquestions": [
+        "How many days with__ Temperature were there in__Cambridge or Lenox or Columbia or Aberdeen or Baltimore ==,==Massachusetts or Maryland in_2020 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT max(Value) AS max_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Maryland' AND City = 'Aberdeen')) AND ((Characteristic = 'Temperature' AND Intensity = '31-40') OR (Characteristic = 'Humidity' AND Intensity = '21-30') OR (Characteristic = 'Temperature' AND Intensity = 'Medium') OR (Characteristic = 'Humidity' AND Intensity = 'High'))",
+      "GTresult": "max_Value=23.47, min_Value=17.34",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity in__Aberdeen ==,==Maryland in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, min(Value) AS min_Value, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2020' AND State = 'Massachusetts' AND City = 'Cambridge') OR (Year = '2021' AND State = 'Maryland' AND City = 'Lenox') OR (Year = '2020' AND State = 'Massachusetts' AND City = 'Columbia') OR (Year = '2021' AND State = 'Maryland' AND City = 'Aberdeen') OR (Year = '2020' AND State = 'Massachusetts' AND City = 'Baltimore')) AND ((Characteristic = 'Humidity' AND Intensity = '21-30') OR (Characteristic = 'Humidity' AND Intensity = 'High')) GROUP BY Year, State, City",
+      "GTresult": "Year=2020, State=Massachusetts, City=Baltimore, min_Value=11.55, max_Value=26.45; Year=2020, State=Massachusetts, City=Cambridge, min_Value=0.69, max_Value=4.22; Year=2020, State=Massachusetts, City=Columbia, min_Value=14.43, max_Value=14.95; Year=2021, State=Maryland, City=Aberdeen, min_Value=20.79, max_Value=20.98; Year=2021, State=Maryland, City=Lenox, min_Value=8.39, max_Value=11.16",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity in__Cambridge or Lenox or Columbia or Aberdeen or Baltimore ==,==Massachusetts or Maryland in_2020 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Maryland' AND City = 'Lenox')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) GROUP BY Characteristic",
+      "GTresult": "min_Value=8.39; min_Value=5.54",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity in__Lenox ==,==Maryland in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Maryland' AND City = 'Aberdeen')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Humidity, min_Value=16.91; Characteristic=Temperature, min_Value=17.34",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity in__Aberdeen ==,==Maryland in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2020' AND State = 'Massachusetts' AND City = 'Cambridge') OR (Year = '2021' AND State = 'Maryland' AND City = 'Lenox') OR (Year = '2020' AND State = 'Massachusetts' AND City = 'Baltimore')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Humidity, Year=2020, State=Massachusetts, City=Baltimore, avg_Value=21.459999999999997; Characteristic=Humidity, Year=2020, State=Massachusetts, City=Cambridge, avg_Value=2.183333333333333; Characteristic=Humidity, Year=2021, State=Maryland, City=Lenox, avg_Value=10.166666666666666; Characteristic=Temperature, Year=2020, State=Massachusetts, City=Baltimore, avg_Value=25.37; Characteristic=Temperature, Year=2020, State=Massachusetts, City=Cambridge, avg_Value=1.67; Characteristic=Temperature, Year=2021, State=Maryland, City=Lenox, avg_Value=7.94",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity in__Cambridge or Lenox or Baltimore ==,==Massachusetts or Maryland in_2020 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Maryland' AND City = 'Lenox')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=11.16; Value=10.95; Value=9.77; Value=8.51; Value=8.39",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Temperature or Humidity in__Lenox ==,==Maryland in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Maryland' AND City = 'Aberdeen')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) ORDER BY Value ASC",
+      "GTresult": "Value=16.91; Value=17.34; Value=20.09; Value=20.79; Value=20.98; Value=23.47",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Temperature or Humidity in__Aberdeen ==,==Maryland in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2020' AND State = 'Massachusetts' AND City = 'Columbia')) AND Value < 13.51",
+      "GTresult": "Characteristic=Humidity, Intensity=Low; Characteristic=Temperature, Intensity=Medium",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Columbia ==,==Massachusetts in_2020 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2021' AND State = 'Maryland' AND City = 'Aberdeen')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2020' AND State = 'Massachusetts' AND City = 'Columbia')) AND Value < 13.51)",
+      "GTresult": "Characteristic=Humidity, Intensity=Low, Value=16.91; Characteristic=Temperature, Intensity=Medium, Value=23.47",
+      "NLquestions": []
+    }
+  ]
+}

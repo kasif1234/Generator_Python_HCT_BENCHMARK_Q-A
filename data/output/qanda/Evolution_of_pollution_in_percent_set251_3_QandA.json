@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Evolution_of_pollution_in_percent_set251_3_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Michigan' AND City = 'Chicago')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Inorganic Fertilizers'))",
+      "GTresult": "Value=35.5",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil in__Chicago ==,==Michigan in_ ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Champaign')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Inorganic Fertilizers') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Industrial') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Inferior Irrigation') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Oxygen-depletion') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Chemical'))",
+      "GTresult": "Value=-87.42; Value=50.05; Value=51.03; Value=54.7; Value=62.87",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil or Water in__Champaign ==,==Illinois in_ ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Champaign') OR (State = 'Illinois' AND City = 'Flint')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Solid Waste'))",
+      "GTresult": "Value=52.83; Value=-17.11",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water in__Champaign or Flint ==,==Illinois in_ ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT min(Value) AS min_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Springfield') OR (State = 'Michigan' AND City = 'Chicago') OR (State = 'Illinois' AND City = 'Flint')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Chemical'))",
+      "GTresult": "min_Value=-83.84, sum_Value=-53.13",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water in__Springfield or Chicago or Flint ==,==Illinois or Michigan in_ ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Springfield') OR (State = 'Illinois' AND City = 'Champaign')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Inorganic Fertilizers') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Industrial') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Groundwater') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Chemical'))",
+      "GTresult": "Value=4.32; Value=10.71; Value=-99.77; Value=31.73; Value=-87.42; Value=50.05; Value=59.36; Value=62.87",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil or Water in__Springfield or Champaign ==,==Illinois in_ ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT min(Value) AS min_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((State = 'Michigan' AND City = 'Detroit')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Industrial') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Inferior Irrigation') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Solid Waste'))",
+      "GTresult": "min_Value=-59.81, avg_Value=-39.20333333333333",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Soil in__Detroit ==,==Michigan in_ ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT State, City, min(Value) AS min_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Michigan' AND City = 'Chicago') OR (State = 'Illinois' AND City = 'Champaign')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Inorganic Fertilizers') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Inferior Irrigation') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Oxygen-depletion') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Chemical')) GROUP BY State, City",
+      "GTresult": "State=Illinois, City=Champaign, min_Value=-87.42, sum_Value=81.18; State=Michigan, City=Chicago, min_Value=-86.53, sum_Value=-96.95",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Chicago or Champaign ==,==Michigan or Illinois in_ ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Springfield')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) GROUP BY Polluted_element",
+      "GTresult": "min_Value=-97.49; min_Value=-99.77",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Springfield ==,==Illinois in_ ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Polluted_element, max(Value) AS max_Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Champaign')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) GROUP BY Polluted_element",
+      "GTresult": "Polluted_element=Soil, max_Value=62.58; Polluted_element=Water, max_Value=62.87",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Champaign ==,==Illinois in_ ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Polluted_element, State, City, min(Value) AS min_Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Springfield') OR (State = 'Illinois' AND City = 'Flint')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) GROUP BY Polluted_element, State, City",
+      "GTresult": "Polluted_element=Soil, State=Illinois, City=Flint, min_Value=-23.78; Polluted_element=Soil, State=Illinois, City=Springfield, min_Value=-97.49; Polluted_element=Water, State=Illinois, City=Flint, min_Value=-23.59; Polluted_element=Water, State=Illinois, City=Springfield, min_Value=-99.77",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Springfield or Flint ==,==Illinois in_ ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Michigan' AND City = 'Detroit')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=94.92; Value=85.92; Value=65.48; Value=-1.36; Value=-45.33",
+      "NLquestions": [
+        "What are the top/bottom_ evolutions of_((pollution)) of_ of_Soil or Water in__Detroit ==,==Michigan in_ ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Champaign')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) ORDER BY Value ASC",
+      "GTresult": "Value=-87.42; Value=50.05; Value=51.03; Value=52.83; Value=54.7; Value=59.36; Value=62.58; Value=62.87",
+      "NLquestions": [
+        "What are the evolutions /increasing_values of_((pollution)) of_ of_Soil or Water in__Champaign ==,==Illinois in_ ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Illinois' AND City = 'Champaign')) AND Value > -1.15",
+      "GTresult": "Polluted_element=Water, Type_of_pollution=Industrial; Polluted_element=Soil, Type_of_pollution=Inferior Irrigation; Polluted_element=Water, Type_of_pollution=Solid Waste; Polluted_element=Soil, Type_of_pollution=Oxygen-depletion; Polluted_element=Water, Type_of_pollution=Groundwater; Polluted_element=Soil, Type_of_pollution=Surface water; Polluted_element=Water, Type_of_pollution=Chemical",
+      "NLquestions": [
+        "What is/are_the_ the evolution of_((pollution)) of_ of_ in__Champaign ==,==Illinois in_ is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Polluted_element, Type_of_pollution, Value FROM DBdata WHERE ((State = 'Michigan' AND City = 'Detroit')) AND (Polluted_element, Type_of_pollution) IN (SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Illinois' AND City = 'Champaign')) AND Value > -1.15)",
+      "GTresult": "Polluted_element=Water, Type_of_pollution=Industrial, Value=-59.81; Polluted_element=Soil, Type_of_pollution=Inferior Irrigation, Value=-56.44; Polluted_element=Water, Type_of_pollution=Solid Waste, Value=-1.36; Polluted_element=Soil, Type_of_pollution=Oxygen-depletion, Value=-49.03; Polluted_element=Water, Type_of_pollution=Groundwater, Value=-45.33; Polluted_element=Soil, Type_of_pollution=Surface water, Value=85.92; Polluted_element=Water, Type_of_pollution=Chemical, Value=94.92",
+      "NLquestions": []
+    }
+  ]
+}

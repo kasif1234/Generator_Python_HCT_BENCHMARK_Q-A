@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Food_import-export_in_tons_set359_3_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2021' AND Quarter = 'Q3')) AND ((Category = 'Beverage' AND Item = 'Coffee'))",
+      "GTresult": "Value=296.8; Value=103.61",
+      "NLquestions": [
+        "What is the amount of_Import of__ Beverage in__Q3 ==of==2021 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2015' AND Quarter = 'Q3')) AND ((Category = 'Dairy' AND Item = 'Soda') OR (Category = 'Beverage' AND Item = 'Coffee') OR (Category = 'Dairy' AND Item = 'Butter') OR (Category = 'Dairy' AND Item = 'Milk'))",
+      "GTresult": "Value=653.9; Value=920.08; Value=797.85; Value=675.52; Value=451.39; Value=325.49; Value=328.85; Value=336.32",
+      "NLquestions": [
+        "What is the amount of_Import of__ Dairy or Beverage in__Q3 ==of==2015 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2015' AND Quarter = 'Q3') OR (Import_Export = 'Import' AND Year = '2021' AND Quarter = 'Q3')) AND ((Category = 'Beverage' AND Item = 'Tea'))",
+      "GTresult": "Value=262.7; Value=165.95; Value=442.53; Value=213.63",
+      "NLquestions": [
+        "What is the amount of_Import of__ Beverage in__Q3 ==of==2015 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT max(Value) AS max_Value, min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2015' AND Quarter = 'Q3') OR (Import_Export = 'Import' AND Year = '2021' AND Quarter = 'Q3')) AND ((Category = 'Dairy' AND Item = 'Milk'))",
+      "GTresult": "max_Value=882.47, min_Value=336.32",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Dairy in__Q3 ==of==2015 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2015' AND Quarter = 'Q3') OR (Import_Export = 'Import' AND Year = '2021' AND Quarter = 'Q3')) AND ((Category = 'Dairy' AND Item = 'Soda') OR (Category = 'Dairy' AND Item = 'Butter') OR (Category = 'Beverage' AND Item = 'Cream'))",
+      "GTresult": "Value=653.9; Value=797.85; Value=290.78; Value=422.95; Value=689.38; Value=945.67; Value=451.39; Value=328.85; Value=75.16; Value=730.46; Value=743.32; Value=363.45",
+      "NLquestions": [
+        "What is the amount of_Import of__ Dairy or Beverage in__Q3 ==of==2015 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2021' AND Quarter = 'Q3')) AND ((Category = 'Beverage' AND Item = 'Tea') OR (Category = 'Beverage' AND Item = 'Coffee') OR (Category = 'Dairy' AND Item = 'Butter') OR (Category = 'Beverage' AND Item = 'Cream') OR (Category = 'Dairy' AND Item = 'Milk'))",
+      "GTresult": "sum_Value=4845.33, avg_Value=484.533",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Beverage or Dairy in__Q3 ==of==2021 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Import_Export, Year, Quarter, sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2015' AND Quarter = 'Q3') OR (Import_Export = 'Import' AND Year = '2021' AND Quarter = 'Q3')) AND ((Category = 'Beverage' AND Item = 'Tea') OR (Category = 'Dairy' AND Item = 'Soda') OR (Category = 'Beverage' AND Item = 'Coffee') OR (Category = 'Dairy' AND Item = 'Butter') OR (Category = 'Dairy' AND Item = 'Milk')) GROUP BY Import_Export, Year, Quarter",
+      "GTresult": "Import_Export=Import, Year=2015, Quarter=Q3, sum_Value=5194.63, min_Value=262.7; Import_Export=Import, Year=2021, Quarter=Q3, sum_Value=4689.62, min_Value=103.61",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Beverage or Dairy in__Q3 ==of==2015 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2021' AND Quarter = 'Q3')) AND ((Category = 'Beverage') OR (Category = 'Dairy')) GROUP BY Category",
+      "GTresult": "min_Value=103.61; min_Value=422.95",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Beverage or Dairy in__Q3 ==of==2021 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Category, sum(Value) AS sum_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2021' AND Quarter = 'Q3')) AND ((Category = 'Beverage') OR (Category = 'Dairy')) GROUP BY Category",
+      "GTresult": "Category=Beverage, sum_Value=2089.11; Category=Dairy, sum_Value=3909.63",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Beverage or Dairy in__Q3 ==of==2021 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Category, Import_Export, Year, Quarter, avg(Value) AS avg_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2015' AND Quarter = 'Q3') OR (Import_Export = 'Import' AND Year = '2021' AND Quarter = 'Q3')) AND ((Category = 'Beverage') OR (Category = 'Dairy')) GROUP BY Category, Import_Export, Year, Quarter",
+      "GTresult": "Category=Beverage, Import_Export=Import, Year=2015, Quarter=Q3, avg_Value=386.1233333333333; Category=Beverage, Import_Export=Import, Year=2021, Quarter=Q3, avg_Value=348.185; Category=Dairy, Import_Export=Import, Year=2015, Quarter=Q3, avg_Value=540.6383333333333; Category=Dairy, Import_Export=Import, Year=2021, Quarter=Q3, avg_Value=651.605",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Beverage or Dairy in__Q3 ==of==2015 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2015' AND Quarter = 'Q3')) AND ((Category = 'Beverage') OR (Category = 'Dairy')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=920.08; Value=797.85; Value=675.52; Value=653.9; Value=451.39",
+      "NLquestions": [
+        "What are the top/bottom_ amounts of_Import of__ Beverage or Dairy in__Q3 ==of==2015 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2021' AND Quarter = 'Q3')) AND ((Category = 'Beverage') OR (Category = 'Dairy')) ORDER BY Value ASC",
+      "GTresult": "Value=103.61; Value=165.95; Value=213.63; Value=296.8; Value=363.45; Value=422.95; Value=441.05; Value=689.38; Value=730.46; Value=743.32; Value=882.47; Value=945.67",
+      "NLquestions": [
+        "What are the amounts /increasing_values of_Import of__ Beverage or Dairy in__Q3 ==of==2021 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2021' AND Quarter = 'Q3')) AND Value > 481.64",
+      "GTresult": "Category=Dairy, Item=Butter; Category=Beverage, Item=Cream; Category=Dairy, Item=Soda; Category=Dairy, Item=Butter; Category=Dairy, Item=Milk",
+      "NLquestions": [
+        "What is/are_the_ the amount of_Import of__ in__Q3 ==of==2021 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Category, Item, Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2015' AND Quarter = 'Q3')) AND (Category, Item) IN (SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2021' AND Quarter = 'Q3')) AND Value > 481.64)",
+      "GTresult": "Category=Dairy, Item=Soda, Value=653.9; Category=Dairy, Item=Butter, Value=797.85; Category=Beverage, Item=Cream, Value=290.78; Category=Dairy, Item=Milk, Value=675.52; Category=Dairy, Item=Soda, Value=451.39; Category=Dairy, Item=Butter, Value=328.85; Category=Beverage, Item=Cream, Value=75.16; Category=Dairy, Item=Milk, Value=336.32",
+      "NLquestions": []
+    }
+  ]
+}

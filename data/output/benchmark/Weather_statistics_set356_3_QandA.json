@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set356_3_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2015' AND State = 'Florida' AND City = 'Las Vegas')) AND ((Characteristic = 'Temperature' AND Intensity = '21-30'))",
+      "GTresult": "Value=12.23",
+      "NLquestions": [
+        "How many days with__ Temperature were there in__Las Vegas ==,==Florida in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Nevada' AND City = 'Tampa')) AND ((Characteristic = 'Wind' AND Intensity = 'Calm') OR (Characteristic = 'Temperature' AND Intensity = '21-30'))",
+      "GTresult": "Value=13.02; Value=23.98",
+      "NLquestions": [
+        "How many days with__ Wind or Temperature were there in__Tampa ==,==Nevada in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2015' AND State = 'Florida' AND City = 'Las Vegas') OR (Year = '2021' AND State = 'Nevada' AND City = 'Tampa')) AND ((Characteristic = 'Wind' AND Intensity = '31-40'))",
+      "GTresult": "Value=11.92; Value=16.66",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Las Vegas or Tampa ==,==Florida or Nevada in_2015 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT min(Value) AS min_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Florida' AND City = 'Las Vegas') OR (Year = '2021' AND State = 'Nevada' AND City = 'Tampa') OR (Year = '2015' AND State = 'Florida' AND City = 'Fort Lauderdale')) AND ((Characteristic = 'Temperature' AND Intensity = '21-30'))",
+      "GTresult": "min_Value=12.23, sum_Value=63.44",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature in__Las Vegas or Tampa or Fort Lauderdale ==,==Florida or Nevada in_2015 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Nevada' AND City = 'Reno') OR (Year = '2015' AND State = 'Florida' AND City = 'Las Vegas') OR (Year = '2021' AND State = 'Nevada' AND City = 'Tampa')) AND ((Characteristic = 'Wind' AND Intensity = 'Calm') OR (Characteristic = 'Temperature' AND Intensity = 'Storm') OR (Characteristic = 'Wind' AND Intensity = '31-40') OR (Characteristic = 'Temperature' AND Intensity = '21-30'))",
+      "GTresult": "Value=0.09; Value=3.95; Value=5.15; Value=27.82; Value=8.24; Value=10.39; Value=11.92; Value=12.23; Value=13.02; Value=16.03; Value=16.66; Value=23.98",
+      "NLquestions": [
+        "How many days with__ Wind or Temperature were there in__Reno or Las Vegas or Tampa ==,==Nevada or Florida in_2021 or 2015 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT min(Value) AS min_Value, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Florida' AND City = 'Fort Lauderdale')) AND ((Characteristic = 'Temperature' AND Intensity = 'Storm') OR (Characteristic = 'Temperature' AND Intensity = '21-30'))",
+      "GTresult": "min_Value=24.84, max_Value=27.23",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature in__Fort Lauderdale ==,==Florida in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, min(Value) AS min_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Florida' AND City = 'Las Vegas') OR (Year = '2021' AND State = 'Nevada' AND City = 'Tampa')) AND ((Characteristic = 'Wind' AND Intensity = 'Calm') OR (Characteristic = 'Temperature' AND Intensity = 'Storm') OR (Characteristic = 'Temperature' AND Intensity = '21-30')) GROUP BY Year, State, City",
+      "GTresult": "Year=2015, State=Florida, City=Las Vegas, min_Value=8.24, avg_Value=10.286666666666667; Year=2021, State=Nevada, City=Tampa, min_Value=13.02, avg_Value=17.676666666666666",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Las Vegas or Tampa ==,==Florida or Nevada in_2015 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Nevada' AND City = 'Reno')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) GROUP BY Characteristic",
+      "GTresult": "min_Value=3.95; min_Value=0.09",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Reno ==,==Nevada in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Florida' AND City = 'Fort Lauderdale')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Temperature, sum_Value=52.07; Characteristic=Wind, sum_Value=50.62",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Fort Lauderdale ==,==Florida in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Nevada' AND City = 'Reno') OR (Year = '2015' AND State = 'Florida' AND City = 'Las Vegas')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Temperature, Year=2015, State=Florida, City=Las Vegas, max_Value=12.23; Characteristic=Temperature, Year=2021, State=Nevada, City=Reno, max_Value=27.82; Characteristic=Wind, Year=2015, State=Florida, City=Las Vegas, max_Value=11.92; Characteristic=Wind, Year=2021, State=Nevada, City=Reno, max_Value=5.15",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Reno or Las Vegas ==,==Nevada or Florida in_2021 or 2015 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2015' AND State = 'Florida' AND City = 'Las Vegas')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) ORDER BY Value ASC LIMIT 3",
+      "GTresult": "Value=8.24; Value=10.39; Value=11.92",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Wind or Temperature in__Las Vegas ==,==Florida in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Nevada' AND City = 'Tampa')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) ORDER BY Value DESC",
+      "GTresult": "Value=23.98; Value=16.66; Value=16.03; Value=13.02",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Wind or Temperature in__Tampa ==,==Nevada in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2021' AND State = 'Nevada' AND City = 'Tampa')) AND Value < 15.76",
+      "GTresult": "Characteristic=Wind, Intensity=Calm",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Tampa ==,==Nevada in_2021 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2015' AND State = 'Florida' AND City = 'Fort Lauderdale')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2021' AND State = 'Nevada' AND City = 'Tampa')) AND Value < 15.76)",
+      "GTresult": "Characteristic=Wind, Intensity=Calm, Value=24.22",
+      "NLquestions": []
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set117_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2018' AND State = 'Michigan' AND City = 'Flint')) AND ((Characteristic = 'Wind' AND Intensity = 'High'))",
+      "GTresult": "Value=27.79",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Flint ==,==Michigan in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Michigan' AND City = 'Salem')) AND ((Characteristic = 'Wind' AND Intensity = 'Breeze') OR (Characteristic = 'Humidity' AND Intensity = 'Low'))",
+      "GTresult": "Value=3.07; Value=11.15",
+      "NLquestions": [
+        "How many days with__ Wind or Humidity were there in__Salem ==,==Michigan in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'Oregon' AND City = 'Portland') OR (Year = '2018' AND State = 'Oregon' AND City = 'Redmond') OR (Year = '2017' AND State = 'Michigan' AND City = 'Detroit') OR (Year = '2016' AND State = 'Oregon' AND City = 'Port Huron')) AND ((Characteristic = 'Wind' AND Intensity = 'Breeze'))",
+      "GTresult": "Value=2.96; Value=12.81; Value=13.11; Value=23.85",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Portland or Redmond or Detroit or Port Huron ==,==Oregon or Michigan in_2017 or 2018 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2017' AND State = 'Oregon' AND City = 'Portland') OR (Year = '2016' AND State = 'Michigan' AND City = 'Salem') OR (Year = '2018' AND State = 'Oregon' AND City = 'Redmond') OR (Year = '2017' AND State = 'Michigan' AND City = 'Detroit') OR (Year = '2018' AND State = 'Michigan' AND City = 'Flint')) AND ((Characteristic = 'Humidity' AND Intensity = 'Calm'))",
+      "GTresult": "avg_Value=14.0, sum_Value=70.0",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity in__Portland or Salem or Redmond or Detroit or Flint ==,==Oregon or Michigan in_2017 or 2016 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2018' AND State = 'Oregon' AND City = 'Redmond') OR (Year = '2017' AND State = 'Michigan' AND City = 'Detroit') OR (Year = '2018' AND State = 'Michigan' AND City = 'Flint')) AND ((Characteristic = 'Wind' AND Intensity = 'Breeze') OR (Characteristic = 'Humidity' AND Intensity = 'Calm') OR (Characteristic = 'Wind' AND Intensity = 'High') OR (Characteristic = 'Humidity' AND Intensity = 'Low'))",
+      "GTresult": "Value=12.81; Value=13.49; Value=10.77; Value=14.02; Value=13.11; Value=17.42; Value=18.11; Value=18.44; Value=27.82; Value=27.61; Value=27.79; Value=26.8",
+      "NLquestions": [
+        "How many days with__ Wind or Humidity were there in__Redmond or Detroit or Flint ==,==Oregon or Michigan in_2018 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT max(Value) AS max_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2017' AND State = 'Oregon' AND City = 'Portland')) AND ((Characteristic = 'Wind' AND Intensity = 'Breeze') OR (Characteristic = 'Wind' AND Intensity = 'High') OR (Characteristic = 'Humidity' AND Intensity = 'Low'))",
+      "GTresult": "max_Value=5.66, sum_Value=11.56",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Portland ==,==Oregon in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2017' AND State = 'Oregon' AND City = 'Portland') OR (Year = '2016' AND State = 'Michigan' AND City = 'Salem') OR (Year = '2018' AND State = 'Oregon' AND City = 'Redmond') OR (Year = '2017' AND State = 'Michigan' AND City = 'Detroit') OR (Year = '2016' AND State = 'Oregon' AND City = 'Port Huron')) AND ((Characteristic = 'Wind' AND Intensity = 'Breeze') OR (Characteristic = 'Humidity' AND Intensity = 'Calm') OR (Characteristic = 'Wind' AND Intensity = 'High') OR (Characteristic = 'Humidity' AND Intensity = 'Low')) GROUP BY Year, State, City",
+      "GTresult": "Year=2016, State=Michigan, City=Salem, sum_Value=33.31, avg_Value=8.3275; Year=2016, State=Oregon, City=Port Huron, sum_Value=99.19, avg_Value=24.7975; Year=2017, State=Michigan, City=Detroit, sum_Value=67.08, avg_Value=16.77; Year=2017, State=Oregon, City=Portland, sum_Value=14.14, avg_Value=3.535; Year=2018, State=Oregon, City=Redmond, sum_Value=51.09, avg_Value=12.7725",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Portland or Salem or Redmond or Detroit or Port Huron ==,==Oregon or Michigan in_2017 or 2016 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Michigan' AND City = 'Salem')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) GROUP BY Characteristic",
+      "GTresult": "min_Value=8.9; min_Value=3.07",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Salem ==,==Michigan in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Michigan' AND City = 'Salem')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Humidity, sum_Value=20.05; Characteristic=Wind, sum_Value=13.26",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Salem ==,==Michigan in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Michigan' AND City = 'Salem') OR (Year = '2018' AND State = 'Oregon' AND City = 'Redmond')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Humidity, Year=2016, State=Michigan, City=Salem, max_Value=11.15; Characteristic=Humidity, Year=2018, State=Oregon, City=Redmond, max_Value=14.02; Characteristic=Wind, Year=2016, State=Michigan, City=Salem, max_Value=10.19; Characteristic=Wind, Year=2018, State=Oregon, City=Redmond, max_Value=12.81",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Salem or Redmond ==,==Michigan or Oregon in_2016 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'Michigan' AND City = 'Detroit')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) ORDER BY Value ASC LIMIT 3",
+      "GTresult": "Value=13.11; Value=17.42; Value=18.11",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Wind or Humidity in__Detroit ==,==Michigan in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Michigan' AND City = 'Salem')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) ORDER BY Value ASC",
+      "GTresult": "Value=3.07; Value=8.9; Value=10.19; Value=11.15",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Wind or Humidity in__Salem ==,==Michigan in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2018' AND State = 'Oregon' AND City = 'Redmond')) AND Value > 15.62",
+      "GTresult": "",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Redmond ==,==Oregon in_2018 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2016' AND State = 'Oregon' AND City = 'Port Huron')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2018' AND State = 'Oregon' AND City = 'Redmond')) AND Value > 15.62)",
+      "GTresult": "",
+      "NLquestions": []
+    }
+  ]
+}

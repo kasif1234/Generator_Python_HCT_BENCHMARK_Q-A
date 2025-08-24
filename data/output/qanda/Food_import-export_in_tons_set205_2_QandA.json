@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Food_import-export_in_tons_set205_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Beverage' AND Item = 'Seeds'))",
+      "GTresult": "Value=495.57",
+      "NLquestions": [
+        "What is the amount of_Export of__ Beverage in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Cereals' AND Item = 'Seeds') OR (Category = 'Beverage' AND Item = 'Seeds'))",
+      "GTresult": "Value=577.28; Value=495.57",
+      "NLquestions": [
+        "What is the amount of_Export of__ Cereals or Beverage in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Beverage' AND Item = 'Seeds'))",
+      "GTresult": "Value=495.57",
+      "NLquestions": [
+        "What is the amount of_Export of__ Beverage in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT min(Value) AS min_Value, max(Value) AS max_Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Cereals' AND Item = 'Seeds'))",
+      "GTresult": "min_Value=577.28, max_Value=577.28",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Cereals in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Cereals' AND Item = 'Seeds') OR (Category = 'Cereals' AND Item = 'Oats') OR (Category = 'Beverage' AND Item = 'Seeds'))",
+      "GTresult": "Value=577.28; Value=328.3; Value=495.57",
+      "NLquestions": [
+        "What is the amount of_Export of__ Cereals or Beverage in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Cereals' AND Item = 'Oats') OR (Category = 'Cereals' AND Item = 'Soda'))",
+      "GTresult": "sum_Value=534.15, avg_Value=267.075",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Cereals in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Import_Export, sum(Value) AS sum_Value, max(Value) AS max_Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Cereals' AND Item = 'Seeds') OR (Category = 'Beverage' AND Item = 'Wheat') OR (Category = 'Cereals' AND Item = 'Oats') OR (Category = 'Cereals' AND Item = 'Soda')) GROUP BY Import_Export",
+      "GTresult": "Import_Export=Export, sum_Value=1375.84, max_Value=577.28",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Cereals or Beverage in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Cereals') OR (Category = 'Beverage')) GROUP BY Category",
+      "GTresult": "min_Value=107.14; min_Value=205.85",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Cereals or Beverage in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Category, avg(Value) AS avg_Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Cereals') OR (Category = 'Beverage')) GROUP BY Category",
+      "GTresult": "Category=Beverage, avg_Value=289.04; Category=Cereals, avg_Value=370.4766666666667",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Cereals or Beverage in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Category, Import_Export, min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Cereals') OR (Category = 'Beverage')) GROUP BY Category, Import_Export",
+      "GTresult": "Category=Beverage, Import_Export=Export, min_Value=107.14; Category=Cereals, Import_Export=Export, min_Value=205.85",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Cereals or Beverage in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Cereals') OR (Category = 'Beverage')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=107.14; Value=205.85; Value=264.41; Value=328.3; Value=495.57",
+      "NLquestions": [
+        "What are the top/bottom_ amounts of_Export of__ Cereals or Beverage in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Cereals') OR (Category = 'Beverage')) ORDER BY Value ASC",
+      "GTresult": "Value=107.14; Value=205.85; Value=264.41; Value=328.3; Value=495.57; Value=577.28",
+      "NLquestions": [
+        "What are the amounts /increasing_values of_Export of__ Cereals or Beverage in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Export')) AND Value > 329.76",
+      "GTresult": "Category=Cereals, Item=Seeds; Category=Beverage, Item=Seeds",
+      "NLquestions": [
+        "What is/are_the_ the amount of_Export of__ in__ ==of== is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Category, Item, Value FROM DBdata WHERE ((Import_Export = 'Export')) AND (Category, Item) IN (SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Export')) AND Value > 329.76)",
+      "GTresult": "Category=Cereals, Item=Seeds, Value=577.28; Category=Beverage, Item=Seeds, Value=495.57",
+      "NLquestions": []
+    }
+  ]
+}

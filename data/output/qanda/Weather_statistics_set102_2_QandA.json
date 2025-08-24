@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set102_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2022' AND State = 'Minnesota' AND City = 'Minneapolis')) AND ((Characteristic = 'Wind' AND Intensity = '11-20'))",
+      "GTresult": "Value=22.58",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Minneapolis ==,==Minnesota in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Minnesota' AND City = 'Reno')) AND ((Characteristic = 'Temperature' AND Intensity = 'Storm') OR (Characteristic = 'Wind' AND Intensity = '11-20'))",
+      "GTresult": "Value=3.99; Value=9.92",
+      "NLquestions": [
+        "How many days with__ Temperature or Wind were there in__Reno ==,==Minnesota in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2022' AND State = 'Nevada' AND City = 'Boulder City') OR (Year = '2016' AND State = 'Minnesota' AND City = 'Reno') OR (Year = '2022' AND State = 'Michigan' AND City = 'Hastings') OR (Year = '2022' AND State = 'Minnesota' AND City = 'Minneapolis')) AND ((Characteristic = 'Temperature' AND Intensity = '21-30'))",
+      "GTresult": "Value=3.91; Value=9.05; Value=15.83; Value=26.99",
+      "NLquestions": [
+        "How many days with__ Temperature were there in__Boulder City or Reno or Hastings or Minneapolis ==,==Nevada or Minnesota or Michigan in_2022 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT avg(Value) AS avg_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2022' AND State = 'Nevada' AND City = 'Boulder City') OR (Year = '2022' AND State = 'Michigan' AND City = 'Hastings') OR (Year = '2016' AND State = 'Nevada' AND City = 'Rochester') OR (Year = '2022' AND State = 'Minnesota' AND City = 'Minneapolis') OR (Year = '2016' AND State = 'Michigan' AND City = 'Port Huron') OR (Year = '2022' AND State = 'Nevada' AND City = 'Detroit')) AND ((Characteristic = 'Temperature' AND Intensity = 'Calm'))",
+      "GTresult": "avg_Value=12.286666666666667, min_Value=1.01",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature in__Boulder City or Hastings or Rochester or Minneapolis or Port Huron or Detroit ==,==Nevada or Michigan or Minnesota in_2022 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2022' AND State = 'Nevada' AND City = 'Boulder City') OR (Year = '2022' AND State = 'Michigan' AND City = 'Hastings') OR (Year = '2016' AND State = 'Michigan' AND City = 'Port Huron')) AND ((Characteristic = 'Temperature' AND Intensity = 'Storm') OR (Characteristic = 'Temperature' AND Intensity = '21-30') OR (Characteristic = 'Wind' AND Intensity = '11-20') OR (Characteristic = 'Temperature' AND Intensity = 'Calm'))",
+      "GTresult": "Value=1.54; Value=3.91; Value=3.73; Value=5.69; Value=11.33; Value=15.83; Value=16.97; Value=17.38; Value=23.57; Value=8.37; Value=11.14; Value=2.5",
+      "NLquestions": [
+        "How many days with__ Temperature or Wind were there in__Boulder City or Hastings or Port Huron ==,==Nevada or Michigan in_2022 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT min(Value) AS min_Value, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2022' AND State = 'Michigan' AND City = 'Hastings')) AND ((Characteristic = 'Temperature' AND Intensity = '21-30') OR (Characteristic = 'Wind' AND Intensity = '11-20') OR (Characteristic = 'Temperature' AND Intensity = 'Calm'))",
+      "GTresult": "min_Value=15.83, max_Value=17.38",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Hastings ==,==Michigan in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, max(Value) AS max_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2022' AND State = 'Nevada' AND City = 'Boulder City') OR (Year = '2022' AND State = 'Nevada' AND City = 'Detroit')) AND ((Characteristic = 'Wind' AND Intensity = 'Calm') OR (Characteristic = 'Wind' AND Intensity = '31-40') OR (Characteristic = 'Temperature' AND Intensity = '21-30') OR (Characteristic = 'Wind' AND Intensity = '11-20')) GROUP BY Year, State, City",
+      "GTresult": "Year=2022, State=Nevada, City=Boulder City, max_Value=3.91, min_Value=0.58; Year=2022, State=Nevada, City=Detroit, max_Value=16.06, min_Value=4.68",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Boulder City or Detroit ==,==Nevada in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2022' AND State = 'Michigan' AND City = 'Hastings')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) GROUP BY Characteristic",
+      "GTresult": "min_Value=11.33; min_Value=12.35",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Hastings ==,==Michigan in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Minnesota' AND City = 'Reno')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Temperature, max_Value=11.68; Characteristic=Wind, max_Value=9.92",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Reno ==,==Minnesota in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2022' AND State = 'Nevada' AND City = 'Boulder City') OR (Year = '2022' AND State = 'Michigan' AND City = 'Hastings')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Temperature, Year=2022, State=Michigan, City=Hastings, max_Value=17.38; Characteristic=Temperature, Year=2022, State=Nevada, City=Boulder City, max_Value=5.69; Characteristic=Wind, Year=2022, State=Michigan, City=Hastings, max_Value=16.97; Characteristic=Wind, Year=2022, State=Nevada, City=Boulder City, max_Value=3.73",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Boulder City or Hastings ==,==Nevada or Michigan in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Minnesota' AND City = 'Reno')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=11.68; Value=9.92; Value=9.05; Value=8.03; Value=3.99",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Wind or Temperature in__Reno ==,==Minnesota in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2022' AND State = 'Nevada' AND City = 'Detroit')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) ORDER BY Value ASC",
+      "GTresult": "Value=4.68; Value=7.14; Value=14.08; Value=14.36; Value=16.06; Value=23.97",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Wind or Temperature in__Detroit ==,==Nevada in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2016' AND State = 'Minnesota' AND City = 'Reno')) AND Value > 13.64",
+      "GTresult": "",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Reno ==,==Minnesota in_2016 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2022' AND State = 'Nevada' AND City = 'Boulder City')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2016' AND State = 'Minnesota' AND City = 'Reno')) AND Value > 13.64)",
+      "GTresult": "",
+      "NLquestions": []
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Number_of_constructions_set246_5_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Hotel')) AND ((Quarter = 'Q1' AND Month = 'October' AND State = 'Oregon' AND City = 'Portland'))",
+      "GTresult": "Value=94.79",
+      "NLquestions": [
+        "What is the number of__ in__Portland ==,==Oregon in__October ==,==Q1 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Factory')) AND ((Quarter = 'Q3' AND Month = 'March' AND State = 'Oregon' AND City = 'Redmond') OR (Quarter = 'Q4' AND Month = 'February' AND State = 'Oregon' AND City = 'Portland') OR (Quarter = 'Q1' AND Month = 'July' AND State = 'Oregon' AND City = 'Redmond') OR (Quarter = 'Q3' AND Month = 'August' AND State = 'Oregon' AND City = 'Portland') OR (Quarter = 'Q4' AND Month = 'December' AND State = 'Oregon' AND City = 'Redmond') OR (Quarter = 'Q1' AND Month = 'October' AND State = 'Oregon' AND City = 'Portland') OR (Quarter = 'Q3' AND Month = 'January' AND State = 'Oregon' AND City = 'Redmond') OR (Quarter = 'Q4' AND Month = 'March' AND State = 'Oregon' AND City = 'Portland'))",
+      "GTresult": "Value=10.94; Value=11.05; Value=23.12; Value=25.09; Value=32.9; Value=35.78; Value=37.39; Value=41.43",
+      "NLquestions": [
+        "What is the number of__ in__Redmond or Portland ==,==Oregon in__March or February or July or August or December or October or January ==,==Q3 or Q4 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Workshop') OR (Type_of_building = 'Production' AND Usage = 'House') OR (Type_of_building = 'Residential' AND Usage = 'Hotel')) AND ((Quarter = 'Q1' AND Month = 'January' AND State = 'Oregon' AND City = 'Portland'))",
+      "GTresult": "Value=41.19; Value=55.28; Value=79.37",
+      "NLquestions": [
+        "What is the number of__ in__Portland ==,==Oregon in__January ==,==Q1 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Factory') OR (Type_of_building = 'Residential' AND Usage = 'Workshop') OR (Type_of_building = 'Residential' AND Usage = 'Hotel')) AND ((Quarter = 'Q3' AND Month = 'March' AND State = 'Oregon' AND City = 'Redmond'))",
+      "GTresult": "avg_Value=44.79, sum_Value=134.37",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__Redmond ==,==Oregon in__March ==,==Q3 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Workshop') OR (Type_of_building = 'Residential' AND Usage = 'Hotel')) AND ((Quarter = 'Q3' AND Month = 'March' AND State = 'Oregon' AND City = 'Redmond') OR (Quarter = 'Q4' AND Month = 'February' AND State = 'Oregon' AND City = 'Portland') OR (Quarter = 'Q1' AND Month = 'October' AND State = 'Oregon' AND City = 'Portland') OR (Quarter = 'Q3' AND Month = 'January' AND State = 'Oregon' AND City = 'Redmond'))",
+      "GTresult": "Value=42.27; Value=45.36; Value=49.24; Value=52.41; Value=81.16; Value=82.9; Value=94.79; Value=97.08",
+      "NLquestions": [
+        "What is the number of__ in__Redmond or Portland ==,==Oregon in__March or February or October or January ==,==Q3 or Q4 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT min(Value) AS min_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Workshop')) AND ((Quarter = 'Q4' AND Month = 'February' AND State = 'Oregon' AND City = 'Portland') OR (Quarter = 'Q3' AND Month = 'August' AND State = 'Oregon' AND City = 'Portland') OR (Quarter = 'Q4' AND Month = 'March' AND State = 'Oregon' AND City = 'Portland'))",
+      "GTresult": "min_Value=45.36, avg_Value=49.69",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__Portland ==,==Oregon in__February or August or March ==,==Q4 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Type_of_building, Usage, min(Value) AS min_Value, max(Value) AS max_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Factory') OR (Type_of_building = 'Residential' AND Usage = 'Workshop') OR (Type_of_building = 'Production' AND Usage = 'House') OR (Type_of_building = 'Residential' AND Usage = 'Hotel')) AND ((Quarter = 'Q3' AND Month = 'March' AND State = 'Oregon' AND City = 'Redmond') OR (Quarter = 'Q1' AND Month = 'October' AND State = 'Oregon' AND City = 'Portland')) GROUP BY Type_of_building, Usage",
+      "GTresult": "Type_of_building=Production, Usage=Factory, min_Value=10.94, max_Value=35.78; Type_of_building=Production, Usage=House, min_Value=58.11, max_Value=71.26; Type_of_building=Residential, Usage=Hotel, min_Value=81.16, max_Value=94.79; Type_of_building=Residential, Usage=Workshop, min_Value=42.27, max_Value=49.24",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__Redmond or Portland ==,==Oregon in__March or October ==,==Q3 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Factory')) AND ((Quarter = 'Q1') OR (Quarter = 'Q4')) GROUP BY Quarter",
+      "GTresult": "min_Value=5.11; min_Value=11.05",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q1 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Quarter, max(Value) AS max_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'House')) AND ((Quarter = 'Q3') OR (Quarter = 'Q4')) GROUP BY Quarter",
+      "GTresult": "Quarter=Q3, max_Value=72.86; Quarter=Q4, max_Value=79.54",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q3 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Quarter, Type_of_building, Usage, min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Factory') OR (Type_of_building = 'Residential' AND Usage = 'Workshop') OR (Type_of_building = 'Residential' AND Usage = 'Hotel')) AND ((Quarter = 'Q1') OR (Quarter = 'Q3')) GROUP BY Quarter, Type_of_building, Usage",
+      "GTresult": "Quarter=Q1, Type_of_building=Production, Usage=Factory, min_Value=5.11; Quarter=Q1, Type_of_building=Residential, Usage=Hotel, min_Value=79.37; Quarter=Q1, Type_of_building=Residential, Usage=Workshop, min_Value=41.19; Quarter=Q3, Type_of_building=Production, Usage=Factory, min_Value=10.94; Quarter=Q3, Type_of_building=Residential, Usage=Hotel, min_Value=81.16; Quarter=Q3, Type_of_building=Residential, Usage=Workshop, min_Value=42.27",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q1 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Workshop')) AND ((Quarter = 'Q1') OR (Quarter = 'Q4')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=55.95; Value=49.24; Value=46.86; Value=46.46; Value=45.36",
+      "NLquestions": [
+        "What are the top/bottom_ numbers of__ in__ ==,== in__ ==,==Q1 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'House')) AND ((Quarter = 'Q1') OR (Quarter = 'Q4')) ORDER BY Value DESC",
+      "GTresult": "Value=79.54; Value=71.26; Value=68.25; Value=65.23; Value=60.47; Value=55.28",
+      "NLquestions": [
+        "What are the numbers /ascending_values of__ in__ ==,== in__ ==,==Q1 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Quarter, Month, State, City FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Hotel')) AND Value > 56.89",
+      "GTresult": "Quarter=Q1, Month=January, State=Oregon, City=Portland; Quarter=Q3, Month=March, State=Oregon, City=Redmond; Quarter=Q4, Month=February, State=Oregon, City=Portland; Quarter=Q1, Month=July, State=Oregon, City=Redmond; Quarter=Q3, Month=August, State=Oregon, City=Portland; Quarter=Q4, Month=December, State=Oregon, City=Redmond; Quarter=Q1, Month=October, State=Oregon, City=Portland; Quarter=Q3, Month=January, State=Oregon, City=Redmond; Quarter=Q4, Month=March, State=Oregon, City=Portland",
+      "NLquestions": [
+        "What is/are_the_ the number of__ in__ ==,== in__ ==,== is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Quarter, Month, State, City, Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'House')) AND (Quarter, Month, State, City) IN (SELECT Quarter, Month, State, City FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Hotel')) AND Value > 56.89)",
+      "GTresult": "Quarter=Q1, Month=January, State=Oregon, City=Portland, Value=55.28; Quarter=Q3, Month=March, State=Oregon, City=Redmond, Value=58.11; Quarter=Q4, Month=February, State=Oregon, City=Portland, Value=60.47; Quarter=Q1, Month=July, State=Oregon, City=Redmond, Value=65.23; Quarter=Q3, Month=August, State=Oregon, City=Portland, Value=66.61; Quarter=Q4, Month=December, State=Oregon, City=Redmond, Value=68.25; Quarter=Q1, Month=October, State=Oregon, City=Portland, Value=71.26; Quarter=Q3, Month=January, State=Oregon, City=Redmond, Value=72.86; Quarter=Q4, Month=March, State=Oregon, City=Portland, Value=79.54",
+      "NLquestions": []
+    }
+  ]
+}

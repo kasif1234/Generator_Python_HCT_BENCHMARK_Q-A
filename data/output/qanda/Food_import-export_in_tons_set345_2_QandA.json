@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Food_import-export_in_tons_set345_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2022' AND Quarter = 'Q3')) AND ((Category = 'Dairy' AND Item = 'Seeds'))",
+      "GTresult": "Value=961.95",
+      "NLquestions": [
+        "What is the amount of_Export of__ Dairy in__Q3 ==of==2022 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2022' AND Quarter = 'Q3')) AND ((Category = 'Dairy' AND Item = 'Yoghurt') OR (Category = 'Cereals' AND Item = 'Milk') OR (Category = 'Dairy' AND Item = 'Seeds'))",
+      "GTresult": "Value=438.87; Value=695.41; Value=961.95",
+      "NLquestions": [
+        "What is the amount of_Export of__ Dairy or Cereals in__Q3 ==of==2022 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2016' AND Quarter = 'Q3') OR (Import_Export = 'Export' AND Year = '2019' AND Quarter = 'Q3') OR (Import_Export = 'Export' AND Year = '2022' AND Quarter = 'Q3')) AND ((Category = 'Dairy' AND Item = 'Seeds'))",
+      "GTresult": "Value=525.39; Value=945.29; Value=961.95; Value=872.54; Value=247.16",
+      "NLquestions": [
+        "What is the amount of_Export of__ Dairy in__Q3 ==of==2016 or 2019 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2016' AND Quarter = 'Q3') OR (Import_Export = 'Export' AND Year = '2019' AND Quarter = 'Q3') OR (Import_Export = 'Export' AND Year = '2022' AND Quarter = 'Q3')) AND ((Category = 'Cereals' AND Item = 'Wheat'))",
+      "GTresult": "sum_Value=2513.83, min_Value=299.65",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Cereals in__Q3 ==of==2016 or 2019 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2016' AND Quarter = 'Q3') OR (Import_Export = 'Export' AND Year = '2019' AND Quarter = 'Q3') OR (Import_Export = 'Export' AND Year = '2022' AND Quarter = 'Q3')) AND ((Category = 'Cereals' AND Item = 'Milk') OR (Category = 'Dairy' AND Item = 'Rice') OR (Category = 'Dairy' AND Item = 'Seeds') OR (Category = 'Cereals' AND Item = 'Yoghurt'))",
+      "GTresult": "Value=390.49; Value=136.3; Value=525.39; Value=918.27; Value=796.7; Value=933.29; Value=945.29; Value=949.94; Value=695.41; Value=184.56; Value=961.95; Value=327.8; Value=340.4; Value=213.58; Value=872.54; Value=123.03; Value=756.35; Value=117.68; Value=247.16; Value=379.72",
+      "NLquestions": [
+        "What is the amount of_Export of__ Cereals or Dairy in__Q3 ==of==2016 or 2019 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT min(Value) AS min_Value, max(Value) AS max_Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2016' AND Quarter = 'Q3')) AND ((Category = 'Cereals' AND Item = 'Milk') OR (Category = 'Dairy' AND Item = 'Seeds') OR (Category = 'Cereals' AND Item = 'Yoghurt'))",
+      "GTresult": "min_Value=123.03, max_Value=918.27",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Cereals or Dairy in__Q3 ==of==2016 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Import_Export, Year, Quarter, avg(Value) AS avg_Value, min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2016' AND Quarter = 'Q3') OR (Import_Export = 'Export' AND Year = '2019' AND Quarter = 'Q3') OR (Import_Export = 'Export' AND Year = '2022' AND Quarter = 'Q3')) AND ((Category = 'Cereals' AND Item = 'Milk') OR (Category = 'Cereals' AND Item = 'Wheat') OR (Category = 'Dairy' AND Item = 'Seeds')) GROUP BY Import_Export, Year, Quarter",
+      "GTresult": "Import_Export=Export, Year=2016, Quarter=Q3, avg_Value=544.5500000000001, min_Value=340.4; Import_Export=Export, Year=2019, Quarter=Q3, avg_Value=569.5466666666667, min_Value=247.16; Import_Export=Export, Year=2022, Quarter=Q3, avg_Value=786.9766666666668, min_Value=695.41",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Cereals or Dairy in__Q3 ==of==2016 or 2019 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2019' AND Quarter = 'Q3')) AND ((Category = 'Dairy') OR (Category = 'Cereals')) GROUP BY Category",
+      "GTresult": "min_Value=299.65; min_Value=117.68",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Dairy or Cereals in__Q3 ==of==2019 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Category, avg(Value) AS avg_Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2016' AND Quarter = 'Q3')) AND ((Category = 'Dairy') OR (Category = 'Cereals')) GROUP BY Category",
+      "GTresult": "Category=Cereals, avg_Value=485.1116666666667; Category=Dairy, avg_Value=517.4366666666666",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Dairy or Cereals in__Q3 ==of==2016 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Category, Import_Export, Year, Quarter, min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2016' AND Quarter = 'Q3') OR (Import_Export = 'Export' AND Year = '2019' AND Quarter = 'Q3')) AND ((Category = 'Dairy') OR (Category = 'Cereals')) GROUP BY Category, Import_Export, Year, Quarter",
+      "GTresult": "Category=Cereals, Import_Export=Export, Year=2016, Quarter=Q3, min_Value=123.03; Category=Cereals, Import_Export=Export, Year=2019, Quarter=Q3, min_Value=299.65; Category=Dairy, Import_Export=Export, Year=2016, Quarter=Q3, min_Value=136.3; Category=Dairy, Import_Export=Export, Year=2019, Quarter=Q3, min_Value=117.68",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Dairy or Cereals in__Q3 ==of==2016 or 2019 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2019' AND Quarter = 'Q3')) AND ((Category = 'Dairy') OR (Category = 'Cereals')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=117.68; Value=247.16; Value=299.65; Value=367.09; Value=372.13",
+      "NLquestions": [
+        "What are the top/bottom_ amounts of_Export of__ Dairy or Cereals in__Q3 ==of==2019 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2022' AND Quarter = 'Q3')) AND ((Category = 'Dairy') OR (Category = 'Cereals')) ORDER BY Value ASC",
+      "GTresult": "Value=184.56; Value=327.8; Value=438.87; Value=695.41; Value=703.57; Value=961.95",
+      "NLquestions": [
+        "What are the amounts /increasing_values of_Export of__ Dairy or Cereals in__Q3 ==of==2022 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2019' AND Quarter = 'Q3')) AND Value < 542.98",
+      "GTresult": "Category=Cereals, Item=Wheat; Category=Dairy, Item=Yoghurt; Category=Dairy, Item=Rice; Category=Cereals, Item=Wheat; Category=Dairy, Item=Seeds; Category=Cereals, Item=Yoghurt",
+      "NLquestions": [
+        "What is/are_the_ the amount of_Export of__ in__Q3 ==of==2019 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Category, Item, Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2016' AND Quarter = 'Q3')) AND (Category, Item) IN (SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2019' AND Quarter = 'Q3')) AND Value < 542.98)",
+      "GTresult": "Category=Dairy, Item=Yoghurt, Value=645.47; Category=Dairy, Item=Rice, Value=136.3; Category=Cereals, Item=Wheat, Value=652.0; Category=Dairy, Item=Seeds, Value=525.39; Category=Cereals, Item=Yoghurt, Value=918.27; Category=Dairy, Item=Yoghurt, Value=711.34; Category=Dairy, Item=Rice, Value=213.58; Category=Cereals, Item=Wheat, Value=486.48; Category=Dairy, Item=Seeds, Value=872.54; Category=Cereals, Item=Yoghurt, Value=123.03",
+      "NLquestions": []
+    }
+  ]
+}

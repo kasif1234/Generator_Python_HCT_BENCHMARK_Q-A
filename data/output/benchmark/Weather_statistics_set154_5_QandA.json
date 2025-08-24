@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set154_5_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Michigan' AND City = 'Flint')) AND ((Characteristic = 'Temperature' AND Intensity = '31-40'))",
+      "GTresult": "Value=14.47",
+      "NLquestions": [
+        "How many days with__ Temperature were there in__Flint ==,==Michigan in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Michigan' AND City = 'Flint')) AND ((Characteristic = 'Temperature' AND Intensity = '31-40') OR (Characteristic = 'Temperature' AND Intensity = 'Storm') OR (Characteristic = 'Wind' AND Intensity = 'High') OR (Characteristic = 'Humidity' AND Intensity = 'Low'))",
+      "GTresult": "Value=14.47; Value=17.83; Value=18.2; Value=17.64",
+      "NLquestions": [
+        "How many days with__ Temperature or Wind or Humidity were there in__Flint ==,==Michigan in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Michigan' AND City = 'Port Huron') OR (Year = '2021' AND State = 'Illinois' AND City = 'Detroit') OR (Year = '2019' AND State = 'Michigan' AND City = 'Champaign')) AND ((Characteristic = 'Humidity' AND Intensity = 'Breeze'))",
+      "GTresult": "Value=4.71; Value=10.74; Value=4.47",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Port Huron or Detroit or Champaign ==,==Michigan or Illinois in_2019 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Michigan' AND City = 'Port Huron') OR (Year = '2019' AND State = 'Michigan' AND City = 'Champaign')) AND ((Characteristic = 'Wind' AND Intensity = 'High'))",
+      "GTresult": "sum_Value=12.03, min_Value=5.06",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind in__Port Huron or Champaign ==,==Michigan in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Illinois' AND City = 'Detroit') OR (Year = '2019' AND State = 'Michigan' AND City = 'Flint')) AND ((Characteristic = 'Wind' AND Intensity = '21-30') OR (Characteristic = 'Humidity' AND Intensity = 'Low'))",
+      "GTresult": "Value=9.57; Value=4.28; Value=15.95; Value=17.64",
+      "NLquestions": [
+        "How many days with__ Wind or Humidity were there in__Detroit or Flint ==,==Illinois or Michigan in_2021 or 2019 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT min(Value) AS min_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Michigan' AND City = 'Champaign')) AND ((Characteristic = 'Temperature' AND Intensity = '31-40') OR (Characteristic = 'Wind' AND Intensity = '21-30') OR (Characteristic = 'Temperature' AND Intensity = 'Storm') OR (Characteristic = 'Wind' AND Intensity = 'High') OR (Characteristic = 'Humidity' AND Intensity = 'Low'))",
+      "GTresult": "min_Value=5.06, sum_Value=81.98",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind or Humidity in__Champaign ==,==Michigan in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, avg(Value) AS avg_Value, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Michigan' AND City = 'Port Huron') OR (Year = '2021' AND State = 'Illinois' AND City = 'Detroit') OR (Year = '2021' AND State = 'Illinois' AND City = 'Springfield') OR (Year = '2019' AND State = 'Michigan' AND City = 'Champaign')) AND ((Characteristic = 'Wind' AND Intensity = '21-30') OR (Characteristic = 'Humidity' AND Intensity = 'Breeze') OR (Characteristic = 'Humidity' AND Intensity = 'Low')) GROUP BY Year, State, City",
+      "GTresult": "Year=2019, State=Michigan, City=Champaign, avg_Value=16.423333333333332, max_Value=25.97; Year=2019, State=Michigan, City=Port Huron, avg_Value=4.693333333333333, max_Value=7.27; Year=2021, State=Illinois, City=Detroit, avg_Value=8.196666666666667, max_Value=10.74; Year=2021, State=Illinois, City=Springfield, avg_Value=23.28333333333333, max_Value=25.34",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Port Huron or Detroit or Springfield or Champaign ==,==Michigan or Illinois in_2019 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Michigan' AND City = 'Flint')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) GROUP BY Characteristic",
+      "GTresult": "min_Value=14.74; min_Value=15.95",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Flint ==,==Michigan in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Illinois' AND City = 'Detroit')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Humidity, avg_Value=7.51; Characteristic=Wind, avg_Value=10.265",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Detroit ==,==Illinois in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Michigan' AND City = 'Port Huron') OR (Year = '2019' AND State = 'Michigan' AND City = 'Champaign')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Humidity, Year=2019, State=Michigan, City=Champaign, sum_Value=23.299999999999997; Characteristic=Humidity, Year=2019, State=Michigan, City=Port Huron, sum_Value=11.98; Characteristic=Temperature, Year=2019, State=Michigan, City=Champaign, sum_Value=32.120000000000005; Characteristic=Temperature, Year=2019, State=Michigan, City=Port Huron, sum_Value=6.609999999999999",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity in__Port Huron or Champaign ==,==Michigan in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Michigan' AND City = 'Flint')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) ORDER BY Value DESC LIMIT 3",
+      "GTresult": "Value=17.83; Value=17.64; Value=14.74",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Temperature or Humidity in__Flint ==,==Michigan in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Michigan' AND City = 'Champaign')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) ORDER BY Value ASC",
+      "GTresult": "Value=5.06; Value=5.45; Value=25.97; Value=26.67",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Temperature or Wind in__Champaign ==,==Michigan in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2021' AND State = 'Illinois' AND City = 'Detroit')) AND Value < 13.18",
+      "GTresult": "Characteristic=Temperature, Intensity=31-40; Characteristic=Wind, Intensity=21-30; Characteristic=Humidity, Intensity=Breeze; Characteristic=Temperature, Intensity=Storm; Characteristic=Wind, Intensity=High; Characteristic=Humidity, Intensity=Low",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Detroit ==,==Illinois in_2021 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2019' AND State = 'Michigan' AND City = 'Port Huron')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2021' AND State = 'Illinois' AND City = 'Detroit')) AND Value < 13.18)",
+      "GTresult": "Characteristic=Temperature, Intensity=31-40, Value=1.34; Characteristic=Wind, Intensity=21-30, Value=2.1; Characteristic=Humidity, Intensity=Breeze, Value=4.71; Characteristic=Temperature, Intensity=Storm, Value=5.27; Characteristic=Wind, Intensity=High, Value=6.97; Characteristic=Humidity, Intensity=Low, Value=7.27",
+      "NLquestions": []
+    }
+  ]
+}

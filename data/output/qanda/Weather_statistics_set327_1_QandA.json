@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set327_1_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Georgia' AND City = 'Columbus')) AND ((Characteristic = 'Wind' AND Intensity = 'Storm'))",
+      "GTresult": "Value=4.64",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Columbus ==,==Georgia in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2022' AND State = 'Georgia' AND City = 'Fort Lauderdale')) AND ((Characteristic = 'Wind' AND Intensity = 'Low') OR (Characteristic = 'Temperature' AND Intensity = 'Medium') OR (Characteristic = 'Humidity' AND Intensity = 'Calm') OR (Characteristic = 'Wind' AND Intensity = 'Storm') OR (Characteristic = 'Humidity' AND Intensity = '21-30') OR (Characteristic = 'Wind' AND Intensity = '11-20') OR (Characteristic = 'Temperature' AND Intensity = 'High'))",
+      "GTresult": "Value=11.99; Value=12.51; Value=14.21; Value=15.78; Value=20.99; Value=20.58; Value=20.11",
+      "NLquestions": [
+        "How many days with__ Wind or Temperature or Humidity were there in__Fort Lauderdale ==,==Georgia in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Georgia' AND City = 'Columbus') OR (Year = '2016' AND State = 'Georgia' AND City = 'Washington')) AND ((Characteristic = 'Wind' AND Intensity = 'Storm'))",
+      "GTresult": "Value=4.64; Value=22.31",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Columbus or Washington ==,==Georgia in_2019 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Georgia' AND City = 'Columbus') OR (Year = '2022' AND State = 'Florida' AND City = 'Albany') OR (Year = '2019' AND State = 'Florida' AND City = 'Tampa') OR (Year = '2022' AND State = 'Georgia' AND City = 'Fort Lauderdale')) AND ((Characteristic = 'Wind' AND Intensity = 'Low'))",
+      "GTresult": "sum_Value=43.06, avg_Value=10.765",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind in__Columbus or Albany or Tampa or Fort Lauderdale ==,==Georgia or Florida in_2019 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Georgia' AND City = 'Columbus') OR (Year = '2022' AND State = 'Florida' AND City = 'Albany') OR (Year = '2016' AND State = 'Georgia' AND City = 'Washington') OR (Year = '2019' AND State = 'Florida' AND City = 'Tampa') OR (Year = '2022' AND State = 'Georgia' AND City = 'Fort Lauderdale')) AND ((Characteristic = 'Humidity' AND Intensity = 'High') OR (Characteristic = 'Humidity' AND Intensity = 'Calm') OR (Characteristic = 'Wind' AND Intensity = '11-20'))",
+      "GTresult": "Value=0.52; Value=1.22; Value=6.11; Value=9.3; Value=12.96; Value=16.48; Value=13.95; Value=19.14; Value=22.69; Value=27.71; Value=25.31; Value=25.17; Value=4.1; Value=14.21; Value=20.58",
+      "NLquestions": [
+        "How many days with__ Humidity or Wind were there in__Columbus or Albany or Washington or Tampa or Fort Lauderdale ==,==Georgia or Florida in_2019 or 2022 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Georgia' AND City = 'Columbus')) AND ((Characteristic = 'Humidity' AND Intensity = 'High') OR (Characteristic = 'Humidity' AND Intensity = 'Calm') OR (Characteristic = 'Humidity' AND Intensity = '21-30') OR (Characteristic = 'Wind' AND Intensity = '11-20'))",
+      "GTresult": "avg_Value=3.7025, min_Value=0.52",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Columbus ==,==Georgia in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, max(Value) AS max_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Georgia' AND City = 'Columbus') OR (Year = '2022' AND State = 'Florida' AND City = 'Albany') OR (Year = '2016' AND State = 'Georgia' AND City = 'Washington') OR (Year = '2019' AND State = 'Florida' AND City = 'Tampa')) AND ((Characteristic = 'Wind' AND Intensity = 'Low') OR (Characteristic = 'Temperature' AND Intensity = 'Medium') OR (Characteristic = 'Wind' AND Intensity = '11-20') OR (Characteristic = 'Temperature' AND Intensity = 'High')) GROUP BY Year, State, City",
+      "GTresult": "Year=2016, State=Georgia, City=Washington, max_Value=26.49, sum_Value=89.23; Year=2019, State=Florida, City=Tampa, max_Value=26.94, sum_Value=102.11; Year=2019, State=Georgia, City=Columbus, max_Value=6.82, sum_Value=16.16; Year=2022, State=Florida, City=Albany, max_Value=16.48, sum_Value=44.12",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Columbus or Albany or Washington or Tampa ==,==Georgia or Florida in_2019 or 2022 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Georgia' AND City = 'Columbus')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "min_Value=0.52; min_Value=0.54",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Columbus ==,==Georgia in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Georgia' AND City = 'Columbus')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Humidity, sum_Value=8.7; Characteristic=Temperature, sum_Value=12.65",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Temperature in__Columbus ==,==Georgia in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Georgia' AND City = 'Columbus') OR (Year = '2022' AND State = 'Florida' AND City = 'Albany') OR (Year = '2019' AND State = 'Florida' AND City = 'Tampa')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Humidity, Year=2019, State=Florida, City=Tampa, avg_Value=19.586666666666666; Characteristic=Humidity, Year=2019, State=Georgia, City=Columbus, avg_Value=2.9; Characteristic=Humidity, Year=2022, State=Florida, City=Albany, avg_Value=12.18; Characteristic=Temperature, Year=2019, State=Florida, City=Tampa, avg_Value=26.326666666666668; Characteristic=Temperature, Year=2019, State=Georgia, City=Columbus, avg_Value=4.216666666666667; Characteristic=Temperature, Year=2022, State=Florida, City=Albany, avg_Value=12.26",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Temperature in__Columbus or Albany or Tampa ==,==Georgia or Florida in_2019 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2022' AND State = 'Georgia' AND City = 'Fort Lauderdale')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=20.58; Value=20.11; Value=15.78; Value=12.51; Value=11.99",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Wind or Temperature in__Fort Lauderdale ==,==Georgia in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2022' AND State = 'Florida' AND City = 'Albany')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) ORDER BY Value ASC",
+      "GTresult": "Value=4.71; Value=9.3; Value=12.96; Value=13.09; Value=14.28; Value=16.48",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Humidity or Wind in__Albany ==,==Florida in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2019' AND State = 'Florida' AND City = 'Tampa')) AND Value < 14.94",
+      "GTresult": "Characteristic=Humidity, Intensity=21-30",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Tampa ==,==Florida in_2019 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2019' AND State = 'Georgia' AND City = 'Columbus')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2019' AND State = 'Florida' AND City = 'Tampa')) AND Value < 14.94)",
+      "GTresult": "Characteristic=Humidity, Intensity=21-30, Value=6.96",
+      "NLquestions": []
+    }
+  ]
+}

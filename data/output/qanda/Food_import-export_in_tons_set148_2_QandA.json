@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Food_import-export_in_tons_set148_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2016' AND Quarter = 'Q4')) AND ((Category = 'Meat' AND Item = 'Pork'))",
+      "GTresult": "Value=717.26",
+      "NLquestions": [
+        "What is the amount of_Import of__ Meat in__Q4 ==of==2016 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2021' AND Quarter = 'Q4')) AND ((Category = 'Dairy' AND Item = 'Cheese') OR (Category = 'Meat' AND Item = 'Butter') OR (Category = 'Meat' AND Item = 'Beef') OR (Category = 'Dairy' AND Item = 'Chicken') OR (Category = 'Meat' AND Item = 'Pork'))",
+      "GTresult": "Value=647.99; Value=648.73; Value=532.91; Value=661.93; Value=418.51; Value=461.8; Value=86.99; Value=214.52; Value=346.31; Value=476.47",
+      "NLquestions": [
+        "What is the amount of_Import of__ Dairy or Meat in__Q4 ==of==2021 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2021' AND Quarter = 'Q4') OR (Import_Export = 'Import' AND Year = '2022' AND Quarter = 'Q4')) AND ((Category = 'Dairy' AND Item = 'Cheese'))",
+      "GTresult": "Value=647.99; Value=546.84; Value=461.8; Value=744.23",
+      "NLquestions": [
+        "What is the amount of_Import of__ Dairy in__Q4 ==of==2021 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT max(Value) AS max_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2021' AND Quarter = 'Q4') OR (Import_Export = 'Import' AND Year = '2016' AND Quarter = 'Q4')) AND ((Category = 'Dairy' AND Item = 'Cream'))",
+      "GTresult": "max_Value=982.93, sum_Value=2218.21",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Dairy in__Q4 ==of==2021 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2021' AND Quarter = 'Q4') OR (Import_Export = 'Import' AND Year = '2022' AND Quarter = 'Q4') OR (Import_Export = 'Import' AND Year = '2016' AND Quarter = 'Q4')) AND ((Category = 'Dairy' AND Item = 'Cheese') OR (Category = 'Meat' AND Item = 'Butter') OR (Category = 'Dairy' AND Item = 'Cream'))",
+      "GTresult": "Value=647.99; Value=648.73; Value=399.34; Value=546.84; Value=168.65; Value=297.26; Value=562.65; Value=951.17; Value=835.94; Value=461.8; Value=86.99; Value=982.93; Value=744.23; Value=616.12; Value=752.09",
+      "NLquestions": [
+        "What is the amount of_Import of__ Dairy or Meat in__Q4 ==of==2021 or 2022 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT min(Value) AS min_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2022' AND Quarter = 'Q4')) AND ((Category = 'Dairy' AND Item = 'Cream') OR (Category = 'Meat' AND Item = 'Beef'))",
+      "GTresult": "min_Value=297.26, sum_Value=2491.63",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Dairy or Meat in__Q4 ==of==2022 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Import_Export, Year, Quarter, avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2021' AND Quarter = 'Q4') OR (Import_Export = 'Import' AND Year = '2022' AND Quarter = 'Q4') OR (Import_Export = 'Import' AND Year = '2016' AND Quarter = 'Q4')) AND ((Category = 'Dairy' AND Item = 'Cheese') OR (Category = 'Dairy' AND Item = 'Cream') OR (Category = 'Dairy' AND Item = 'Chicken') OR (Category = 'Meat' AND Item = 'Pork')) GROUP BY Import_Export, Year, Quarter",
+      "GTresult": "Import_Export=Import, Year=2016, Quarter=Q4, avg_Value=579.3575, sum_Value=2317.43; Import_Export=Import, Year=2021, Quarter=Q4, avg_Value=549.41, sum_Value=4395.28; Import_Export=Import, Year=2022, Quarter=Q4, avg_Value=511.6225, sum_Value=4092.98",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Dairy or Meat in__Q4 ==of==2021 or 2022 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2016' AND Quarter = 'Q4')) AND ((Category = 'Dairy') OR (Category = 'Meat')) GROUP BY Category",
+      "GTresult": "min_Value=201.58; min_Value=68.56",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Dairy or Meat in__Q4 ==of==2016 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Category, max(Value) AS max_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2022' AND Quarter = 'Q4')) AND ((Category = 'Dairy') OR (Category = 'Meat')) GROUP BY Category",
+      "GTresult": "Category=Dairy, max_Value=752.09; Category=Meat, max_Value=942.15",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Dairy or Meat in__Q4 ==of==2022 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Category, Import_Export, Year, Quarter, max(Value) AS max_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2021' AND Quarter = 'Q4') OR (Import_Export = 'Import' AND Year = '2022' AND Quarter = 'Q4') OR (Import_Export = 'Import' AND Year = '2016' AND Quarter = 'Q4')) AND ((Category = 'Dairy') OR (Category = 'Meat')) GROUP BY Category, Import_Export, Year, Quarter",
+      "GTresult": "Category=Dairy, Import_Export=Import, Year=2016, Quarter=Q4, max_Value=835.94; Category=Dairy, Import_Export=Import, Year=2021, Quarter=Q4, max_Value=982.93; Category=Dairy, Import_Export=Import, Year=2022, Quarter=Q4, max_Value=752.09; Category=Meat, Import_Export=Import, Year=2016, Quarter=Q4, max_Value=951.17; Category=Meat, Import_Export=Import, Year=2021, Quarter=Q4, max_Value=648.73; Category=Meat, Import_Export=Import, Year=2022, Quarter=Q4, max_Value=942.15",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Dairy or Meat in__Q4 ==of==2021 or 2022 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2021' AND Quarter = 'Q4')) AND ((Category = 'Dairy') OR (Category = 'Meat')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=982.93; Value=661.93; Value=648.73; Value=647.99; Value=532.91",
+      "NLquestions": [
+        "What are the top/bottom_ amounts of_Import of__ Dairy or Meat in__Q4 ==of==2021 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2016' AND Quarter = 'Q4')) AND ((Category = 'Dairy') OR (Category = 'Meat')) ORDER BY Value DESC",
+      "GTresult": "Value=951.17; Value=835.94; Value=717.26; Value=562.65; Value=201.58; Value=68.56",
+      "NLquestions": [
+        "What are the amounts /increasing_values of_Import of__ Dairy or Meat in__Q4 ==of==2016 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2021' AND Quarter = 'Q4')) AND Value > 517.85",
+      "GTresult": "Category=Dairy, Item=Cheese; Category=Meat, Item=Butter; Category=Meat, Item=Beef; Category=Dairy, Item=Chicken; Category=Dairy, Item=Cream",
+      "NLquestions": [
+        "What is/are_the_ the amount of_Import of__ in__Q4 ==of==2021 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Category, Item, Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2022' AND Quarter = 'Q4')) AND (Category, Item) IN (SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2021' AND Quarter = 'Q4')) AND Value > 517.85)",
+      "GTresult": "Category=Dairy, Item=Cheese, Value=546.84; Category=Meat, Item=Butter, Value=168.65; Category=Dairy, Item=Cream, Value=297.26; Category=Meat, Item=Beef, Value=942.15; Category=Dairy, Item=Chicken, Value=433.73; Category=Dairy, Item=Cheese, Value=744.23; Category=Meat, Item=Butter, Value=616.12; Category=Dairy, Item=Cream, Value=752.09; Category=Meat, Item=Beef, Value=500.13; Category=Dairy, Item=Chicken, Value=248.3",
+      "NLquestions": []
+    }
+  ]
+}

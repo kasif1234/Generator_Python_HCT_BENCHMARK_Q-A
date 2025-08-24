@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set332_3_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Maryland' AND City = 'Baltimore')) AND ((Characteristic = 'Humidity' AND Intensity = 'Storm'))",
+      "GTresult": "Value=2.02",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Baltimore ==,==Maryland in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Oregon' AND City = 'Springfield')) AND ((Characteristic = 'Humidity' AND Intensity = 'High') OR (Characteristic = 'Wind' AND Intensity = 'Low') OR (Characteristic = 'Humidity' AND Intensity = 'Storm'))",
+      "GTresult": "Value=5.71; Value=1.49; Value=10.92",
+      "NLquestions": [
+        "How many days with__ Humidity or Wind were there in__Springfield ==,==Oregon in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Maryland' AND City = 'Baltimore') OR (Year = '2017' AND State = 'Illinois' AND City = 'Columbia') OR (Year = '2021' AND State = 'Maryland' AND City = 'Champaign') OR (Year = '2016' AND State = 'Oregon' AND City = 'Portland')) AND ((Characteristic = 'Wind' AND Intensity = 'Calm'))",
+      "GTresult": "Value=3.71; Value=7.65; Value=17.61; Value=24.14",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Baltimore or Columbia or Champaign or Portland ==,==Maryland or Illinois or Oregon in_2021 or 2017 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT min(Value) AS min_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Maryland' AND City = 'Baltimore') OR (Year = '2016' AND State = 'Oregon' AND City = 'Springfield')) AND ((Characteristic = 'Humidity' AND Intensity = 'Storm'))",
+      "GTresult": "min_Value=2.02, avg_Value=6.47",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity in__Baltimore or Springfield ==,==Maryland or Oregon in_2021 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Maryland' AND City = 'Baltimore') OR (Year = '2017' AND State = 'Illinois' AND City = 'Columbia') OR (Year = '2016' AND State = 'Oregon' AND City = 'Springfield') OR (Year = '2021' AND State = 'Maryland' AND City = 'Champaign') OR (Year = '2021' AND State = 'Maryland' AND City = 'Salem')) AND ((Characteristic = 'Humidity' AND Intensity = 'High') OR (Characteristic = 'Wind' AND Intensity = 'Low') OR (Characteristic = 'Humidity' AND Intensity = 'Storm') OR (Characteristic = 'Wind' AND Intensity = 'Calm'))",
+      "GTresult": "Value=0.49; Value=0.99; Value=2.02; Value=3.71; Value=4.82; Value=5.15; Value=4.85; Value=7.65; Value=5.71; Value=1.49; Value=10.92; Value=9.01; Value=12.79; Value=16.5; Value=17.9; Value=17.61; Value=18.38; Value=21.34; Value=22.18; Value=18.4",
+      "NLquestions": [
+        "How many days with__ Humidity or Wind were there in__Baltimore or Columbia or Springfield or Champaign or Salem ==,==Maryland or Illinois or Oregon in_2021 or 2017 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Maryland' AND City = 'Salem')) AND ((Characteristic = 'Humidity' AND Intensity = 'High') OR (Characteristic = 'Wind' AND Intensity = 'Low') OR (Characteristic = 'Wind' AND Intensity = 'Calm'))",
+      "GTresult": "sum_Value=58.12, avg_Value=19.37333333333333",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Salem ==,==Maryland in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, max(Value) AS max_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Oregon' AND City = 'Springfield') OR (Year = '2017' AND State = 'Illinois' AND City = 'Chicago')) AND ((Characteristic = 'Humidity' AND Intensity = 'High') OR (Characteristic = 'Wind' AND Intensity = 'Low')) GROUP BY Year, State, City",
+      "GTresult": "Year=2016, State=Oregon, City=Springfield, max_Value=5.71, min_Value=1.49; Year=2017, State=Illinois, City=Chicago, max_Value=20.48, min_Value=17.37",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Springfield or Chicago ==,==Oregon or Illinois in_2016 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Oregon' AND City = 'Portland')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "min_Value=23.5; min_Value=23.57",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Portland ==,==Oregon in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Oregon' AND City = 'Springfield')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Humidity, max_Value=10.92; Characteristic=Wind, max_Value=9.01",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Springfield ==,==Oregon in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Maryland' AND City = 'Baltimore') OR (Year = '2017' AND State = 'Illinois' AND City = 'Columbia') OR (Year = '2021' AND State = 'Maryland' AND City = 'Champaign')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Humidity, Year=2017, State=Illinois, City=Columbia, avg_Value=4.835; Characteristic=Humidity, Year=2021, State=Maryland, City=Baltimore, avg_Value=1.255; Characteristic=Humidity, Year=2021, State=Maryland, City=Champaign, avg_Value=15.344999999999999; Characteristic=Wind, Year=2017, State=Illinois, City=Columbia, avg_Value=6.4; Characteristic=Wind, Year=2021, State=Maryland, City=Baltimore, avg_Value=2.35; Characteristic=Wind, Year=2021, State=Maryland, City=Champaign, avg_Value=17.055",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Baltimore or Columbia or Champaign ==,==Maryland or Illinois in_2021 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'Illinois' AND City = 'Chicago')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) ORDER BY Value ASC LIMIT 3",
+      "GTresult": "Value=16.75; Value=17.37; Value=20.48",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Humidity or Wind in__Chicago ==,==Illinois in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Oregon' AND City = 'Portland')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) ORDER BY Value DESC",
+      "GTresult": "Value=24.14; Value=24.02; Value=23.57; Value=23.5",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Humidity or Wind in__Portland ==,==Oregon in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2021' AND State = 'Maryland' AND City = 'Salem')) AND Value < 13.38",
+      "GTresult": "",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Salem ==,==Maryland in_2021 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2017' AND State = 'Illinois' AND City = 'Columbia')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2021' AND State = 'Maryland' AND City = 'Salem')) AND Value < 13.38)",
+      "GTresult": "",
+      "NLquestions": []
+    }
+  ]
+}

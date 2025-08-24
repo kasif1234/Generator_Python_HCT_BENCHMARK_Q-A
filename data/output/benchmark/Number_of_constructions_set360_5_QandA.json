@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Number_of_constructions_set360_5_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Administration')) AND ((Quarter = 'Q4' AND Month = 'August' AND State = 'Georgia' AND City = 'Columbus'))",
+      "GTresult": "Value=92.34",
+      "NLquestions": [
+        "What is the number of__ in__Columbus ==,==Georgia in__August ==,==Q4 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'School')) AND ((Quarter = 'Q3' AND Month = 'November' AND State = 'Minnesota' AND City = 'Albany') OR (Quarter = 'Q2' AND Month = 'December' AND State = 'Georgia' AND City = 'Columbus') OR (Quarter = 'Q3' AND Month = 'July' AND State = 'Georgia' AND City = 'Rochester') OR (Quarter = 'Q2' AND Month = 'September' AND State = 'Minnesota' AND City = 'Albany') OR (Quarter = 'Q4' AND Month = 'August' AND State = 'Georgia' AND City = 'Columbus') OR (Quarter = 'Q3' AND Month = 'June' AND State = 'Minnesota' AND City = 'Hastings'))",
+      "GTresult": "Value=58.95; Value=58.93; Value=68.75; Value=69.98; Value=70.41; Value=71.92",
+      "NLquestions": [
+        "What is the number of__ in__Albany or Columbus or Rochester or Hastings ==,==Minnesota or Georgia in__November or December or July or September or August or June ==,==Q3 or Q2 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Factory') OR (Type_of_building = 'Production' AND Usage = 'School') OR (Type_of_building = 'Service' AND Usage = 'Library') OR (Type_of_building = 'Production' AND Usage = 'Administration')) AND ((Quarter = 'Q2' AND Month = 'June' AND State = 'Minnesota' AND City = 'Hastings'))",
+      "GTresult": "Value=3.29; Value=52.03; Value=71.79; Value=82.52",
+      "NLquestions": [
+        "What is the number of__ in__Hastings ==,==Minnesota in__June ==,==Q2 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, max(Value) AS max_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Factory') OR (Type_of_building = 'Service' AND Usage = 'Library')) AND ((Quarter = 'Q2' AND Month = 'September' AND State = 'Minnesota' AND City = 'Albany'))",
+      "GTresult": "sum_Value=101.69, max_Value=79.59",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__Albany ==,==Minnesota in__September ==,==Q2 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Workshop') OR (Type_of_building = 'Production' AND Usage = 'School') OR (Type_of_building = 'Production' AND Usage = 'Administration')) AND ((Quarter = 'Q3' AND Month = 'November' AND State = 'Minnesota' AND City = 'Albany') OR (Quarter = 'Q2' AND Month = 'December' AND State = 'Georgia' AND City = 'Columbus') OR (Quarter = 'Q2' AND Month = 'September' AND State = 'Minnesota' AND City = 'Albany'))",
+      "GTresult": "Value=37.46; Value=41.61; Value=48.8; Value=58.95; Value=58.93; Value=69.98; Value=84.19; Value=87.05; Value=89.21",
+      "NLquestions": [
+        "What is the number of__ in__Albany or Columbus ==,==Minnesota or Georgia in__November or December or September ==,==Q3 or Q2 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT min(Value) AS min_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'School')) AND ((Quarter = 'Q3' AND Month = 'November' AND State = 'Minnesota' AND City = 'Albany') OR (Quarter = 'Q4' AND Month = 'October' AND State = 'Minnesota' AND City = 'Hastings') OR (Quarter = 'Q3' AND Month = 'June' AND State = 'Minnesota' AND City = 'Hastings'))",
+      "GTresult": "min_Value=58.03, sum_Value=188.9",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__Albany or Hastings ==,==Minnesota in__November or October or June ==,==Q3 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Type_of_building, Usage, avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Factory') OR (Type_of_building = 'Service' AND Usage = 'Workshop') OR (Type_of_building = 'Production' AND Usage = 'School') OR (Type_of_building = 'Service' AND Usage = 'Library') OR (Type_of_building = 'Production' AND Usage = 'Administration')) AND ((Quarter = 'Q2' AND Month = 'December' AND State = 'Georgia' AND City = 'Columbus') OR (Quarter = 'Q3' AND Month = 'June' AND State = 'Minnesota' AND City = 'Hastings')) GROUP BY Type_of_building, Usage",
+      "GTresult": "Type_of_building=Production, Usage=Administration, avg_Value=91.88499999999999, sum_Value=183.76999999999998; Type_of_building=Production, Usage=Factory, avg_Value=16.625, sum_Value=33.25; Type_of_building=Production, Usage=School, avg_Value=65.425, sum_Value=130.85; Type_of_building=Service, Usage=Library, avg_Value=75.39, sum_Value=150.78; Type_of_building=Service, Usage=Workshop, avg_Value=47.16, sum_Value=94.32",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__Columbus or Hastings ==,==Georgia or Minnesota in__December or June ==,==Q2 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'School')) AND ((Quarter = 'Q2') OR (Quarter = 'Q4')) GROUP BY Quarter",
+      "GTresult": "min_Value=52.03; min_Value=58.03",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q2 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Quarter, min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Workshop')) AND ((Quarter = 'Q2') OR (Quarter = 'Q4')) GROUP BY Quarter",
+      "GTresult": "Quarter=Q2, min_Value=33.22; Quarter=Q4, min_Value=35.47",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q2 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Quarter, Type_of_building, Usage, sum(Value) AS sum_Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Workshop') OR (Type_of_building = 'Service' AND Usage = 'Library')) AND ((Quarter = 'Q2') OR (Quarter = 'Q4')) GROUP BY Quarter, Type_of_building, Usage",
+      "GTresult": "Quarter=Q2, Type_of_building=Service, Usage=Library, sum_Value=221.28000000000003; Quarter=Q2, Type_of_building=Service, Usage=Workshop, sum_Value=123.63; Quarter=Q4, Type_of_building=Service, Usage=Library, sum_Value=231.24; Quarter=Q4, Type_of_building=Service, Usage=Workshop, sum_Value=131.9",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q2 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Administration')) AND ((Quarter = 'Q4') OR (Quarter = 'Q3')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=83.48; Value=84.19; Value=89.53; Value=90.81; Value=92.34",
+      "NLquestions": [
+        "What are the top/bottom_ numbers of__ in__ ==,== in__ ==,==Q4 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Administration')) AND ((Quarter = 'Q4') OR (Quarter = 'Q3')) ORDER BY Value DESC",
+      "GTresult": "Value=96.72; Value=92.34; Value=90.81; Value=89.53; Value=84.19; Value=83.48",
+      "NLquestions": [
+        "What are the numbers /ascending_values of__ in__ ==,== in__ ==,==Q4 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Quarter, Month, State, City FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Factory')) AND Value < 56.69",
+      "GTresult": "Quarter=Q2, Month=June, State=Minnesota, City=Hastings; Quarter=Q4, Month=April, State=Georgia, City=Rochester; Quarter=Q3, Month=November, State=Minnesota, City=Albany; Quarter=Q2, Month=December, State=Georgia, City=Columbus; Quarter=Q4, Month=October, State=Minnesota, City=Hastings; Quarter=Q3, Month=July, State=Georgia, City=Rochester; Quarter=Q2, Month=September, State=Minnesota, City=Albany; Quarter=Q4, Month=August, State=Georgia, City=Columbus; Quarter=Q3, Month=June, State=Minnesota, City=Hastings",
+      "NLquestions": [
+        "What is/are_the_ the number of__ in__ ==,== in__ ==,== is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Quarter, Month, State, City, Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'School')) AND (Quarter, Month, State, City) IN (SELECT Quarter, Month, State, City FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Factory')) AND Value < 56.69)",
+      "GTresult": "Quarter=Q2, Month=June, State=Minnesota, City=Hastings, Value=52.03; Quarter=Q4, Month=April, State=Georgia, City=Rochester, Value=58.71; Quarter=Q3, Month=November, State=Minnesota, City=Albany, Value=58.95; Quarter=Q2, Month=December, State=Georgia, City=Columbus, Value=58.93; Quarter=Q4, Month=October, State=Minnesota, City=Hastings, Value=58.03; Quarter=Q3, Month=July, State=Georgia, City=Rochester, Value=68.75; Quarter=Q2, Month=September, State=Minnesota, City=Albany, Value=69.98; Quarter=Q4, Month=August, State=Georgia, City=Columbus, Value=70.41; Quarter=Q3, Month=June, State=Minnesota, City=Hastings, Value=71.92",
+      "NLquestions": []
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Food_import-export_in_tons_set220_1_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Cereals' AND Item = 'Chicken'))",
+      "GTresult": "Value=176.56",
+      "NLquestions": [
+        "What is the amount of_Import of__ Cereals in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Dairy' AND Item = 'Cheese') OR (Category = 'Cereals' AND Item = 'Butter') OR (Category = 'Dairy' AND Item = 'Pork') OR (Category = 'Meat' AND Item = 'Lamb') OR (Category = 'Cereals' AND Item = 'Chicken') OR (Category = 'Dairy' AND Item = 'Seeds') OR (Category = 'Meat' AND Item = 'Wheat') OR (Category = 'Cereals' AND Item = 'Rice'))",
+      "GTresult": "Value=99.32; Value=230.19; Value=807.39; Value=712.67; Value=176.56; Value=914.95; Value=116.4; Value=628.92",
+      "NLquestions": [
+        "What is the amount of_Import of__ Dairy or Cereals or Meat in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Dairy' AND Item = 'Cheese'))",
+      "GTresult": "Value=99.32",
+      "NLquestions": [
+        "What is the amount of_Import of__ Dairy in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT min(Value) AS min_Value, max(Value) AS max_Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Dairy' AND Item = 'Cheese'))",
+      "GTresult": "min_Value=99.32, max_Value=99.32",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Dairy in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Meat' AND Item = 'Cream') OR (Category = 'Dairy' AND Item = 'Pork') OR (Category = 'Meat' AND Item = 'Lamb') OR (Category = 'Dairy' AND Item = 'Seeds'))",
+      "GTresult": "Value=453.38; Value=807.39; Value=712.67; Value=914.95",
+      "NLquestions": [
+        "What is the amount of_Import of__ Meat or Dairy in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT max(Value) AS max_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Dairy' AND Item = 'Cheese') OR (Category = 'Cereals' AND Item = 'Chicken'))",
+      "GTresult": "max_Value=176.56, sum_Value=275.88",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Dairy or Cereals in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Import_Export, max(Value) AS max_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Dairy' AND Item = 'Cheese') OR (Category = 'Meat' AND Item = 'Lamb') OR (Category = 'Cereals' AND Item = 'Chicken') OR (Category = 'Meat' AND Item = 'Wheat') OR (Category = 'Cereals' AND Item = 'Rice')) GROUP BY Import_Export",
+      "GTresult": "Import_Export=Import, max_Value=712.67, avg_Value=346.774",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Dairy or Meat or Cereals in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Dairy') OR (Category = 'Cereals')) GROUP BY Category",
+      "GTresult": "min_Value=176.56; min_Value=99.32",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Dairy or Cereals in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Category, min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Dairy') OR (Category = 'Meat')) GROUP BY Category",
+      "GTresult": "Category=Dairy, min_Value=99.32; Category=Meat, min_Value=116.4",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Dairy or Meat in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Category, Import_Export, sum(Value) AS sum_Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Dairy') OR (Category = 'Cereals')) GROUP BY Category, Import_Export",
+      "GTresult": "Category=Cereals, Import_Export=Import, sum_Value=1035.67; Category=Dairy, Import_Export=Import, sum_Value=1821.66",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Dairy or Cereals in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Dairy') OR (Category = 'Meat')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=99.32; Value=116.4; Value=453.38; Value=712.67; Value=807.39",
+      "NLquestions": [
+        "What are the top/bottom_ amounts of_Import of__ Dairy or Meat in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Dairy') OR (Category = 'Cereals')) ORDER BY Value DESC",
+      "GTresult": "Value=914.95; Value=807.39; Value=628.92; Value=230.19; Value=176.56; Value=99.32",
+      "NLquestions": [
+        "What are the amounts /increasing_values of_Import of__ Dairy or Cereals in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Import')) AND Value > 459.98",
+      "GTresult": "Category=Dairy, Item=Pork; Category=Meat, Item=Lamb; Category=Dairy, Item=Seeds; Category=Cereals, Item=Rice",
+      "NLquestions": [
+        "What is/are_the_ the amount of_Import of__ in__ ==of== is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Category, Item, Value FROM DBdata WHERE ((Import_Export = 'Import')) AND (Category, Item) IN (SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Import')) AND Value > 459.98)",
+      "GTresult": "Category=Dairy, Item=Pork, Value=807.39; Category=Meat, Item=Lamb, Value=712.67; Category=Dairy, Item=Seeds, Value=914.95; Category=Cereals, Item=Rice, Value=628.92",
+      "NLquestions": []
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set315_1_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2022' AND State = 'Florida' AND City = 'Cambridge')) AND ((Characteristic = 'Wind' AND Intensity = 'Calm'))",
+      "GTresult": "Value=15.03",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Cambridge ==,==Florida in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Massachusetts' AND City = 'Hastings')) AND ((Characteristic = 'Wind' AND Intensity = 'Breeze') OR (Characteristic = 'Temperature' AND Intensity = 'Storm') OR (Characteristic = 'Wind' AND Intensity = 'Calm') OR (Characteristic = 'Temperature' AND Intensity = '11-20'))",
+      "GTresult": "Value=6.75; Value=8.39; Value=7.51; Value=10.75",
+      "NLquestions": [
+        "How many days with__ Wind or Temperature were there in__Hastings ==,==Massachusetts in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2022' AND State = 'Florida' AND City = 'Cambridge') OR (Year = '2021' AND State = 'Minnesota' AND City = 'Boston')) AND ((Characteristic = 'Temperature' AND Intensity = '11-20'))",
+      "GTresult": "Value=14.58; Value=22.73",
+      "NLquestions": [
+        "How many days with__ Temperature were there in__Cambridge or Boston ==,==Florida or Minnesota in_2022 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT avg(Value) AS avg_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Massachusetts' AND City = 'Hastings') OR (Year = '2022' AND State = 'Florida' AND City = 'Cambridge') OR (Year = '2022' AND State = 'Massachusetts' AND City = 'Lenox')) AND ((Characteristic = 'Wind' AND Intensity = '21-30'))",
+      "GTresult": "avg_Value=15.65, min_Value=9.71",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind in__Hastings or Cambridge or Lenox ==,==Massachusetts or Florida in_2021 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2022' AND State = 'Florida' AND City = 'Cambridge') OR (Year = '2021' AND State = 'Florida' AND City = 'Fort Lauderdale')) AND ((Characteristic = 'Temperature' AND Intensity = '11-20') OR (Characteristic = 'Wind' AND Intensity = '21-30'))",
+      "GTresult": "Value=14.58; Value=15.49; Value=10.37; Value=12.29",
+      "NLquestions": [
+        "How many days with__ Temperature or Wind were there in__Cambridge or Fort Lauderdale ==,==Florida in_2022 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT max(Value) AS max_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2022' AND State = 'Minnesota' AND City = 'Rochester')) AND ((Characteristic = 'Wind' AND Intensity = 'Breeze') OR (Characteristic = 'Temperature' AND Intensity = 'Storm') OR (Characteristic = 'Temperature' AND Intensity = '11-20') OR (Characteristic = 'Temperature' AND Intensity = '0-10'))",
+      "GTresult": "max_Value=6.02, min_Value=0.83",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Rochester ==,==Minnesota in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, max(Value) AS max_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2022' AND State = 'Minnesota' AND City = 'Rochester') OR (Year = '2021' AND State = 'Massachusetts' AND City = 'Hastings') OR (Year = '2021' AND State = 'Minnesota' AND City = 'Boston') OR (Year = '2021' AND State = 'Florida' AND City = 'Fort Lauderdale') OR (Year = '2022' AND State = 'Minnesota' AND City = 'Tampa')) AND ((Characteristic = 'Wind' AND Intensity = 'Breeze') OR (Characteristic = 'Wind' AND Intensity = 'Calm')) GROUP BY Year, State, City",
+      "GTresult": "Year=2021, State=Florida, City=Fort Lauderdale, max_Value=26.52, avg_Value=17.995; Year=2021, State=Massachusetts, City=Hastings, max_Value=7.51, avg_Value=7.13; Year=2021, State=Minnesota, City=Boston, max_Value=20.44, avg_Value=18.305; Year=2022, State=Minnesota, City=Rochester, max_Value=0.83, avg_Value=0.705; Year=2022, State=Minnesota, City=Tampa, max_Value=17.49, avg_Value=12.09",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind in__Rochester or Hastings or Boston or Fort Lauderdale or Tampa ==,==Minnesota or Massachusetts or Florida in_2022 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Massachusetts' AND City = 'Hastings')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) GROUP BY Characteristic",
+      "GTresult": "min_Value=8.39; min_Value=6.75",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Hastings ==,==Massachusetts in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2022' AND State = 'Massachusetts' AND City = 'Lenox')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Temperature, sum_Value=55.38; Characteristic=Wind, sum_Value=74.3",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Lenox ==,==Massachusetts in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Massachusetts' AND City = 'Hastings') OR (Year = '2022' AND State = 'Florida' AND City = 'Cambridge') OR (Year = '2021' AND State = 'Florida' AND City = 'Fort Lauderdale')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Temperature, Year=2021, State=Florida, City=Fort Lauderdale, max_Value=25.42; Characteristic=Temperature, Year=2021, State=Massachusetts, City=Hastings, max_Value=12.5; Characteristic=Temperature, Year=2022, State=Florida, City=Cambridge, max_Value=18.11; Characteristic=Wind, Year=2021, State=Florida, City=Fort Lauderdale, max_Value=26.52; Characteristic=Wind, Year=2021, State=Massachusetts, City=Hastings, max_Value=9.71; Characteristic=Wind, Year=2022, State=Florida, City=Cambridge, max_Value=15.49",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Hastings or Cambridge or Fort Lauderdale ==,==Massachusetts or Florida in_2021 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2022' AND State = 'Minnesota' AND City = 'Rochester')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=0.58; Value=0.83; Value=1.24; Value=4.56; Value=4.76",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Wind or Temperature in__Rochester ==,==Minnesota in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Florida' AND City = 'Fort Lauderdale')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) ORDER BY Value ASC",
+      "GTresult": "Value=9.47; Value=10.37; Value=12.29; Value=16.92; Value=25.42; Value=26.52",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Wind or Temperature in__Fort Lauderdale ==,==Florida in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2021' AND State = 'Minnesota' AND City = 'Boston')) AND Value > 13.78",
+      "GTresult": "Characteristic=Wind, Intensity=Breeze; Characteristic=Wind, Intensity=Calm; Characteristic=Temperature, Intensity=11-20; Characteristic=Wind, Intensity=21-30; Characteristic=Temperature, Intensity=0-10",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Boston ==,==Minnesota in_2021 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2022' AND State = 'Minnesota' AND City = 'Tampa')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2021' AND State = 'Minnesota' AND City = 'Boston')) AND Value > 13.78)",
+      "GTresult": "Characteristic=Wind, Intensity=Breeze, Value=17.49; Characteristic=Wind, Intensity=Calm, Value=6.69; Characteristic=Temperature, Intensity=11-20, Value=7.14; Characteristic=Wind, Intensity=21-30, Value=21.59; Characteristic=Temperature, Intensity=0-10, Value=4.07",
+      "NLquestions": []
+    }
+  ]
+}

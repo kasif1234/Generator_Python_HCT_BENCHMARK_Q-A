@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Food_import-export_in_tons_set4_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Dairy' AND Item = 'Lamb'))",
+      "GTresult": "Value=645.32",
+      "NLquestions": [
+        "What is the amount of_Export of__ Dairy in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Dairy' AND Item = 'Lamb') OR (Category = 'Meat' AND Item = 'Milk') OR (Category = 'Dairy' AND Item = 'Yoghurt') OR (Category = 'Cereals' AND Item = 'Rice') OR (Category = 'Dairy' AND Item = 'Seeds') OR (Category = 'Cereals' AND Item = 'Chicken'))",
+      "GTresult": "Value=645.32; Value=487.04; Value=907.4; Value=334.49; Value=889.65; Value=252.51",
+      "NLquestions": [
+        "What is the amount of_Export of__ Dairy or Meat or Cereals in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Dairy' AND Item = 'Seeds'))",
+      "GTresult": "Value=889.65",
+      "NLquestions": [
+        "What is the amount of_Export of__ Dairy in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT min(Value) AS min_Value, max(Value) AS max_Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Cereals' AND Item = 'Chicken'))",
+      "GTresult": "min_Value=252.51, max_Value=252.51",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Cereals in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Dairy' AND Item = 'Lamb') OR (Category = 'Meat' AND Item = 'Milk') OR (Category = 'Cereals' AND Item = 'Chicken'))",
+      "GTresult": "Value=645.32; Value=487.04; Value=252.51",
+      "NLquestions": [
+        "What is the amount of_Export of__ Dairy or Meat or Cereals in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Meat' AND Item = 'Chicken') OR (Category = 'Dairy' AND Item = 'Lamb') OR (Category = 'Meat' AND Item = 'Milk') OR (Category = 'Cereals' AND Item = 'Rice') OR (Category = 'Dairy' AND Item = 'Seeds'))",
+      "GTresult": "avg_Value=561.024, min_Value=334.49",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Meat or Dairy or Cereals in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Import_Export, max(Value) AS max_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Meat' AND Item = 'Chicken') OR (Category = 'Cereals' AND Item = 'Cream') OR (Category = 'Dairy' AND Item = 'Yoghurt') OR (Category = 'Cereals' AND Item = 'Rice') OR (Category = 'Cereals' AND Item = 'Chicken')) GROUP BY Import_Export",
+      "GTresult": "Import_Export=Export, max_Value=907.4, avg_Value=562.722",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Meat or Cereals or Dairy in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Dairy') OR (Category = 'Cereals')) GROUP BY Category",
+      "GTresult": "min_Value=252.51; min_Value=645.32",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Dairy or Cereals in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Category, avg(Value) AS avg_Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Meat') OR (Category = 'Dairy')) GROUP BY Category",
+      "GTresult": "Category=Dairy, avg_Value=814.1233333333333; Category=Meat, avg_Value=531.0466666666667",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Meat or Dairy in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Category, Import_Export, min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Meat') OR (Category = 'Cereals')) GROUP BY Category, Import_Export",
+      "GTresult": "Category=Cereals, Import_Export=Export, min_Value=252.51; Category=Meat, Import_Export=Export, min_Value=448.62",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Meat or Cereals in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Meat') OR (Category = 'Cereals')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=252.51; Value=334.49; Value=448.62; Value=487.04; Value=657.48",
+      "NLquestions": [
+        "What are the top/bottom_ amounts of_Export of__ Meat or Cereals in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Meat') OR (Category = 'Dairy')) ORDER BY Value DESC",
+      "GTresult": "Value=907.4; Value=889.65; Value=657.48; Value=645.32; Value=487.04; Value=448.62",
+      "NLquestions": [
+        "What are the amounts /increasing_values of_Export of__ Meat or Dairy in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Export')) AND Value > 610.34",
+      "GTresult": "Category=Dairy, Item=Lamb; Category=Cereals, Item=Cream; Category=Dairy, Item=Yoghurt; Category=Meat, Item=Corn; Category=Dairy, Item=Seeds",
+      "NLquestions": [
+        "What is/are_the_ the amount of_Export of__ in__ ==of== is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Category, Item, Value FROM DBdata WHERE ((Import_Export = 'Export')) AND (Category, Item) IN (SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Export')) AND Value > 610.34)",
+      "GTresult": "Category=Dairy, Item=Lamb, Value=645.32; Category=Cereals, Item=Cream, Value=870.59; Category=Dairy, Item=Yoghurt, Value=907.4; Category=Meat, Item=Corn, Value=657.48; Category=Dairy, Item=Seeds, Value=889.65",
+      "NLquestions": []
+    }
+  ]
+}

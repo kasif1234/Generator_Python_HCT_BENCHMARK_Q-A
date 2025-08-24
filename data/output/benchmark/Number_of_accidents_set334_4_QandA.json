@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Number_of_accidents_set334_4_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Gender = 'Male' AND Year = '2020' AND Quarter = 'Q3')) AND ((Event = 'Fire' AND Severity = 'Fatal'))",
+      "GTresult": "Value=14.94; Value=58.7",
+      "NLquestions": [
+        "What is the number of_((accidents)) of__ involving_ in__Q3 ==of==2020 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Gender = 'Male' AND Year = '2015' AND Quarter = 'Q2')) AND ((Event = 'Drowning' AND Severity = 'Slight') OR (Event = 'Fire' AND Severity = 'Fatal'))",
+      "GTresult": "Value=67.9; Value=37.53; Value=18.09; Value=24.75; Value=91.67; Value=63.55",
+      "NLquestions": [
+        "What is the number of_((accidents)) of__ involving_ in__Q2 ==of==2015 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Gender = 'Male' AND Year = '2015' AND Quarter = 'Q2') OR (Gender = 'Male' AND Year = '2020' AND Quarter = 'Q3')) AND ((Event = 'Drowning' AND Severity = 'Slight'))",
+      "GTresult": "Value=67.9; Value=39.37; Value=18.09; Value=57.36; Value=91.67",
+      "NLquestions": [
+        "What is the number of_((accidents)) of__ involving_ in__Q2 or Q3 ==of==2015 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT min(Value) AS min_Value, max(Value) AS max_Value FROM DBdata WHERE ((Gender = 'Male' AND Year = '2015' AND Quarter = 'Q2') OR (Gender = 'Male' AND Year = '2020' AND Quarter = 'Q3')) AND ((Event = 'Fire' AND Severity = 'Fatal'))",
+      "GTresult": "min_Value=14.94, max_Value=63.55",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((accidents)) of__ involving_ in__Q2 or Q3 ==of==2015 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Gender = 'Male' AND Year = '2015' AND Quarter = 'Q2') OR (Gender = 'Male' AND Year = '2020' AND Quarter = 'Q3')) AND ((Event = 'Drowning' AND Severity = 'Slight') OR (Event = 'Fire' AND Severity = 'Fatal'))",
+      "GTresult": "Value=67.9; Value=37.53; Value=39.37; Value=14.94; Value=18.09; Value=24.75; Value=57.36; Value=58.7; Value=91.67; Value=63.55",
+      "NLquestions": [
+        "What is the number of_((accidents)) of__ involving_ in__Q2 or Q3 ==of==2015 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT sum(Value) AS sum_Value, max(Value) AS max_Value FROM DBdata WHERE ((Gender = 'Male' AND Year = '2020' AND Quarter = 'Q3')) AND ((Event = 'Drowning' AND Severity = 'Slight') OR (Event = 'Fire' AND Severity = 'Fatal'))",
+      "GTresult": "sum_Value=170.37, max_Value=58.7",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((accidents)) of__ involving_ in__Q3 ==of==2020 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Gender, Year, Quarter, max(Value) AS max_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Gender = 'Male' AND Year = '2015' AND Quarter = 'Q2') OR (Gender = 'Male' AND Year = '2020' AND Quarter = 'Q3')) AND ((Event = 'Drowning' AND Severity = 'Slight') OR (Event = 'Fire' AND Severity = 'Fatal')) GROUP BY Gender, Year, Quarter",
+      "GTresult": "Gender=Male, Year=2015, Quarter=Q2, max_Value=91.67, avg_Value=50.58166666666667; Gender=Male, Year=2020, Quarter=Q3, max_Value=58.7, avg_Value=42.5925",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((accidents)) of__ involving_ in__Q2 or Q3 ==of==2015 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Gender = 'Male' AND Year = '2020' AND Quarter = 'Q3')) AND ((Event = 'Drowning') OR (Event = 'Fire')) GROUP BY Event",
+      "GTresult": "min_Value=39.37; min_Value=14.94",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((accidents)) of__ involving_ in__Q3 ==of==2020 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Event, avg(Value) AS avg_Value FROM DBdata WHERE ((Gender = 'Male' AND Year = '2015' AND Quarter = 'Q2')) AND ((Event = 'Drowning') OR (Event = 'Fire')) GROUP BY Event",
+      "GTresult": "Event=Drowning, avg_Value=59.22; Event=Fire, avg_Value=41.943333333333335",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((accidents)) of__ involving_ in__Q2 ==of==2015 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Event, Gender, Year, Quarter, max(Value) AS max_Value FROM DBdata WHERE ((Gender = 'Male' AND Year = '2015' AND Quarter = 'Q2') OR (Gender = 'Male' AND Year = '2020' AND Quarter = 'Q3')) AND ((Event = 'Drowning') OR (Event = 'Fire')) GROUP BY Event, Gender, Year, Quarter",
+      "GTresult": "Event=Drowning, Gender=Male, Year=2015, Quarter=Q2, max_Value=91.67; Event=Drowning, Gender=Male, Year=2020, Quarter=Q3, max_Value=57.36; Event=Fire, Gender=Male, Year=2015, Quarter=Q2, max_Value=63.55; Event=Fire, Gender=Male, Year=2020, Quarter=Q3, max_Value=58.7",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((accidents)) of__ involving_ in__Q2 or Q3 ==of==2015 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Gender = 'Male' AND Year = '2020' AND Quarter = 'Q3')) AND ((Event = 'Drowning') OR (Event = 'Fire')) ORDER BY Value ASC LIMIT 3",
+      "GTresult": "Value=14.94; Value=39.37; Value=57.36",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers of_((accidents)) of__ involving_ in__Q3 ==of==2020 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Gender = 'Male' AND Year = '2015' AND Quarter = 'Q2')) AND ((Event = 'Drowning') OR (Event = 'Fire')) ORDER BY Value DESC",
+      "GTresult": "Value=91.67; Value=67.9; Value=63.55; Value=37.53; Value=24.75; Value=18.09",
+      "NLquestions": [
+        "What are the numbers /increasing_values of_((accidents)) of__ involving_ in__Q2 ==of==2015 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Event, Severity FROM DBdata WHERE ((Gender = 'Male' AND Year = '2020' AND Quarter = 'Q3')) AND Value > 47.39",
+      "GTresult": "Event=Drowning, Severity=Slight; Event=Fire, Severity=Fatal",
+      "NLquestions": [
+        "What is/are_the_ the number of_((accidents)) of__ involving_ in__Q3 ==of==2020 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Event, Severity, Value FROM DBdata WHERE ((Gender = 'Male' AND Year = '2015' AND Quarter = 'Q2')) AND (Event, Severity) IN (SELECT Event, Severity FROM DBdata WHERE ((Gender = 'Male' AND Year = '2020' AND Quarter = 'Q3')) AND Value > 47.39)",
+      "GTresult": "Event=Drowning, Severity=Slight, Value=67.9; Event=Fire, Severity=Fatal, Value=37.53; Event=Drowning, Severity=Slight, Value=18.09; Event=Fire, Severity=Fatal, Value=24.75; Event=Drowning, Severity=Slight, Value=91.67; Event=Fire, Severity=Fatal, Value=63.55",
+      "NLquestions": []
+    }
+  ]
+}

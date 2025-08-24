@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Number_of_constructions_set8_1_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'School')) AND ((Quarter = 'Q1' AND Month = 'May'))",
+      "GTresult": "Value=99.27",
+      "NLquestions": [
+        "What is the number of__ in__ ==,== in__May ==,==Q1 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Museum')) AND ((Quarter = 'Q1' AND Month = 'March') OR (Quarter = 'Q2' AND Month = 'February') OR (Quarter = 'Q1' AND Month = 'January') OR (Quarter = 'Q2' AND Month = 'April') OR (Quarter = 'Q2' AND Month = 'March'))",
+      "GTresult": "Value=44.46; Value=49.57; Value=50.43; Value=50.92; Value=53.27",
+      "NLquestions": [
+        "What is the number of__ in__ ==,== in__March or February or January or April ==,==Q1 or Q2 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Museum') OR (Type_of_building = 'Culture' AND Usage = 'School')) AND ((Quarter = 'Q2' AND Month = 'March'))",
+      "GTresult": "Value=53.27; Value=98.19",
+      "NLquestions": [
+        "What is the number of__ in__ ==,== in__March ==,==Q2 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Factory') OR (Type_of_building = 'Culture' AND Usage = 'Workshop') OR (Type_of_building = 'Service' AND Usage = 'Concert') OR (Type_of_building = 'Production' AND Usage = 'Museum') OR (Type_of_building = 'Culture' AND Usage = 'Theatre') OR (Type_of_building = 'Service' AND Usage = 'Hospital') OR (Type_of_building = 'Production' AND Usage = 'Administration') OR (Type_of_building = 'Culture' AND Usage = 'School')) AND ((Quarter = 'Q2' AND Month = 'February'))",
+      "GTresult": "sum_Value=393.86, avg_Value=49.2325",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__ ==,== in__February ==,==Q2 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Concert') OR (Type_of_building = 'Service' AND Usage = 'Hospital')) AND ((Quarter = 'Q2' AND Month = 'February') OR (Quarter = 'Q1' AND Month = 'January') OR (Quarter = 'Q1' AND Month = 'May') OR (Quarter = 'Q2' AND Month = 'March'))",
+      "GTresult": "Value=33.02; Value=36.59; Value=40.91; Value=42.47; Value=71.08; Value=72.08; Value=74.23; Value=74.86",
+      "NLquestions": [
+        "What is the number of__ in__ ==,== in__February or January or May or March ==,==Q2 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT min(Value) AS min_Value, max(Value) AS max_Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Hospital')) AND ((Quarter = 'Q2' AND Month = 'February') OR (Quarter = 'Q1' AND Month = 'January') OR (Quarter = 'Q2' AND Month = 'March'))",
+      "GTresult": "min_Value=71.08, max_Value=74.86",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__ ==,== in__February or January or March ==,==Q2 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Type_of_building, Usage, avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Factory') OR (Type_of_building = 'Culture' AND Usage = 'Workshop') OR (Type_of_building = 'Service' AND Usage = 'Concert') OR (Type_of_building = 'Culture' AND Usage = 'Theatre') OR (Type_of_building = 'Culture' AND Usage = 'School')) AND ((Quarter = 'Q1' AND Month = 'March') OR (Quarter = 'Q2' AND Month = 'February') OR (Quarter = 'Q1' AND Month = 'January') OR (Quarter = 'Q2' AND Month = 'April') OR (Quarter = 'Q2' AND Month = 'March')) GROUP BY Type_of_building, Usage",
+      "GTresult": "Type_of_building=Culture, Usage=School, avg_Value=94.008, sum_Value=470.03999999999996; Type_of_building=Culture, Usage=Theatre, avg_Value=59.03000000000001, sum_Value=295.15000000000003; Type_of_building=Culture, Usage=Workshop, avg_Value=21.188, sum_Value=105.94; Type_of_building=Production, Usage=Factory, avg_Value=7.706, sum_Value=38.53; Type_of_building=Service, Usage=Concert, avg_Value=36.162, sum_Value=180.81",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__March or February or January or April ==,==Q1 or Q2 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Concert')) AND ((Quarter = 'Q1') OR (Quarter = 'Q2')) GROUP BY Quarter",
+      "GTresult": "min_Value=29.35; min_Value=33.02",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q1 or Q2 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Quarter, max(Value) AS max_Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'School')) AND ((Quarter = 'Q1') OR (Quarter = 'Q2')) GROUP BY Quarter",
+      "GTresult": "Quarter=Q1, max_Value=99.27; Quarter=Q2, max_Value=98.52",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q1 or Q2 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Quarter, Type_of_building, Usage, max(Value) AS max_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Factory') OR (Type_of_building = 'Culture' AND Usage = 'Workshop')) AND ((Quarter = 'Q1') OR (Quarter = 'Q2')) GROUP BY Quarter, Type_of_building, Usage",
+      "GTresult": "Quarter=Q1, Type_of_building=Culture, Usage=Workshop, max_Value=25.1; Quarter=Q1, Type_of_building=Production, Usage=Factory, max_Value=10.68; Quarter=Q2, Type_of_building=Culture, Usage=Workshop, max_Value=29.22; Quarter=Q2, Type_of_building=Production, Usage=Factory, max_Value=14.99",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q1 or Q2 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Administration')) AND ((Quarter = 'Q1') OR (Quarter = 'Q2')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=74.99; Value=75.55; Value=76.16; Value=80.74; Value=81.05",
+      "NLquestions": [
+        "What are the top/bottom_ numbers of__ in__ ==,== in__ ==,==Q1 or Q2 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Administration')) AND ((Quarter = 'Q1') OR (Quarter = 'Q2')) ORDER BY Value DESC",
+      "GTresult": "Value=82.1; Value=81.05; Value=80.74; Value=76.16; Value=75.55; Value=74.99",
+      "NLquestions": [
+        "What are the numbers /ascending_values of__ in__ ==,== in__ ==,==Q1 or Q2 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Quarter, Month FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Concert')) AND Value < 52.79",
+      "GTresult": "Quarter=Q1, Month=March; Quarter=Q2, Month=February; Quarter=Q1, Month=January; Quarter=Q2, Month=April; Quarter=Q1, Month=May; Quarter=Q2, Month=March",
+      "NLquestions": [
+        "What is/are_the_ the number of__ in__ ==,== in__ ==,== is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Quarter, Month, Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Administration')) AND (Quarter, Month) IN (SELECT Quarter, Month FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Concert')) AND Value < 52.79)",
+      "GTresult": "Quarter=Q1, Month=March, Value=75.55; Quarter=Q2, Month=February, Value=74.99; Quarter=Q1, Month=January, Value=76.16; Quarter=Q2, Month=April, Value=80.74; Quarter=Q1, Month=May, Value=81.05; Quarter=Q2, Month=March, Value=82.1",
+      "NLquestions": []
+    }
+  ]
+}

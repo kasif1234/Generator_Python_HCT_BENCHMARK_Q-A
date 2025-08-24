@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Number_of_constructions_set294_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Apartment')) AND ((Quarter = 'Q3' AND Month = 'September' AND State = 'Florida' AND City = 'Fort Lauderdale'))",
+      "GTresult": "Value=67.34",
+      "NLquestions": [
+        "What is the number of__ in__Fort Lauderdale ==,==Florida in__September ==,==Q3 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Administration')) AND ((Quarter = 'Q1' AND Month = 'March' AND State = 'Georgia' AND City = 'Washington') OR (Quarter = 'Q1' AND Month = 'May' AND State = 'Florida' AND City = 'Washington') OR (Quarter = 'Q3' AND Month = 'January' AND State = 'Georgia' AND City = 'Fort Lauderdale'))",
+      "GTresult": "Value=21.46; Value=33.51; Value=39.03",
+      "NLquestions": [
+        "What is the number of__ in__Washington or Fort Lauderdale ==,==Georgia or Florida in__March or May or January ==,==Q1 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Administration') OR (Type_of_building = 'Residential' AND Usage = 'Apartment') OR (Type_of_building = 'Service' AND Usage = 'House')) AND ((Quarter = 'Q3' AND Month = 'September' AND State = 'Florida' AND City = 'Fort Lauderdale'))",
+      "GTresult": "Value=36.12; Value=67.34; Value=81.12",
+      "NLquestions": [
+        "What is the number of__ in__Fort Lauderdale ==,==Florida in__September ==,==Q3 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Administration') OR (Type_of_building = 'Residential' AND Usage = 'Apartment')) AND ((Quarter = 'Q2' AND Month = 'March' AND State = 'Florida' AND City = 'Columbus'))",
+      "GTresult": "avg_Value=53.82000000000001, sum_Value=107.64000000000001",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__Columbus ==,==Florida in__March ==,==Q2 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Library') OR (Type_of_building = 'Residential' AND Usage = 'Apartment')) AND ((Quarter = 'Q3' AND Month = 'April' AND State = 'Georgia' AND City = 'Fort Lauderdale') OR (Quarter = 'Q2' AND Month = 'August' AND State = 'Georgia' AND City = 'Columbus'))",
+      "GTresult": "Value=44.53; Value=46.81; Value=63.75; Value=67.74",
+      "NLquestions": [
+        "What is the number of__ in__Fort Lauderdale or Columbus ==,==Georgia in__April or August ==,==Q3 or Q2 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Administration')) AND ((Quarter = 'Q2' AND Month = 'January' AND State = 'Florida' AND City = 'Columbus') OR (Quarter = 'Q3' AND Month = 'April' AND State = 'Georgia' AND City = 'Fort Lauderdale') OR (Quarter = 'Q2' AND Month = 'August' AND State = 'Georgia' AND City = 'Columbus') OR (Quarter = 'Q1' AND Month = 'July' AND State = 'Georgia' AND City = 'Washington') OR (Quarter = 'Q3' AND Month = 'January' AND State = 'Georgia' AND City = 'Fort Lauderdale'))",
+      "GTresult": "avg_Value=30.875999999999998, sum_Value=154.38",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__Columbus or Fort Lauderdale or Washington ==,==Florida or Georgia in__January or April or August or July ==,==Q2 or Q3 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Type_of_building, Usage, avg(Value) AS avg_Value, max(Value) AS max_Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Administration') OR (Type_of_building = 'Service' AND Usage = 'Library') OR (Type_of_building = 'Residential' AND Usage = 'Apartment') OR (Type_of_building = 'Service' AND Usage = 'House') OR (Type_of_building = 'Residential' AND Usage = 'Hotel')) AND ((Quarter = 'Q1' AND Month = 'July' AND State = 'Georgia' AND City = 'Washington') OR (Quarter = 'Q3' AND Month = 'January' AND State = 'Georgia' AND City = 'Fort Lauderdale')) GROUP BY Type_of_building, Usage",
+      "GTresult": "Type_of_building=Residential, Usage=Administration, avg_Value=39.35, max_Value=39.67; Type_of_building=Residential, Usage=Apartment, avg_Value=70.275, max_Value=71.33; Type_of_building=Residential, Usage=Hotel, avg_Value=96.015, max_Value=96.94; Type_of_building=Service, Usage=House, avg_Value=81.61500000000001, max_Value=81.95; Type_of_building=Service, Usage=Library, avg_Value=55.325, max_Value=57.36",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__Washington or Fort Lauderdale ==,==Georgia in__July or January ==,==Q1 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Library')) AND ((Quarter = 'Q2') OR (Quarter = 'Q3')) GROUP BY Quarter",
+      "GTresult": "min_Value=41.35; min_Value=44.53",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q2 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Quarter, sum(Value) AS sum_Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Administration')) AND ((Quarter = 'Q1') OR (Quarter = 'Q3')) GROUP BY Quarter",
+      "GTresult": "Quarter=Q1, sum_Value=94.64; Quarter=Q3, sum_Value=96.22999999999999",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q1 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Quarter, Type_of_building, Usage, min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Hospital') OR (Type_of_building = 'Residential' AND Usage = 'Apartment') OR (Type_of_building = 'Service' AND Usage = 'House')) AND ((Quarter = 'Q1') OR (Quarter = 'Q2')) GROUP BY Quarter, Type_of_building, Usage",
+      "GTresult": "Quarter=Q1, Type_of_building=Residential, Usage=Apartment, min_Value=58.69; Quarter=Q1, Type_of_building=Service, Usage=Hospital, min_Value=0.65; Quarter=Q1, Type_of_building=Service, Usage=House, min_Value=72.12; Quarter=Q2, Type_of_building=Residential, Usage=Apartment, min_Value=60.13; Quarter=Q2, Type_of_building=Service, Usage=Hospital, min_Value=7.86; Quarter=Q2, Type_of_building=Service, Usage=House, min_Value=69.26",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q1 or Q2 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Administration')) AND ((Quarter = 'Q1') OR (Quarter = 'Q2')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=21.46; Value=21.56; Value=33.04; Value=33.51; Value=39.67",
+      "NLquestions": [
+        "What are the top/bottom_ numbers of__ in__ ==,== in__ ==,==Q1 or Q2 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'House')) AND ((Quarter = 'Q2') OR (Quarter = 'Q3')) ORDER BY Value DESC",
+      "GTresult": "Value=83.94; Value=81.28; Value=81.12; Value=73.89; Value=69.31; Value=69.26",
+      "NLquestions": [
+        "What are the numbers /ascending_values of__ in__ ==,== in__ ==,==Q2 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Quarter, Month, State, City FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Apartment')) AND Value > 54.62",
+      "GTresult": "Quarter=Q1, Month=March, State=Georgia, City=Washington; Quarter=Q2, Month=January, State=Florida, City=Columbus; Quarter=Q3, Month=April, State=Georgia, City=Fort Lauderdale; Quarter=Q1, Month=May, State=Florida, City=Washington; Quarter=Q2, Month=August, State=Georgia, City=Columbus; Quarter=Q3, Month=September, State=Florida, City=Fort Lauderdale; Quarter=Q1, Month=July, State=Georgia, City=Washington; Quarter=Q2, Month=March, State=Florida, City=Columbus; Quarter=Q3, Month=January, State=Georgia, City=Fort Lauderdale",
+      "NLquestions": [
+        "What is/are_the_ the number of__ in__ ==,== in__ ==,== is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Quarter, Month, State, City, Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'House')) AND (Quarter, Month, State, City) IN (SELECT Quarter, Month, State, City FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Apartment')) AND Value > 54.62)",
+      "GTresult": "Quarter=Q1, Month=March, State=Georgia, City=Washington, Value=72.12; Quarter=Q2, Month=January, State=Florida, City=Columbus, Value=73.89; Quarter=Q3, Month=April, State=Georgia, City=Fort Lauderdale, Value=69.31; Quarter=Q1, Month=May, State=Florida, City=Washington, Value=75.16; Quarter=Q2, Month=August, State=Georgia, City=Columbus, Value=69.26; Quarter=Q3, Month=September, State=Florida, City=Fort Lauderdale, Value=81.12; Quarter=Q1, Month=July, State=Georgia, City=Washington, Value=81.95; Quarter=Q2, Month=March, State=Florida, City=Columbus, Value=83.94; Quarter=Q3, Month=January, State=Georgia, City=Fort Lauderdale, Value=81.28",
+      "NLquestions": []
+    }
+  ]
+}

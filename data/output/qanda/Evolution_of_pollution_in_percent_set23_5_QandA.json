@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Evolution_of_pollution_in_percent_set23_5_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Redmond')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Thermal'))",
+      "GTresult": "Value=-66.55",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil in__Redmond ==,==Oregon in_ ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Fort Lauderdale')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Noise') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Inorganic Fertilizers') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Chemical') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Solid Waste'))",
+      "GTresult": "Value=-50.42; Value=-41.32; Value=-37.62; Value=94.1",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air or Water in__Fort Lauderdale ==,==Florida in_ ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Portland') OR (State = 'Florida' AND City = 'Salem') OR (State = 'Oregon' AND City = 'Redmond') OR (State = 'Florida' AND City = 'Fort Lauderdale')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Industrial'))",
+      "GTresult": "Value=7.21; Value=47.5; Value=65.67; Value=-47.68",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil in__Portland or Salem or Redmond or Fort Lauderdale ==,==Oregon or Florida in_ ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT min(Value) AS min_Value, max(Value) AS max_Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Portland') OR (State = 'Florida' AND City = 'Salem') OR (State = 'Florida' AND City = 'Fort Lauderdale') OR (State = 'Oregon' AND City = 'Tampa')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Thermal'))",
+      "GTresult": "min_Value=-85.35, max_Value=1.33",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil in__Portland or Salem or Fort Lauderdale or Tampa ==,==Oregon or Florida in_ ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Portland') OR (State = 'Florida' AND City = 'Salem') OR (State = 'Oregon' AND City = 'Redmond') OR (State = 'Florida' AND City = 'Fort Lauderdale') OR (State = 'Oregon' AND City = 'Tampa')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Surface water') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Urban Activities') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Industrial'))",
+      "GTresult": "Value=26.5; Value=36.13; Value=-86.28; Value=52.56; Value=-74.22; Value=-68.06; Value=-67.57; Value=76.55; Value=77.21; Value=-40.89; Value=-33.18; Value=97.38; Value=-23.6; Value=-8.49; Value=-7.6",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil or Water in__Portland or Salem or Redmond or Fort Lauderdale or Tampa ==,==Oregon or Florida in_ ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT sum(Value) AS sum_Value, max(Value) AS max_Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Redmond')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Noise') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Industrial') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Noise') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Solid Waste') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Industrial'))",
+      "GTresult": "sum_Value=93.42999999999999, max_Value=77.21",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Soil or Water in__Redmond ==,==Oregon in_ ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT State, City, max(Value) AS max_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Salem') OR (State = 'Oregon' AND City = 'Tampa')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Solid Waste') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Inorganic Fertilizers') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Noise') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Urban Activities') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Industrial')) GROUP BY State, City",
+      "GTresult": "State=Florida, City=Salem, max_Value=48.19, sum_Value=-121.88000000000001; State=Oregon, City=Tampa, max_Value=98.31, sum_Value=37.410000000000004",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Soil in__Salem or Tampa ==,==Florida or Oregon in_ ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Portland')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Soil')) GROUP BY Polluted_element",
+      "GTresult": "min_Value=-92.01; min_Value=1.33",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Soil in__Portland ==,==Oregon in_ ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Polluted_element, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Salem')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) GROUP BY Polluted_element",
+      "GTresult": "Polluted_element=Soil, sum_Value=-132.05; Polluted_element=Water, sum_Value=8.479999999999997",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Salem ==,==Florida in_ ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Polluted_element, State, City, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Salem') OR (State = 'Oregon' AND City = 'Redmond')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Soil')) GROUP BY Polluted_element, State, City",
+      "GTresult": "Polluted_element=Air, State=Florida, City=Salem, sum_Value=123.28999999999999; Polluted_element=Air, State=Oregon, City=Redmond, sum_Value=-186.65; Polluted_element=Soil, State=Florida, City=Salem, sum_Value=-132.05; Polluted_element=Soil, State=Oregon, City=Redmond, sum_Value=80.9",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Soil in__Salem or Redmond ==,==Florida or Oregon in_ ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Tampa')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Soil')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=-30.84; Value=-30.2; Value=-29.98; Value=-27.7; Value=-27.54",
+      "NLquestions": [
+        "What are the top/bottom_ evolutions of_((pollution)) of_ of_Air or Soil in__Tampa ==,==Oregon in_ ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Fort Lauderdale')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) ORDER BY Value DESC",
+      "GTresult": "Value=97.38; Value=93.28; Value=90.95; Value=-33.18; Value=-36.98; Value=-40.89; Value=-41.32; Value=-47.68; Value=-50.01; Value=-52.16",
+      "NLquestions": [
+        "What are the evolutions /increasing_values of_((pollution)) of_ of_Soil or Water in__Fort Lauderdale ==,==Florida in_ ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Oregon' AND City = 'Portland')) AND Value > -2.00",
+      "GTresult": "Polluted_element=Air, Type_of_pollution=Noise; Polluted_element=Soil, Type_of_pollution=Thermal; Polluted_element=Water, Type_of_pollution=Solid Waste; Polluted_element=Air, Type_of_pollution=Urban Activities; Polluted_element=Soil, Type_of_pollution=Industrial; Polluted_element=Water, Type_of_pollution=Inorganic Fertilizers; Polluted_element=Air, Type_of_pollution=Inferior Irrigation; Polluted_element=Soil, Type_of_pollution=Surface water; Polluted_element=Air, Type_of_pollution=Chemical; Polluted_element=Soil, Type_of_pollution=Noise; Polluted_element=Water, Type_of_pollution=Thermal; Polluted_element=Soil, Type_of_pollution=Urban Activities",
+      "NLquestions": [
+        "What is/are_the_ the evolution of_((pollution)) of_ of_ in__Portland ==,==Oregon in_ is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Polluted_element, Type_of_pollution, Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Salem')) AND (Polluted_element, Type_of_pollution) IN (SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Oregon' AND City = 'Portland')) AND Value > -2.00)",
+      "GTresult": "Polluted_element=Air, Type_of_pollution=Noise, Value=43.16; Polluted_element=Soil, Type_of_pollution=Thermal, Value=-85.35; Polluted_element=Water, Type_of_pollution=Solid Waste, Value=44.75; Polluted_element=Air, Type_of_pollution=Urban Activities, Value=46.4; Polluted_element=Soil, Type_of_pollution=Industrial, Value=47.5; Polluted_element=Water, Type_of_pollution=Inorganic Fertilizers, Value=48.19; Polluted_element=Air, Type_of_pollution=Inferior Irrigation, Value=48.83; Polluted_element=Soil, Type_of_pollution=Surface water, Value=52.56; Polluted_element=Air, Type_of_pollution=Chemical, Value=55.54; Polluted_element=Soil, Type_of_pollution=Noise, Value=-72.54; Polluted_element=Water, Type_of_pollution=Thermal, Value=-71.22; Polluted_element=Soil, Type_of_pollution=Urban Activities, Value=-74.22",
+      "NLquestions": []
+    }
+  ]
+}

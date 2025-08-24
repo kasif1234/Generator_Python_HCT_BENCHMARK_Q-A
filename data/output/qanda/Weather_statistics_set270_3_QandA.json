@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set270_3_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Georgia' AND City = 'Boulder City')) AND ((Characteristic = 'Wind' AND Intensity = 'Breeze'))",
+      "GTresult": "Value=8.18",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Boulder City ==,==Georgia in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'Maryland' AND City = 'Baltimore')) AND ((Characteristic = 'Wind' AND Intensity = 'Breeze') OR (Characteristic = 'Humidity' AND Intensity = 'Medium'))",
+      "GTresult": "Value=9.75; Value=18.87",
+      "NLquestions": [
+        "How many days with__ Wind or Humidity were there in__Baltimore ==,==Maryland in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'Maryland' AND City = 'Columbus') OR (Year = '2018' AND State = 'Nevada' AND City = 'Washington') OR (Year = '2016' AND State = 'Georgia' AND City = 'Aberdeen') OR (Year = '2017' AND State = 'Maryland' AND City = 'Baltimore')) AND ((Characteristic = 'Humidity' AND Intensity = 'Medium'))",
+      "GTresult": "Value=14.0; Value=21.31; Value=27.26; Value=18.87",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Columbus or Washington or Aberdeen or Baltimore ==,==Maryland or Nevada or Georgia in_2017 or 2018 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT avg(Value) AS avg_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Georgia' AND City = 'Boulder City') OR (Year = '2017' AND State = 'Maryland' AND City = 'Baltimore')) AND ((Characteristic = 'Humidity' AND Intensity = 'Calm'))",
+      "GTresult": "avg_Value=7.83, min_Value=7.52",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity in__Boulder City or Baltimore ==,==Georgia or Maryland in_2016 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2018' AND State = 'Nevada' AND City = 'Reno') OR (Year = '2016' AND State = 'Georgia' AND City = 'Boulder City')) AND ((Characteristic = 'Humidity' AND Intensity = 'Calm') OR (Characteristic = 'Wind' AND Intensity = 'Breeze') OR (Characteristic = 'Humidity' AND Intensity = 'Medium'))",
+      "GTresult": "Value=1.68; Value=2.72; Value=0.5; Value=7.52; Value=8.18; Value=9.21",
+      "NLquestions": [
+        "How many days with__ Humidity or Wind were there in__Reno or Boulder City ==,==Nevada or Georgia in_2018 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Georgia' AND City = 'Boulder City')) AND ((Characteristic = 'Humidity' AND Intensity = 'Calm') OR (Characteristic = 'Wind' AND Intensity = 'High') OR (Characteristic = 'Humidity' AND Intensity = 'Storm'))",
+      "GTresult": "sum_Value=27.549999999999997, avg_Value=9.183333333333332",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Boulder City ==,==Georgia in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, max(Value) AS max_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Georgia' AND City = 'Boulder City') OR (Year = '2018' AND State = 'Nevada' AND City = 'Washington') OR (Year = '2016' AND State = 'Georgia' AND City = 'Aberdeen')) AND ((Characteristic = 'Wind' AND Intensity = 'Storm') OR (Characteristic = 'Humidity' AND Intensity = 'Calm') OR (Characteristic = 'Wind' AND Intensity = 'Breeze') OR (Characteristic = 'Humidity' AND Intensity = 'Medium')) GROUP BY Year, State, City",
+      "GTresult": "Year=2016, State=Georgia, City=Aberdeen, max_Value=27.26, min_Value=24.76; Year=2016, State=Georgia, City=Boulder City, max_Value=9.21, min_Value=6.23; Year=2018, State=Nevada, City=Washington, max_Value=21.31, min_Value=17.13",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Boulder City or Washington or Aberdeen ==,==Georgia or Nevada in_2016 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2017' AND State = 'Maryland' AND City = 'Columbus')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) GROUP BY Characteristic",
+      "GTresult": "min_Value=13.76; min_Value=10.78",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Columbus ==,==Maryland in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Georgia' AND City = 'Boulder City')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Humidity, sum_Value=25.9; Characteristic=Wind, sum_Value=25.27",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Boulder City ==,==Georgia in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2018' AND State = 'Nevada' AND City = 'Reno') OR (Year = '2016' AND State = 'Georgia' AND City = 'Boulder City') OR (Year = '2018' AND State = 'Nevada' AND City = 'Washington')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Humidity, Year=2016, State=Georgia, City=Boulder City, sum_Value=25.9; Characteristic=Humidity, Year=2018, State=Nevada, City=Reno, sum_Value=6.64; Characteristic=Humidity, Year=2018, State=Nevada, City=Washington, sum_Value=58.08; Characteristic=Wind, Year=2016, State=Georgia, City=Boulder City, sum_Value=25.27; Characteristic=Wind, Year=2018, State=Nevada, City=Reno, sum_Value=7.710000000000001; Characteristic=Wind, Year=2018, State=Nevada, City=Washington, sum_Value=59.75",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Reno or Boulder City or Washington ==,==Nevada or Georgia in_2018 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2018' AND State = 'Nevada' AND City = 'Washington')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=17.13; Value=17.22; Value=19.55; Value=20.28; Value=21.31",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Wind or Humidity in__Washington ==,==Nevada in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Georgia' AND City = 'Aberdeen')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) ORDER BY Value DESC",
+      "GTresult": "Value=27.26; Value=26.88; Value=25.91; Value=25.77; Value=24.76; Value=20.12",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Wind or Humidity in__Aberdeen ==,==Georgia in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2016' AND State = 'Georgia' AND City = 'Aberdeen')) AND Value > 14.40",
+      "GTresult": "Characteristic=Wind, Intensity=Storm; Characteristic=Humidity, Intensity=Calm; Characteristic=Wind, Intensity=Breeze; Characteristic=Humidity, Intensity=Medium; Characteristic=Wind, Intensity=High; Characteristic=Humidity, Intensity=Storm",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Aberdeen ==,==Georgia in_2016 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2018' AND State = 'Nevada' AND City = 'Washington')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2016' AND State = 'Georgia' AND City = 'Aberdeen')) AND Value > 14.40)",
+      "GTresult": "Characteristic=Wind, Intensity=Storm, Value=17.13; Characteristic=Humidity, Intensity=Calm, Value=19.55; Characteristic=Wind, Intensity=Breeze, Value=20.28; Characteristic=Humidity, Intensity=Medium, Value=21.31; Characteristic=Wind, Intensity=High, Value=22.34; Characteristic=Humidity, Intensity=Storm, Value=17.22",
+      "NLquestions": []
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set182_3_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((AA = 'AAnt')) AND ((BB = 'BBdn' AND CC = 'CCrz'))",
+      "GTresult": "Value=25.41",
+      "NLquestions": [
+        "How many days with__ BBdn were there in__ ==,== in_AAnt ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((AA = 'AAdk')) AND ((BB = 'BBtw' AND CC = 'CChv') OR (BB = 'BBdn' AND CC = 'CCrv') OR (BB = 'BBdn' AND CC = 'CCrz'))",
+      "GTresult": "Value=2.83; Value=4.47; Value=8.33",
+      "NLquestions": [
+        "How many days with__ BBtw or BBdn were there in__ ==,== in_AAdk ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((AA = 'AAdk') OR (AA = 'AAnt')) AND ((BB = 'BBdn' AND CC = 'CCrz'))",
+      "GTresult": "Value=8.33; Value=25.41",
+      "NLquestions": [
+        "How many days with__ BBdn were there in__ ==,== in_AAdk or AAnt ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT min(Value) AS min_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((AA = 'AAdk') OR (AA = 'AAnt')) AND ((BB = 'BBdn' AND CC = 'CCrz'))",
+      "GTresult": "min_Value=8.33, sum_Value=33.74",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ BBdn in__ ==,== in_AAdk or AAnt ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((AA = 'AAdk') OR (AA = 'AAnt')) AND ((BB = 'BBtw' AND CC = 'CChv') OR (BB = 'BBdn' AND CC = 'CCrv') OR (BB = 'BBtw' AND CC = 'CCtv') OR (BB = 'BBdn' AND CC = 'CCrz'))",
+      "GTresult": "Value=2.83; Value=4.47; Value=6.83; Value=8.33; Value=10.77; Value=14.14; Value=16.91; Value=25.41",
+      "NLquestions": [
+        "How many days with__ BBtw or BBdn were there in__ ==,== in_AAdk or AAnt ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT max(Value) AS max_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((AA = 'AAdk')) AND ((BB = 'BBtw' AND CC = 'CChv') OR (BB = 'BBtw' AND CC = 'CCtv'))",
+      "GTresult": "max_Value=6.83, avg_Value=4.83",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ BBtw in__ ==,== in_AAdk ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT AA, max(Value) AS max_Value, min(Value) AS min_Value FROM DBdata WHERE ((AA = 'AAdk') OR (AA = 'AAnt')) AND ((BB = 'BBtw' AND CC = 'CChv') OR (BB = 'BBdn' AND CC = 'CCrv') OR (BB = 'BBtw' AND CC = 'CCtv')) GROUP BY AA",
+      "GTresult": "AA=AAnt, max_Value=16.91, min_Value=10.77; AA=AAdk, max_Value=6.83, min_Value=2.83",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ BBtw or BBdn in__ ==,== in_AAdk or AAnt ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((AA = 'AAnt')) AND ((BB = 'BBtw') OR (BB = 'BBdn')) GROUP BY BB",
+      "GTresult": "min_Value=10.77; min_Value=14.14",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ BBtw or BBdn in__ ==,== in_AAnt ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT BB, sum(Value) AS sum_Value FROM DBdata WHERE ((AA = 'AAdk')) AND ((BB = 'BBtw') OR (BB = 'BBdn')) GROUP BY BB",
+      "GTresult": "BB=BBtw, sum_Value=9.66; BB=BBdn, sum_Value=12.8",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ BBtw or BBdn in__ ==,== in_AAdk ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT BB, AA, max(Value) AS max_Value FROM DBdata WHERE ((AA = 'AAdk') OR (AA = 'AAnt')) AND ((BB = 'BBtw') OR (BB = 'BBdn')) GROUP BY BB, AA",
+      "GTresult": "BB=BBtw, AA=AAnt, max_Value=16.91; BB=BBtw, AA=AAdk, max_Value=6.83; BB=BBdn, AA=AAnt, max_Value=25.41; BB=BBdn, AA=AAdk, max_Value=8.33",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ BBtw or BBdn in__ ==,== in_AAdk or AAnt ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((AA = 'AAdk')) AND ((BB = 'BBtw') OR (BB = 'BBdn')) ORDER BY Value DESC LIMIT 3",
+      "GTresult": "Value=8.33; Value=6.83; Value=4.47",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ BBtw or BBdn in__ ==,== in_AAdk ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((AA = 'AAnt')) AND ((BB = 'BBtw') OR (BB = 'BBdn')) ORDER BY Value ASC",
+      "GTresult": "Value=10.77; Value=14.14; Value=16.91; Value=25.41",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ BBtw or BBdn in__ ==,== in_AAnt ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT BB, CC FROM DBdata WHERE ((AA = 'AAdk')) AND Value > 11.21",
+      "GTresult": "",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__ ==,== in_AAdk is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT BB, CC, Value FROM DBdata WHERE ((AA = 'AAnt')) AND (BB, CC) IN (SELECT BB, CC FROM DBdata WHERE ((AA = 'AAdk')) AND Value > 11.21)",
+      "GTresult": "",
+      "NLquestions": []
+    }
+  ]
+}

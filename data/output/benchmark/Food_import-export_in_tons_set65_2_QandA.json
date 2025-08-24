@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Food_import-export_in_tons_set65_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Dairy' AND Item = 'Coffee'))",
+      "GTresult": "Value=949.05",
+      "NLquestions": [
+        "What is the amount of_Export of__ Dairy in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Dairy' AND Item = 'Yoghurt') OR (Category = 'Beverage' AND Item = 'Butter') OR (Category = 'Dairy' AND Item = 'Cheese') OR (Category = 'Beverage' AND Item = 'Tea') OR (Category = 'Dairy' AND Item = 'Coffee') OR (Category = 'Beverage' AND Item = 'Juice'))",
+      "GTresult": "Value=640.81; Value=290.21; Value=747.94; Value=686.93; Value=949.05; Value=383.78",
+      "NLquestions": [
+        "What is the amount of_Export of__ Dairy or Beverage in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Dairy' AND Item = 'Yoghurt'))",
+      "GTresult": "Value=640.81",
+      "NLquestions": [
+        "What is the amount of_Export of__ Dairy in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT max(Value) AS max_Value, min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Beverage' AND Item = 'Tea'))",
+      "GTresult": "max_Value=686.93, min_Value=686.93",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Beverage in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Dairy' AND Item = 'Yoghurt') OR (Category = 'Dairy' AND Item = 'Coffee'))",
+      "GTresult": "Value=640.81; Value=949.05",
+      "NLquestions": [
+        "What is the amount of_Export of__ Dairy in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT max(Value) AS max_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Dairy' AND Item = 'Yoghurt') OR (Category = 'Beverage' AND Item = 'Butter') OR (Category = 'Dairy' AND Item = 'Cheese') OR (Category = 'Beverage' AND Item = 'Tea') OR (Category = 'Dairy' AND Item = 'Coffee'))",
+      "GTresult": "max_Value=949.05, avg_Value=662.988",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Dairy or Beverage in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Import_Export, max(Value) AS max_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Beverage' AND Item = 'Butter') OR (Category = 'Beverage' AND Item = 'Tea')) GROUP BY Import_Export",
+      "GTresult": "Import_Export=Export, max_Value=686.93, avg_Value=488.56999999999994",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Beverage in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Dairy') OR (Category = 'Beverage')) GROUP BY Category",
+      "GTresult": "min_Value=290.21; min_Value=640.81",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Dairy or Beverage in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Category, max(Value) AS max_Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Dairy') OR (Category = 'Beverage')) GROUP BY Category",
+      "GTresult": "Category=Beverage, max_Value=686.93; Category=Dairy, max_Value=949.05",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Dairy or Beverage in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Category, Import_Export, min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Dairy') OR (Category = 'Beverage')) GROUP BY Category, Import_Export",
+      "GTresult": "Category=Beverage, Import_Export=Export, min_Value=290.21; Category=Dairy, Import_Export=Export, min_Value=640.81",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Dairy or Beverage in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Dairy') OR (Category = 'Beverage')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=290.21; Value=383.78; Value=640.81; Value=686.93; Value=747.94",
+      "NLquestions": [
+        "What are the top/bottom_ amounts of_Export of__ Dairy or Beverage in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Dairy') OR (Category = 'Beverage')) ORDER BY Value DESC",
+      "GTresult": "Value=949.05; Value=747.94; Value=686.93; Value=640.81; Value=383.78; Value=290.21",
+      "NLquestions": [
+        "What are the amounts /increasing_values of_Export of__ Dairy or Beverage in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Export')) AND Value > 616.45",
+      "GTresult": "Category=Dairy, Item=Yoghurt; Category=Dairy, Item=Cheese; Category=Beverage, Item=Tea; Category=Dairy, Item=Coffee",
+      "NLquestions": [
+        "What is/are_the_ the amount of_Export of__ in__ ==of== is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Category, Item, Value FROM DBdata WHERE ((Import_Export = 'Export')) AND (Category, Item) IN (SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Export')) AND Value > 616.45)",
+      "GTresult": "Category=Dairy, Item=Yoghurt, Value=640.81; Category=Dairy, Item=Cheese, Value=747.94; Category=Beverage, Item=Tea, Value=686.93; Category=Dairy, Item=Coffee, Value=949.05",
+      "NLquestions": []
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set113_1_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'Massachusetts' AND City = 'Washington')) AND ((Characteristic = 'Wind' AND Intensity = 'Breeze'))",
+      "GTresult": "Value=6.97",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Washington ==,==Massachusetts in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Georgia' AND City = 'Columbus')) AND ((Characteristic = 'Humidity' AND Intensity = 'Low') OR (Characteristic = 'Humidity' AND Intensity = 'Calm'))",
+      "GTresult": "Value=2.72; Value=4.67",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Columbus ==,==Georgia in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Georgia' AND City = 'Columbus') OR (Year = '2017' AND State = 'Massachusetts' AND City = 'Washington') OR (Year = '2017' AND State = 'Massachusetts' AND City = 'Lenox')) AND ((Characteristic = 'Wind' AND Intensity = 'High'))",
+      "GTresult": "Value=1.9; Value=8.83; Value=22.97",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Columbus or Washington or Lenox ==,==Georgia or Massachusetts in_2016 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT avg(Value) AS avg_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Georgia' AND City = 'Columbus') OR (Year = '2017' AND State = 'Massachusetts' AND City = 'Washington') OR (Year = '2016' AND State = 'Georgia' AND City = 'Boston') OR (Year = '2017' AND State = 'Massachusetts' AND City = 'Lenox')) AND ((Characteristic = 'Humidity' AND Intensity = 'Calm'))",
+      "GTresult": "avg_Value=13.4075, min_Value=4.67",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity in__Columbus or Washington or Boston or Lenox ==,==Georgia or Massachusetts in_2016 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Georgia' AND City = 'Columbus') OR (Year = '2017' AND State = 'Massachusetts' AND City = 'Washington')) AND ((Characteristic = 'Humidity' AND Intensity = 'Medium') OR (Characteristic = 'Wind' AND Intensity = 'Medium'))",
+      "GTresult": "Value=0.32; Value=6.7; Value=7.93; Value=12.06",
+      "NLquestions": [
+        "How many days with__ Humidity or Wind were there in__Columbus or Washington ==,==Georgia or Massachusetts in_2016 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT min(Value) AS min_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Georgia' AND City = 'Boston')) AND ((Characteristic = 'Humidity' AND Intensity = 'Medium') OR (Characteristic = 'Wind' AND Intensity = 'High') OR (Characteristic = 'Humidity' AND Intensity = 'Calm'))",
+      "GTresult": "min_Value=15.42, avg_Value=15.823333333333332",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Boston ==,==Georgia in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, max(Value) AS max_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Georgia' AND City = 'Columbus') OR (Year = '2017' AND State = 'Massachusetts' AND City = 'Lenox')) AND ((Characteristic = 'Wind' AND Intensity = 'High') OR (Characteristic = 'Humidity' AND Intensity = 'Low') OR (Characteristic = 'Wind' AND Intensity = 'Breeze') OR (Characteristic = 'Wind' AND Intensity = 'Medium')) GROUP BY Year, State, City",
+      "GTresult": "Year=2016, State=Georgia, City=Columbus, max_Value=6.7, sum_Value=15.26; Year=2017, State=Massachusetts, City=Lenox, max_Value=25.65, sum_Value=96.03",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Columbus or Lenox ==,==Georgia or Massachusetts in_2016 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2017' AND State = 'Massachusetts' AND City = 'Washington')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "min_Value=6.37; min_Value=6.97",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Washington ==,==Massachusetts in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2017' AND State = 'Massachusetts' AND City = 'Lenox')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Humidity, sum_Value=67.58; Characteristic=Wind, sum_Value=74.16",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Lenox ==,==Massachusetts in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Georgia' AND City = 'Columbus') OR (Year = '2017' AND State = 'Massachusetts' AND City = 'Lenox')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Humidity, Year=2016, State=Georgia, City=Columbus, avg_Value=2.57; Characteristic=Humidity, Year=2017, State=Massachusetts, City=Lenox, avg_Value=22.526666666666667; Characteristic=Wind, Year=2016, State=Georgia, City=Columbus, avg_Value=4.18; Characteristic=Wind, Year=2017, State=Massachusetts, City=Lenox, avg_Value=24.72",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Columbus or Lenox ==,==Georgia or Massachusetts in_2016 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'Massachusetts' AND City = 'Washington')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=6.37; Value=6.97; Value=7.93; Value=8.83; Value=9.37",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Humidity or Wind in__Washington ==,==Massachusetts in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Georgia' AND City = 'Columbus')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) ORDER BY Value DESC",
+      "GTresult": "Value=6.7; Value=4.67; Value=3.94; Value=2.72; Value=1.9; Value=0.32",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Humidity or Wind in__Columbus ==,==Georgia in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2016' AND State = 'Georgia' AND City = 'Boston')) AND Value > 13.00",
+      "GTresult": "Characteristic=Humidity, Intensity=Medium; Characteristic=Wind, Intensity=High; Characteristic=Humidity, Intensity=Low; Characteristic=Wind, Intensity=Breeze; Characteristic=Humidity, Intensity=Calm; Characteristic=Wind, Intensity=Medium",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Boston ==,==Georgia in_2016 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2017' AND State = 'Massachusetts' AND City = 'Lenox')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2016' AND State = 'Georgia' AND City = 'Boston')) AND Value > 13.00)",
+      "GTresult": "Characteristic=Humidity, Intensity=Medium, Value=19.08; Characteristic=Wind, Intensity=High, Value=22.97; Characteristic=Humidity, Intensity=Low, Value=21.87; Characteristic=Wind, Intensity=Breeze, Value=25.65; Characteristic=Humidity, Intensity=Calm, Value=26.63; Characteristic=Wind, Intensity=Medium, Value=25.54",
+      "NLquestions": []
+    }
+  ]
+}

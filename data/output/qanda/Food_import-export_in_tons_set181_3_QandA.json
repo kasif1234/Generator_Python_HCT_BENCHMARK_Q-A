@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Food_import-export_in_tons_set181_3_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Dairy' AND Item = 'Coffee'))",
+      "GTresult": "Value=615.94",
+      "NLquestions": [
+        "What is the amount of_Import of__ Dairy in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Dairy' AND Item = 'Butter') OR (Category = 'Beverage' AND Item = 'Juice') OR (Category = 'Beverage' AND Item = 'Wheat') OR (Category = 'Cereals' AND Item = 'Butter'))",
+      "GTresult": "Value=292.32; Value=295.3; Value=696.65; Value=381.14",
+      "NLquestions": [
+        "What is the amount of_Import of__ Dairy or Beverage or Cereals in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Beverage' AND Item = 'Wheat'))",
+      "GTresult": "Value=696.65",
+      "NLquestions": [
+        "What is the amount of_Import of__ Beverage in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT max(Value) AS max_Value, min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Dairy' AND Item = 'Butter'))",
+      "GTresult": "max_Value=292.32, min_Value=292.32",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Dairy in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Beverage' AND Item = 'Milk') OR (Category = 'Cereals' AND Item = 'Cream') OR (Category = 'Cereals' AND Item = 'Butter'))",
+      "GTresult": "Value=965.82; Value=165.26; Value=381.14",
+      "NLquestions": [
+        "What is the amount of_Import of__ Beverage or Cereals in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Dairy' AND Item = 'Butter') OR (Category = 'Dairy' AND Item = 'Coffee'))",
+      "GTresult": "sum_Value=908.26, min_Value=292.32",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Dairy in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Import_Export, max(Value) AS max_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Cereals' AND Item = 'Soda') OR (Category = 'Dairy' AND Item = 'Seeds') OR (Category = 'Beverage' AND Item = 'Wheat')) GROUP BY Import_Export",
+      "GTresult": "Import_Export=Import, max_Value=696.65, sum_Value=1972.67",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Cereals or Dairy or Beverage in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Dairy') OR (Category = 'Beverage')) GROUP BY Category",
+      "GTresult": "min_Value=295.3; min_Value=292.32",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Dairy or Beverage in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Category, max(Value) AS max_Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Dairy') OR (Category = 'Beverage')) GROUP BY Category",
+      "GTresult": "Category=Beverage, max_Value=965.82; Category=Dairy, max_Value=655.75",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Dairy or Beverage in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Category, Import_Export, min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Dairy') OR (Category = 'Beverage')) GROUP BY Category, Import_Export",
+      "GTresult": "Category=Beverage, Import_Export=Import, min_Value=295.3; Category=Dairy, Import_Export=Import, min_Value=292.32",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Dairy or Beverage in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Dairy') OR (Category = 'Cereals')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=655.75; Value=620.27; Value=615.94; Value=381.14; Value=292.32",
+      "NLquestions": [
+        "What are the top/bottom_ amounts of_Import of__ Dairy or Cereals in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Dairy') OR (Category = 'Cereals')) ORDER BY Value DESC",
+      "GTresult": "Value=655.75; Value=620.27; Value=615.94; Value=381.14; Value=292.32; Value=165.26",
+      "NLquestions": [
+        "What are the amounts /increasing_values of_Import of__ Dairy or Cereals in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Import')) AND Value > 520.94",
+      "GTresult": "Category=Beverage, Item=Milk; Category=Dairy, Item=Coffee; Category=Cereals, Item=Soda; Category=Dairy, Item=Seeds; Category=Beverage, Item=Wheat",
+      "NLquestions": [
+        "What is/are_the_ the amount of_Import of__ in__ ==of== is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Category, Item, Value FROM DBdata WHERE ((Import_Export = 'Import')) AND (Category, Item) IN (SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Import')) AND Value > 520.94)",
+      "GTresult": "Category=Beverage, Item=Milk, Value=965.82; Category=Dairy, Item=Coffee, Value=615.94; Category=Cereals, Item=Soda, Value=620.27; Category=Dairy, Item=Seeds, Value=655.75; Category=Beverage, Item=Wheat, Value=696.65",
+      "NLquestions": []
+    }
+  ]
+}

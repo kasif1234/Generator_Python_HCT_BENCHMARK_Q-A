@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set320_3_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2022' AND State = 'Maryland' AND City = 'Las Vegas')) AND ((Characteristic = 'Humidity' AND Intensity = 'Medium'))",
+      "GTresult": "Value=7.83",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Las Vegas ==,==Maryland in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'Michigan' AND City = 'Reno')) AND ((Characteristic = 'Wind' AND Intensity = 'Calm') OR (Characteristic = 'Humidity' AND Intensity = 'Medium') OR (Characteristic = 'Wind' AND Intensity = 'High'))",
+      "GTresult": "Value=21.35; Value=21.95; Value=23.1",
+      "NLquestions": [
+        "How many days with__ Wind or Humidity were there in__Reno ==,==Michigan in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2022' AND State = 'Maryland' AND City = 'Port Huron') OR (Year = '2016' AND State = 'Nevada' AND City = 'Boulder City') OR (Year = '2022' AND State = 'Maryland' AND City = 'Las Vegas') OR (Year = '2016' AND State = 'Nevada' AND City = 'Aberdeen')) AND ((Characteristic = 'Wind' AND Intensity = 'High'))",
+      "GTresult": "Value=17.12; Value=27.66; Value=7.17; Value=19.31",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Port Huron or Boulder City or Las Vegas or Aberdeen ==,==Maryland or Nevada in_2022 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2017' AND State = 'Michigan' AND City = 'Flint') OR (Year = '2022' AND State = 'Maryland' AND City = 'Port Huron') OR (Year = '2022' AND State = 'Maryland' AND City = 'Las Vegas')) AND ((Characteristic = 'Humidity' AND Intensity = 'Breeze'))",
+      "GTresult": "avg_Value=8.926666666666668, sum_Value=26.78",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity in__Flint or Port Huron or Las Vegas ==,==Michigan or Maryland in_2017 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'Michigan' AND City = 'Flint') OR (Year = '2016' AND State = 'Nevada' AND City = 'Detroit') OR (Year = '2016' AND State = 'Nevada' AND City = 'Boulder City')) AND ((Characteristic = 'Wind' AND Intensity = 'Breeze') OR (Characteristic = 'Humidity' AND Intensity = 'Storm') OR (Characteristic = 'Wind' AND Intensity = 'Calm') OR (Characteristic = 'Wind' AND Intensity = 'High'))",
+      "GTresult": "Value=1.29; Value=2.43; Value=3.75; Value=5.74; Value=6.3; Value=5.44; Value=9.08; Value=6.01; Value=23.24; Value=26.54; Value=20.31; Value=27.66",
+      "NLquestions": [
+        "How many days with__ Wind or Humidity were there in__Flint or Detroit or Boulder City ==,==Michigan or Nevada in_2017 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2017' AND State = 'Michigan' AND City = 'Reno')) AND ((Characteristic = 'Humidity' AND Intensity = 'Storm') OR (Characteristic = 'Wind' AND Intensity = 'Calm') OR (Characteristic = 'Humidity' AND Intensity = 'Medium') OR (Characteristic = 'Wind' AND Intensity = 'High') OR (Characteristic = 'Humidity' AND Intensity = 'Breeze'))",
+      "GTresult": "avg_Value=22.004, max_Value=23.44",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Reno ==,==Michigan in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, avg(Value) AS avg_Value, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Nevada' AND City = 'Detroit') OR (Year = '2017' AND State = 'Michigan' AND City = 'Reno') OR (Year = '2016' AND State = 'Nevada' AND City = 'Boulder City') OR (Year = '2022' AND State = 'Maryland' AND City = 'Las Vegas') OR (Year = '2016' AND State = 'Nevada' AND City = 'Aberdeen')) AND ((Characteristic = 'Humidity' AND Intensity = 'Storm') OR (Characteristic = 'Humidity' AND Intensity = 'Medium') OR (Characteristic = 'Wind' AND Intensity = 'High') OR (Characteristic = 'Humidity' AND Intensity = 'Breeze')) GROUP BY Year, State, City",
+      "GTresult": "Year=2016, State=Nevada, City=Aberdeen, avg_Value=16.0775, max_Value=19.96; Year=2016, State=Nevada, City=Boulder City, avg_Value=20.8625, max_Value=27.66; Year=2016, State=Nevada, City=Detroit, avg_Value=6.955, max_Value=10.56; Year=2017, State=Michigan, City=Reno, avg_Value=22.1675, max_Value=23.44; Year=2022, State=Maryland, City=Las Vegas, avg_Value=12.3375, max_Value=24.59",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Detroit or Reno or Boulder City or Las Vegas or Aberdeen ==,==Nevada or Michigan or Maryland in_2016 or 2017 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2017' AND State = 'Michigan' AND City = 'Baltimore')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) GROUP BY Characteristic",
+      "GTresult": "min_Value=10.96; min_Value=9.1",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Baltimore ==,==Michigan in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2017' AND State = 'Michigan' AND City = 'Baltimore')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Humidity, sum_Value=40.23; Characteristic=Wind, sum_Value=36.67",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Baltimore ==,==Michigan in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2017' AND State = 'Michigan' AND City = 'Flint') OR (Year = '2016' AND State = 'Nevada' AND City = 'Aberdeen')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Humidity, Year=2016, State=Nevada, City=Aberdeen, min_Value=7.46; Characteristic=Humidity, Year=2017, State=Michigan, City=Flint, min_Value=1.27; Characteristic=Wind, Year=2016, State=Nevada, City=Aberdeen, min_Value=6.44; Characteristic=Wind, Year=2017, State=Michigan, City=Flint, min_Value=1.29",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Flint or Aberdeen ==,==Michigan or Nevada in_2017 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'Michigan' AND City = 'Reno')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=23.44; Value=23.1; Value=21.95; Value=21.35; Value=20.18",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Wind or Humidity in__Reno ==,==Michigan in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'Michigan' AND City = 'Flint')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) ORDER BY Value ASC",
+      "GTresult": "Value=1.27; Value=1.29; Value=2.43; Value=3.75; Value=5.74; Value=6.76",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Wind or Humidity in__Flint ==,==Michigan in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2016' AND State = 'Nevada' AND City = 'Aberdeen')) AND Value > 13.73",
+      "GTresult": "Characteristic=Wind, Intensity=Breeze; Characteristic=Humidity, Intensity=Storm; Characteristic=Humidity, Intensity=Medium; Characteristic=Wind, Intensity=High",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Aberdeen ==,==Nevada in_2016 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2017' AND State = 'Michigan' AND City = 'Reno')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2016' AND State = 'Nevada' AND City = 'Aberdeen')) AND Value > 13.73)",
+      "GTresult": "Characteristic=Wind, Intensity=Breeze, Value=13.72; Characteristic=Humidity, Intensity=Storm, Value=20.18; Characteristic=Humidity, Intensity=Medium, Value=21.95; Characteristic=Wind, Intensity=High, Value=23.1",
+      "NLquestions": []
+    }
+  ]
+}

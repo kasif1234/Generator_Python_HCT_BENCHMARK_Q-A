@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Number_of_constructions_set346_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Museum')) AND ((Quarter = 'Q1' AND Month = 'February' AND State = 'California' AND City = 'Berkeley'))",
+      "GTresult": "Value=97.9",
+      "NLquestions": [
+        "What is the number of__ in__Berkeley ==,==California in__February ==,==Q1 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Hotel')) AND ((Quarter = 'Q4' AND Month = 'September' AND State = 'California' AND City = 'Berkeley') OR (Quarter = 'Q1' AND Month = 'August' AND State = 'Illinois' AND City = 'Springfield') OR (Quarter = 'Q4' AND Month = 'October' AND State = 'Illinois' AND City = 'Springfield') OR (Quarter = 'Q1' AND Month = 'February' AND State = 'California' AND City = 'Berkeley') OR (Quarter = 'Q4' AND Month = 'July' AND State = 'California' AND City = 'Berkeley') OR (Quarter = 'Q1' AND Month = 'September' AND State = 'Illinois' AND City = 'Springfield'))",
+      "GTresult": "Value=26.96; Value=26.31; Value=27.21; Value=30.59; Value=32.21; Value=31.68",
+      "NLquestions": [
+        "What is the number of__ in__Berkeley or Springfield ==,==California or Illinois in__September or August or October or February or July ==,==Q4 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'House') OR (Type_of_building = 'Service' AND Usage = 'Hotel') OR (Type_of_building = 'Residential' AND Usage = 'Administration') OR (Type_of_building = 'Culture' AND Usage = 'Library')) AND ((Quarter = 'Q4' AND Month = 'September' AND State = 'California' AND City = 'Berkeley'))",
+      "GTresult": "Value=9.81; Value=26.96; Value=38.26; Value=71.68",
+      "NLquestions": [
+        "What is the number of__ in__Berkeley ==,==California in__September ==,==Q4 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT max(Value) AS max_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'House') OR (Type_of_building = 'Service' AND Usage = 'Hotel') OR (Type_of_building = 'Culture' AND Usage = 'Apartment') OR (Type_of_building = 'Residential' AND Usage = 'Administration') OR (Type_of_building = 'Service' AND Usage = 'Hospital') OR (Type_of_building = 'Residential' AND Usage = 'Concert') OR (Type_of_building = 'Service' AND Usage = 'Museum')) AND ((Quarter = 'Q4' AND Month = 'October' AND State = 'Illinois' AND City = 'Springfield'))",
+      "GTresult": "max_Value=97.89, avg_Value=52.98285714285714",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__Springfield ==,==Illinois in__October ==,==Q4 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Hospital') OR (Type_of_building = 'Culture' AND Usage = 'Library') OR (Type_of_building = 'Service' AND Usage = 'Museum')) AND ((Quarter = 'Q1' AND Month = 'August' AND State = 'Illinois' AND City = 'Springfield') OR (Quarter = 'Q3' AND Month = 'December' AND State = 'California' AND City = 'Berkeley') OR (Quarter = 'Q4' AND Month = 'October' AND State = 'Illinois' AND City = 'Springfield'))",
+      "GTresult": "Value=58.33; Value=59.07; Value=60.15; Value=70.41; Value=73.42; Value=71.76; Value=94.91; Value=95.11; Value=97.89",
+      "NLquestions": [
+        "What is the number of__ in__Springfield or Berkeley ==,==Illinois or California in__August or December or October ==,==Q1 or Q3 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Administration')) AND ((Quarter = 'Q3' AND Month = 'July' AND State = 'Illinois' AND City = 'Springfield') OR (Quarter = 'Q3' AND Month = 'December' AND State = 'California' AND City = 'Berkeley') OR (Quarter = 'Q4' AND Month = 'October' AND State = 'Illinois' AND City = 'Springfield') OR (Quarter = 'Q4' AND Month = 'July' AND State = 'California' AND City = 'Berkeley') OR (Quarter = 'Q1' AND Month = 'September' AND State = 'Illinois' AND City = 'Springfield'))",
+      "GTresult": "sum_Value=223.13, min_Value=30.28",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__Springfield or Berkeley ==,==Illinois or California in__July or December or October or September ==,==Q3 or Q4 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Type_of_building, Usage, min(Value) AS min_Value, max(Value) AS max_Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Hotel') OR (Type_of_building = 'Culture' AND Usage = 'Apartment') OR (Type_of_building = 'Residential' AND Usage = 'Concert') OR (Type_of_building = 'Service' AND Usage = 'Museum')) AND ((Quarter = 'Q1' AND Month = 'August' AND State = 'Illinois' AND City = 'Springfield') OR (Quarter = 'Q3' AND Month = 'December' AND State = 'California' AND City = 'Berkeley') OR (Quarter = 'Q4' AND Month = 'July' AND State = 'California' AND City = 'Berkeley') OR (Quarter = 'Q1' AND Month = 'September' AND State = 'Illinois' AND City = 'Springfield')) GROUP BY Type_of_building, Usage",
+      "GTresult": "Type_of_building=Culture, Usage=Apartment, min_Value=31.26, max_Value=41.79; Type_of_building=Residential, Usage=Concert, min_Value=82.74, max_Value=90.37; Type_of_building=Service, Usage=Hotel, min_Value=26.31, max_Value=32.21; Type_of_building=Service, Usage=Museum, min_Value=25.06, max_Value=99.69",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__Springfield or Berkeley ==,==Illinois or California in__August or December or July or September ==,==Q1 or Q3 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Hotel')) AND ((Quarter = 'Q3') OR (Quarter = 'Q1')) GROUP BY Quarter",
+      "GTresult": "min_Value=26.31; min_Value=25.98",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q3 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Quarter, max(Value) AS max_Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Concert')) AND ((Quarter = 'Q3') OR (Quarter = 'Q1')) GROUP BY Quarter",
+      "GTresult": "Quarter=Q1, max_Value=90.37; Quarter=Q3, max_Value=87.53",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q3 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Quarter, Type_of_building, Usage, max(Value) AS max_Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Hospital') OR (Type_of_building = 'Culture' AND Usage = 'Library') OR (Type_of_building = 'Residential' AND Usage = 'Concert')) AND ((Quarter = 'Q3') OR (Quarter = 'Q1')) GROUP BY Quarter, Type_of_building, Usage",
+      "GTresult": "Quarter=Q1, Type_of_building=Culture, Usage=Library, max_Value=78.76; Quarter=Q1, Type_of_building=Residential, Usage=Concert, max_Value=90.37; Quarter=Q1, Type_of_building=Service, Usage=Hospital, max_Value=66.61; Quarter=Q3, Type_of_building=Culture, Usage=Library, max_Value=73.42; Quarter=Q3, Type_of_building=Residential, Usage=Concert, max_Value=87.53; Quarter=Q3, Type_of_building=Service, Usage=Hospital, max_Value=63.43",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q3 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Hospital')) AND ((Quarter = 'Q3') OR (Quarter = 'Q1')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=66.61; Value=63.43; Value=61.42; Value=59.07; Value=58.33",
+      "NLquestions": [
+        "What are the top/bottom_ numbers of__ in__ ==,== in__ ==,==Q3 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Library')) AND ((Quarter = 'Q4') OR (Quarter = 'Q1')) ORDER BY Value DESC",
+      "GTresult": "Value=78.76; Value=71.76; Value=71.68; Value=71.1; Value=70.44; Value=70.41",
+      "NLquestions": [
+        "What are the numbers /ascending_values of__ in__ ==,== in__ ==,==Q4 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Quarter, Month, State, City FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'House')) AND Value < 54.35",
+      "GTresult": "Quarter=Q3, Month=July, State=Illinois, City=Springfield; Quarter=Q4, Month=September, State=California, City=Berkeley; Quarter=Q1, Month=August, State=Illinois, City=Springfield; Quarter=Q3, Month=December, State=California, City=Berkeley; Quarter=Q4, Month=October, State=Illinois, City=Springfield; Quarter=Q1, Month=February, State=California, City=Berkeley; Quarter=Q3, Month=March, State=Illinois, City=Springfield; Quarter=Q4, Month=July, State=California, City=Berkeley; Quarter=Q1, Month=September, State=Illinois, City=Springfield",
+      "NLquestions": [
+        "What is/are_the_ the number of__ in__ ==,== in__ ==,== is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Quarter, Month, State, City, Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Hospital')) AND (Quarter, Month, State, City) IN (SELECT Quarter, Month, State, City FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'House')) AND Value < 54.35)",
+      "GTresult": "Quarter=Q3, Month=July, State=Illinois, City=Springfield, Value=55.27; Quarter=Q4, Month=September, State=California, City=Berkeley, Value=54.36; Quarter=Q1, Month=August, State=Illinois, City=Springfield, Value=58.33; Quarter=Q3, Month=December, State=California, City=Berkeley, Value=59.07; Quarter=Q4, Month=October, State=Illinois, City=Springfield, Value=60.15; Quarter=Q1, Month=February, State=California, City=Berkeley, Value=61.42; Quarter=Q3, Month=March, State=Illinois, City=Springfield, Value=63.43; Quarter=Q4, Month=July, State=California, City=Berkeley, Value=64.4; Quarter=Q1, Month=September, State=Illinois, City=Springfield, Value=66.61",
+      "NLquestions": []
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set300_1_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'Maryland' AND City = 'Salem')) AND ((Characteristic = 'Humidity' AND Intensity = 'Calm'))",
+      "GTresult": "Value=16.18",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Salem ==,==Maryland in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Oregon' AND City = 'Baltimore')) AND ((Characteristic = 'Humidity' AND Intensity = 'High') OR (Characteristic = 'Temperature' AND Intensity = 'Low') OR (Characteristic = 'Wind' AND Intensity = 'Medium') OR (Characteristic = 'Wind' AND Intensity = '21-30') OR (Characteristic = 'Wind' AND Intensity = 'Storm'))",
+      "GTresult": "Value=3.01; Value=21.08; Value=2.65; Value=22.96; Value=23.54",
+      "NLquestions": [
+        "How many days with__ Humidity or Temperature or Wind were there in__Baltimore ==,==Oregon in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Oregon' AND City = 'Albany') OR (Year = '2020' AND State = 'Oregon' AND City = 'Redmond')) AND ((Characteristic = 'Wind' AND Intensity = 'Medium'))",
+      "GTresult": "Value=7.86; Value=9.95",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Albany or Redmond ==,==Oregon in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT min(Value) AS min_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Georgia' AND City = 'Washington') OR (Year = '2017' AND State = 'Maryland' AND City = 'Columbus') OR (Year = '2020' AND State = 'Oregon' AND City = 'Redmond') OR (Year = '2015' AND State = 'Georgia' AND City = 'Columbia') OR (Year = '2020' AND State = 'Oregon' AND City = 'Baltimore')) AND ((Characteristic = 'Temperature' AND Intensity = 'Breeze'))",
+      "GTresult": "min_Value=3.68, avg_Value=13.785999999999998",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature in__Washington or Columbus or Redmond or Columbia or Baltimore ==,==Georgia or Maryland or Oregon in_2015 or 2017 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2015' AND State = 'Georgia' AND City = 'Washington') OR (Year = '2020' AND State = 'Oregon' AND City = 'Albany') OR (Year = '2015' AND State = 'Georgia' AND City = 'Portland') OR (Year = '2020' AND State = 'Oregon' AND City = 'Redmond') OR (Year = '2015' AND State = 'Georgia' AND City = 'Columbia')) AND ((Characteristic = 'Humidity' AND Intensity = 'High') OR (Characteristic = 'Temperature' AND Intensity = '31-40') OR (Characteristic = 'Temperature' AND Intensity = 'Breeze'))",
+      "GTresult": "Value=0.96; Value=4.4; Value=3.68; Value=6.73; Value=13.2; Value=14.83; Value=20.39; Value=24.35; Value=26.89; Value=8.9; Value=9.26; Value=12.11; Value=4.3; Value=18.58; Value=7.55",
+      "NLquestions": [
+        "How many days with__ Humidity or Temperature were there in__Washington or Albany or Portland or Redmond or Columbia ==,==Georgia or Oregon in_2015 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Georgia' AND City = 'Columbia')) AND ((Characteristic = 'Temperature' AND Intensity = 'Low') OR (Characteristic = 'Wind' AND Intensity = 'Medium') OR (Characteristic = 'Temperature' AND Intensity = '31-40'))",
+      "GTresult": "sum_Value=56.14, avg_Value=18.713333333333335",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Columbia ==,==Georgia in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, sum(Value) AS sum_Value, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2020' AND State = 'Oregon' AND City = 'Albany') OR (Year = '2020' AND State = 'Oregon' AND City = 'Redmond') OR (Year = '2017' AND State = 'Maryland' AND City = 'Salem') OR (Year = '2020' AND State = 'Oregon' AND City = 'Baltimore')) AND ((Characteristic = 'Temperature' AND Intensity = 'Low') OR (Characteristic = 'Humidity' AND Intensity = '0-10')) GROUP BY Year, State, City",
+      "GTresult": "Year=2017, State=Maryland, City=Salem, sum_Value=27.15, max_Value=14.05; Year=2020, State=Oregon, City=Albany, sum_Value=22.83, max_Value=12.35; Year=2020, State=Oregon, City=Baltimore, sum_Value=43.05, max_Value=21.97; Year=2020, State=Oregon, City=Redmond, sum_Value=18.53, max_Value=9.28",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity in__Albany or Redmond or Salem or Baltimore ==,==Oregon or Maryland in_2020 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Georgia' AND City = 'Columbia')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) GROUP BY Characteristic",
+      "GTresult": "min_Value=4.3; min_Value=7.55",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Temperature in__Columbia ==,==Georgia in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Georgia' AND City = 'Columbia')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Temperature, sum_Value=44.98; Characteristic=Wind, sum_Value=58.75",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Columbia ==,==Georgia in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2017' AND State = 'Maryland' AND City = 'Columbus') OR (Year = '2015' AND State = 'Georgia' AND City = 'Columbia') OR (Year = '2020' AND State = 'Oregon' AND City = 'Baltimore')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Humidity, Year=2015, State=Georgia, City=Columbia, max_Value=19.59; Characteristic=Humidity, Year=2017, State=Maryland, City=Columbus, max_Value=23.45; Characteristic=Humidity, Year=2020, State=Oregon, City=Baltimore, max_Value=22.77; Characteristic=Wind, Year=2015, State=Georgia, City=Columbia, max_Value=20.18; Characteristic=Wind, Year=2017, State=Maryland, City=Columbus, max_Value=26.91; Characteristic=Wind, Year=2020, State=Oregon, City=Baltimore, max_Value=23.54",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Columbus or Columbia or Baltimore ==,==Maryland or Georgia or Oregon in_2017 or 2015 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'Maryland' AND City = 'Salem')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=13.1; Value=13.41; Value=15.55; Value=15.56; Value=16.06",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Temperature or Wind in__Salem ==,==Maryland in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'Maryland' AND City = 'Salem')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) ORDER BY Value DESC",
+      "GTresult": "Value=16.46; Value=16.06; Value=15.56; Value=15.55; Value=13.41; Value=13.1",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Temperature or Wind in__Salem ==,==Maryland in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2020' AND State = 'Oregon' AND City = 'Redmond')) AND Value > 14.71",
+      "GTresult": "",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Redmond ==,==Oregon in_2020 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2020' AND State = 'Oregon' AND City = 'Albany')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2020' AND State = 'Oregon' AND City = 'Redmond')) AND Value > 14.71)",
+      "GTresult": "",
+      "NLquestions": []
+    }
+  ]
+}

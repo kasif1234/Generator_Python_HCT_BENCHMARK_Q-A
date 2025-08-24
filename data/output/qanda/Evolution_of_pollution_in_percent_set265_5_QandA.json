@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Evolution_of_pollution_in_percent_set265_5_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Salem' AND Year = '2020')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Chemical'))",
+      "GTresult": "Value=-34.08",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air in__Salem ==,==Oregon in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'California' AND City = 'Redmond' AND Year = '2022')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Oxygen-depletion') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Noise'))",
+      "GTresult": "Value=-53.43; Value=-38.32",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water or Soil in__Redmond ==,==California in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'California' AND City = 'Malibu' AND Year = '2020') OR (State = 'California' AND City = 'Redmond' AND Year = '2022') OR (State = 'Oregon' AND City = 'Salem' AND Year = '2020')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Urban Activities'))",
+      "GTresult": "Value=40.39; Value=87.51; Value=97.18",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil in__Malibu or Redmond or Salem ==,==California or Oregon in_2020 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT max(Value) AS max_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Berkeley' AND Year = '2016') OR (State = 'California' AND City = 'Redmond' AND Year = '2022') OR (State = 'Oregon' AND City = 'Salem' AND Year = '2020')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Urban Activities'))",
+      "GTresult": "max_Value=97.18, sum_Value=119.98000000000002",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil in__Berkeley or Redmond or Salem ==,==Oregon or California in_2016 or 2022 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'California' AND City = 'Malibu' AND Year = '2020') OR (State = 'Oregon' AND City = 'Berkeley' AND Year = '2016') OR (State = 'California' AND City = 'Redmond' AND Year = '2022') OR (State = 'Oregon' AND City = 'Salem' AND Year = '2020')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Noise') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Light') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Chemical') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Oxygen-depletion'))",
+      "GTresult": "Value=16.7; Value=28.22; Value=-99.73; Value=32.2; Value=55.58; Value=-72.08; Value=-64.17; Value=-64.78; Value=-52.61; Value=76.68; Value=-50.75; Value=-53.43; Value=90.92; Value=93.25; Value=-34.08; Value=-34.56",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water or Soil or Air in__Malibu or Berkeley or Redmond or Salem ==,==California or Oregon in_2020 or 2016 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, max(Value) AS max_Value FROM DBdata WHERE ((State = 'California' AND City = 'Redmond' AND Year = '2022')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Thermal') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Noise') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Light') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Chemical') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Noise'))",
+      "GTresult": "avg_Value=2.0200000000000005, max_Value=76.68",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Water or Soil in__Redmond ==,==California in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT State, City, Year, avg(Value) AS avg_Value, max(Value) AS max_Value FROM DBdata WHERE ((State = 'California' AND City = 'Malibu' AND Year = '2020') OR (State = 'Oregon' AND City = 'Berkeley' AND Year = '2016') OR (State = 'California' AND City = 'Redmond' AND Year = '2022') OR (State = 'Oregon' AND City = 'Salem' AND Year = '2020')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Oxygen-depletion') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Urban Activities')) GROUP BY State, City, Year",
+      "GTresult": "State=California, City=Malibu, Year=2020, avg_Value=36.295, max_Value=40.39; State=California, City=Redmond, Year=2022, avg_Value=17.040000000000003, max_Value=87.51; State=Oregon, City=Berkeley, Year=2016, avg_Value=-64.745, max_Value=-64.71; State=Oregon, City=Salem, Year=2020, avg_Value=31.310000000000002, max_Value=97.18",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Soil in__Malibu or Berkeley or Redmond or Salem ==,==California or Oregon in_2020 or 2016 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((State = 'California' AND City = 'Malibu' AND Year = '2020')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Water')) GROUP BY Polluted_element",
+      "GTresult": "min_Value=-99.73; min_Value=16.7",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Water in__Malibu ==,==California in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Polluted_element, min(Value) AS min_Value FROM DBdata WHERE ((State = 'California' AND City = 'Malibu' AND Year = '2020')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Soil')) GROUP BY Polluted_element",
+      "GTresult": "Polluted_element=Air, min_Value=-99.73; Polluted_element=Soil, min_Value=28.22",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Soil in__Malibu ==,==California in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Polluted_element, State, City, Year, max(Value) AS max_Value FROM DBdata WHERE ((State = 'California' AND City = 'Malibu' AND Year = '2020') OR (State = 'California' AND City = 'Redmond' AND Year = '2022') OR (State = 'Oregon' AND City = 'Salem' AND Year = '2020')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Water')) GROUP BY Polluted_element, State, City, Year",
+      "GTresult": "Polluted_element=Air, State=California, City=Malibu, Year=2020, max_Value=2.04; Polluted_element=Air, State=California, City=Redmond, Year=2022, max_Value=87.34; Polluted_element=Air, State=Oregon, City=Salem, Year=2020, max_Value=-27.26; Polluted_element=Water, State=California, City=Malibu, Year=2020, max_Value=51.08; Polluted_element=Water, State=California, City=Redmond, Year=2022, max_Value=-39.32; Polluted_element=Water, State=Oregon, City=Salem, Year=2020, max_Value=90.92",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Water in__Malibu or Redmond or Salem ==,==California or Oregon in_2020 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'California' AND City = 'Redmond' AND Year = '2022')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Soil')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=-53.43; Value=-52.61; Value=-39.32; Value=-38.32; Value=76.68",
+      "NLquestions": [
+        "What are the top/bottom_ evolutions of_((pollution)) of_ of_Water or Soil in__Redmond ==,==California in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Salem' AND Year = '2020')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Soil')) ORDER BY Value ASC",
+      "GTresult": "Value=-34.56; Value=-21.11; Value=-18.27; Value=90.92; Value=93.25; Value=97.18",
+      "NLquestions": [
+        "What are the evolutions /increasing_values of_((pollution)) of_ of_Water or Soil in__Salem ==,==Oregon in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Oregon' AND City = 'Salem' AND Year = '2020')) AND Value > 4.44",
+      "GTresult": "Polluted_element=Water, Type_of_pollution=Noise; Polluted_element=Soil, Type_of_pollution=Light; Polluted_element=Soil, Type_of_pollution=Urban Activities",
+      "NLquestions": [
+        "What is/are_the_ the evolution of_((pollution)) of_ of_ in__Salem ==,==Oregon in_2020 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Polluted_element, Type_of_pollution, Value FROM DBdata WHERE ((State = 'California' AND City = 'Redmond' AND Year = '2022')) AND (Polluted_element, Type_of_pollution) IN (SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Oregon' AND City = 'Salem' AND Year = '2020')) AND Value > 4.44)",
+      "GTresult": "Polluted_element=Water, Type_of_pollution=Noise, Value=-52.61; Polluted_element=Soil, Type_of_pollution=Light, Value=76.68; Polluted_element=Soil, Type_of_pollution=Urban Activities, Value=87.51",
+      "NLquestions": []
+    }
+  ]
+}

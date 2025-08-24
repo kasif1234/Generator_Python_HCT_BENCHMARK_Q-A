@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set351_3_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2022' AND State = 'Minnesota' AND City = 'Malibu')) AND ((Characteristic = 'Temperature' AND Intensity = 'Medium'))",
+      "GTresult": "Value=16.46",
+      "NLquestions": [
+        "How many days with__ Temperature were there in__Malibu ==,==Minnesota in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2018' AND State = 'California' AND City = 'San Francisco')) AND ((Characteristic = 'Wind' AND Intensity = 'Storm') OR (Characteristic = 'Temperature' AND Intensity = 'Medium') OR (Characteristic = 'Wind' AND Intensity = 'High'))",
+      "GTresult": "Value=19.59; Value=1.43; Value=7.29",
+      "NLquestions": [
+        "How many days with__ Wind or Temperature were there in__San Francisco ==,==California in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2018' AND State = 'Minnesota' AND City = 'Fort Lauderdale') OR (Year = '2018' AND State = 'California' AND City = 'San Francisco')) AND ((Characteristic = 'Temperature' AND Intensity = 'High'))",
+      "GTresult": "Value=4.39; Value=17.26",
+      "NLquestions": [
+        "How many days with__ Temperature were there in__Fort Lauderdale or San Francisco ==,==Minnesota or California in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT min(Value) AS min_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2022' AND State = 'Florida' AND City = 'Tampa') OR (Year = '2018' AND State = 'Minnesota' AND City = 'Fort Lauderdale') OR (Year = '2022' AND State = 'Minnesota' AND City = 'Malibu')) AND ((Characteristic = 'Wind' AND Intensity = '31-40'))",
+      "GTresult": "min_Value=2.24, avg_Value=7.580000000000001",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind in__Tampa or Fort Lauderdale or Malibu ==,==Florida or Minnesota in_2022 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2022' AND State = 'Florida' AND City = 'Tampa') OR (Year = '2018' AND State = 'Minnesota' AND City = 'Fort Lauderdale') OR (Year = '2018' AND State = 'Florida' AND City = 'Minneapolis') OR (Year = '2022' AND State = 'Minnesota' AND City = 'Malibu') OR (Year = '2018' AND State = 'California' AND City = 'San Francisco')) AND ((Characteristic = 'Humidity' AND Intensity = 'Calm') OR (Characteristic = 'Wind' AND Intensity = 'High'))",
+      "GTresult": "Value=3.59; Value=2.26; Value=14.18; Value=16.7; Value=7.1; Value=2.03; Value=16.56; Value=4.12; Value=19.14; Value=7.29",
+      "NLquestions": [
+        "How many days with__ Humidity or Wind were there in__Tampa or Fort Lauderdale or Minneapolis or Malibu or San Francisco ==,==Florida or Minnesota or California in_2022 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2022' AND State = 'Minnesota' AND City = 'Malibu')) AND ((Characteristic = 'Humidity' AND Intensity = 'Medium') OR (Characteristic = 'Wind' AND Intensity = '31-40') OR (Characteristic = 'Humidity' AND Intensity = 'Calm') OR (Characteristic = 'Temperature' AND Intensity = 'Medium'))",
+      "GTresult": "avg_Value=11.24, min_Value=2.6",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind or Temperature in__Malibu ==,==Minnesota in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2022' AND State = 'California' AND City = 'Rochester') OR (Year = '2018' AND State = 'Florida' AND City = 'Minneapolis') OR (Year = '2022' AND State = 'Minnesota' AND City = 'Malibu') OR (Year = '2018' AND State = 'California' AND City = 'San Francisco')) AND ((Characteristic = 'Humidity' AND Intensity = '21-30') OR (Characteristic = 'Temperature' AND Intensity = 'Breeze') OR (Characteristic = 'Wind' AND Intensity = 'Storm') OR (Characteristic = 'Temperature' AND Intensity = 'Medium')) GROUP BY Year, State, City",
+      "GTresult": "Year=2018, State=California, City=San Francisco, sum_Value=33.07, avg_Value=8.2675; Year=2018, State=Florida, City=Minneapolis, sum_Value=84.19, avg_Value=21.0475; Year=2022, State=California, City=Rochester, sum_Value=87.18, avg_Value=21.795; Year=2022, State=Minnesota, City=Malibu, sum_Value=35.24, avg_Value=8.81",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Temperature or Wind in__Rochester or Minneapolis or Malibu or San Francisco ==,==California or Florida or Minnesota in_2022 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2018' AND State = 'Florida' AND City = 'Minneapolis')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) GROUP BY Characteristic",
+      "GTresult": "min_Value=7.1; min_Value=4.83",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Temperature in__Minneapolis ==,==Florida in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2022' AND State = 'Minnesota' AND City = 'Malibu')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Temperature, sum_Value=40.97; Characteristic=Wind, sum_Value=14.09",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Malibu ==,==Minnesota in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2018' AND State = 'Florida' AND City = 'Minneapolis') OR (Year = '2022' AND State = 'Minnesota' AND City = 'Malibu')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Temperature, Year=2018, State=Florida, City=Minneapolis, sum_Value=39.35; Characteristic=Temperature, Year=2022, State=Minnesota, City=Malibu, sum_Value=40.97; Characteristic=Wind, Year=2018, State=Florida, City=Minneapolis, sum_Value=51.19; Characteristic=Wind, Year=2022, State=Minnesota, City=Malibu, sum_Value=14.09",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Minneapolis or Malibu ==,==Florida or Minnesota in_2018 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2022' AND State = 'Minnesota' AND City = 'Malibu')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=16.56; Value=9.34; Value=4.12; Value=3.43; Value=2.6",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Humidity or Wind in__Malibu ==,==Minnesota in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2022' AND State = 'Minnesota' AND City = 'Malibu')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) ORDER BY Value ASC",
+      "GTresult": "Value=0.63; Value=4.12; Value=9.34; Value=9.79; Value=14.72; Value=16.46",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Temperature or Wind in__Malibu ==,==Minnesota in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2022' AND State = 'Florida' AND City = 'Tampa')) AND Value > 12.05",
+      "GTresult": "",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Tampa ==,==Florida in_2022 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2018' AND State = 'Minnesota' AND City = 'Fort Lauderdale')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2022' AND State = 'Florida' AND City = 'Tampa')) AND Value > 12.05)",
+      "GTresult": "",
+      "NLquestions": []
+    }
+  ]
+}

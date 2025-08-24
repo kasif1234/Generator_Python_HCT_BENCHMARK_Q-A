@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Food_import-export_in_tons_set346_3_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2020' AND Quarter = 'Q3')) AND ((Category = 'Meat' AND Item = 'Oats'))",
+      "GTresult": "Value=466.88",
+      "NLquestions": [
+        "What is the amount of_Export of__ Meat in__Q3 ==of==2020 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2022' AND Quarter = 'Q3')) AND ((Category = 'Beverage' AND Item = 'Tea') OR (Category = 'Meat' AND Item = 'Coffee') OR (Category = 'Cereals' AND Item = 'Juice') OR (Category = 'Meat' AND Item = 'Duck') OR (Category = 'Cereals' AND Item = 'Pork') OR (Category = 'Beverage' AND Item = 'Rice') OR (Category = 'Meat' AND Item = 'Oats') OR (Category = 'Cereals' AND Item = 'Tea'))",
+      "GTresult": "Value=640.94; Value=387.6; Value=904.23; Value=275.59; Value=276.08; Value=410.7; Value=33.08; Value=548.25; Value=470.88; Value=600.1; Value=218.63; Value=616.38; Value=874.52; Value=363.84; Value=620.86; Value=620.16",
+      "NLquestions": [
+        "What is the amount of_Export of__ Beverage or Meat or Cereals in__Q3 ==of==2022 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2022' AND Quarter = 'Q3') OR (Import_Export = 'Export' AND Year = '2015' AND Quarter = 'Q3') OR (Import_Export = 'Export' AND Year = '2020' AND Quarter = 'Q3')) AND ((Category = 'Cereals' AND Item = 'Tea'))",
+      "GTresult": "Value=548.25; Value=947.77; Value=981.73; Value=620.16; Value=510.25",
+      "NLquestions": [
+        "What is the amount of_Export of__ Cereals in__Q3 ==of==2022 or 2015 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2022' AND Quarter = 'Q3') OR (Import_Export = 'Export' AND Year = '2020' AND Quarter = 'Q3')) AND ((Category = 'Cereals' AND Item = 'Juice'))",
+      "GTresult": "sum_Value=1179.85, min_Value=56.99",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Cereals in__Q3 ==of==2022 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2022' AND Quarter = 'Q3') OR (Import_Export = 'Export' AND Year = '2015' AND Quarter = 'Q3')) AND ((Category = 'Beverage' AND Item = 'Tea') OR (Category = 'Meat' AND Item = 'Coffee') OR (Category = 'Cereals' AND Item = 'Pork') OR (Category = 'Beverage' AND Item = 'Rice'))",
+      "GTresult": "Value=640.94; Value=387.6; Value=276.08; Value=410.7; Value=932.37; Value=165.0; Value=942.05; Value=431.5; Value=470.88; Value=600.1; Value=874.52; Value=363.84; Value=753.52; Value=242.63; Value=121.9; Value=762.88",
+      "NLquestions": [
+        "What is the amount of_Export of__ Beverage or Meat or Cereals in__Q3 ==of==2022 or 2015 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT min(Value) AS min_Value, max(Value) AS max_Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2022' AND Quarter = 'Q3')) AND ((Category = 'Beverage' AND Item = 'Tea') OR (Category = 'Meat' AND Item = 'Coffee') OR (Category = 'Cereals' AND Item = 'Juice') OR (Category = 'Meat' AND Item = 'Oats'))",
+      "GTresult": "min_Value=33.08, max_Value=904.23",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Beverage or Meat or Cereals in__Q3 ==of==2022 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Import_Export, Year, Quarter, avg(Value) AS avg_Value, min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2015' AND Quarter = 'Q3') OR (Import_Export = 'Export' AND Year = '2020' AND Quarter = 'Q3')) AND ((Category = 'Meat' AND Item = 'Duck') OR (Category = 'Beverage' AND Item = 'Rice')) GROUP BY Import_Export, Year, Quarter",
+      "GTresult": "Import_Export=Export, Year=2015, Quarter=Q3, avg_Value=563.96, min_Value=429.98; Import_Export=Export, Year=2020, Quarter=Q3, avg_Value=268.81, min_Value=70.99",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Meat or Beverage in__Q3 ==of==2015 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2015' AND Quarter = 'Q3')) AND ((Category = 'Beverage') OR (Category = 'Meat')) GROUP BY Category",
+      "GTresult": "min_Value=431.5; min_Value=165.0",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Beverage or Meat in__Q3 ==of==2015 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Category, sum(Value) AS sum_Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2022' AND Quarter = 'Q3')) AND ((Category = 'Beverage') OR (Category = 'Meat')) GROUP BY Category",
+      "GTresult": "Category=Beverage, sum_Value=3399.04; Category=Meat, sum_Value=2533.61",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Beverage or Meat in__Q3 ==of==2022 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Category, Import_Export, Year, Quarter, max(Value) AS max_Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2022' AND Quarter = 'Q3') OR (Import_Export = 'Export' AND Year = '2015' AND Quarter = 'Q3') OR (Import_Export = 'Export' AND Year = '2020' AND Quarter = 'Q3')) AND ((Category = 'Meat') OR (Category = 'Cereals')) GROUP BY Category, Import_Export, Year, Quarter",
+      "GTresult": "Category=Cereals, Import_Export=Export, Year=2015, Quarter=Q3, max_Value=947.77; Category=Cereals, Import_Export=Export, Year=2020, Quarter=Q3, max_Value=981.73; Category=Cereals, Import_Export=Export, Year=2022, Quarter=Q3, max_Value=904.23; Category=Meat, Import_Export=Export, Year=2015, Quarter=Q3, max_Value=631.48; Category=Meat, Import_Export=Export, Year=2020, Quarter=Q3, max_Value=567.79; Category=Meat, Import_Export=Export, Year=2022, Quarter=Q3, max_Value=620.86",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Meat or Cereals in__Q3 ==of==2022 or 2015 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2022' AND Quarter = 'Q3')) AND ((Category = 'Beverage') OR (Category = 'Meat')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=906.32; Value=640.94; Value=620.86; Value=616.38; Value=606.36",
+      "NLquestions": [
+        "What are the top/bottom_ amounts of_Export of__ Beverage or Meat in__Q3 ==of==2022 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2020' AND Quarter = 'Q3')) AND ((Category = 'Beverage') OR (Category = 'Cereals')) ORDER BY Value DESC",
+      "GTresult": "Value=981.73; Value=578.84; Value=466.63; Value=464.78; Value=180.63; Value=56.99",
+      "NLquestions": [
+        "What are the amounts /increasing_values of_Export of__ Beverage or Cereals in__Q3 ==of==2020 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2020' AND Quarter = 'Q3')) AND Value < 522.69",
+      "GTresult": "Category=Beverage, Item=Tea; Category=Cereals, Item=Juice; Category=Meat, Item=Duck; Category=Cereals, Item=Pork; Category=Beverage, Item=Rice; Category=Meat, Item=Oats",
+      "NLquestions": [
+        "What is/are_the_ the amount of_Export of__ in__Q3 ==of==2020 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Category, Item, Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2015' AND Quarter = 'Q3')) AND (Category, Item) IN (SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2020' AND Quarter = 'Q3')) AND Value < 522.69)",
+      "GTresult": "Category=Beverage, Item=Tea, Value=932.37; Category=Cereals, Item=Juice, Value=811.68; Category=Meat, Item=Duck, Value=429.98; Category=Cereals, Item=Pork, Value=942.05; Category=Beverage, Item=Rice, Value=431.5; Category=Meat, Item=Oats, Value=306.84; Category=Beverage, Item=Tea, Value=753.52; Category=Cereals, Item=Juice, Value=754.85; Category=Meat, Item=Duck, Value=631.48; Category=Cereals, Item=Pork, Value=121.9; Category=Beverage, Item=Rice, Value=762.88; Category=Meat, Item=Oats, Value=379.4",
+      "NLquestions": []
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Evolution_of_pollution_in_percent_set196_3_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Cambridge')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Industrial'))",
+      "GTresult": "Value=-82.44; Value=-59.39",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil in__Cambridge ==,==Massachusetts in_ ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'California' AND City = 'Berkeley')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Inorganic Fertilizers') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Urban Activities'))",
+      "GTresult": "Value=-53.25; Value=79.44",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water or Soil in__Berkeley ==,==California in_ ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'California' AND City = 'Lenox') OR (State = 'Massachusetts' AND City = 'Cambridge') OR (State = 'Massachusetts' AND City = 'San Francisco')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Solid Waste'))",
+      "GTresult": "Value=-93.58; Value=41.89; Value=-80.29; Value=-59.24; Value=-37.88; Value=-13.85",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water in__Lenox or Cambridge or San Francisco ==,==California or Massachusetts in_ ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, max(Value) AS max_Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Boston') OR (State = 'Massachusetts' AND City = 'Cambridge')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Oxygen-depletion'))",
+      "GTresult": "sum_Value=99.71, max_Value=68.94",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water in__Boston or Cambridge ==,==Massachusetts in_ ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Boston') OR (State = 'Massachusetts' AND City = 'Cambridge') OR (State = 'California' AND City = 'Berkeley') OR (State = 'Massachusetts' AND City = 'San Francisco')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Industrial') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Oxygen-depletion'))",
+      "GTresult": "Value=0.91; Value=30.77; Value=-97.39; Value=-82.44; Value=68.94; Value=-59.39; Value=71.47; Value=86.96; Value=-40.05; Value=-39.19; Value=-17.05; Value=-14.03",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil or Water in__Boston or Cambridge or Berkeley or San Francisco ==,==Massachusetts or California in_ ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, min(Value) AS min_Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'San Francisco')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Industrial') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Solid Waste') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Inorganic Fertilizers') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Chemical') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Oxygen-depletion'))",
+      "GTresult": "avg_Value=-26.075714285714287, min_Value=-39.19",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__San Francisco ==,==Massachusetts in_ ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT State, City, min(Value) AS min_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Boston') OR (State = 'California' AND City = 'Berkeley')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Solid Waste') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Inorganic Fertilizers') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Urban Activities') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Surface water') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Oxygen-depletion')) GROUP BY State, City",
+      "GTresult": "State=California, City=Berkeley, min_Value=-53.25, sum_Value=232.76999999999998; State=Massachusetts, City=Boston, min_Value=2.63, sum_Value=103.55",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Soil in__Boston or Berkeley ==,==Massachusetts or California in_ ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Cambridge')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) GROUP BY Polluted_element",
+      "GTresult": "min_Value=-82.44; min_Value=-80.29",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Cambridge ==,==Massachusetts in_ ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Polluted_element, max(Value) AS max_Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'San Francisco')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) GROUP BY Polluted_element",
+      "GTresult": "Polluted_element=Soil, max_Value=96.43; Polluted_element=Water, max_Value=-13.85",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__San Francisco ==,==Massachusetts in_ ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Polluted_element, State, City, min(Value) AS min_Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Boston') OR (State = 'Massachusetts' AND City = 'San Francisco')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) GROUP BY Polluted_element, State, City",
+      "GTresult": "Polluted_element=Soil, State=Massachusetts, City=Boston, min_Value=-97.39; Polluted_element=Soil, State=Massachusetts, City=San Francisco, min_Value=-39.19; Polluted_element=Water, State=Massachusetts, City=Boston, min_Value=2.63; Polluted_element=Water, State=Massachusetts, City=San Francisco, min_Value=-37.88",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Boston or San Francisco ==,==Massachusetts in_ ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'California' AND City = 'Lenox')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=-94.41; Value=-93.58; Value=-89.27; Value=-88.37; Value=-86.02",
+      "NLquestions": [
+        "What are the top/bottom_ evolutions of_((pollution)) of_ of_Soil or Water in__Lenox ==,==California in_ ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'California' AND City = 'Lenox')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) ORDER BY Value DESC",
+      "GTresult": "Value=41.89; Value=41.55; Value=38.61; Value=37.94; Value=-85.2; Value=-86.02; Value=-88.37; Value=-89.27; Value=-93.58; Value=-94.41",
+      "NLquestions": [
+        "What are the evolutions /increasing_values of_((pollution)) of_ of_Soil or Water in__Lenox ==,==California in_ ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'California' AND City = 'Berkeley')) AND Value < -12.87",
+      "GTresult": "Polluted_element=Soil, Type_of_pollution=Inferior Irrigation; Polluted_element=Water, Type_of_pollution=Inorganic Fertilizers; Polluted_element=Water, Type_of_pollution=Chemical; Polluted_element=Soil, Type_of_pollution=Industrial; Polluted_element=Water, Type_of_pollution=Solid Waste",
+      "NLquestions": [
+        "What is/are_the_ the evolution of_((pollution)) of_ of_ in__Berkeley ==,==California in_ is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Polluted_element, Type_of_pollution, Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Cambridge')) AND (Polluted_element, Type_of_pollution) IN (SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'California' AND City = 'Berkeley')) AND Value < -12.87)",
+      "GTresult": "Polluted_element=Soil, Type_of_pollution=Industrial, Value=-82.44; Polluted_element=Water, Type_of_pollution=Solid Waste, Value=-80.29; Polluted_element=Soil, Type_of_pollution=Inferior Irrigation, Value=-79.46; Polluted_element=Water, Type_of_pollution=Inorganic Fertilizers, Value=57.97; Polluted_element=Water, Type_of_pollution=Chemical, Value=-71.2; Polluted_element=Soil, Type_of_pollution=Industrial, Value=-59.39; Polluted_element=Water, Type_of_pollution=Solid Waste, Value=-59.24",
+      "NLquestions": []
+    }
+  ]
+}

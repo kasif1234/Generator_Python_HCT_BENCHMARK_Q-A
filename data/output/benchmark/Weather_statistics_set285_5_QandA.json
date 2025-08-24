@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set285_5_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2015' AND State = 'California' AND City = 'Flint')) AND ((Characteristic = 'Wind' AND Intensity = '11-20'))",
+      "GTresult": "Value=15.35",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Flint ==,==California in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2015' AND State = 'Minnesota' AND City = 'Minneapolis')) AND ((Characteristic = 'Wind' AND Intensity = 'Storm') OR (Characteristic = 'Temperature' AND Intensity = 'Calm') OR (Characteristic = 'Humidity' AND Intensity = 'Medium'))",
+      "GTresult": "Value=15.16; Value=15.43; Value=16.81",
+      "NLquestions": [
+        "How many days with__ Wind or Temperature or Humidity were there in__Minneapolis ==,==Minnesota in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Michigan' AND City = 'Detroit') OR (Year = '2015' AND State = 'California' AND City = 'Flint') OR (Year = '2020' AND State = 'Minnesota' AND City = 'San Francisco') OR (Year = '2020' AND State = 'California' AND City = 'Hastings') OR (Year = '2015' AND State = 'Minnesota' AND City = 'Minneapolis')) AND ((Characteristic = 'Humidity' AND Intensity = 'Medium'))",
+      "GTresult": "Value=4.7; Value=13.68; Value=22.95; Value=12.31; Value=16.81",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Detroit or Flint or San Francisco or Hastings or Minneapolis ==,==Michigan or California or Minnesota in_2020 or 2015 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT min(Value) AS min_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2020' AND State = 'Michigan' AND City = 'Detroit') OR (Year = '2015' AND State = 'Michigan' AND City = 'Los-Angeles') OR (Year = '2015' AND State = 'Minnesota' AND City = 'Minneapolis')) AND ((Characteristic = 'Humidity' AND Intensity = 'Breeze'))",
+      "GTresult": "min_Value=1.11, avg_Value=12.049999999999999",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity in__Detroit or Los-Angeles or Minneapolis ==,==Michigan or Minnesota in_2020 or 2015 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Michigan' AND City = 'Detroit') OR (Year = '2015' AND State = 'Minnesota' AND City = 'Minneapolis') OR (Year = '2020' AND State = 'Michigan' AND City = 'Rochester')) AND ((Characteristic = 'Humidity' AND Intensity = 'Breeze') OR (Characteristic = 'Temperature' AND Intensity = 'Calm') OR (Characteristic = 'Temperature' AND Intensity = 'Breeze'))",
+      "GTresult": "Value=1.11; Value=0.93; Value=8.37; Value=15.44; Value=15.43; Value=7.38; Value=21.5; Value=5.93; Value=25.83",
+      "NLquestions": [
+        "How many days with__ Humidity or Temperature were there in__Detroit or Minneapolis or Rochester ==,==Michigan or Minnesota in_2020 or 2015 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2020' AND State = 'Minnesota' AND City = 'San Francisco')) AND ((Characteristic = 'Wind' AND Intensity = 'Storm') OR (Characteristic = 'Humidity' AND Intensity = 'Breeze') OR (Characteristic = 'Wind' AND Intensity = 'High') OR (Characteristic = 'Humidity' AND Intensity = 'Medium') OR (Characteristic = 'Humidity' AND Intensity = 'Storm'))",
+      "GTresult": "avg_Value=21.412, min_Value=17.98",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__San Francisco ==,==Minnesota in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, max(Value) AS max_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2020' AND State = 'Michigan' AND City = 'Detroit') OR (Year = '2020' AND State = 'Minnesota' AND City = 'San Francisco') OR (Year = '2015' AND State = 'Michigan' AND City = 'Los-Angeles') OR (Year = '2020' AND State = 'California' AND City = 'Hastings') OR (Year = '2020' AND State = 'Michigan' AND City = 'Rochester')) AND ((Characteristic = 'Temperature' AND Intensity = 'Calm') OR (Characteristic = 'Humidity' AND Intensity = 'Medium') OR (Characteristic = 'Humidity' AND Intensity = 'Storm')) GROUP BY Year, State, City",
+      "GTresult": "Year=2015, State=Michigan, City=Los-Angeles, max_Value=25.03, sum_Value=53.72; Year=2020, State=California, City=Hastings, max_Value=13.53, sum_Value=30.990000000000002; Year=2020, State=Michigan, City=Detroit, max_Value=7.42, sum_Value=13.05; Year=2020, State=Michigan, City=Rochester, max_Value=23.24, sum_Value=30.839999999999996; Year=2020, State=Minnesota, City=San Francisco, max_Value=24.82, sum_Value=67.8",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity in__Detroit or San Francisco or Los-Angeles or Hastings or Rochester ==,==Michigan or Minnesota or California in_2020 or 2015 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Minnesota' AND City = 'Minneapolis')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) GROUP BY Characteristic",
+      "GTresult": "min_Value=5.69; min_Value=7.38",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Temperature in__Minneapolis ==,==Minnesota in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2020' AND State = 'California' AND City = 'Hastings')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Humidity, avg_Value=17.573333333333334; Characteristic=Wind, avg_Value=10.853333333333333",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Hastings ==,==California in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2020' AND State = 'Minnesota' AND City = 'San Francisco') OR (Year = '2020' AND State = 'California' AND City = 'Hastings') OR (Year = '2015' AND State = 'Minnesota' AND City = 'Minneapolis')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Temperature, Year=2015, State=Minnesota, City=Minneapolis, min_Value=7.38; Characteristic=Temperature, Year=2020, State=California, City=Hastings, min_Value=0.15; Characteristic=Temperature, Year=2020, State=Minnesota, City=San Francisco, min_Value=20.03; Characteristic=Wind, Year=2015, State=Minnesota, City=Minneapolis, min_Value=15.16; Characteristic=Wind, Year=2020, State=California, City=Hastings, min_Value=7.33; Characteristic=Wind, Year=2020, State=Minnesota, City=San Francisco, min_Value=17.98",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__San Francisco or Hastings or Minneapolis ==,==Minnesota or California in_2020 or 2015 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Michigan' AND City = 'Detroit')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=8.37; Value=5.5; Value=5.24; Value=2.19; Value=0.93",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Wind or Temperature in__Detroit ==,==Michigan in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2015' AND State = 'Michigan' AND City = 'Los-Angeles')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) ORDER BY Value DESC",
+      "GTresult": "Value=24.63; Value=24.48; Value=22.61; Value=21.81; Value=21.59; Value=5.18",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Wind or Temperature in__Los-Angeles ==,==Michigan in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2015' AND State = 'Minnesota' AND City = 'Minneapolis')) AND Value < 14.70",
+      "GTresult": "Characteristic=Humidity, Intensity=Storm; Characteristic=Temperature, Intensity=Breeze",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Minneapolis ==,==Minnesota in_2015 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2020' AND State = 'Michigan' AND City = 'Rochester')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2015' AND State = 'Minnesota' AND City = 'Minneapolis')) AND Value < 14.70)",
+      "GTresult": "Characteristic=Humidity, Intensity=Storm, Value=1.67; Characteristic=Temperature, Intensity=Breeze, Value=25.83",
+      "NLquestions": []
+    }
+  ]
+}

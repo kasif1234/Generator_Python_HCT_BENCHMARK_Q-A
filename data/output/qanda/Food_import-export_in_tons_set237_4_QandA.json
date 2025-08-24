@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Food_import-export_in_tons_set237_4_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Beverage' AND Item = 'Lamb'))",
+      "GTresult": "Value=104.27",
+      "NLquestions": [
+        "What is the amount of_Export of__ Beverage in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Beverage' AND Item = 'Soda') OR (Category = 'Meat' AND Item = 'Juice') OR (Category = 'Beverage' AND Item = 'Lamb') OR (Category = 'Meat' AND Item = 'Cream') OR (Category = 'Beverage' AND Item = 'Yoghurt') OR (Category = 'Meat' AND Item = 'Soda') OR (Category = 'Dairy' AND Item = 'Juice'))",
+      "GTresult": "Value=546.33; Value=898.57; Value=104.27; Value=304.97; Value=884.57; Value=602.96; Value=571.27",
+      "NLquestions": [
+        "What is the amount of_Export of__ Beverage or Meat or Dairy in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Beverage' AND Item = 'Soda'))",
+      "GTresult": "Value=546.33",
+      "NLquestions": [
+        "What is the amount of_Export of__ Beverage in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT min(Value) AS min_Value, max(Value) AS max_Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Dairy' AND Item = 'Juice'))",
+      "GTresult": "min_Value=571.27, max_Value=571.27",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Dairy in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Beverage' AND Item = 'Soda') OR (Category = 'Dairy' AND Item = 'Cheese') OR (Category = 'Beverage' AND Item = 'Yoghurt'))",
+      "GTresult": "Value=546.33; Value=722.65; Value=884.57",
+      "NLquestions": [
+        "What is the amount of_Export of__ Beverage or Dairy in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Dairy' AND Item = 'Cheese') OR (Category = 'Dairy' AND Item = 'Juice'))",
+      "GTresult": "sum_Value=1293.92, avg_Value=646.96",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Dairy in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Import_Export, max(Value) AS max_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Beverage' AND Item = 'Soda') OR (Category = 'Meat' AND Item = 'Juice') OR (Category = 'Beverage' AND Item = 'Lamb') OR (Category = 'Beverage' AND Item = 'Yoghurt') OR (Category = 'Dairy' AND Item = 'Juice')) GROUP BY Import_Export",
+      "GTresult": "Import_Export=Export, max_Value=898.57, avg_Value=601.0020000000001",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Beverage or Meat or Dairy in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Beverage') OR (Category = 'Dairy')) GROUP BY Category",
+      "GTresult": "min_Value=104.27; min_Value=452.01",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Beverage or Dairy in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Category, min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Beverage') OR (Category = 'Meat')) GROUP BY Category",
+      "GTresult": "Category=Beverage, min_Value=104.27; Category=Meat, min_Value=304.97",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Beverage or Meat in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Category, Import_Export, avg(Value) AS avg_Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Meat') OR (Category = 'Dairy')) GROUP BY Category, Import_Export",
+      "GTresult": "Category=Dairy, Import_Export=Export, avg_Value=581.9766666666666; Category=Meat, Import_Export=Export, avg_Value=602.1666666666666",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Meat or Dairy in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Meat') OR (Category = 'Dairy')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=304.97; Value=452.01; Value=571.27; Value=602.96; Value=722.65",
+      "NLquestions": [
+        "What are the top/bottom_ amounts of_Export of__ Meat or Dairy in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Beverage') OR (Category = 'Dairy')) ORDER BY Value DESC",
+      "GTresult": "Value=884.57; Value=722.65; Value=571.27; Value=546.33; Value=452.01; Value=104.27",
+      "NLquestions": [
+        "What are the amounts /increasing_values of_Export of__ Beverage or Dairy in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Export')) AND Value > 565.29",
+      "GTresult": "Category=Meat, Item=Juice; Category=Dairy, Item=Cheese; Category=Beverage, Item=Yoghurt; Category=Meat, Item=Soda; Category=Dairy, Item=Juice",
+      "NLquestions": [
+        "What is/are_the_ the amount of_Export of__ in__ ==of== is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Category, Item, Value FROM DBdata WHERE ((Import_Export = 'Export')) AND (Category, Item) IN (SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Export')) AND Value > 565.29)",
+      "GTresult": "Category=Meat, Item=Juice, Value=898.57; Category=Dairy, Item=Cheese, Value=722.65; Category=Beverage, Item=Yoghurt, Value=884.57; Category=Meat, Item=Soda, Value=602.96; Category=Dairy, Item=Juice, Value=571.27",
+      "NLquestions": []
+    }
+  ]
+}

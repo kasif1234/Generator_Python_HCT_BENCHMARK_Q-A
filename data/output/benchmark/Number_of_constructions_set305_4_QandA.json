@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Number_of_constructions_set305_4_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Concert')) AND ((Quarter = 'Q1' AND Month = 'August' AND State = 'Massachusetts' AND City = 'Cambridge'))",
+      "GTresult": "Value=92.88",
+      "NLquestions": [
+        "What is the number of__ in__Cambridge ==,==Massachusetts in__August ==,==Q1 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Hospital')) AND ((Quarter = 'Q3' AND Month = 'August' AND State = 'Massachusetts' AND City = 'Cambridge') OR (Quarter = 'Q1' AND Month = 'September' AND State = 'Massachusetts' AND City = 'Cambridge') OR (Quarter = 'Q3' AND Month = 'July' AND State = 'Massachusetts' AND City = 'Cambridge') OR (Quarter = 'Q1' AND Month = 'March' AND State = 'Massachusetts' AND City = 'Cambridge') OR (Quarter = 'Q3' AND Month = 'February' AND State = 'Massachusetts' AND City = 'Cambridge') OR (Quarter = 'Q1' AND Month = 'August' AND State = 'Massachusetts' AND City = 'Cambridge'))",
+      "GTresult": "Value=27.12; Value=34.95; Value=37.12; Value=43.98; Value=43.67; Value=47.47",
+      "NLquestions": [
+        "What is the number of__ in__Cambridge ==,==Massachusetts in__August or September or July or March or February ==,==Q3 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Apartment') OR (Type_of_building = 'Service' AND Usage = 'Administration') OR (Type_of_building = 'Culture' AND Usage = 'Theatre')) AND ((Quarter = 'Q3' AND Month = 'July' AND State = 'Massachusetts' AND City = 'Cambridge'))",
+      "GTresult": "Value=8.57; Value=55.13; Value=68.25",
+      "NLquestions": [
+        "What is the number of__ in__Cambridge ==,==Massachusetts in__July ==,==Q3 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Hotel') OR (Type_of_building = 'Residential' AND Usage = 'Concert')) AND ((Quarter = 'Q3' AND Month = 'February' AND State = 'Massachusetts' AND City = 'Cambridge'))",
+      "GTresult": "avg_Value=55.974999999999994, sum_Value=111.94999999999999",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__Cambridge ==,==Massachusetts in__February ==,==Q3 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Apartment') OR (Type_of_building = 'Culture' AND Usage = 'House') OR (Type_of_building = 'Residential' AND Usage = 'Hospital') OR (Type_of_building = 'Service' AND Usage = 'Administration') OR (Type_of_building = 'Residential' AND Usage = 'Concert')) AND ((Quarter = 'Q3' AND Month = 'August' AND State = 'Massachusetts' AND City = 'Cambridge') OR (Quarter = 'Q1' AND Month = 'September' AND State = 'Massachusetts' AND City = 'Cambridge') OR (Quarter = 'Q1' AND Month = 'August' AND State = 'Massachusetts' AND City = 'Cambridge'))",
+      "GTresult": "Value=5.65; Value=6.07; Value=8.19; Value=21.3; Value=18.07; Value=28.51; Value=27.12; Value=34.95; Value=47.47; Value=48.27; Value=50.36; Value=58.09; Value=81.08; Value=82.04; Value=92.88",
+      "NLquestions": [
+        "What is the number of__ in__Cambridge ==,==Massachusetts in__August or September ==,==Q3 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Theatre')) AND ((Quarter = 'Q3' AND Month = 'July' AND State = 'Massachusetts' AND City = 'Cambridge') OR (Quarter = 'Q1' AND Month = 'March' AND State = 'Massachusetts' AND City = 'Cambridge') OR (Quarter = 'Q1' AND Month = 'August' AND State = 'Massachusetts' AND City = 'Cambridge'))",
+      "GTresult": "avg_Value=73.46666666666665, sum_Value=220.39999999999998",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__Cambridge ==,==Massachusetts in__July or March or August ==,==Q3 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Type_of_building, Usage, min(Value) AS min_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Apartment') OR (Type_of_building = 'Residential' AND Usage = 'Hospital') OR (Type_of_building = 'Service' AND Usage = 'Administration')) AND ((Quarter = 'Q1' AND Month = 'September' AND State = 'Massachusetts' AND City = 'Cambridge') OR (Quarter = 'Q3' AND Month = 'July' AND State = 'Massachusetts' AND City = 'Cambridge') OR (Quarter = 'Q1' AND Month = 'March' AND State = 'Massachusetts' AND City = 'Cambridge')) GROUP BY Type_of_building, Usage",
+      "GTresult": "Type_of_building=Residential, Usage=Apartment, min_Value=6.07, avg_Value=7.933333333333334; Type_of_building=Residential, Usage=Hospital, min_Value=34.95, avg_Value=38.68333333333333; Type_of_building=Service, Usage=Administration, min_Value=50.36, avg_Value=54.20666666666667",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__Cambridge ==,==Massachusetts in__September or July or March ==,==Q1 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Hotel')) AND ((Quarter = 'Q3') OR (Quarter = 'Q1')) GROUP BY Quarter",
+      "GTresult": "min_Value=13.34; min_Value=12.58",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q3 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Quarter, sum(Value) AS sum_Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Hospital')) AND ((Quarter = 'Q3') OR (Quarter = 'Q1')) GROUP BY Quarter",
+      "GTresult": "Quarter=Q1, sum_Value=126.4; Quarter=Q3, sum_Value=107.91",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q3 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Quarter, Type_of_building, Usage, max(Value) AS max_Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Apartment') OR (Type_of_building = 'Service' AND Usage = 'Hotel') OR (Type_of_building = 'Residential' AND Usage = 'Hospital')) AND ((Quarter = 'Q3') OR (Quarter = 'Q1')) GROUP BY Quarter, Type_of_building, Usage",
+      "GTresult": "Quarter=Q1, Type_of_building=Residential, Usage=Apartment, max_Value=9.16; Quarter=Q1, Type_of_building=Residential, Usage=Hospital, max_Value=47.47; Quarter=Q1, Type_of_building=Service, Usage=Hotel, max_Value=20.25; Quarter=Q3, Type_of_building=Residential, Usage=Apartment, max_Value=9.5; Quarter=Q3, Type_of_building=Residential, Usage=Hospital, max_Value=43.67; Quarter=Q3, Type_of_building=Service, Usage=Hotel, max_Value=19.54",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q3 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Apartment')) AND ((Quarter = 'Q3') OR (Quarter = 'Q1')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=5.65; Value=6.07; Value=8.19; Value=8.57; Value=9.16",
+      "NLquestions": [
+        "What are the top/bottom_ numbers of__ in__ ==,== in__ ==,==Q3 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Administration')) AND ((Quarter = 'Q3') OR (Quarter = 'Q1')) ORDER BY Value DESC",
+      "GTresult": "Value=58.68; Value=58.09; Value=57.13; Value=55.13; Value=50.36; Value=48.27",
+      "NLquestions": [
+        "What are the numbers /ascending_values of__ in__ ==,== in__ ==,==Q3 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Quarter, Month, State, City FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Administration')) AND Value > 43.09",
+      "GTresult": "Quarter=Q3, Month=August, State=Massachusetts, City=Cambridge; Quarter=Q1, Month=September, State=Massachusetts, City=Cambridge; Quarter=Q3, Month=July, State=Massachusetts, City=Cambridge; Quarter=Q1, Month=March, State=Massachusetts, City=Cambridge; Quarter=Q3, Month=February, State=Massachusetts, City=Cambridge; Quarter=Q1, Month=August, State=Massachusetts, City=Cambridge",
+      "NLquestions": [
+        "What is/are_the_ the number of__ in__ ==,== in__ ==,== is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Quarter, Month, State, City, Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Hotel')) AND (Quarter, Month, State, City) IN (SELECT Quarter, Month, State, City FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Administration')) AND Value > 43.09)",
+      "GTresult": "Quarter=Q3, Month=August, State=Massachusetts, City=Cambridge, Value=12.58; Quarter=Q1, Month=September, State=Massachusetts, City=Cambridge, Value=13.34; Quarter=Q3, Month=July, State=Massachusetts, City=Cambridge, Value=17.27; Quarter=Q1, Month=March, State=Massachusetts, City=Cambridge, Value=18.69; Quarter=Q3, Month=February, State=Massachusetts, City=Cambridge, Value=19.54; Quarter=Q1, Month=August, State=Massachusetts, City=Cambridge, Value=20.25",
+      "NLquestions": []
+    }
+  ]
+}

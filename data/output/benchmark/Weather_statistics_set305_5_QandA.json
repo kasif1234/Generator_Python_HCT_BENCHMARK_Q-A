@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set305_5_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Maryland' AND City = 'Tampa')) AND ((Characteristic = 'Temperature' AND Intensity = '0-10'))",
+      "GTresult": "Value=17.16",
+      "NLquestions": [
+        "How many days with__ Temperature were there in__Tampa ==,==Maryland in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Maryland' AND City = 'Tampa')) AND ((Characteristic = 'Humidity' AND Intensity = 'High') OR (Characteristic = 'Temperature' AND Intensity = 'Low') OR (Characteristic = 'Humidity' AND Intensity = 'Medium') OR (Characteristic = 'Temperature' AND Intensity = '0-10') OR (Characteristic = 'Humidity' AND Intensity = '31-40') OR (Characteristic = 'Temperature' AND Intensity = '21-30'))",
+      "GTresult": "Value=14.91; Value=16.75; Value=17.23; Value=17.16; Value=18.77; Value=20.21",
+      "NLquestions": [
+        "How many days with__ Humidity or Temperature were there in__Tampa ==,==Maryland in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2018' AND State = 'Nevada' AND City = 'Boulder City') OR (Year = '2019' AND State = 'Maryland' AND City = 'Reno') OR (Year = '2021' AND State = 'Florida' AND City = 'Las Vegas') OR (Year = '2018' AND State = 'Nevada' AND City = 'Columbia') OR (Year = '2021' AND State = 'Florida' AND City = 'Aberdeen') OR (Year = '2018' AND State = 'Nevada' AND City = 'Fort Lauderdale') OR (Year = '2019' AND State = 'Maryland' AND City = 'Tampa')) AND ((Characteristic = 'Humidity' AND Intensity = 'Medium'))",
+      "GTresult": "Value=2.78; Value=8.27; Value=14.17; Value=19.45; Value=25.12; Value=8.02; Value=17.23",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Boulder City or Reno or Las Vegas or Columbia or Aberdeen or Fort Lauderdale or Tampa ==,==Nevada or Maryland or Florida in_2018 or 2019 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2018' AND State = 'Nevada' AND City = 'Boulder City') OR (Year = '2019' AND State = 'Maryland' AND City = 'Reno') OR (Year = '2021' AND State = 'Florida' AND City = 'Las Vegas') OR (Year = '2019' AND State = 'Maryland' AND City = 'Baltimore') OR (Year = '2021' AND State = 'Florida' AND City = 'Aberdeen') OR (Year = '2019' AND State = 'Maryland' AND City = 'Tampa')) AND ((Characteristic = 'Humidity' AND Intensity = '31-40'))",
+      "GTresult": "sum_Value=98.28, avg_Value=16.38",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity in__Boulder City or Reno or Las Vegas or Baltimore or Aberdeen or Tampa ==,==Nevada or Maryland or Florida in_2018 or 2019 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2018' AND State = 'Nevada' AND City = 'Boulder City') OR (Year = '2019' AND State = 'Maryland' AND City = 'Reno') OR (Year = '2021' AND State = 'Florida' AND City = 'Las Vegas') OR (Year = '2019' AND State = 'Maryland' AND City = 'Baltimore')) AND ((Characteristic = 'Humidity' AND Intensity = 'High') OR (Characteristic = 'Temperature' AND Intensity = 'Low') OR (Characteristic = 'Humidity' AND Intensity = 'Medium') OR (Characteristic = 'Humidity' AND Intensity = '31-40'))",
+      "GTresult": "Value=0.57; Value=1.15; Value=2.78; Value=1.12; Value=5.74; Value=5.28; Value=8.27; Value=10.12; Value=12.78; Value=9.48; Value=14.17; Value=16.27; Value=20.18; Value=25.66; Value=26.24; Value=25.73",
+      "NLquestions": [
+        "How many days with__ Humidity or Temperature were there in__Boulder City or Reno or Las Vegas or Baltimore ==,==Nevada or Maryland or Florida in_2018 or 2019 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT min(Value) AS min_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Florida' AND City = 'Las Vegas')) AND ((Characteristic = 'Temperature' AND Intensity = 'Low') OR (Characteristic = 'Temperature' AND Intensity = '0-10') OR (Characteristic = 'Temperature' AND Intensity = '21-30'))",
+      "GTresult": "min_Value=9.48, avg_Value=12.503333333333332",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature in__Las Vegas ==,==Florida in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2018' AND State = 'Nevada' AND City = 'Boulder City') OR (Year = '2021' AND State = 'Florida' AND City = 'Las Vegas') OR (Year = '2019' AND State = 'Maryland' AND City = 'Baltimore')) AND ((Characteristic = 'Humidity' AND Intensity = 'High') OR (Characteristic = 'Humidity' AND Intensity = 'Medium') OR (Characteristic = 'Temperature' AND Intensity = '0-10') OR (Characteristic = 'Humidity' AND Intensity = '31-40') OR (Characteristic = 'Temperature' AND Intensity = '21-30')) GROUP BY Year, State, City",
+      "GTresult": "Year=2018, State=Nevada, City=Boulder City, sum_Value=13.709999999999999, avg_Value=2.742; Year=2019, State=Maryland, City=Baltimore, sum_Value=127.21, avg_Value=25.442; Year=2021, State=Florida, City=Las Vegas, sum_Value=71.25, avg_Value=14.25",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Temperature in__Boulder City or Las Vegas or Baltimore ==,==Nevada or Florida or Maryland in_2018 or 2021 or 2019 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2018' AND State = 'Nevada' AND City = 'Boulder City')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) GROUP BY Characteristic",
+      "GTresult": "min_Value=0.57; min_Value=1.15",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Temperature in__Boulder City ==,==Nevada in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Florida' AND City = 'Las Vegas')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Humidity, sum_Value=43.22; Characteristic=Temperature, sum_Value=37.51",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Temperature in__Las Vegas ==,==Florida in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Florida' AND City = 'Las Vegas') OR (Year = '2018' AND State = 'Nevada' AND City = 'Fort Lauderdale') OR (Year = '2019' AND State = 'Maryland' AND City = 'Tampa')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Humidity, Year=2018, State=Nevada, City=Fort Lauderdale, min_Value=8.02; Characteristic=Humidity, Year=2019, State=Maryland, City=Tampa, min_Value=14.91; Characteristic=Humidity, Year=2021, State=Florida, City=Las Vegas, min_Value=12.78; Characteristic=Temperature, Year=2018, State=Nevada, City=Fort Lauderdale, min_Value=8.9; Characteristic=Temperature, Year=2019, State=Maryland, City=Tampa, min_Value=16.75; Characteristic=Temperature, Year=2021, State=Florida, City=Las Vegas, min_Value=9.48",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Temperature in__Las Vegas or Fort Lauderdale or Tampa ==,==Florida or Nevada or Maryland in_2021 or 2018 or 2019 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2018' AND State = 'Nevada' AND City = 'Fort Lauderdale')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=10.83; Value=10.26; Value=10.18; Value=8.9; Value=8.32",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Humidity or Temperature in__Fort Lauderdale ==,==Nevada in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Florida' AND City = 'Aberdeen')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) ORDER BY Value ASC",
+      "GTresult": "Value=8.51; Value=22.63; Value=23.18; Value=25.12; Value=26.27; Value=27.22",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Humidity or Temperature in__Aberdeen ==,==Florida in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2018' AND State = 'Nevada' AND City = 'Boulder City')) AND Value < 14.62",
+      "GTresult": "Characteristic=Humidity, Intensity=High; Characteristic=Temperature, Intensity=Low; Characteristic=Humidity, Intensity=Medium; Characteristic=Temperature, Intensity=0-10; Characteristic=Humidity, Intensity=31-40; Characteristic=Temperature, Intensity=21-30",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Boulder City ==,==Nevada in_2018 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2018' AND State = 'Nevada' AND City = 'Columbia')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2018' AND State = 'Nevada' AND City = 'Boulder City')) AND Value < 14.62)",
+      "GTresult": "Characteristic=Humidity, Intensity=High, Value=17.27; Characteristic=Temperature, Intensity=Low, Value=19.98; Characteristic=Humidity, Intensity=Medium, Value=19.45; Characteristic=Temperature, Intensity=0-10, Value=20.53; Characteristic=Humidity, Intensity=31-40, Value=16.54; Characteristic=Temperature, Intensity=21-30, Value=16.92",
+      "NLquestions": []
+    }
+  ]
+}

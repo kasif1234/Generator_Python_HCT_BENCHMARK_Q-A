@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Number_of_constructions_set242_5_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Hospital')) AND ((Quarter = 'Q4' AND Month = 'March' AND State = 'Maryland' AND City = 'Minneapolis'))",
+      "GTresult": "Value=65.14",
+      "NLquestions": [
+        "What is the number of__ in__Minneapolis ==,==Maryland in__March ==,==Q4 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'House')) AND ((Quarter = 'Q1' AND Month = 'November' AND State = 'Maryland' AND City = 'Rochester') OR (Quarter = 'Q3' AND Month = 'December' AND State = 'Minnesota' AND City = 'Columbia') OR (Quarter = 'Q4' AND Month = 'March' AND State = 'Maryland' AND City = 'Minneapolis') OR (Quarter = 'Q3' AND Month = 'January' AND State = 'Maryland' AND City = 'Columbia'))",
+      "GTresult": "Value=40.27; Value=41.44; Value=42.66; Value=43.26",
+      "NLquestions": [
+        "What is the number of__ in__Rochester or Columbia or Minneapolis ==,==Maryland or Minnesota in__November or December or March or January ==,==Q1 or Q3 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Hotel') OR (Type_of_building = 'Service' AND Usage = 'Apartment') OR (Type_of_building = 'Service' AND Usage = 'Administration')) AND ((Quarter = 'Q3' AND Month = 'January' AND State = 'Maryland' AND City = 'Columbia'))",
+      "GTresult": "Value=8.77; Value=29.56; Value=95.74",
+      "NLquestions": [
+        "What is the number of__ in__Columbia ==,==Maryland in__January ==,==Q3 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT max(Value) AS max_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Hotel') OR (Type_of_building = 'Service' AND Usage = 'Apartment') OR (Type_of_building = 'Residential' AND Usage = 'House') OR (Type_of_building = 'Service' AND Usage = 'School') OR (Type_of_building = 'Residential' AND Usage = 'Hospital') OR (Type_of_building = 'Service' AND Usage = 'Administration')) AND ((Quarter = 'Q4' AND Month = 'October' AND State = 'Minnesota' AND City = 'Minneapolis'))",
+      "GTresult": "max_Value=74.67, avg_Value=40.303333333333335",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__Minneapolis ==,==Minnesota in__October ==,==Q4 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Apartment') OR (Type_of_building = 'Residential' AND Usage = 'Hospital')) AND ((Quarter = 'Q4' AND Month = 'October' AND State = 'Minnesota' AND City = 'Minneapolis') OR (Quarter = 'Q3' AND Month = 'December' AND State = 'Minnesota' AND City = 'Columbia') OR (Quarter = 'Q1' AND Month = 'July' AND State = 'Maryland' AND City = 'Rochester'))",
+      "GTresult": "Value=19.65; Value=21.93; Value=27.87; Value=63.91; Value=65.99; Value=71.73",
+      "NLquestions": [
+        "What is the number of__ in__Minneapolis or Columbia or Rochester ==,==Minnesota or Maryland in__October or December or July ==,==Q4 or Q3 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT max(Value) AS max_Value, min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Hotel')) AND ((Quarter = 'Q4' AND Month = 'October' AND State = 'Minnesota' AND City = 'Minneapolis') OR (Quarter = 'Q3' AND Month = 'December' AND State = 'Minnesota' AND City = 'Columbia') OR (Quarter = 'Q4' AND Month = 'August' AND State = 'Minnesota' AND City = 'Minneapolis') OR (Quarter = 'Q1' AND Month = 'July' AND State = 'Maryland' AND City = 'Rochester') OR (Quarter = 'Q3' AND Month = 'October' AND State = 'Minnesota' AND City = 'Columbia'))",
+      "GTresult": "max_Value=16.88, min_Value=0.37",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__Minneapolis or Columbia or Rochester ==,==Minnesota or Maryland in__October or December or August or July ==,==Q4 or Q3 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Type_of_building, Usage, avg(Value) AS avg_Value, max(Value) AS max_Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'House') OR (Type_of_building = 'Service' AND Usage = 'School') OR (Type_of_building = 'Service' AND Usage = 'Administration')) AND ((Quarter = 'Q4' AND Month = 'March' AND State = 'Maryland' AND City = 'Minneapolis') OR (Quarter = 'Q4' AND Month = 'August' AND State = 'Minnesota' AND City = 'Minneapolis')) GROUP BY Type_of_building, Usage",
+      "GTresult": "Type_of_building=Residential, Usage=House, avg_Value=42.95, max_Value=43.24; Type_of_building=Service, Usage=Administration, avg_Value=88.21000000000001, max_Value=97.47; Type_of_building=Service, Usage=School, avg_Value=54.834999999999994, max_Value=59.87",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__Minneapolis ==,==Maryland or Minnesota in__March or August ==,==Q4 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Apartment')) AND ((Quarter = 'Q1') OR (Quarter = 'Q3')) GROUP BY Quarter",
+      "GTresult": "min_Value=20.59; min_Value=21.93",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q1 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Quarter, avg(Value) AS avg_Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'House')) AND ((Quarter = 'Q4') OR (Quarter = 'Q3')) GROUP BY Quarter",
+      "GTresult": "Quarter=Q3, avg_Value=43.89666666666667; Quarter=Q4, avg_Value=40.083333333333336",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q4 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Quarter, Type_of_building, Usage, min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'House') OR (Type_of_building = 'Service' AND Usage = 'School') OR (Type_of_building = 'Service' AND Usage = 'Administration')) AND ((Quarter = 'Q4') OR (Quarter = 'Q1')) GROUP BY Quarter, Type_of_building, Usage",
+      "GTresult": "Quarter=Q1, Type_of_building=Residential, Usage=House, min_Value=40.27; Quarter=Q1, Type_of_building=Service, Usage=Administration, min_Value=77.21; Quarter=Q1, Type_of_building=Service, Usage=School, min_Value=48.5; Quarter=Q4, Type_of_building=Residential, Usage=House, min_Value=34.35; Quarter=Q4, Type_of_building=Service, Usage=Administration, min_Value=74.67; Quarter=Q4, Type_of_building=Service, Usage=School, min_Value=48.87",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q4 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'House')) AND ((Quarter = 'Q1') OR (Quarter = 'Q3')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=46.99; Value=46.65; Value=43.26; Value=42.96; Value=41.44",
+      "NLquestions": [
+        "What are the top/bottom_ numbers of__ in__ ==,== in__ ==,==Q1 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Administration')) AND ((Quarter = 'Q4') OR (Quarter = 'Q3')) ORDER BY Value ASC",
+      "GTresult": "Value=74.67; Value=78.78; Value=78.95; Value=95.74; Value=97.47; Value=98.73",
+      "NLquestions": [
+        "What are the numbers /ascending_values of__ in__ ==,== in__ ==,==Q4 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Quarter, Month, State, City FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Hotel')) AND Value < 47.75",
+      "GTresult": "Quarter=Q4, Month=October, State=Minnesota, City=Minneapolis; Quarter=Q1, Month=November, State=Maryland, City=Rochester; Quarter=Q3, Month=December, State=Minnesota, City=Columbia; Quarter=Q4, Month=March, State=Maryland, City=Minneapolis; Quarter=Q1, Month=February, State=Minnesota, City=Rochester; Quarter=Q3, Month=January, State=Maryland, City=Columbia; Quarter=Q4, Month=August, State=Minnesota, City=Minneapolis; Quarter=Q1, Month=July, State=Maryland, City=Rochester; Quarter=Q3, Month=October, State=Minnesota, City=Columbia",
+      "NLquestions": [
+        "What is/are_the_ the number of__ in__ ==,== in__ ==,== is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Quarter, Month, State, City, Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'School')) AND (Quarter, Month, State, City) IN (SELECT Quarter, Month, State, City FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Hotel')) AND Value < 47.75)",
+      "GTresult": "Quarter=Q4, Month=October, State=Minnesota, City=Minneapolis, Value=48.87; Quarter=Q1, Month=November, State=Maryland, City=Rochester, Value=49.47; Quarter=Q3, Month=December, State=Minnesota, City=Columbia, Value=50.29; Quarter=Q4, Month=March, State=Maryland, City=Minneapolis, Value=49.8; Quarter=Q1, Month=February, State=Minnesota, City=Rochester, Value=48.5; Quarter=Q3, Month=January, State=Maryland, City=Columbia, Value=57.85; Quarter=Q4, Month=August, State=Minnesota, City=Minneapolis, Value=59.87; Quarter=Q1, Month=July, State=Maryland, City=Rochester, Value=61.2; Quarter=Q3, Month=October, State=Minnesota, City=Columbia, Value=62.62",
+      "NLquestions": []
+    }
+  ]
+}

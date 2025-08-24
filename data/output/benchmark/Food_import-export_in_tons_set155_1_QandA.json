@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Food_import-export_in_tons_set155_1_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2022' AND Quarter = 'Q3')) AND ((Category = 'Cereals' AND Item = 'Tea'))",
+      "GTresult": "Value=652.56; Value=475.24",
+      "NLquestions": [
+        "What is the amount of_Import of__ Cereals in__Q3 ==of==2022 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2016' AND Quarter = 'Q3')) AND ((Category = 'Cereals' AND Item = 'Rice') OR (Category = 'Beverage' AND Item = 'Seeds') OR (Category = 'Beverage' AND Item = 'Soda'))",
+      "GTresult": "Value=435.91; Value=567.86; Value=209.96",
+      "NLquestions": [
+        "What is the amount of_Import of__ Cereals or Beverage in__Q3 ==of==2016 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2022' AND Quarter = 'Q3') OR (Import_Export = 'Import' AND Year = '2016' AND Quarter = 'Q3')) AND ((Category = 'Beverage' AND Item = 'Seeds'))",
+      "GTresult": "Value=388.54; Value=567.86; Value=858.35",
+      "NLquestions": [
+        "What is the amount of_Import of__ Beverage in__Q3 ==of==2022 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT max(Value) AS max_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2022' AND Quarter = 'Q3') OR (Import_Export = 'Import' AND Year = '2017' AND Quarter = 'Q3')) AND ((Category = 'Beverage' AND Item = 'Soda'))",
+      "GTresult": "max_Value=945.84, sum_Value=2727.58",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Beverage in__Q3 ==of==2022 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2017' AND Quarter = 'Q3') OR (Import_Export = 'Import' AND Year = '2016' AND Quarter = 'Q3')) AND ((Category = 'Cereals' AND Item = 'Rice') OR (Category = 'Beverage' AND Item = 'Seeds') OR (Category = 'Cereals' AND Item = 'Tea'))",
+      "GTresult": "Value=927.63; Value=45.1; Value=815.22; Value=435.91; Value=567.86; Value=971.37; Value=366.56; Value=244.76; Value=377.61",
+      "NLquestions": [
+        "What is the amount of_Import of__ Cereals or Beverage in__Q3 ==of==2017 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2022' AND Quarter = 'Q3')) AND ((Category = 'Cereals' AND Item = 'Rice') OR (Category = 'Beverage' AND Item = 'Seeds') OR (Category = 'Cereals' AND Item = 'Tea'))",
+      "GTresult": "avg_Value=517.1483333333333, min_Value=342.36",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Cereals or Beverage in__Q3 ==of==2022 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Import_Export, Year, Quarter, sum(Value) AS sum_Value, max(Value) AS max_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2022' AND Quarter = 'Q3') OR (Import_Export = 'Import' AND Year = '2017' AND Quarter = 'Q3') OR (Import_Export = 'Import' AND Year = '2016' AND Quarter = 'Q3')) AND ((Category = 'Beverage' AND Item = 'Seeds') OR (Category = 'Cereals' AND Item = 'Tea') OR (Category = 'Beverage' AND Item = 'Soda')) GROUP BY Import_Export, Year, Quarter",
+      "GTresult": "Import_Export=Import, Year=2016, Quarter=Q3, sum_Value=1749.19, max_Value=971.37; Import_Export=Import, Year=2017, Quarter=Q3, sum_Value=3194.94, max_Value=945.84; Import_Export=Import, Year=2022, Quarter=Q3, sum_Value=3390.02, max_Value=866.79",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Beverage or Cereals in__Q3 ==of==2022 or 2017 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2022' AND Quarter = 'Q3')) AND ((Category = 'Cereals') OR (Category = 'Beverage')) GROUP BY Category",
+      "GTresult": "min_Value=148.54; min_Value=342.36",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Cereals or Beverage in__Q3 ==of==2022 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Category, avg(Value) AS avg_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2017' AND Quarter = 'Q3')) AND ((Category = 'Cereals') OR (Category = 'Beverage')) GROUP BY Category",
+      "GTresult": "Category=Beverage, avg_Value=500.5275; Category=Cereals, avg_Value=621.755",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Cereals or Beverage in__Q3 ==of==2017 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Category, Import_Export, Year, Quarter, max(Value) AS max_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2022' AND Quarter = 'Q3') OR (Import_Export = 'Import' AND Year = '2016' AND Quarter = 'Q3')) AND ((Category = 'Cereals') OR (Category = 'Beverage')) GROUP BY Category, Import_Export, Year, Quarter",
+      "GTresult": "Category=Beverage, Import_Export=Import, Year=2016, Quarter=Q3, max_Value=567.86; Category=Beverage, Import_Export=Import, Year=2022, Quarter=Q3, max_Value=866.79; Category=Cereals, Import_Export=Import, Year=2016, Quarter=Q3, max_Value=971.37; Category=Cereals, Import_Export=Import, Year=2022, Quarter=Q3, max_Value=652.56",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Cereals or Beverage in__Q3 ==of==2022 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2017' AND Quarter = 'Q3')) AND ((Category = 'Cereals') OR (Category = 'Beverage')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=45.1; Value=244.76; Value=366.56; Value=377.61; Value=766.41",
+      "NLquestions": [
+        "What are the top/bottom_ amounts of_Import of__ Cereals or Beverage in__Q3 ==of==2017 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2022' AND Quarter = 'Q3')) AND ((Category = 'Cereals') OR (Category = 'Beverage')) ORDER BY Value ASC",
+      "GTresult": "Value=148.54; Value=342.36; Value=385.84; Value=388.54; Value=475.24; Value=652.56; Value=858.35; Value=866.79",
+      "NLquestions": [
+        "What are the amounts /increasing_values of_Import of__ Cereals or Beverage in__Q3 ==of==2022 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2017' AND Quarter = 'Q3')) AND Value > 539.62",
+      "GTresult": "Category=Cereals, Item=Rice; Category=Cereals, Item=Tea; Category=Beverage, Item=Soda; Category=Beverage, Item=Soda",
+      "NLquestions": [
+        "What is/are_the_ the amount of_Import of__ in__Q3 ==of==2017 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Category, Item, Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2016' AND Quarter = 'Q3')) AND (Category, Item) IN (SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2017' AND Quarter = 'Q3')) AND Value > 539.62)",
+      "GTresult": "Category=Cereals, Item=Rice, Value=435.91; Category=Cereals, Item=Tea, Value=971.37; Category=Beverage, Item=Soda, Value=209.96",
+      "NLquestions": []
+    }
+  ]
+}

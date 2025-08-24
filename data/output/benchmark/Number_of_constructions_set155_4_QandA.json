@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Number_of_constructions_set155_4_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Library')) AND ((Quarter = 'Q4' AND Month = 'December' AND State = 'Maryland' AND City = 'Detroit'))",
+      "GTresult": "Value=17.45",
+      "NLquestions": [
+        "What is the number of__ in__Detroit ==,==Maryland in__December ==,==Q4 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Hotel')) AND ((Quarter = 'Q1' AND Month = 'February' AND State = 'Michigan' AND City = 'Detroit') OR (Quarter = 'Q1' AND Month = 'January' AND State = 'Michigan' AND City = 'Baltimore') OR (Quarter = 'Q1' AND Month = 'November' AND State = 'Michigan' AND City = 'Port Huron'))",
+      "GTresult": "Value=64.31; Value=72.38; Value=73.62",
+      "NLquestions": [
+        "What is the number of__ in__Detroit or Baltimore or Port Huron ==,==Michigan in__February or January or November ==,==Q1 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Library') OR (Type_of_building = 'Residential' AND Usage = 'School')) AND ((Quarter = 'Q1' AND Month = 'January' AND State = 'Michigan' AND City = 'Baltimore'))",
+      "GTresult": "Value=6.28; Value=35.94",
+      "NLquestions": [
+        "What is the number of__ in__Baltimore ==,==Michigan in__January ==,==Q1 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'School') OR (Type_of_building = 'Service' AND Usage = 'House')) AND ((Quarter = 'Q1' AND Month = 'November' AND State = 'Michigan' AND City = 'Port Huron'))",
+      "GTresult": "sum_Value=97.03999999999999, avg_Value=48.519999999999996",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__Port Huron ==,==Michigan in__November ==,==Q1 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Library') OR (Type_of_building = 'Residential' AND Usage = 'School')) AND ((Quarter = 'Q1' AND Month = 'February' AND State = 'Michigan' AND City = 'Detroit') OR (Quarter = 'Q1' AND Month = 'January' AND State = 'Michigan' AND City = 'Baltimore') OR (Quarter = 'Q4' AND Month = 'December' AND State = 'Maryland' AND City = 'Detroit'))",
+      "GTresult": "Value=2.53; Value=6.28; Value=17.45; Value=33.55; Value=35.94; Value=36.85",
+      "NLquestions": [
+        "What is the number of__ in__Detroit or Baltimore ==,==Michigan or Maryland in__February or January or December ==,==Q1 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT sum(Value) AS sum_Value, max(Value) AS max_Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Hotel')) AND ((Quarter = 'Q1' AND Month = 'February' AND State = 'Michigan' AND City = 'Detroit') OR (Quarter = 'Q4' AND Month = 'March' AND State = 'Maryland' AND City = 'Port Huron') OR (Quarter = 'Q4' AND Month = 'December' AND State = 'Maryland' AND City = 'Detroit') OR (Quarter = 'Q1' AND Month = 'November' AND State = 'Michigan' AND City = 'Port Huron'))",
+      "GTresult": "sum_Value=281.95000000000005, max_Value=73.62",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__Detroit or Port Huron ==,==Michigan or Maryland in__February or March or December or November ==,==Q1 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Type_of_building, Usage, sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'School') OR (Type_of_building = 'Service' AND Usage = 'House') OR (Type_of_building = 'Residential' AND Usage = 'Hotel') OR (Type_of_building = 'Service' AND Usage = 'Apartment')) AND ((Quarter = 'Q1' AND Month = 'February' AND State = 'Michigan' AND City = 'Detroit') OR (Quarter = 'Q4' AND Month = 'March' AND State = 'Maryland' AND City = 'Port Huron') OR (Quarter = 'Q1' AND Month = 'January' AND State = 'Michigan' AND City = 'Baltimore') OR (Quarter = 'Q4' AND Month = 'December' AND State = 'Maryland' AND City = 'Detroit') OR (Quarter = 'Q4' AND Month = 'February' AND State = 'Maryland' AND City = 'Baltimore')) GROUP BY Type_of_building, Usage",
+      "GTresult": "Type_of_building=Residential, Usage=Hotel, sum_Value=358.57, min_Value=64.31; Type_of_building=Residential, Usage=School, sum_Value=179.07, min_Value=33.55; Type_of_building=Service, Usage=Apartment, sum_Value=442.32, min_Value=79.43; Type_of_building=Service, Usage=House, sum_Value=241.16, min_Value=38.26",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__Detroit or Port Huron or Baltimore ==,==Michigan or Maryland in__February or March or January or December ==,==Q1 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'School')) AND ((Quarter = 'Q1') OR (Quarter = 'Q4')) GROUP BY Quarter",
+      "GTresult": "min_Value=33.55; min_Value=34.43",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q1 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Quarter, max(Value) AS max_Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'School')) AND ((Quarter = 'Q1') OR (Quarter = 'Q4')) GROUP BY Quarter",
+      "GTresult": "Quarter=Q1, max_Value=37.05; Quarter=Q4, max_Value=38.3",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q1 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Quarter, Type_of_building, Usage, sum(Value) AS sum_Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Library') OR (Type_of_building = 'Service' AND Usage = 'House') OR (Type_of_building = 'Residential' AND Usage = 'Hotel')) AND ((Quarter = 'Q1') OR (Quarter = 'Q4')) GROUP BY Quarter, Type_of_building, Usage",
+      "GTresult": "Quarter=Q1, Type_of_building=Residential, Usage=Hotel, sum_Value=210.31; Quarter=Q1, Type_of_building=Service, Usage=House, sum_Value=144.41; Quarter=Q1, Type_of_building=Service, Usage=Library, sum_Value=31.36; Quarter=Q4, Type_of_building=Residential, Usage=Hotel, sum_Value=221.88; Quarter=Q4, Type_of_building=Service, Usage=House, sum_Value=156.74; Quarter=Q4, Type_of_building=Service, Usage=Library, sum_Value=52.120000000000005",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q1 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'School')) AND ((Quarter = 'Q1') OR (Quarter = 'Q4')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=38.3; Value=37.05; Value=36.85; Value=35.94; Value=34.43",
+      "NLquestions": [
+        "What are the top/bottom_ numbers of__ in__ ==,== in__ ==,==Q1 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'School')) AND ((Quarter = 'Q1') OR (Quarter = 'Q4')) ORDER BY Value ASC",
+      "GTresult": "Value=33.55; Value=34.43; Value=35.94; Value=36.85; Value=37.05; Value=38.3",
+      "NLquestions": [
+        "What are the numbers /ascending_values of__ in__ ==,== in__ ==,==Q1 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Quarter, Month, State, City FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Library')) AND Value > 52.32",
+      "GTresult": "",
+      "NLquestions": [
+        "What is/are_the_ the number of__ in__ ==,== in__ ==,== is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Quarter, Month, State, City, Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'School')) AND (Quarter, Month, State, City) IN (SELECT Quarter, Month, State, City FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Library')) AND Value > 52.32)",
+      "GTresult": "",
+      "NLquestions": []
+    }
+  ]
+}

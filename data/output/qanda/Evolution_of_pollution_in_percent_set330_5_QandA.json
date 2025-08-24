@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Evolution_of_pollution_in_percent_set330_5_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Georgia' AND City = 'Washington' AND Year = '2021')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Urban Activities'))",
+      "GTresult": "Value=84.83",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water in__Washington ==,==Georgia in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'California' AND City = 'Springfield' AND Year = '2016')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Groundwater') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Surface water'))",
+      "GTresult": "Value=64.51; Value=64.42",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water or Air in__Springfield ==,==California in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'California' AND City = 'Berkeley' AND Year = '2016') OR (State = 'Illinois' AND City = 'Malibu' AND Year = '2017') OR (State = 'Georgia' AND City = 'Chicago' AND Year = '2021') OR (State = 'California' AND City = 'Springfield' AND Year = '2016') OR (State = 'Georgia' AND City = 'Washington' AND Year = '2021') OR (State = 'California' AND City = 'Albany' AND Year = '2016')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Light'))",
+      "GTresult": "Value=1.72; Value=19.85; Value=-89.91; Value=56.9; Value=-46.57; Value=97.82",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil in__Berkeley or Malibu or Chicago or Springfield or Washington or Albany ==,==California or Illinois or Georgia in_2016 or 2017 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT max(Value) AS max_Value, min(Value) AS min_Value FROM DBdata WHERE ((State = 'California' AND City = 'Berkeley' AND Year = '2016') OR (State = 'Illinois' AND City = 'Champaign' AND Year = '2017')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Thermal'))",
+      "GTresult": "max_Value=66.64, min_Value=-0.68",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air in__Berkeley or Champaign ==,==California or Illinois in_2016 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Georgia' AND City = 'Chicago' AND Year = '2021') OR (State = 'California' AND City = 'Springfield' AND Year = '2016') OR (State = 'Illinois' AND City = 'Champaign' AND Year = '2017') OR (State = 'Georgia' AND City = 'Washington' AND Year = '2021') OR (State = 'California' AND City = 'Albany' AND Year = '2016')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Thermal') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Industrial') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Inorganic Fertilizers'))",
+      "GTresult": "Value=38.12; Value=-88.72; Value=42.96; Value=52.45; Value=60.43; Value=62.44; Value=66.64; Value=-58.1; Value=-63.98; Value=82.83; Value=85.32; Value=-43.41; Value=-35.61; Value=-21.84; Value=-18.47",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air or Soil in__Chicago or Springfield or Champaign or Washington or Albany ==,==Georgia or California or Illinois in_2021 or 2016 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT min(Value) AS min_Value, max(Value) AS max_Value FROM DBdata WHERE ((State = 'California' AND City = 'Springfield' AND Year = '2016')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Light') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Groundwater'))",
+      "GTresult": "min_Value=56.9, max_Value=64.51",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Springfield ==,==California in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT State, City, Year, min(Value) AS min_Value, max(Value) AS max_Value FROM DBdata WHERE ((State = 'California' AND City = 'Springfield' AND Year = '2016') OR (State = 'Georgia' AND City = 'Washington' AND Year = '2021')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Groundwater') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Surface water')) GROUP BY State, City, Year",
+      "GTresult": "State=California, City=Springfield, Year=2016, min_Value=64.42, max_Value=64.51; State=Georgia, City=Washington, Year=2021, min_Value=84.32, max_Value=90.74",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Air in__Springfield or Washington ==,==California or Georgia in_2016 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((State = 'California' AND City = 'Albany' AND Year = '2016')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Soil')) GROUP BY Polluted_element",
+      "GTresult": "min_Value=-35.61; min_Value=-18.47",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Soil in__Albany ==,==California in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Polluted_element, min(Value) AS min_Value FROM DBdata WHERE ((State = 'Georgia' AND City = 'Washington' AND Year = '2021')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) GROUP BY Polluted_element",
+      "GTresult": "Polluted_element=Soil, min_Value=-46.57; Polluted_element=Water, min_Value=-37.18",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Washington ==,==Georgia in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Polluted_element, State, City, Year, avg(Value) AS avg_Value FROM DBdata WHERE ((State = 'California' AND City = 'Berkeley' AND Year = '2016') OR (State = 'Georgia' AND City = 'Washington' AND Year = '2021')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) GROUP BY Polluted_element, State, City, Year",
+      "GTresult": "Polluted_element=Soil, State=California, City=Berkeley, Year=2016, avg_Value=3.78; Polluted_element=Soil, State=Georgia, City=Washington, Year=2021, avg_Value=0.6366666666666679; Polluted_element=Water, State=California, City=Berkeley, Year=2016, avg_Value=6.84; Polluted_element=Water, State=Georgia, City=Washington, Year=2021, avg_Value=43.99",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Berkeley or Washington ==,==California or Georgia in_2016 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'California' AND City = 'Berkeley' AND Year = '2016')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Water')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=-0.68; Value=-0.5; Value=3.4; Value=9.11; Value=10.28",
+      "NLquestions": [
+        "What are the top/bottom_ evolutions of_((pollution)) of_ of_Air or Water in__Berkeley ==,==California in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'California' AND City = 'Berkeley' AND Year = '2016')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) ORDER BY Value DESC",
+      "GTresult": "Value=11.91; Value=10.4; Value=9.11; Value=1.72; Value=-0.5; Value=-0.78",
+      "NLquestions": [
+        "What are the evolutions /increasing_values of_((pollution)) of_ of_Soil or Water in__Berkeley ==,==California in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'California' AND City = 'Albany' AND Year = '2016')) AND Value > 7.11",
+      "GTresult": "Polluted_element=Soil, Type_of_pollution=Light",
+      "NLquestions": [
+        "What is/are_the_ the evolution of_((pollution)) of_ of_ in__Albany ==,==California in_2016 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Polluted_element, Type_of_pollution, Value FROM DBdata WHERE ((State = 'Georgia' AND City = 'Washington' AND Year = '2021')) AND (Polluted_element, Type_of_pollution) IN (SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'California' AND City = 'Albany' AND Year = '2016')) AND Value > 7.11)",
+      "GTresult": "Polluted_element=Soil, Type_of_pollution=Light, Value=-46.57",
+      "NLquestions": []
+    }
+  ]
+}

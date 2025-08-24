@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set99_4_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Michigan' AND City = 'Tampa')) AND ((Characteristic = 'Wind' AND Intensity = '21-30'))",
+      "GTresult": "Value=25.43",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Tampa ==,==Michigan in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Oregon' AND City = 'Port Huron')) AND ((Characteristic = 'Temperature' AND Intensity = 'Breeze') OR (Characteristic = 'Temperature' AND Intensity = '11-20'))",
+      "GTresult": "Value=8.54; Value=9.78",
+      "NLquestions": [
+        "How many days with__ Temperature were there in__Port Huron ==,==Oregon in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Michigan' AND City = 'Detroit') OR (Year = '2020' AND State = 'Oregon' AND City = 'Port Huron') OR (Year = '2016' AND State = 'Florida' AND City = 'Flint') OR (Year = '2020' AND State = 'Michigan' AND City = 'Salem') OR (Year = '2016' AND State = 'Oregon' AND City = 'Redmond') OR (Year = '2020' AND State = 'Florida' AND City = 'Portland') OR (Year = '2016' AND State = 'Michigan' AND City = 'Tampa') OR (Year = '2020' AND State = 'Oregon' AND City = 'Fort Lauderdale')) AND ((Characteristic = 'Wind' AND Intensity = '21-30'))",
+      "GTresult": "Value=1.9; Value=9.58; Value=14.61; Value=18.71; Value=22.34; Value=26.61; Value=25.43; Value=0.02",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Detroit or Port Huron or Flint or Salem or Redmond or Portland or Tampa or Fort Lauderdale ==,==Michigan or Oregon or Florida in_2016 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT min(Value) AS min_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Florida' AND City = 'Flint') OR (Year = '2016' AND State = 'Michigan' AND City = 'Tampa')) AND ((Characteristic = 'Wind' AND Intensity = '21-30'))",
+      "GTresult": "min_Value=14.61, sum_Value=40.04",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind in__Flint or Tampa ==,==Florida or Michigan in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Michigan' AND City = 'Detroit') OR (Year = '2020' AND State = 'Oregon' AND City = 'Port Huron') OR (Year = '2016' AND State = 'Florida' AND City = 'Flint') OR (Year = '2016' AND State = 'Oregon' AND City = 'Redmond') OR (Year = '2020' AND State = 'Florida' AND City = 'Portland')) AND ((Characteristic = 'Wind' AND Intensity = 'Storm') OR (Characteristic = 'Temperature' AND Intensity = 'Breeze') OR (Characteristic = 'Temperature' AND Intensity = '11-20'))",
+      "GTresult": "Value=1.3; Value=1.1; Value=4.08; Value=7.23; Value=8.54; Value=9.78; Value=11.05; Value=11.63; Value=15.39; Value=20.63; Value=21.18; Value=22.29; Value=24.63; Value=19.41; Value=27.32",
+      "NLquestions": [
+        "How many days with__ Wind or Temperature were there in__Detroit or Port Huron or Flint or Redmond or Portland ==,==Michigan or Oregon or Florida in_2016 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT min(Value) AS min_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2020' AND State = 'Oregon' AND City = 'Fort Lauderdale')) AND ((Characteristic = 'Wind' AND Intensity = 'Storm') OR (Characteristic = 'Temperature' AND Intensity = 'Breeze') OR (Characteristic = 'Wind' AND Intensity = '21-30') OR (Characteristic = 'Temperature' AND Intensity = '11-20'))",
+      "GTresult": "min_Value=0.02, sum_Value=50.01",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Fort Lauderdale ==,==Oregon in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, avg(Value) AS avg_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Oregon' AND City = 'Redmond') OR (Year = '2020' AND State = 'Florida' AND City = 'Portland') OR (Year = '2020' AND State = 'Oregon' AND City = 'Fort Lauderdale')) AND ((Characteristic = 'Wind' AND Intensity = 'Storm') OR (Characteristic = 'Temperature' AND Intensity = 'Breeze') OR (Characteristic = 'Wind' AND Intensity = '21-30') OR (Characteristic = 'Temperature' AND Intensity = '11-20')) GROUP BY Year, State, City",
+      "GTresult": "Year=2016, State=Oregon, City=Redmond, avg_Value=21.61, min_Value=20.63; Year=2020, State=Florida, City=Portland, avg_Value=24.4925, min_Value=19.41; Year=2020, State=Oregon, City=Fort Lauderdale, avg_Value=12.5025, min_Value=0.02",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Redmond or Portland or Fort Lauderdale ==,==Oregon or Florida in_2016 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Florida' AND City = 'Flint')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) GROUP BY Characteristic",
+      "GTresult": "min_Value=11.63; min_Value=11.05",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Flint ==,==Florida in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2020' AND State = 'Florida' AND City = 'Portland')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Temperature, min_Value=19.41; Characteristic=Wind, min_Value=24.63",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Portland ==,==Florida in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2020' AND State = 'Oregon' AND City = 'Port Huron') OR (Year = '2016' AND State = 'Michigan' AND City = 'Tampa') OR (Year = '2020' AND State = 'Oregon' AND City = 'Fort Lauderdale')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Temperature, Year=2016, State=Michigan, City=Tampa, sum_Value=51.67; Characteristic=Temperature, Year=2020, State=Oregon, City=Fort Lauderdale, sum_Value=35.55; Characteristic=Temperature, Year=2020, State=Oregon, City=Port Huron, sum_Value=18.32; Characteristic=Wind, Year=2016, State=Michigan, City=Tampa, sum_Value=47.01; Characteristic=Wind, Year=2020, State=Oregon, City=Fort Lauderdale, sum_Value=14.459999999999999; Characteristic=Wind, Year=2020, State=Oregon, City=Port Huron, sum_Value=16.810000000000002",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Port Huron or Tampa or Fort Lauderdale ==,==Oregon or Michigan in_2020 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Oregon' AND City = 'Port Huron')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) ORDER BY Value ASC LIMIT 3",
+      "GTresult": "Value=7.23; Value=8.54; Value=9.58",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Wind or Temperature in__Port Huron ==,==Oregon in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Michigan' AND City = 'Salem')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) ORDER BY Value ASC",
+      "GTresult": "Value=15.2; Value=16.67; Value=18.71; Value=19.84",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Wind or Temperature in__Salem ==,==Michigan in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2020' AND State = 'Oregon' AND City = 'Fort Lauderdale')) AND Value > 15.62",
+      "GTresult": "Characteristic=Temperature, Intensity=11-20",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Fort Lauderdale ==,==Oregon in_2020 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2016' AND State = 'Florida' AND City = 'Flint')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2020' AND State = 'Oregon' AND City = 'Fort Lauderdale')) AND Value > 15.62)",
+      "GTresult": "Characteristic=Temperature, Intensity=11-20, Value=15.39",
+      "NLquestions": []
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Food_import-export_in_tons_set174_3_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2022' AND Quarter = 'Q1')) AND ((Category = 'Meat' AND Item = 'Yoghurt'))",
+      "GTresult": "Value=678.58; Value=619.73",
+      "NLquestions": [
+        "What is the amount of_Import of__ Meat in__Q1 ==of==2022 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2022' AND Quarter = 'Q1')) AND ((Category = 'Cereals' AND Item = 'Corn') OR (Category = 'Meat' AND Item = 'Rice') OR (Category = 'Dairy' AND Item = 'Camel') OR (Category = 'Cereals' AND Item = 'Duck') OR (Category = 'Meat' AND Item = 'Yoghurt') OR (Category = 'Dairy' AND Item = 'Cream'))",
+      "GTresult": "Value=536.95; Value=793.15; Value=925.62; Value=546.63; Value=678.58; Value=312.31; Value=96.56; Value=225.18; Value=483.16; Value=999.68; Value=619.73; Value=764.46",
+      "NLquestions": [
+        "What is the amount of_Import of__ Cereals or Meat or Dairy in__Q1 ==of==2022 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2018' AND Quarter = 'Q1') OR (Import_Export = 'Import' AND Year = '2022' AND Quarter = 'Q1')) AND ((Category = 'Meat' AND Item = 'Rice'))",
+      "GTresult": "Value=388.78; Value=793.15; Value=968.48; Value=225.18",
+      "NLquestions": [
+        "What is the amount of_Import of__ Meat in__Q1 ==of==2018 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2018' AND Quarter = 'Q1') OR (Import_Export = 'Import' AND Year = '2022' AND Quarter = 'Q1') OR (Import_Export = 'Import' AND Year = '2019' AND Quarter = 'Q1')) AND ((Category = 'Meat' AND Item = 'Rice'))",
+      "GTresult": "sum_Value=2693.2, min_Value=225.18",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Meat in__Q1 ==of==2018 or 2022 or 2019 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2018' AND Quarter = 'Q1') OR (Import_Export = 'Import' AND Year = '2022' AND Quarter = 'Q1') OR (Import_Export = 'Import' AND Year = '2019' AND Quarter = 'Q1')) AND ((Category = 'Cereals' AND Item = 'Corn') OR (Category = 'Dairy' AND Item = 'Camel') OR (Category = 'Cereals' AND Item = 'Duck'))",
+      "GTresult": "Value=259.91; Value=775.02; Value=398.75; Value=536.95; Value=925.62; Value=546.63; Value=440.18; Value=62.36; Value=574.01; Value=583.78; Value=460.72; Value=730.32; Value=96.56; Value=483.16; Value=999.68",
+      "NLquestions": [
+        "What is the amount of_Import of__ Cereals or Dairy in__Q1 ==of==2018 or 2022 or 2019 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT min(Value) AS min_Value, max(Value) AS max_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2019' AND Quarter = 'Q1')) AND ((Category = 'Cereals' AND Item = 'Duck') OR (Category = 'Meat' AND Item = 'Yoghurt'))",
+      "GTresult": "min_Value=67.05, max_Value=574.01",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Cereals or Meat in__Q1 ==of==2019 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Import_Export, Year, Quarter, avg(Value) AS avg_Value, max(Value) AS max_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2022' AND Quarter = 'Q1') OR (Import_Export = 'Import' AND Year = '2019' AND Quarter = 'Q1')) AND ((Category = 'Cereals' AND Item = 'Corn') OR (Category = 'Dairy' AND Item = 'Camel')) GROUP BY Import_Export, Year, Quarter",
+      "GTresult": "Import_Export=Import, Year=2019, Quarter=Q1, avg_Value=251.27, max_Value=440.18; Import_Export=Import, Year=2022, Quarter=Q1, avg_Value=510.5725, max_Value=925.62",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Cereals or Dairy in__Q1 ==of==2022 or 2019 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2018' AND Quarter = 'Q1')) AND ((Category = 'Cereals') OR (Category = 'Meat')) GROUP BY Category",
+      "GTresult": "min_Value=259.91; min_Value=388.78",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Cereals or Meat in__Q1 ==of==2018 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Category, max(Value) AS max_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2022' AND Quarter = 'Q1')) AND ((Category = 'Cereals') OR (Category = 'Dairy')) GROUP BY Category",
+      "GTresult": "Category=Cereals, max_Value=999.68; Category=Dairy, max_Value=925.62",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Cereals or Dairy in__Q1 ==of==2022 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Category, Import_Export, Year, Quarter, sum(Value) AS sum_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2018' AND Quarter = 'Q1') OR (Import_Export = 'Import' AND Year = '2022' AND Quarter = 'Q1') OR (Import_Export = 'Import' AND Year = '2019' AND Quarter = 'Q1')) AND ((Category = 'Meat') OR (Category = 'Dairy')) GROUP BY Category, Import_Export, Year, Quarter",
+      "GTresult": "Category=Dairy, Import_Export=Import, Year=2018, Quarter=Q1, sum_Value=1350.6100000000001; Category=Dairy, Import_Export=Import, Year=2019, Quarter=Q1, sum_Value=645.36; Category=Dairy, Import_Export=Import, Year=2022, Quarter=Q1, sum_Value=2485.55; Category=Meat, Import_Export=Import, Year=2018, Quarter=Q1, sum_Value=2491.31; Category=Meat, Import_Export=Import, Year=2019, Quarter=Q1, sum_Value=384.66; Category=Meat, Import_Export=Import, Year=2022, Quarter=Q1, sum_Value=2316.64",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Meat or Dairy in__Q1 ==of==2018 or 2022 or 2019 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2022' AND Quarter = 'Q1')) AND ((Category = 'Cereals') OR (Category = 'Dairy')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=96.56; Value=312.31; Value=483.16; Value=536.95; Value=546.63",
+      "NLquestions": [
+        "What are the top/bottom_ amounts of_Import of__ Cereals or Dairy in__Q1 ==of==2022 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2019' AND Quarter = 'Q1')) AND ((Category = 'Cereals') OR (Category = 'Meat')) ORDER BY Value DESC",
+      "GTresult": "Value=574.01; Value=440.18; Value=317.61; Value=67.05",
+      "NLquestions": [
+        "What are the amounts /increasing_values of_Import of__ Cereals or Meat in__Q1 ==of==2019 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2018' AND Quarter = 'Q1')) AND Value > 494.70",
+      "GTresult": "Category=Dairy, Item=Camel; Category=Cereals, Item=Corn; Category=Meat, Item=Rice; Category=Cereals, Item=Duck; Category=Meat, Item=Yoghurt",
+      "NLquestions": [
+        "What is/are_the_ the amount of_Import of__ in__Q1 ==of==2018 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Category, Item, Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2019' AND Quarter = 'Q1')) AND (Category, Item) IN (SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2018' AND Quarter = 'Q1')) AND Value > 494.70)",
+      "GTresult": "Category=Cereals, Item=Corn, Value=440.18; Category=Meat, Item=Rice, Value=317.61; Category=Dairy, Item=Camel, Value=62.36; Category=Cereals, Item=Duck, Value=574.01; Category=Meat, Item=Yoghurt, Value=67.05",
+      "NLquestions": []
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Number_of_graduations_set341_5_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Male' AND Nationality = 'Non-Qatari')) AND ((Year = '2016/2017' AND Language = 'Spanish'))",
+      "GTresult": "Value=418.42; Value=143.12; Value=52.16",
+      "NLquestions": [
+        "What is the number of graduations of_ with_a_PhD in_Spanish in_2016/2017 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Male' AND Nationality = 'Non-Qatari')) AND ((Year = '2019/2020' AND Language = 'German') OR (Year = '2016/2017' AND Language = 'Spanish'))",
+      "GTresult": "Value=288.38; Value=418.42; Value=171.15; Value=143.12; Value=83.89; Value=52.16",
+      "NLquestions": [
+        "What is the number of graduations of_ with_a_PhD in_German or Spanish in_2019/2020 or 2016/2017 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Male' AND Nationality = 'Non-Qatari')) AND ((Year = '2017/2018' AND Language = 'Other'))",
+      "GTresult": "Value=416.87; Value=457.35; Value=176.52",
+      "NLquestions": [
+        "What is the number of graduations of_ with_a_PhD in_Other in_2017/2018 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT avg(Value) AS avg_Value, min(Value) AS min_Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Male' AND Nationality = 'Non-Qatari')) AND ((Year = '2016/2017' AND Language = 'Spanish'))",
+      "GTresult": "avg_Value=204.5666666666667, min_Value=52.16",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_PhD in_Spanish in_2016/2017 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Male' AND Nationality = 'Non-Qatari')) AND ((Year = '2017/2018' AND Language = 'Other') OR (Year = '2019/2020' AND Language = 'German') OR (Year = '2016/2017' AND Language = 'Spanish'))",
+      "GTresult": "Value=416.87; Value=288.38; Value=418.42; Value=457.35; Value=171.15; Value=143.12; Value=176.52; Value=83.89; Value=52.16",
+      "NLquestions": [
+        "What is the number of graduations of_ with_a_PhD in_Other or German or Spanish in_2017/2018 or 2019/2020 or 2016/2017 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Male' AND Nationality = 'Non-Qatari')) AND ((Year = '2017/2018' AND Language = 'Other') OR (Year = '2019/2020' AND Language = 'German'))",
+      "GTresult": "sum_Value=1594.16, min_Value=83.89",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_PhD in_Other or German in_2017/2018 or 2019/2020 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Degree, Gender, Nationality, sum(Value) AS sum_Value, max(Value) AS max_Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Male' AND Nationality = 'Non-Qatari')) AND ((Year = '2019/2020' AND Language = 'German') OR (Year = '2016/2017' AND Language = 'Spanish')) GROUP BY Degree, Gender, Nationality",
+      "GTresult": "Degree=PhD, Gender=Male, Nationality=Non-Qatari, sum_Value=1157.1200000000001, max_Value=418.42",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_PhD in_German or Spanish in_2019/2020 or 2016/2017 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Male' AND Nationality = 'Non-Qatari')) AND ((Year = '2017/2018') OR (Year = '2019/2020')) GROUP BY Year",
+      "GTresult": "min_Value=176.52; min_Value=83.89",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_PhD in_ in_2017/2018 or 2019/2020 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Year, sum(Value) AS sum_Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Male' AND Nationality = 'Non-Qatari')) AND ((Year = '2017/2018') OR (Year = '2016/2017')) GROUP BY Year",
+      "GTresult": "Year=2016/2017, sum_Value=613.7; Year=2017/2018, sum_Value=1050.74",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_PhD in_ in_2017/2018 or 2016/2017 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Year, Degree, Gender, Nationality, avg(Value) AS avg_Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Male' AND Nationality = 'Non-Qatari')) AND ((Year = '2019/2020') OR (Year = '2016/2017')) GROUP BY Year, Degree, Gender, Nationality",
+      "GTresult": "Year=2016/2017, Degree=PhD, Gender=Male, Nationality=Non-Qatari, avg_Value=204.5666666666667; Year=2019/2020, Degree=PhD, Gender=Male, Nationality=Non-Qatari, avg_Value=181.14",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_PhD in_ in_2019/2020 or 2016/2017 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Male' AND Nationality = 'Non-Qatari')) AND ((Year = '2017/2018') OR (Year = '2016/2017')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=52.16; Value=143.12; Value=176.52; Value=416.87; Value=418.42",
+      "NLquestions": [
+        "What are the top/bottom_ numbers of graduations of_ with_a_PhD in_ in_2017/2018 or 2016/2017 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Male' AND Nationality = 'Non-Qatari')) AND ((Year = '2019/2020') OR (Year = '2016/2017')) ORDER BY Value DESC",
+      "GTresult": "Value=418.42; Value=288.38; Value=171.15; Value=143.12; Value=83.89; Value=52.16",
+      "NLquestions": [
+        "What are the numbers of graduations /increasing_values of_ with_a_PhD in_ in_2019/2020 or 2016/2017 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Year, Language FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Male' AND Nationality = 'Non-Qatari')) AND Value > 245.32",
+      "GTresult": "Year=2017/2018, Language=Other; Year=2019/2020, Language=German; Year=2016/2017, Language=Spanish; Year=2017/2018, Language=Other",
+      "NLquestions": [
+        "What is/are_the_ the number of graduations of_ with_a_PhD in_ in_ is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Year, Language, Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Male' AND Nationality = 'Non-Qatari')) AND (Year, Language) IN (SELECT Year, Language FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Male' AND Nationality = 'Non-Qatari')) AND Value > 245.32)",
+      "GTresult": "Year=2017/2018, Language=Other, Value=416.87; Year=2019/2020, Language=German, Value=288.38; Year=2016/2017, Language=Spanish, Value=418.42; Year=2017/2018, Language=Other, Value=457.35; Year=2019/2020, Language=German, Value=171.15; Year=2016/2017, Language=Spanish, Value=143.12; Year=2017/2018, Language=Other, Value=176.52; Year=2019/2020, Language=German, Value=83.89; Year=2016/2017, Language=Spanish, Value=52.16",
+      "NLquestions": []
+    }
+  ]
+}

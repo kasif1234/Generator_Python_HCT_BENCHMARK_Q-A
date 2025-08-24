@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set298_4_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'California' AND City = 'Portland')) AND ((Characteristic = 'Humidity' AND Intensity = '11-20'))",
+      "GTresult": "Value=19.78",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Portland ==,==California in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Oregon' AND City = 'Malibu')) AND ((Characteristic = 'Wind' AND Intensity = 'Calm') OR (Characteristic = 'Temperature' AND Intensity = 'Breeze'))",
+      "GTresult": "Value=14.06; Value=15.67",
+      "NLquestions": [
+        "How many days with__ Wind or Temperature were there in__Malibu ==,==Oregon in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'California' AND City = 'Los-Angeles') OR (Year = '2021' AND State = 'Oregon' AND City = 'Malibu') OR (Year = '2016' AND State = 'California' AND City = 'Portland')) AND ((Characteristic = 'Wind' AND Intensity = '0-10'))",
+      "GTresult": "Value=2.72; Value=11.09; Value=19.66",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Los-Angeles or Malibu or Portland ==,==California or Oregon in_2016 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT min(Value) AS min_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2016' AND State = 'California' AND City = 'Los-Angeles') OR (Year = '2021' AND State = 'Oregon' AND City = 'Malibu') OR (Year = '2016' AND State = 'California' AND City = 'Portland') OR (Year = '2021' AND State = 'Oregon' AND City = 'Salem')) AND ((Characteristic = 'Humidity' AND Intensity = '11-20'))",
+      "GTresult": "min_Value=1.6, avg_Value=14.8975",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity in__Los-Angeles or Malibu or Portland or Salem ==,==California or Oregon in_2016 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Oregon' AND City = 'Malibu') OR (Year = '2016' AND State = 'California' AND City = 'Portland')) AND ((Characteristic = 'Temperature' AND Intensity = 'Medium') OR (Characteristic = 'Humidity' AND Intensity = '31-40'))",
+      "GTresult": "Value=12.06; Value=16.15; Value=21.63; Value=24.79",
+      "NLquestions": [
+        "How many days with__ Temperature or Humidity were there in__Malibu or Portland ==,==Oregon or California in_2021 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT sum(Value) AS sum_Value, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Oregon' AND City = 'Malibu')) AND ((Characteristic = 'Temperature' AND Intensity = '31-40') OR (Characteristic = 'Humidity' AND Intensity = '11-20') OR (Characteristic = 'Temperature' AND Intensity = 'Medium'))",
+      "GTresult": "sum_Value=29.19, max_Value=12.06",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity in__Malibu ==,==Oregon in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, max(Value) AS max_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2016' AND State = 'California' AND City = 'Los-Angeles') OR (Year = '2016' AND State = 'California' AND City = 'Portland')) AND ((Characteristic = 'Humidity' AND Intensity = '11-20') OR (Characteristic = 'Temperature' AND Intensity = 'Medium') OR (Characteristic = 'Temperature' AND Intensity = 'Breeze') OR (Characteristic = 'Wind' AND Intensity = '11-20')) GROUP BY Year, State, City",
+      "GTresult": "Year=2016, State=California, City=Los-Angeles, max_Value=8.44, sum_Value=12.379999999999999; Year=2016, State=California, City=Portland, max_Value=25.43, sum_Value=89.95",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Temperature or Wind in__Los-Angeles or Portland ==,==California in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Oregon' AND City = 'Malibu')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) GROUP BY Characteristic",
+      "GTresult": "min_Value=7.31; min_Value=6.42",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity in__Malibu ==,==Oregon in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2016' AND State = 'California' AND City = 'Los-Angeles')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Temperature, min_Value=0.26; Characteristic=Wind, min_Value=2.72",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Los-Angeles ==,==California in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2016' AND State = 'California' AND City = 'Los-Angeles') OR (Year = '2016' AND State = 'California' AND City = 'Portland') OR (Year = '2021' AND State = 'Oregon' AND City = 'Salem')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Humidity, Year=2016, State=California, City=Los-Angeles, min_Value=1.6; Characteristic=Humidity, Year=2016, State=California, City=Portland, min_Value=19.78; Characteristic=Humidity, Year=2021, State=Oregon, City=Salem, min_Value=0.1; Characteristic=Wind, Year=2016, State=California, City=Los-Angeles, min_Value=2.72; Characteristic=Wind, Year=2016, State=California, City=Portland, min_Value=19.66; Characteristic=Wind, Year=2021, State=Oregon, City=Salem, min_Value=15.13",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Los-Angeles or Portland or Salem ==,==California or Oregon in_2016 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'California' AND City = 'Portland')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=19.66; Value=19.78; Value=22.33; Value=23.53; Value=24.79",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Humidity or Wind in__Portland ==,==California in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'California' AND City = 'Los-Angeles')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) ORDER BY Value DESC",
+      "GTresult": "Value=8.44; Value=4.03; Value=2.72; Value=2.08; Value=0.5; Value=0.26",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Temperature or Wind in__Los-Angeles ==,==California in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2016' AND State = 'California' AND City = 'Portland')) AND Value > 14.16",
+      "GTresult": "Characteristic=Temperature, Intensity=31-40; Characteristic=Humidity, Intensity=11-20; Characteristic=Wind, Intensity=0-10; Characteristic=Temperature, Intensity=Medium; Characteristic=Humidity, Intensity=High; Characteristic=Wind, Intensity=Calm; Characteristic=Temperature, Intensity=Breeze; Characteristic=Humidity, Intensity=31-40; Characteristic=Wind, Intensity=11-20",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Portland ==,==California in_2016 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2021' AND State = 'Oregon' AND City = 'Salem')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2016' AND State = 'California' AND City = 'Portland')) AND Value > 14.16)",
+      "GTresult": "Characteristic=Temperature, Intensity=31-40, Value=27.01; Characteristic=Humidity, Intensity=11-20, Value=27.5; Characteristic=Wind, Intensity=0-10, Value=24.97; Characteristic=Temperature, Intensity=Medium, Value=23.95; Characteristic=Humidity, Intensity=High, Value=0.1; Characteristic=Wind, Intensity=Calm, Value=15.13; Characteristic=Temperature, Intensity=Breeze, Value=17.09; Characteristic=Humidity, Intensity=31-40, Value=18.28; Characteristic=Wind, Intensity=11-20, Value=18.66",
+      "NLquestions": []
+    }
+  ]
+}

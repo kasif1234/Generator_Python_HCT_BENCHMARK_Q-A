@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set166_4_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'Nevada' AND City = 'Reno')) AND ((Characteristic = 'Humidity' AND Intensity = '21-30'))",
+      "GTresult": "Value=20.65",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Reno ==,==Nevada in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'Nevada' AND City = 'Salem')) AND ((Characteristic = 'Wind' AND Intensity = 'Storm') OR (Characteristic = 'Temperature' AND Intensity = 'Calm') OR (Characteristic = 'Humidity' AND Intensity = '21-30') OR (Characteristic = 'Wind' AND Intensity = '31-40') OR (Characteristic = 'Temperature' AND Intensity = 'Medium'))",
+      "GTresult": "Value=13.91; Value=14.66; Value=14.38; Value=15.57; Value=16.79",
+      "NLquestions": [
+        "How many days with__ Wind or Temperature or Humidity were there in__Salem ==,==Nevada in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Oregon' AND City = 'Redmond') OR (Year = '2017' AND State = 'Nevada' AND City = 'Salem') OR (Year = '2019' AND State = 'Oregon' AND City = 'Portland') OR (Year = '2017' AND State = 'Nevada' AND City = 'Reno') OR (Year = '2019' AND State = 'Oregon' AND City = 'Boulder City')) AND ((Characteristic = 'Humidity' AND Intensity = 'High'))",
+      "GTresult": "Value=11.32; Value=17.51; Value=22.03; Value=25.91; Value=18.26",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Redmond or Salem or Portland or Reno or Boulder City ==,==Oregon or Nevada in_2019 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT avg(Value) AS avg_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Oregon' AND City = 'Redmond') OR (Year = '2017' AND State = 'Nevada' AND City = 'Salem') OR (Year = '2019' AND State = 'Oregon' AND City = 'Portland') OR (Year = '2017' AND State = 'Nevada' AND City = 'Reno') OR (Year = '2019' AND State = 'Oregon' AND City = 'Boulder City')) AND ((Characteristic = 'Wind' AND Intensity = '31-40'))",
+      "GTresult": "avg_Value=17.387999999999998, min_Value=7.11",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind in__Redmond or Salem or Portland or Reno or Boulder City ==,==Oregon or Nevada in_2019 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Oregon' AND City = 'Redmond') OR (Year = '2017' AND State = 'Nevada' AND City = 'Salem') OR (Year = '2019' AND State = 'Oregon' AND City = 'Portland') OR (Year = '2017' AND State = 'Nevada' AND City = 'Reno') OR (Year = '2019' AND State = 'Oregon' AND City = 'Boulder City')) AND ((Characteristic = 'Temperature' AND Intensity = 'Calm') OR (Characteristic = 'Humidity' AND Intensity = 'High'))",
+      "GTresult": "Value=5.03; Value=11.32; Value=14.66; Value=17.51; Value=17.96; Value=22.03; Value=24.02; Value=25.91; Value=26.38; Value=18.26",
+      "NLquestions": [
+        "How many days with__ Temperature or Humidity were there in__Redmond or Salem or Portland or Reno or Boulder City ==,==Oregon or Nevada in_2019 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2017' AND State = 'Nevada' AND City = 'Reno')) AND ((Characteristic = 'Wind' AND Intensity = 'Storm') OR (Characteristic = 'Wind' AND Intensity = '31-40') OR (Characteristic = 'Temperature' AND Intensity = 'Medium') OR (Characteristic = 'Humidity' AND Intensity = 'High'))",
+      "GTresult": "sum_Value=98.78, avg_Value=24.695",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature or Humidity in__Reno ==,==Nevada in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, max(Value) AS max_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2017' AND State = 'Nevada' AND City = 'Salem') OR (Year = '2019' AND State = 'Oregon' AND City = 'Portland') OR (Year = '2017' AND State = 'Nevada' AND City = 'Reno')) AND ((Characteristic = 'Wind' AND Intensity = 'Storm') OR (Characteristic = 'Temperature' AND Intensity = 'Calm') OR (Characteristic = 'Wind' AND Intensity = '31-40')) GROUP BY Year, State, City",
+      "GTresult": "Year=2017, State=Nevada, City=Reno, max_Value=26.2, sum_Value=72.08; Year=2017, State=Nevada, City=Salem, max_Value=15.57, sum_Value=44.14; Year=2019, State=Oregon, City=Portland, max_Value=20.75, sum_Value=58.7",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Salem or Portland or Reno ==,==Nevada or Oregon in_2017 or 2019 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Oregon' AND City = 'Portland')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) GROUP BY Characteristic",
+      "GTresult": "min_Value=18.91; min_Value=19.99",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Portland ==,==Oregon in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2017' AND State = 'Nevada' AND City = 'Reno')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Humidity, avg_Value=23.28; Characteristic=Wind, avg_Value=24.03",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Reno ==,==Nevada in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2017' AND State = 'Nevada' AND City = 'Salem') OR (Year = '2019' AND State = 'Oregon' AND City = 'Portland') OR (Year = '2019' AND State = 'Oregon' AND City = 'Boulder City')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Humidity, Year=2017, State=Nevada, City=Salem, avg_Value=15.945; Characteristic=Humidity, Year=2019, State=Oregon, City=Boulder City, avg_Value=17.755000000000003; Characteristic=Humidity, Year=2019, State=Oregon, City=Portland, avg_Value=20.47; Characteristic=Temperature, Year=2017, State=Nevada, City=Salem, avg_Value=15.725; Characteristic=Temperature, Year=2019, State=Oregon, City=Boulder City, avg_Value=22.575; Characteristic=Temperature, Year=2019, State=Oregon, City=Portland, avg_Value=19.79",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity in__Salem or Portland or Boulder City ==,==Nevada or Oregon in_2017 or 2019 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Oregon' AND City = 'Redmond')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) ORDER BY Value DESC LIMIT 3",
+      "GTresult": "Value=11.32; Value=7.11; Value=5.12",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Wind or Humidity in__Redmond ==,==Oregon in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'Nevada' AND City = 'Reno')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) ORDER BY Value ASC",
+      "GTresult": "Value=20.65; Value=24.02; Value=24.81; Value=25.91",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Temperature or Humidity in__Reno ==,==Nevada in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2019' AND State = 'Oregon' AND City = 'Boulder City')) AND Value < 17.33",
+      "GTresult": "Characteristic=Humidity, Intensity=21-30; Characteristic=Wind, Intensity=31-40",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Boulder City ==,==Oregon in_2019 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2019' AND State = 'Oregon' AND City = 'Redmond')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2019' AND State = 'Oregon' AND City = 'Boulder City')) AND Value < 17.33)",
+      "GTresult": "Characteristic=Humidity, Intensity=21-30, Value=5.12; Characteristic=Wind, Intensity=31-40, Value=7.11",
+      "NLquestions": []
+    }
+  ]
+}

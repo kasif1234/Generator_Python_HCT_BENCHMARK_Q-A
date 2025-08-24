@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Number_of_constructions_set349_1_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Hotel')) AND ((Quarter = 'Q2' AND Month = 'December' AND State = 'Illinois' AND City = 'Chicago'))",
+      "GTresult": "Value=78.28",
+      "NLquestions": [
+        "What is the number of__ in__Chicago ==,==Illinois in__December ==,==Q2 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Theatre')) AND ((Quarter = 'Q4' AND Month = 'November' AND State = 'Illinois' AND City = 'Chicago') OR (Quarter = 'Q1' AND Month = 'October' AND State = 'Illinois' AND City = 'Champaign') OR (Quarter = 'Q4' AND Month = 'March' AND State = 'Illinois' AND City = 'Champaign') OR (Quarter = 'Q1' AND Month = 'January' AND State = 'Illinois' AND City = 'Chicago') OR (Quarter = 'Q2' AND Month = 'February' AND State = 'Illinois' AND City = 'Champaign') OR (Quarter = 'Q4' AND Month = 'April' AND State = 'Illinois' AND City = 'Chicago') OR (Quarter = 'Q2' AND Month = 'May' AND State = 'Illinois' AND City = 'Chicago'))",
+      "GTresult": "Value=6.27; Value=9.4; Value=13.23; Value=14.48; Value=14.37; Value=13.11; Value=20.63",
+      "NLquestions": [
+        "What is the number of__ in__Chicago or Champaign ==,==Illinois in__November or October or March or January or February or April or May ==,==Q4 or Q1 or Q2 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Theatre') OR (Type_of_building = 'Residential' AND Usage = 'Museum') OR (Type_of_building = 'Culture' AND Usage = 'House') OR (Type_of_building = 'Culture' AND Usage = 'Hotel')) AND ((Quarter = 'Q4' AND Month = 'November' AND State = 'Illinois' AND City = 'Chicago'))",
+      "GTresult": "Value=6.27; Value=36.19; Value=45.22; Value=68.04",
+      "NLquestions": [
+        "What is the number of__ in__Chicago ==,==Illinois in__November ==,==Q4 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT max(Value) AS max_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Theatre') OR (Type_of_building = 'Residential' AND Usage = 'Museum') OR (Type_of_building = 'Culture' AND Usage = 'House') OR (Type_of_building = 'Residential' AND Usage = 'Apartment') OR (Type_of_building = 'Culture' AND Usage = 'Hotel')) AND ((Quarter = 'Q4' AND Month = 'November' AND State = 'Illinois' AND City = 'Chicago'))",
+      "GTresult": "max_Value=68.04, sum_Value=215.67000000000002",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__Chicago ==,==Illinois in__November ==,==Q4 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Theatre') OR (Type_of_building = 'Residential' AND Usage = 'Museum') OR (Type_of_building = 'Residential' AND Usage = 'Apartment')) AND ((Quarter = 'Q1' AND Month = 'January' AND State = 'Illinois' AND City = 'Chicago') OR (Quarter = 'Q4' AND Month = 'April' AND State = 'Illinois' AND City = 'Chicago'))",
+      "GTresult": "Value=14.48; Value=13.11; Value=41.36; Value=43.76; Value=67.49; Value=66.86",
+      "NLquestions": [
+        "What is the number of__ in__Chicago ==,==Illinois in__January or April ==,==Q1 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT min(Value) AS min_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Museum')) AND ((Quarter = 'Q4' AND Month = 'March' AND State = 'Illinois' AND City = 'Champaign') OR (Quarter = 'Q4' AND Month = 'April' AND State = 'Illinois' AND City = 'Chicago'))",
+      "GTresult": "min_Value=40.23, avg_Value=41.995",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__Champaign or Chicago ==,==Illinois in__March or April ==,==Q4 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Type_of_building, Usage, min(Value) AS min_Value, max(Value) AS max_Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Theatre') OR (Type_of_building = 'Culture' AND Usage = 'House') OR (Type_of_building = 'Culture' AND Usage = 'Hotel')) AND ((Quarter = 'Q2' AND Month = 'December' AND State = 'Illinois' AND City = 'Chicago') OR (Quarter = 'Q1' AND Month = 'June' AND State = 'Illinois' AND City = 'Champaign') OR (Quarter = 'Q2' AND Month = 'May' AND State = 'Illinois' AND City = 'Chicago')) GROUP BY Type_of_building, Usage",
+      "GTresult": "Type_of_building=Culture, Usage=Hotel, min_Value=78.28, max_Value=99.42; Type_of_building=Culture, Usage=House, min_Value=48.27, max_Value=58.5; Type_of_building=Culture, Usage=Theatre, min_Value=10.75, max_Value=20.63",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__Chicago or Champaign ==,==Illinois in__December or June or May ==,==Q2 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Hotel')) AND ((Quarter = 'Q4') OR (Quarter = 'Q2')) GROUP BY Quarter",
+      "GTresult": "min_Value=78.28; min_Value=68.04",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q4 or Q2 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Quarter, avg(Value) AS avg_Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Museum')) AND ((Quarter = 'Q4') OR (Quarter = 'Q1')) GROUP BY Quarter",
+      "GTresult": "Quarter=Q1, avg_Value=41.169999999999995; Quarter=Q4, avg_Value=40.059999999999995",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q4 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Quarter, Type_of_building, Usage, min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Theatre') OR (Type_of_building = 'Culture' AND Usage = 'House') OR (Type_of_building = 'Residential' AND Usage = 'Apartment')) AND ((Quarter = 'Q4') OR (Quarter = 'Q2')) GROUP BY Quarter, Type_of_building, Usage",
+      "GTresult": "Quarter=Q2, Type_of_building=Culture, Usage=House, min_Value=48.27; Quarter=Q2, Type_of_building=Culture, Usage=Theatre, min_Value=10.75; Quarter=Q2, Type_of_building=Residential, Usage=Apartment, min_Value=60.58; Quarter=Q4, Type_of_building=Culture, Usage=House, min_Value=45.22; Quarter=Q4, Type_of_building=Culture, Usage=Theatre, min_Value=6.27; Quarter=Q4, Type_of_building=Residential, Usage=Apartment, min_Value=59.95",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q4 or Q2 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Apartment')) AND ((Quarter = 'Q4') OR (Quarter = 'Q2')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=59.95; Value=60.58; Value=66.65; Value=66.86; Value=66.88",
+      "NLquestions": [
+        "What are the top/bottom_ numbers of__ in__ ==,== in__ ==,==Q4 or Q2 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'House')) AND ((Quarter = 'Q4') OR (Quarter = 'Q2')) ORDER BY Value DESC",
+      "GTresult": "Value=58.5; Value=52.71; Value=52.6; Value=48.27; Value=47.7; Value=45.22",
+      "NLquestions": [
+        "What are the numbers /ascending_values of__ in__ ==,== in__ ==,==Q4 or Q2 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Quarter, Month, State, City FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Theatre')) AND Value > 51.49",
+      "GTresult": "",
+      "NLquestions": [
+        "What is/are_the_ the number of__ in__ ==,== in__ ==,== is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Quarter, Month, State, City, Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'House')) AND (Quarter, Month, State, City) IN (SELECT Quarter, Month, State, City FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Theatre')) AND Value > 51.49)",
+      "GTresult": "",
+      "NLquestions": []
+    }
+  ]
+}

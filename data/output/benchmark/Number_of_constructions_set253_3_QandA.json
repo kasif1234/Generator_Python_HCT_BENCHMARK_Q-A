@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Number_of_constructions_set253_3_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'House')) AND ((Quarter = 'Q4' AND Month = 'October'))",
+      "GTresult": "Value=58.52",
+      "NLquestions": [
+        "What is the number of__ in__ ==,== in__October ==,==Q4 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'House')) AND ((Quarter = 'Q1' AND Month = 'December') OR (Quarter = 'Q3' AND Month = 'March') OR (Quarter = 'Q1' AND Month = 'January') OR (Quarter = 'Q3' AND Month = 'July') OR (Quarter = 'Q4' AND Month = 'August'))",
+      "GTresult": "Value=68.04; Value=69.06; Value=72.06; Value=73.09; Value=74.32",
+      "NLquestions": [
+        "What is the number of__ in__ ==,== in__December or March or January or July or August ==,==Q1 or Q3 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Factory') OR (Type_of_building = 'Culture' AND Usage = 'Workshop') OR (Type_of_building = 'Residential' AND Usage = 'Museum') OR (Type_of_building = 'Production' AND Usage = 'Concert') OR (Type_of_building = 'Culture' AND Usage = 'House') OR (Type_of_building = 'Residential' AND Usage = 'Apartment')) AND ((Quarter = 'Q4' AND Month = 'August'))",
+      "GTresult": "Value=26.24; Value=33.5; Value=52.07; Value=63.69; Value=74.32; Value=86.08",
+      "NLquestions": [
+        "What is the number of__ in__ ==,== in__August ==,==Q4 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, max(Value) AS max_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Factory') OR (Type_of_building = 'Culture' AND Usage = 'Workshop') OR (Type_of_building = 'Residential' AND Usage = 'Museum') OR (Type_of_building = 'Culture' AND Usage = 'House')) AND ((Quarter = 'Q3' AND Month = 'July'))",
+      "GTresult": "sum_Value=177.88, max_Value=73.09",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__ ==,== in__July ==,==Q3 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Workshop') OR (Type_of_building = 'Residential' AND Usage = 'Museum') OR (Type_of_building = 'Production' AND Usage = 'Hotel')) AND ((Quarter = 'Q4' AND Month = 'October') OR (Quarter = 'Q4' AND Month = 'February') OR (Quarter = 'Q3' AND Month = 'July'))",
+      "GTresult": "Value=29.12; Value=29.85; Value=30.51; Value=38.82; Value=44.0; Value=51.35; Value=91.06; Value=93.01; Value=97.77",
+      "NLquestions": [
+        "What is the number of__ in__ ==,== in__October or February or July ==,==Q4 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT max(Value) AS max_Value, min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Museum')) AND ((Quarter = 'Q4' AND Month = 'October') OR (Quarter = 'Q4' AND Month = 'February') OR (Quarter = 'Q3' AND Month = 'July'))",
+      "GTresult": "max_Value=51.35, min_Value=38.82",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__ ==,== in__October or February or July ==,==Q4 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Type_of_building, Usage, max(Value) AS max_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Workshop') OR (Type_of_building = 'Residential' AND Usage = 'Museum') OR (Type_of_building = 'Culture' AND Usage = 'House') OR (Type_of_building = 'Production' AND Usage = 'Hotel')) AND ((Quarter = 'Q4' AND Month = 'October') OR (Quarter = 'Q3' AND Month = 'March') OR (Quarter = 'Q4' AND Month = 'February')) GROUP BY Type_of_building, Usage",
+      "GTresult": "Type_of_building=Culture, Usage=House, max_Value=70.55, sum_Value=198.13; Type_of_building=Culture, Usage=Workshop, max_Value=30.71, sum_Value=89.68; Type_of_building=Production, Usage=Hotel, max_Value=93.91, sum_Value=277.98; Type_of_building=Residential, Usage=Museum, max_Value=44.68, sum_Value=127.5",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__October or March or February ==,==Q4 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Workshop')) AND ((Quarter = 'Q4') OR (Quarter = 'Q1')) GROUP BY Quarter",
+      "GTresult": "min_Value=30.67; min_Value=29.12",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q4 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Quarter, sum(Value) AS sum_Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Workshop')) AND ((Quarter = 'Q4') OR (Quarter = 'Q3')) GROUP BY Quarter",
+      "GTresult": "Quarter=Q3, sum_Value=98.48; Quarter=Q4, sum_Value=92.47",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q4 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Quarter, Type_of_building, Usage, max(Value) AS max_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Concert') OR (Type_of_building = 'Culture' AND Usage = 'House') OR (Type_of_building = 'Production' AND Usage = 'Hotel')) AND ((Quarter = 'Q4') OR (Quarter = 'Q1')) GROUP BY Quarter, Type_of_building, Usage",
+      "GTresult": "Quarter=Q1, Type_of_building=Culture, Usage=House, max_Value=74.51; Quarter=Q1, Type_of_building=Production, Usage=Concert, max_Value=64.94; Quarter=Q1, Type_of_building=Production, Usage=Hotel, max_Value=99.34; Quarter=Q4, Type_of_building=Culture, Usage=House, max_Value=74.32; Quarter=Q4, Type_of_building=Production, Usage=Concert, max_Value=63.69; Quarter=Q4, Type_of_building=Production, Usage=Hotel, max_Value=97.56",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q4 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'House')) AND ((Quarter = 'Q1') OR (Quarter = 'Q3')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=68.04; Value=69.06; Value=72.06; Value=73.09; Value=74.51",
+      "NLquestions": [
+        "What are the top/bottom_ numbers of__ in__ ==,== in__ ==,==Q1 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Workshop')) AND ((Quarter = 'Q1') OR (Quarter = 'Q3')) ORDER BY Value DESC",
+      "GTresult": "Value=37.26; Value=36.54; Value=33.22; Value=30.71; Value=30.67; Value=30.51",
+      "NLquestions": [
+        "What are the numbers /ascending_values of__ in__ ==,== in__ ==,==Q1 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Quarter, Month FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Hotel')) AND Value < 58.61",
+      "GTresult": "",
+      "NLquestions": [
+        "What is/are_the_ the number of__ in__ ==,== in__ ==,== is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Quarter, Month, Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'House')) AND (Quarter, Month) IN (SELECT Quarter, Month FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Hotel')) AND Value < 58.61)",
+      "GTresult": "",
+      "NLquestions": []
+    }
+  ]
+}

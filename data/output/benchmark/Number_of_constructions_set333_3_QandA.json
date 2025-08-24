@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Number_of_constructions_set333_3_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Concert')) AND ((Quarter = 'Q4' AND Month = 'February' AND State = 'Florida' AND City = 'Fort Lauderdale'))",
+      "GTresult": "Value=4.91",
+      "NLquestions": [
+        "What is the number of__ in__Fort Lauderdale ==,==Florida in__February ==,==Q4 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'School')) AND ((Quarter = 'Q1' AND Month = 'March' AND State = 'Nevada' AND City = 'Reno') OR (Quarter = 'Q4' AND Month = 'February' AND State = 'Florida' AND City = 'Fort Lauderdale') OR (Quarter = 'Q1' AND Month = 'January' AND State = 'Nevada' AND City = 'Reno') OR (Quarter = 'Q4' AND Month = 'November' AND State = 'Florida' AND City = 'Fort Lauderdale') OR (Quarter = 'Q1' AND Month = 'December' AND State = 'Nevada' AND City = 'Reno') OR (Quarter = 'Q4' AND Month = 'October' AND State = 'Florida' AND City = 'Fort Lauderdale'))",
+      "GTresult": "Value=42.51; Value=47.78; Value=0.04; Value=47.66; Value=64.94; Value=65.49",
+      "NLquestions": [
+        "What is the number of__ in__Reno or Fort Lauderdale ==,==Nevada or Florida in__March or February or January or November or December or October ==,==Q1 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Concert') OR (Type_of_building = 'Service' AND Usage = 'Theatre') OR (Type_of_building = 'Culture' AND Usage = 'Museum') OR (Type_of_building = 'Culture' AND Usage = 'Library') OR (Type_of_building = 'Service' AND Usage = 'Hospital')) AND ((Quarter = 'Q4' AND Month = 'February' AND State = 'Florida' AND City = 'Fort Lauderdale'))",
+      "GTresult": "Value=4.91; Value=15.41; Value=33.23; Value=67.68; Value=82.24",
+      "NLquestions": [
+        "What is the number of__ in__Fort Lauderdale ==,==Florida in__February ==,==Q4 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Concert') OR (Type_of_building = 'Culture' AND Usage = 'Museum') OR (Type_of_building = 'Service' AND Usage = 'School') OR (Type_of_building = 'Culture' AND Usage = 'Library') OR (Type_of_building = 'Service' AND Usage = 'Hospital')) AND ((Quarter = 'Q4' AND Month = 'October' AND State = 'Florida' AND City = 'Fort Lauderdale'))",
+      "GTresult": "avg_Value=58.136, sum_Value=290.68",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__Fort Lauderdale ==,==Florida in__October ==,==Q4 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Concert') OR (Type_of_building = 'Culture' AND Usage = 'Museum') OR (Type_of_building = 'Service' AND Usage = 'School') OR (Type_of_building = 'Culture' AND Usage = 'Library') OR (Type_of_building = 'Service' AND Usage = 'Hospital')) AND ((Quarter = 'Q1' AND Month = 'January' AND State = 'Nevada' AND City = 'Reno') OR (Quarter = 'Q4' AND Month = 'October' AND State = 'Florida' AND City = 'Fort Lauderdale'))",
+      "GTresult": "Value=4.42; Value=9.46; Value=35.63; Value=42.09; Value=0.04; Value=65.49; Value=68.35; Value=73.69; Value=89.67; Value=99.95",
+      "NLquestions": [
+        "What is the number of__ in__Reno or Fort Lauderdale ==,==Nevada or Florida in__January or October ==,==Q1 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT min(Value) AS min_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'School')) AND ((Quarter = 'Q4' AND Month = 'February' AND State = 'Florida' AND City = 'Fort Lauderdale') OR (Quarter = 'Q4' AND Month = 'November' AND State = 'Florida' AND City = 'Fort Lauderdale'))",
+      "GTresult": "min_Value=47.66, avg_Value=47.72",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__Fort Lauderdale ==,==Florida in__February or November ==,==Q4 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Type_of_building, Usage, min(Value) AS min_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Theatre') OR (Type_of_building = 'Culture' AND Usage = 'Museum') OR (Type_of_building = 'Service' AND Usage = 'School') OR (Type_of_building = 'Culture' AND Usage = 'Library')) AND ((Quarter = 'Q1' AND Month = 'January' AND State = 'Nevada' AND City = 'Reno') OR (Quarter = 'Q4' AND Month = 'November' AND State = 'Florida' AND City = 'Fort Lauderdale') OR (Quarter = 'Q1' AND Month = 'December' AND State = 'Nevada' AND City = 'Reno') OR (Quarter = 'Q4' AND Month = 'October' AND State = 'Florida' AND City = 'Fort Lauderdale')) GROUP BY Type_of_building, Usage",
+      "GTresult": "Type_of_building=Culture, Usage=Library, min_Value=66.65, avg_Value=69.6425; Type_of_building=Culture, Usage=Museum, min_Value=35.63, avg_Value=39.6125; Type_of_building=Service, Usage=School, min_Value=0.04, avg_Value=44.5325; Type_of_building=Service, Usage=Theatre, min_Value=15.59, avg_Value=22.0375",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__Reno or Fort Lauderdale ==,==Nevada or Florida in__January or November or December or October ==,==Q1 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Theatre')) AND ((Quarter = 'Q1') OR (Quarter = 'Q4')) GROUP BY Quarter",
+      "GTresult": "min_Value=11.81; min_Value=15.41",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q1 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Quarter, sum(Value) AS sum_Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Theatre')) AND ((Quarter = 'Q1') OR (Quarter = 'Q4')) GROUP BY Quarter",
+      "GTresult": "Quarter=Q1, sum_Value=51.49; Quarter=Q4, sum_Value=63.879999999999995",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q1 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Quarter, Type_of_building, Usage, sum(Value) AS sum_Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Concert') OR (Type_of_building = 'Service' AND Usage = 'Hospital')) AND ((Quarter = 'Q1') OR (Quarter = 'Q4')) GROUP BY Quarter, Type_of_building, Usage",
+      "GTresult": "Quarter=Q1, Type_of_building=Culture, Usage=Concert, sum_Value=13.44; Quarter=Q1, Type_of_building=Service, Usage=Hospital, sum_Value=265.28; Quarter=Q4, Type_of_building=Culture, Usage=Concert, sum_Value=20.09; Quarter=Q4, Type_of_building=Service, Usage=Hospital, sum_Value=275.55",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q1 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Museum')) AND ((Quarter = 'Q1') OR (Quarter = 'Q4')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=31.78; Value=33.23; Value=35.63; Value=40.36; Value=40.37",
+      "NLquestions": [
+        "What are the top/bottom_ numbers of__ in__ ==,== in__ ==,==Q1 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Hospital')) AND ((Quarter = 'Q1') OR (Quarter = 'Q4')) ORDER BY Value ASC",
+      "GTresult": "Value=78.91; Value=82.24; Value=89.67; Value=93.36; Value=96.7; Value=99.95",
+      "NLquestions": [
+        "What are the numbers /ascending_values of__ in__ ==,== in__ ==,==Q1 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Quarter, Month, State, City FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'School')) AND Value < 44.28",
+      "GTresult": "Quarter=Q1, Month=March, State=Nevada, City=Reno; Quarter=Q1, Month=January, State=Nevada, City=Reno",
+      "NLquestions": [
+        "What is/are_the_ the number of__ in__ ==,== in__ ==,== is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Quarter, Month, State, City, Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Library')) AND (Quarter, Month, State, City) IN (SELECT Quarter, Month, State, City FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'School')) AND Value < 44.28)",
+      "GTresult": "Quarter=Q1, Month=March, State=Nevada, City=Reno, Value=66.32; Quarter=Q1, Month=January, State=Nevada, City=Reno, Value=68.35",
+      "NLquestions": []
+    }
+  ]
+}

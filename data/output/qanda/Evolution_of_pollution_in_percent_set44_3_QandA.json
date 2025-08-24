@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Evolution_of_pollution_in_percent_set44_3_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Berkeley')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Industrial'))",
+      "GTresult": "Value=82.1",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil in__Berkeley ==,==Florida in_ ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Tampa')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Noise') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Inorganic Fertilizers'))",
+      "GTresult": "Value=9.08; Value=11.17; Value=36.97",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air in__Tampa ==,==Florida in_ ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Tampa') OR (State = 'California' AND City = 'San Francisco')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Inferior Irrigation'))",
+      "GTresult": "Value=27.04; Value=-30.17",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air in__Tampa or San Francisco ==,==Florida or California in_ ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Tampa') OR (State = 'California' AND City = 'Fort Lauderdale')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Industrial'))",
+      "GTresult": "sum_Value=81.3, min_Value=20.9",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil in__Tampa or Fort Lauderdale ==,==Florida or California in_ ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Tampa') OR (State = 'California' AND City = 'Fort Lauderdale') OR (State = 'Florida' AND City = 'Berkeley') OR (State = 'California' AND City = 'San Francisco')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Noise') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Industrial') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Urban Activities'))",
+      "GTresult": "Value=9.08; Value=20.9; Value=34.75; Value=36.97; Value=-89.91; Value=60.4; Value=-67.61; Value=66.19; Value=-52.53; Value=82.1; Value=90.1; Value=91.65; Value=-39.12; Value=-32.87; Value=-22.2; Value=-16.03",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air or Soil in__Tampa or Fort Lauderdale or Berkeley or San Francisco ==,==Florida or California in_ ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Berkeley')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Thermal') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Inorganic Fertilizers') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Industrial') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Inferior Irrigation') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Urban Activities'))",
+      "GTresult": "sum_Value=120.16999999999999, avg_Value=20.028333333333332",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Air in__Berkeley ==,==Florida in_ ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT State, City, min(Value) AS min_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Tampa') OR (State = 'Florida' AND City = 'Berkeley')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Noise') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Thermal') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Industrial') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Inferior Irrigation')) GROUP BY State, City",
+      "GTresult": "State=Florida, City=Berkeley, min_Value=-52.53, avg_Value=19.80666666666667; State=Florida, City=Tampa, min_Value=9.08, avg_Value=23.78333333333333",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Soil in__Tampa or Berkeley ==,==Florida in_ ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((State = 'California' AND City = 'Fort Lauderdale')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Soil')) GROUP BY Polluted_element",
+      "GTresult": "min_Value=-89.91; min_Value=-67.61",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Soil in__Fort Lauderdale ==,==California in_ ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Polluted_element, max(Value) AS max_Value FROM DBdata WHERE ((State = 'California' AND City = 'Fort Lauderdale')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Soil')) GROUP BY Polluted_element",
+      "GTresult": "Polluted_element=Air, max_Value=66.19; Polluted_element=Soil, max_Value=72.17",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Soil in__Fort Lauderdale ==,==California in_ ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Polluted_element, State, City, max(Value) AS max_Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Tampa') OR (State = 'Florida' AND City = 'Berkeley') OR (State = 'California' AND City = 'San Francisco')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Soil')) GROUP BY Polluted_element, State, City",
+      "GTresult": "Polluted_element=Air, State=California, City=San Francisco, max_Value=-16.03; Polluted_element=Air, State=Florida, City=Berkeley, max_Value=91.65; Polluted_element=Air, State=Florida, City=Tampa, max_Value=36.97; Polluted_element=Soil, State=California, City=San Francisco, max_Value=91.85; Polluted_element=Soil, State=Florida, City=Berkeley, max_Value=90.1; Polluted_element=Soil, State=Florida, City=Tampa, max_Value=37.86",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Soil in__Tampa or Berkeley or San Francisco ==,==Florida or California in_ ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'California' AND City = 'San Francisco')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Soil')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=91.85; Value=-6.08; Value=-16.03; Value=-22.2; Value=-30.17",
+      "NLquestions": [
+        "What are the top/bottom_ evolutions of_((pollution)) of_ of_Air or Soil in__San Francisco ==,==California in_ ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'California' AND City = 'Fort Lauderdale')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Soil')) ORDER BY Value ASC",
+      "GTresult": "Value=-89.91; Value=-79.28; Value=-67.61; Value=-67.32; Value=48.81; Value=60.4; Value=66.19; Value=72.17",
+      "NLquestions": [
+        "What are the evolutions /increasing_values of_((pollution)) of_ of_Air or Soil in__Fort Lauderdale ==,==California in_ ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'California' AND City = 'Fort Lauderdale')) AND Value > 6.33",
+      "GTresult": "Polluted_element=Soil, Type_of_pollution=Thermal; Polluted_element=Soil, Type_of_pollution=Industrial; Polluted_element=Air, Type_of_pollution=Noise; Polluted_element=Soil, Type_of_pollution=Thermal",
+      "NLquestions": [
+        "What is/are_the_ the evolution of_((pollution)) of_ of_ in__Fort Lauderdale ==,==California in_ is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Polluted_element, Type_of_pollution, Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Berkeley')) AND (Polluted_element, Type_of_pollution) IN (SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'California' AND City = 'Fort Lauderdale')) AND Value > 6.33)",
+      "GTresult": "Polluted_element=Air, Type_of_pollution=Noise, Value=-52.53; Polluted_element=Soil, Type_of_pollution=Thermal, Value=-52.42; Polluted_element=Soil, Type_of_pollution=Industrial, Value=82.1; Polluted_element=Air, Type_of_pollution=Noise, Value=91.65; Polluted_element=Soil, Type_of_pollution=Thermal, Value=-39.54",
+      "NLquestions": []
+    }
+  ]
+}

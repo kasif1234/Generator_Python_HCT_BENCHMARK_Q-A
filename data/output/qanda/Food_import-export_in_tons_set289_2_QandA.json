@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Food_import-export_in_tons_set289_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2022')) AND ((Category = 'Cereals' AND Item = 'Cream'))",
+      "GTresult": "Value=427.62",
+      "NLquestions": [
+        "What is the amount of_Import of__ Cereals in__ ==of==2022 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2022')) AND ((Category = 'Beverage' AND Item = 'Oats') OR (Category = 'Dairy' AND Item = 'Wheat') OR (Category = 'Dairy' AND Item = 'Juice'))",
+      "GTresult": "Value=945.32; Value=566.12; Value=62.29",
+      "NLquestions": [
+        "What is the amount of_Import of__ Beverage or Dairy in__ ==of==2022 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2016') OR (Import_Export = 'Import' AND Year = '2022') OR (Import_Export = 'Import' AND Year = '2018')) AND ((Category = 'Dairy' AND Item = 'Juice'))",
+      "GTresult": "Value=792.89; Value=62.29; Value=720.23; Value=381.58",
+      "NLquestions": [
+        "What is the amount of_Import of__ Dairy in__ ==of==2016 or 2022 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, max(Value) AS max_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2016') OR (Import_Export = 'Import' AND Year = '2018')) AND ((Category = 'Dairy' AND Item = 'Juice'))",
+      "GTresult": "sum_Value=1894.7, max_Value=792.89",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Dairy in__ ==of==2016 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2016') OR (Import_Export = 'Import' AND Year = '2022') OR (Import_Export = 'Import' AND Year = '2018')) AND ((Category = 'Dairy' AND Item = 'Yoghurt') OR (Category = 'Cereals' AND Item = 'Cream') OR (Category = 'Beverage' AND Item = 'Oats') OR (Category = 'Cereals' AND Item = 'Soda'))",
+      "GTresult": "Value=386.49; Value=780.46; Value=912.38; Value=921.44; Value=549.51; Value=427.62; Value=945.32; Value=320.78; Value=193.59; Value=833.0; Value=203.91; Value=86.97; Value=472.36; Value=345.57; Value=987.47; Value=376.52",
+      "NLquestions": [
+        "What is the amount of_Import of__ Dairy or Cereals or Beverage in__ ==of==2016 or 2022 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2016')) AND ((Category = 'Cereals' AND Item = 'Cream') OR (Category = 'Dairy' AND Item = 'Wheat') OR (Category = 'Cereals' AND Item = 'Soybeans') OR (Category = 'Beverage' AND Item = 'Tea') OR (Category = 'Beverage' AND Item = 'Yoghurt'))",
+      "GTresult": "sum_Value=5743.12, min_Value=151.31",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Cereals or Dairy or Beverage in__ ==of==2016 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Import_Export, Year, min(Value) AS min_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2016') OR (Import_Export = 'Import' AND Year = '2022') OR (Import_Export = 'Import' AND Year = '2018')) AND ((Category = 'Cereals' AND Item = 'Cream') OR (Category = 'Beverage' AND Item = 'Oats') OR (Category = 'Dairy' AND Item = 'Wheat') OR (Category = 'Dairy' AND Item = 'Juice') OR (Category = 'Cereals' AND Item = 'Soda')) GROUP BY Import_Export, Year",
+      "GTresult": "Import_Export=Import, Year=2016, min_Value=345.57, avg_Value=689.268; Import_Export=Import, Year=2018, min_Value=86.97, avg_Value=537.658; Import_Export=Import, Year=2022, min_Value=62.29, avg_Value=464.42600000000004",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Cereals or Beverage or Dairy in__ ==of==2016 or 2022 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2018')) AND ((Category = 'Dairy') OR (Category = 'Cereals')) GROUP BY Category",
+      "GTresult": "min_Value=86.97; min_Value=193.59",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Dairy or Cereals in__ ==of==2018 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Category, sum(Value) AS sum_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2022')) AND ((Category = 'Dairy') OR (Category = 'Cereals')) GROUP BY Category",
+      "GTresult": "Category=Cereals, sum_Value=1317.3600000000001; Category=Dairy, sum_Value=1177.92",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Dairy or Cereals in__ ==of==2022 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Category, Import_Export, Year, sum(Value) AS sum_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2022') OR (Import_Export = 'Import' AND Year = '2018')) AND ((Category = 'Dairy') OR (Category = 'Beverage')) GROUP BY Category, Import_Export, Year",
+      "GTresult": "Category=Beverage, Import_Export=Import, Year=2018, sum_Value=1907.23; Category=Beverage, Import_Export=Import, Year=2022, sum_Value=1585.44; Category=Dairy, Import_Export=Import, Year=2018, sum_Value=1758.0; Category=Dairy, Import_Export=Import, Year=2022, sum_Value=1177.92",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Dairy or Beverage in__ ==of==2022 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2022')) AND ((Category = 'Dairy') OR (Category = 'Beverage')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=62.29; Value=318.48; Value=321.64; Value=549.51; Value=566.12",
+      "NLquestions": [
+        "What are the top/bottom_ amounts of_Import of__ Dairy or Beverage in__ ==of==2022 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2016')) AND ((Category = 'Dairy') OR (Category = 'Cereals')) ORDER BY Value ASC",
+      "GTresult": "Value=345.57; Value=355.73; Value=376.52; Value=381.58; Value=386.49; Value=472.36; Value=610.31; Value=780.46; Value=784.06; Value=792.89; Value=917.96; Value=921.44",
+      "NLquestions": [
+        "What are the amounts /increasing_values of_Import of__ Dairy or Cereals in__ ==of==2016 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2016')) AND Value < 572.60",
+      "GTresult": "Category=Dairy, Item=Yoghurt; Category=Beverage, Item=Tea; Category=Dairy, Item=Yoghurt; Category=Cereals, Item=Cream; Category=Cereals, Item=Soybeans; Category=Dairy, Item=Juice; Category=Cereals, Item=Soda; Category=Beverage, Item=Yoghurt",
+      "NLquestions": [
+        "What is/are_the_ the amount of_Import of__ in__ ==of==2016 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Category, Item, Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2018')) AND (Category, Item) IN (SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2016')) AND Value < 572.60)",
+      "GTresult": "Category=Dairy, Item=Yoghurt, Value=193.59; Category=Cereals, Item=Cream, Value=833.0; Category=Cereals, Item=Soybeans, Value=973.42; Category=Beverage, Item=Tea, Value=720.04; Category=Dairy, Item=Juice, Value=720.23; Category=Cereals, Item=Soda, Value=86.97; Category=Beverage, Item=Yoghurt, Value=983.28",
+      "NLquestions": []
+    }
+  ]
+}

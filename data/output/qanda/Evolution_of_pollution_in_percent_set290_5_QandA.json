@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Evolution_of_pollution_in_percent_set290_5_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Michigan' AND City = 'Detroit' AND Year = '2022')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Surface water'))",
+      "GTresult": "Value=-90.52",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air in__Detroit ==,==Michigan in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Nevada' AND City = 'Reno' AND Year = '2022')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Solid Waste') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Surface water'))",
+      "GTresult": "Value=97.73; Value=-7.83",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air in__Reno ==,==Nevada in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Nevada' AND City = 'Port Huron' AND Year = '2019') OR (State = 'Michigan' AND City = 'Boulder City' AND Year = '2017')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Noise'))",
+      "GTresult": "Value=-69.78; Value=85.8",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water in__Port Huron or Boulder City ==,==Nevada or Michigan in_2019 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, max(Value) AS max_Value FROM DBdata WHERE ((State = 'Michigan' AND City = 'Detroit' AND Year = '2022') OR (State = 'Nevada' AND City = 'Port Huron' AND Year = '2019')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Thermal'))",
+      "GTresult": "sum_Value=80.18, max_Value=58.99",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air in__Detroit or Port Huron ==,==Michigan or Nevada in_2022 or 2019 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Michigan' AND City = 'Detroit' AND Year = '2022') OR (State = 'Nevada' AND City = 'Port Huron' AND Year = '2019') OR (State = 'Michigan' AND City = 'Boulder City' AND Year = '2017') OR (State = 'Nevada' AND City = 'Reno' AND Year = '2022')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Chemical') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Surface water'))",
+      "GTresult": "Value=12.55; Value=-90.52; Value=-82.16; Value=63.43; Value=71.54; Value=-40.24; Value=-7.49; Value=-7.83",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water or Air in__Detroit or Port Huron or Boulder City or Reno ==,==Michigan or Nevada in_2022 or 2019 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT max(Value) AS max_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((State = 'Michigan' AND City = 'Boulder City' AND Year = '2017')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Oxygen-depletion') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Thermal'))",
+      "GTresult": "max_Value=-45.43, avg_Value=-52.019999999999996",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air in__Boulder City ==,==Michigan in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT State, City, Year, max(Value) AS max_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Michigan' AND City = 'Detroit' AND Year = '2022') OR (State = 'Nevada' AND City = 'Port Huron' AND Year = '2019') OR (State = 'Michigan' AND City = 'Boulder City' AND Year = '2017') OR (State = 'Nevada' AND City = 'Reno' AND Year = '2022')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Chemical') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Industrial') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Inorganic Fertilizers') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Surface water')) GROUP BY State, City, Year",
+      "GTresult": "State=Michigan, City=Boulder City, Year=2017, max_Value=78.83, sum_Value=52.620000000000005; State=Michigan, City=Detroit, Year=2022, max_Value=20.58, sum_Value=-43.41; State=Nevada, City=Port Huron, Year=2019, max_Value=63.43, sum_Value=-43.46999999999999; State=Nevada, City=Reno, Year=2022, max_Value=-7.49, sum_Value=-75.53999999999999",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Soil or Air in__Detroit or Port Huron or Boulder City or Reno ==,==Michigan or Nevada in_2022 or 2019 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((State = 'Michigan' AND City = 'Detroit' AND Year = '2022')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Air')) GROUP BY Polluted_element",
+      "GTresult": "min_Value=-90.52; min_Value=2.54",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Air in__Detroit ==,==Michigan in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Polluted_element, max(Value) AS max_Value FROM DBdata WHERE ((State = 'Michigan' AND City = 'Detroit' AND Year = '2022')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Soil')) GROUP BY Polluted_element",
+      "GTresult": "Polluted_element=Soil, max_Value=34.54; Polluted_element=Water, max_Value=32.85",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Soil in__Detroit ==,==Michigan in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Polluted_element, State, City, Year, avg(Value) AS avg_Value FROM DBdata WHERE ((State = 'Michigan' AND City = 'Detroit' AND Year = '2022') OR (State = 'Nevada' AND City = 'Port Huron' AND Year = '2019') OR (State = 'Nevada' AND City = 'Reno' AND Year = '2022')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Soil')) GROUP BY Polluted_element, State, City, Year",
+      "GTresult": "Polluted_element=Soil, State=Michigan, City=Detroit, Year=2022, avg_Value=17.91; Polluted_element=Soil, State=Nevada, City=Port Huron, Year=2019, avg_Value=-45.6325; Polluted_element=Soil, State=Nevada, City=Reno, Year=2022, avg_Value=5.495; Polluted_element=Water, State=Michigan, City=Detroit, Year=2022, avg_Value=16.35; Polluted_element=Water, State=Nevada, City=Port Huron, Year=2019, avg_Value=-46.82; Polluted_element=Water, State=Nevada, City=Reno, Year=2022, avg_Value=-21.4225",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Soil in__Detroit or Port Huron or Reno ==,==Michigan or Nevada in_2022 or 2019 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Michigan' AND City = 'Boulder City' AND Year = '2017')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Soil')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=-57.51; Value=-8.66; Value=66.0; Value=66.44; Value=71.54",
+      "NLquestions": [
+        "What are the top/bottom_ evolutions of_((pollution)) of_ of_Water or Soil in__Boulder City ==,==Michigan in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Nevada' AND City = 'Reno' AND Year = '2022')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Air')) ORDER BY Value DESC",
+      "GTresult": "Value=97.73; Value=-7.49; Value=-7.83; Value=-11.6; Value=-22.74; Value=-28.39; Value=-35.81; Value=-38.21",
+      "NLquestions": [
+        "What are the evolutions /increasing_values of_((pollution)) of_ of_Water or Air in__Reno ==,==Nevada in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Nevada' AND City = 'Port Huron' AND Year = '2019')) AND Value < 4.72",
+      "GTresult": "Polluted_element=Water, Type_of_pollution=Surface water; Polluted_element=Soil, Type_of_pollution=Groundwater; Polluted_element=Water, Type_of_pollution=Chemical; Polluted_element=Soil, Type_of_pollution=Industrial; Polluted_element=Water, Type_of_pollution=Noise; Polluted_element=Soil, Type_of_pollution=Light",
+      "NLquestions": [
+        "What is/are_the_ the evolution of_((pollution)) of_ of_ in__Port Huron ==,==Nevada in_2019 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Polluted_element, Type_of_pollution, Value FROM DBdata WHERE ((State = 'Michigan' AND City = 'Detroit' AND Year = '2022')) AND (Polluted_element, Type_of_pollution) IN (SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Nevada' AND City = 'Port Huron' AND Year = '2019')) AND Value < 4.72)",
+      "GTresult": "Polluted_element=Water, Type_of_pollution=Surface water, Value=0.34; Polluted_element=Soil, Type_of_pollution=Groundwater, Value=2.54; Polluted_element=Water, Type_of_pollution=Chemical, Value=12.55; Polluted_element=Soil, Type_of_pollution=Industrial, Value=13.98; Polluted_element=Water, Type_of_pollution=Noise, Value=32.85; Polluted_element=Soil, Type_of_pollution=Light, Value=34.54",
+      "NLquestions": []
+    }
+  ]
+}

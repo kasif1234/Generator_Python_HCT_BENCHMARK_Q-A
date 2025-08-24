@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Evolution_of_pollution_in_percent_set337_3_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Salem' AND Year = '2018')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Industrial'))",
+      "GTresult": "Value=-61.74",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water in__Salem ==,==Maryland in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Columbia' AND Year = '2021')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Chemical') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Oxygen-depletion') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Surface water'))",
+      "GTresult": "Value=9.42; Value=10.89; Value=11.73",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air or Soil or Water in__Columbia ==,==Maryland in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Columbia' AND Year = '2021') OR (State = 'Maryland' AND City = 'Salem' AND Year = '2018') OR (State = 'Oregon' AND City = 'Portland' AND Year = '2021')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Oxygen-depletion'))",
+      "GTresult": "Value=10.89; Value=-46.5; Value=-12.72",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil in__Columbia or Salem or Portland ==,==Maryland or Oregon in_2021 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, max(Value) AS max_Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Columbia' AND Year = '2021') OR (State = 'Oregon' AND City = 'Aberdeen' AND Year = '2017') OR (State = 'Maryland' AND City = 'Salem' AND Year = '2018')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Chemical'))",
+      "GTresult": "sum_Value=-3.059999999999997, max_Value=37.88",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air in__Columbia or Aberdeen or Salem ==,==Maryland or Oregon in_2021 or 2017 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Aberdeen' AND Year = '2017') OR (State = 'Maryland' AND City = 'Salem' AND Year = '2018') OR (State = 'Oregon' AND City = 'Portland' AND Year = '2021')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Light') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Industrial') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Surface water') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Noise'))",
+      "GTresult": "Value=28.12; Value=-94.02; Value=-88.19; Value=48.4; Value=52.21; Value=-61.74; Value=-46.85; Value=91.92; Value=96.17; Value=-22.61; Value=-10.81; Value=-3.66",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil or Water in__Aberdeen or Salem or Portland ==,==Oregon or Maryland in_2017 or 2018 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, max(Value) AS max_Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Salem' AND Year = '2018')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Inferior Irrigation') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Industrial') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Oxygen-depletion') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Groundwater') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Noise'))",
+      "GTresult": "avg_Value=-0.34399999999999836, max_Value=91.92",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Water or Soil in__Salem ==,==Maryland in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT State, City, Year, sum(Value) AS sum_Value, max(Value) AS max_Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Columbia' AND Year = '2021') OR (State = 'Oregon' AND City = 'Aberdeen' AND Year = '2017') OR (State = 'Maryland' AND City = 'Salem' AND Year = '2018') OR (State = 'Oregon' AND City = 'Portland' AND Year = '2021')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Light') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Solid Waste') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Surface water') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Groundwater')) GROUP BY State, City, Year",
+      "GTresult": "State=Maryland, City=Columbia, Year=2021, sum_Value=28.28, max_Value=11.73; State=Maryland, City=Salem, Year=2018, sum_Value=30.700000000000003, max_Value=88.54; State=Oregon, City=Aberdeen, Year=2017, sum_Value=16.190000000000005, max_Value=46.6; State=Oregon, City=Portland, Year=2021, sum_Value=53.080000000000005, max_Value=96.17",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water or Air in__Columbia or Aberdeen or Salem or Portland ==,==Maryland or Oregon in_2021 or 2017 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Salem' AND Year = '2018')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Water')) GROUP BY Polluted_element",
+      "GTresult": "min_Value=-76.29; min_Value=-74.05",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Water in__Salem ==,==Maryland in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Polluted_element, max(Value) AS max_Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Columbia' AND Year = '2021')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) GROUP BY Polluted_element",
+      "GTresult": "Polluted_element=Soil, max_Value=10.91; Polluted_element=Water, max_Value=22.53",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Columbia ==,==Maryland in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Polluted_element, State, City, Year, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Columbia' AND Year = '2021') OR (State = 'Oregon' AND City = 'Aberdeen' AND Year = '2017')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) GROUP BY Polluted_element, State, City, Year",
+      "GTresult": "Polluted_element=Soil, State=Maryland, City=Columbia, Year=2021, sum_Value=28.71; Polluted_element=Soil, State=Oregon, City=Aberdeen, Year=2017, sum_Value=143.2; Polluted_element=Water, State=Maryland, City=Columbia, Year=2021, sum_Value=43.89; Polluted_element=Water, State=Oregon, City=Aberdeen, Year=2017, sum_Value=-105.21",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Columbia or Aberdeen ==,==Maryland or Oregon in_2021 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Salem' AND Year = '2018')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Soil')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=-76.29; Value=-73.94; Value=-63.2; Value=-50.36; Value=-46.5",
+      "NLquestions": [
+        "What are the top/bottom_ evolutions of_((pollution)) of_ of_Air or Soil in__Salem ==,==Maryland in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Aberdeen' AND Year = '2017')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Soil')) ORDER BY Value DESC",
+      "GTresult": "Value=48.4; Value=46.6; Value=37.88; Value=37.02; Value=29.66; Value=28.12; Value=23.28; Value=-98.62",
+      "NLquestions": [
+        "What are the evolutions /increasing_values of_((pollution)) of_ of_Air or Soil in__Aberdeen ==,==Oregon in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Maryland' AND City = 'Columbia' AND Year = '2021')) AND Value > -5.33",
+      "GTresult": "Polluted_element=Air, Type_of_pollution=Noise; Polluted_element=Soil, Type_of_pollution=Light; Polluted_element=Water, Type_of_pollution=Thermal; Polluted_element=Air, Type_of_pollution=Inferior Irrigation; Polluted_element=Soil, Type_of_pollution=Solid Waste; Polluted_element=Water, Type_of_pollution=Industrial; Polluted_element=Air, Type_of_pollution=Chemical; Polluted_element=Soil, Type_of_pollution=Oxygen-depletion; Polluted_element=Water, Type_of_pollution=Surface water; Polluted_element=Air, Type_of_pollution=Groundwater; Polluted_element=Soil, Type_of_pollution=Noise; Polluted_element=Water, Type_of_pollution=Light",
+      "NLquestions": [
+        "What is/are_the_ the evolution of_((pollution)) of_ of_ in__Columbia ==,==Maryland in_2021 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Polluted_element, Type_of_pollution, Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Portland' AND Year = '2021')) AND (Polluted_element, Type_of_pollution) IN (SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Maryland' AND City = 'Columbia' AND Year = '2021')) AND Value > -5.33)",
+      "GTresult": "Polluted_element=Air, Type_of_pollution=Noise, Value=-34.83; Polluted_element=Soil, Type_of_pollution=Light, Value=96.17; Polluted_element=Water, Type_of_pollution=Thermal, Value=-30.11; Polluted_element=Air, Type_of_pollution=Inferior Irrigation, Value=-28.75; Polluted_element=Soil, Type_of_pollution=Solid Waste, Value=-22.33; Polluted_element=Water, Type_of_pollution=Industrial, Value=-22.61; Polluted_element=Air, Type_of_pollution=Chemical, Value=-17.75; Polluted_element=Soil, Type_of_pollution=Oxygen-depletion, Value=-12.72; Polluted_element=Water, Type_of_pollution=Surface water, Value=-10.81; Polluted_element=Air, Type_of_pollution=Groundwater, Value=-9.95; Polluted_element=Soil, Type_of_pollution=Noise, Value=-3.66; Polluted_element=Water, Type_of_pollution=Light, Value=-2.64",
+      "NLquestions": []
+    }
+  ]
+}

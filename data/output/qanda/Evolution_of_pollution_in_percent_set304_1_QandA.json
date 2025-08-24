@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Evolution_of_pollution_in_percent_set304_1_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'California' AND City = 'Champaign' AND Year = '2018')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Oxygen-depletion'))",
+      "GTresult": "Value=-55.34",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil in__Champaign ==,==California in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'California' AND City = 'Champaign' AND Year = '2018')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Thermal') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Noise') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Oxygen-depletion') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Chemical') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Inorganic Fertilizers') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Solid Waste') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Thermal'))",
+      "GTresult": "Value=-70.65; Value=57.1; Value=-55.34; Value=75.44; Value=-52.56; Value=78.43; Value=80.26",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air or Soil or Water in__Champaign ==,==California in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'California' AND City = 'San Francisco' AND Year = '2018') OR (State = 'Illinois' AND City = 'Malibu' AND Year = '2020') OR (State = 'California' AND City = 'Champaign' AND Year = '2018') OR (State = 'Illinois' AND City = 'Springfield' AND Year = '2020')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Inferior Irrigation'))",
+      "GTresult": "Value=35.32; Value=56.9; Value=-49.95; Value=-29.57",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water in__San Francisco or Malibu or Champaign or Springfield ==,==California or Illinois in_2018 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((State = 'California' AND City = 'San Francisco' AND Year = '2018') OR (State = 'Illinois' AND City = 'Malibu' AND Year = '2020') OR (State = 'Illinois' AND City = 'Springfield' AND Year = '2020')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Solid Waste'))",
+      "GTresult": "sum_Value=47.48, min_Value=-35.7",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air in__San Francisco or Malibu or Springfield ==,==California or Illinois in_2018 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'California' AND City = 'San Francisco' AND Year = '2018') OR (State = 'California' AND City = 'Champaign' AND Year = '2018')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Groundwater') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Oxygen-depletion'))",
+      "GTresult": "Value=11.65; Value=14.66; Value=67.28; Value=-55.34",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water or Soil in__San Francisco or Champaign ==,==California in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'California' AND City = 'Champaign' AND Year = '2018')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Noise') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Inorganic Fertilizers') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Industrial') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Inferior Irrigation') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Thermal'))",
+      "GTresult": "avg_Value=-3.342, sum_Value=-16.71",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Champaign ==,==California in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT State, City, Year, avg(Value) AS avg_Value, max(Value) AS max_Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Malibu' AND Year = '2020') OR (State = 'Illinois' AND City = 'Springfield' AND Year = '2020')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Noise') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Groundwater') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Inorganic Fertilizers') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Inferior Irrigation') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Thermal')) GROUP BY State, City, Year",
+      "GTresult": "State=Illinois, City=Malibu, Year=2020, avg_Value=-25.674, max_Value=56.9; State=Illinois, City=Springfield, Year=2020, avg_Value=-8.654000000000002, max_Value=95.96",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Malibu or Springfield ==,==Illinois in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Springfield' AND Year = '2020')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Water')) GROUP BY Polluted_element",
+      "GTresult": "min_Value=-51.71; min_Value=-36.15",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Water in__Springfield ==,==Illinois in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Polluted_element, avg(Value) AS avg_Value FROM DBdata WHERE ((State = 'California' AND City = 'San Francisco' AND Year = '2018')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Soil')) GROUP BY Polluted_element",
+      "GTresult": "Polluted_element=Air, avg_Value=13.647499999999999; Polluted_element=Soil, avg_Value=-11.3775",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Soil in__San Francisco ==,==California in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Polluted_element, State, City, Year, avg(Value) AS avg_Value FROM DBdata WHERE ((State = 'California' AND City = 'San Francisco' AND Year = '2018') OR (State = 'California' AND City = 'Champaign' AND Year = '2018') OR (State = 'Illinois' AND City = 'Springfield' AND Year = '2020')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Soil')) GROUP BY Polluted_element, State, City, Year",
+      "GTresult": "Polluted_element=Soil, State=California, City=Champaign, Year=2018, avg_Value=7.615; Polluted_element=Soil, State=California, City=San Francisco, Year=2018, avg_Value=-11.3775; Polluted_element=Soil, State=Illinois, City=Springfield, Year=2020, avg_Value=-3.672500000000002; Polluted_element=Water, State=California, City=Champaign, Year=2018, avg_Value=-26.282500000000002; Polluted_element=Water, State=California, City=San Francisco, Year=2018, avg_Value=17.095; Polluted_element=Water, State=Illinois, City=Springfield, Year=2020, avg_Value=26.95",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Soil in__San Francisco or Champaign or Springfield ==,==California or Illinois in_2018 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Springfield' AND Year = '2020')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Soil')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=-51.71; Value=-44.85; Value=-35.7; Value=-35.03; Value=-28.66",
+      "NLquestions": [
+        "What are the top/bottom_ evolutions of_((pollution)) of_ of_Air or Soil in__Springfield ==,==Illinois in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'California' AND City = 'Champaign' AND Year = '2018')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Soil')) ORDER BY Value ASC",
+      "GTresult": "Value=-70.65; Value=-55.34; Value=-51.56; Value=-0.15; Value=57.1; Value=75.44; Value=78.43; Value=80.26",
+      "NLquestions": [
+        "What are the evolutions /increasing_values of_((pollution)) of_ of_Air or Soil in__Champaign ==,==California in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Illinois' AND City = 'Springfield' AND Year = '2020')) AND Value < 7.30",
+      "GTresult": "Polluted_element=Air, Type_of_pollution=Thermal; Polluted_element=Soil, Type_of_pollution=Noise; Polluted_element=Water, Type_of_pollution=Groundwater; Polluted_element=Soil, Type_of_pollution=Oxygen-depletion; Polluted_element=Air, Type_of_pollution=Solid Waste; Polluted_element=Water, Type_of_pollution=Inferior Irrigation; Polluted_element=Soil, Type_of_pollution=Thermal",
+      "NLquestions": [
+        "What is/are_the_ the evolution of_((pollution)) of_ of_ in__Springfield ==,==Illinois in_2020 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Polluted_element, Type_of_pollution, Value FROM DBdata WHERE ((State = 'California' AND City = 'Champaign' AND Year = '2018')) AND (Polluted_element, Type_of_pollution) IN (SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Illinois' AND City = 'Springfield' AND Year = '2020')) AND Value < 7.30)",
+      "GTresult": "Polluted_element=Air, Type_of_pollution=Thermal, Value=-70.65; Polluted_element=Soil, Type_of_pollution=Noise, Value=57.1; Polluted_element=Water, Type_of_pollution=Groundwater, Value=67.28; Polluted_element=Soil, Type_of_pollution=Oxygen-depletion, Value=-55.34; Polluted_element=Air, Type_of_pollution=Solid Waste, Value=78.43; Polluted_element=Water, Type_of_pollution=Inferior Irrigation, Value=-49.95; Polluted_element=Soil, Type_of_pollution=Thermal, Value=80.26",
+      "NLquestions": []
+    }
+  ]
+}

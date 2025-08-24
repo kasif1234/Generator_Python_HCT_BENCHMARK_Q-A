@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Food_import-export_in_tons_set11_1_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Cereals' AND Item = 'Cream'))",
+      "GTresult": "Value=586.8",
+      "NLquestions": [
+        "What is the amount of_Import of__ Cereals in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Dairy' AND Item = 'Yoghurt') OR (Category = 'Cereals' AND Item = 'Cream') OR (Category = 'Beverage' AND Item = 'Corn') OR (Category = 'Dairy' AND Item = 'Seeds') OR (Category = 'Cereals' AND Item = 'Soybeans') OR (Category = 'Beverage' AND Item = 'Coffee') OR (Category = 'Dairy' AND Item = 'Tea'))",
+      "GTresult": "Value=547.14; Value=586.8; Value=238.59; Value=113.52; Value=51.69; Value=693.31; Value=792.1",
+      "NLquestions": [
+        "What is the amount of_Import of__ Dairy or Cereals or Beverage in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Beverage' AND Item = 'Coffee'))",
+      "GTresult": "Value=693.31",
+      "NLquestions": [
+        "What is the amount of_Import of__ Beverage in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, max(Value) AS max_Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Dairy' AND Item = 'Seeds'))",
+      "GTresult": "sum_Value=113.52, max_Value=113.52",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Dairy in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Dairy' AND Item = 'Yoghurt') OR (Category = 'Beverage' AND Item = 'Corn') OR (Category = 'Cereals' AND Item = 'Soybeans'))",
+      "GTresult": "Value=547.14; Value=238.59; Value=51.69",
+      "NLquestions": [
+        "What is the amount of_Import of__ Dairy or Beverage or Cereals in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Cereals' AND Item = 'Cream') OR (Category = 'Beverage' AND Item = 'Corn') OR (Category = 'Dairy' AND Item = 'Tea') OR (Category = 'Beverage' AND Item = 'Yoghurt'))",
+      "GTresult": "avg_Value=483.615, min_Value=238.59",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Cereals or Beverage or Dairy in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Import_Export, max(Value) AS max_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Cereals' AND Item = 'Cream') OR (Category = 'Beverage' AND Item = 'Yoghurt')) GROUP BY Import_Export",
+      "GTresult": "Import_Export=Import, max_Value=586.8, sum_Value=903.77",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Cereals or Beverage in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Dairy') OR (Category = 'Beverage')) GROUP BY Category",
+      "GTresult": "min_Value=238.59; min_Value=113.52",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Dairy or Beverage in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Category, sum(Value) AS sum_Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Dairy') OR (Category = 'Beverage')) GROUP BY Category",
+      "GTresult": "Category=Beverage, sum_Value=1248.87; Category=Dairy, sum_Value=1452.76",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Dairy or Beverage in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Category, Import_Export, min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Cereals') OR (Category = 'Beverage')) GROUP BY Category, Import_Export",
+      "GTresult": "Category=Beverage, Import_Export=Import, min_Value=238.59; Category=Cereals, Import_Export=Import, min_Value=51.69",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Cereals or Beverage in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Dairy') OR (Category = 'Beverage')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=113.52; Value=238.59; Value=316.97; Value=547.14; Value=693.31",
+      "NLquestions": [
+        "What are the top/bottom_ amounts of_Import of__ Dairy or Beverage in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Dairy') OR (Category = 'Cereals')) ORDER BY Value ASC",
+      "GTresult": "Value=51.69; Value=113.52; Value=547.14; Value=586.8; Value=792.1; Value=859.2",
+      "NLquestions": [
+        "What are the amounts /increasing_values of_Import of__ Dairy or Cereals in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Import')) AND Value < 466.59",
+      "GTresult": "Category=Beverage, Item=Corn; Category=Dairy, Item=Seeds; Category=Cereals, Item=Soybeans; Category=Beverage, Item=Yoghurt",
+      "NLquestions": [
+        "What is/are_the_ the amount of_Import of__ in__ ==of== is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Category, Item, Value FROM DBdata WHERE ((Import_Export = 'Import')) AND (Category, Item) IN (SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Import')) AND Value < 466.59)",
+      "GTresult": "Category=Beverage, Item=Corn, Value=238.59; Category=Dairy, Item=Seeds, Value=113.52; Category=Cereals, Item=Soybeans, Value=51.69; Category=Beverage, Item=Yoghurt, Value=316.97",
+      "NLquestions": []
+    }
+  ]
+}

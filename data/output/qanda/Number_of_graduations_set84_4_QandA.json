@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Number_of_graduations_set84_4_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'BSc' AND Gender = 'Male')) AND ((Year = '2017/2018'))",
+      "GTresult": "Value=386.65; Value=174.13",
+      "NLquestions": [
+        "What is the number of graduations of_ with_a_BSc in_ in_2017/2018 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'BSc' AND Gender = 'Male')) AND ((Year = '2020/2021') OR (Year = '2016/2017'))",
+      "GTresult": "Value=288.71; Value=226.75; Value=263.54; Value=302.13",
+      "NLquestions": [
+        "What is the number of graduations of_ with_a_BSc in_ in_2020/2021 or 2016/2017 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'BSc' AND Gender = 'Male')) AND ((Year = '2022/2023'))",
+      "GTresult": "Value=294.96; Value=116.97",
+      "NLquestions": [
+        "What is the number of graduations of_ with_a_BSc in_ in_2022/2023 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT max(Value) AS max_Value, min(Value) AS min_Value FROM DBdata WHERE ((Degree = 'BSc' AND Gender = 'Male')) AND ((Year = '2020/2021'))",
+      "GTresult": "max_Value=288.71, min_Value=263.54",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_BSc in_ in_2020/2021 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'BSc' AND Gender = 'Male')) AND ((Year = '2020/2021') OR (Year = '2016/2017') OR (Year = '2017/2018') OR (Year = '2022/2023'))",
+      "GTresult": "Value=288.71; Value=226.75; Value=386.65; Value=294.96; Value=263.54; Value=302.13; Value=174.13; Value=116.97",
+      "NLquestions": [
+        "What is the number of graduations of_ with_a_BSc in_ in_2020/2021 or 2016/2017 or 2017/2018 or 2022/2023 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, min(Value) AS min_Value FROM DBdata WHERE ((Degree = 'BSc' AND Gender = 'Male')) AND ((Year = '2020/2021') OR (Year = '2017/2018') OR (Year = '2022/2023'))",
+      "GTresult": "avg_Value=254.16, min_Value=116.97",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_BSc in_ in_2020/2021 or 2017/2018 or 2022/2023 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Degree, Gender, min(Value) AS min_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Degree = 'BSc' AND Gender = 'Male')) AND ((Year = '2020/2021') OR (Year = '2022/2023')) GROUP BY Degree, Gender",
+      "GTresult": "Degree=BSc, Gender=Male, min_Value=116.97, avg_Value=241.045",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_BSc in_ in_2020/2021 or 2022/2023 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Degree = 'BSc' AND Gender = 'Male')) AND ((Year = '2020/2021') OR (Year = '2017/2018')) GROUP BY Year",
+      "GTresult": "min_Value=174.13; min_Value=263.54",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_BSc in_ in_2020/2021 or 2017/2018 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Year, sum(Value) AS sum_Value FROM DBdata WHERE ((Degree = 'BSc' AND Gender = 'Male')) AND ((Year = '2020/2021') OR (Year = '2016/2017')) GROUP BY Year",
+      "GTresult": "Year=2016/2017, sum_Value=528.88; Year=2020/2021, sum_Value=552.25",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_BSc in_ in_2020/2021 or 2016/2017 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Year, Degree, Gender, sum(Value) AS sum_Value FROM DBdata WHERE ((Degree = 'BSc' AND Gender = 'Male')) AND ((Year = '2017/2018') OR (Year = '2022/2023')) GROUP BY Year, Degree, Gender",
+      "GTresult": "Year=2017/2018, Degree=BSc, Gender=Male, sum_Value=560.78; Year=2022/2023, Degree=BSc, Gender=Male, sum_Value=411.92999999999995",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_BSc in_ in_2017/2018 or 2022/2023 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'BSc' AND Gender = 'Male')) AND ((Year = '2017/2018') OR (Year = '2022/2023')) ORDER BY Value DESC LIMIT 3",
+      "GTresult": "Value=386.65; Value=294.96; Value=174.13",
+      "NLquestions": [
+        "What are the top/bottom_ numbers of graduations of_ with_a_BSc in_ in_2017/2018 or 2022/2023 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'BSc' AND Gender = 'Male')) AND ((Year = '2016/2017') OR (Year = '2017/2018')) ORDER BY Value ASC",
+      "GTresult": "Value=174.13; Value=226.75; Value=302.13; Value=386.65",
+      "NLquestions": [
+        "What are the numbers of graduations /increasing_values of_ with_a_BSc in_ in_2016/2017 or 2017/2018 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Year FROM DBdata WHERE ((Degree = 'BSc' AND Gender = 'Male')) AND Value < 256.73",
+      "GTresult": "Year=2016/2017; Year=2017/2018; Year=2022/2023",
+      "NLquestions": [
+        "What is/are_the_ the number of graduations of_ with_a_BSc in_ in_ is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Year, Value FROM DBdata WHERE ((Degree = 'BSc' AND Gender = 'Male')) AND (Year) IN (SELECT Year FROM DBdata WHERE ((Degree = 'BSc' AND Gender = 'Male')) AND Value < 256.73)",
+      "GTresult": "Year=2016/2017, Value=226.75; Year=2017/2018, Value=386.65; Year=2022/2023, Value=294.96; Year=2016/2017, Value=302.13; Year=2017/2018, Value=174.13; Year=2022/2023, Value=116.97",
+      "NLquestions": []
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set76_4_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2018' AND State = 'Oregon' AND City = 'Portland')) AND ((Characteristic = 'Humidity' AND Intensity = 'High'))",
+      "GTresult": "Value=20.92",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Portland ==,==Oregon in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2018' AND State = 'Nevada' AND City = 'Columbia')) AND ((Characteristic = 'Humidity' AND Intensity = 'High') OR (Characteristic = 'Temperature' AND Intensity = '31-40'))",
+      "GTresult": "Value=12.97; Value=15.95",
+      "NLquestions": [
+        "How many days with__ Humidity or Temperature were there in__Columbia ==,==Nevada in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2022' AND State = 'Oregon' AND City = 'Aberdeen') OR (Year = '2018' AND State = 'Nevada' AND City = 'Columbia') OR (Year = '2022' AND State = 'Maryland' AND City = 'Baltimore')) AND ((Characteristic = 'Temperature' AND Intensity = 'Medium'))",
+      "GTresult": "Value=6.8; Value=13.53; Value=17.91",
+      "NLquestions": [
+        "How many days with__ Temperature were there in__Aberdeen or Columbia or Baltimore ==,==Oregon or Nevada or Maryland in_2022 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT min(Value) AS min_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2018' AND State = 'Maryland' AND City = 'Boulder City') OR (Year = '2022' AND State = 'Oregon' AND City = 'Aberdeen') OR (Year = '2022' AND State = 'Maryland' AND City = 'Baltimore') OR (Year = '2022' AND State = 'Nevada' AND City = 'Redmond')) AND ((Characteristic = 'Temperature' AND Intensity = '31-40'))",
+      "GTresult": "min_Value=5.77, sum_Value=64.07000000000001",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature in__Boulder City or Aberdeen or Baltimore or Redmond ==,==Maryland or Oregon or Nevada in_2018 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2022' AND State = 'Oregon' AND City = 'Aberdeen') OR (Year = '2018' AND State = 'Nevada' AND City = 'Columbia') OR (Year = '2018' AND State = 'Oregon' AND City = 'Portland') OR (Year = '2022' AND State = 'Nevada' AND City = 'Redmond') OR (Year = '2018' AND State = 'Maryland' AND City = 'Salem')) AND ((Characteristic = 'Temperature' AND Intensity = 'Medium') OR (Characteristic = 'Humidity' AND Intensity = '21-30') OR (Characteristic = 'Temperature' AND Intensity = '31-40'))",
+      "GTresult": "Value=6.8; Value=10.56; Value=10.72; Value=13.53; Value=12.8; Value=15.95; Value=20.1; Value=22.59; Value=21.95; Value=25.96; Value=24.17; Value=27.92; Value=24.71; Value=27.8; Value=4.47",
+      "NLquestions": [
+        "How many days with__ Temperature or Humidity were there in__Aberdeen or Columbia or Portland or Redmond or Salem ==,==Oregon or Nevada or Maryland in_2022 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT sum(Value) AS sum_Value, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2018' AND State = 'Maryland' AND City = 'Salem')) AND ((Characteristic = 'Humidity' AND Intensity = 'High') OR (Characteristic = 'Humidity' AND Intensity = '21-30') OR (Characteristic = 'Temperature' AND Intensity = '31-40'))",
+      "GTresult": "sum_Value=59.120000000000005, max_Value=27.8",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Temperature in__Salem ==,==Maryland in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, avg(Value) AS avg_Value, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2018' AND State = 'Nevada' AND City = 'Columbia') OR (Year = '2022' AND State = 'Maryland' AND City = 'Baltimore') OR (Year = '2018' AND State = 'Oregon' AND City = 'Portland') OR (Year = '2018' AND State = 'Maryland' AND City = 'Salem')) AND ((Characteristic = 'Humidity' AND Intensity = 'High') OR (Characteristic = 'Temperature' AND Intensity = 'Medium') OR (Characteristic = 'Humidity' AND Intensity = '21-30')) GROUP BY Year, State, City",
+      "GTresult": "Year=2018, State=Maryland, City=Salem, avg_Value=26.453333333333333, max_Value=27.8; Year=2018, State=Nevada, City=Columbia, avg_Value=13.1, max_Value=13.53; Year=2018, State=Oregon, City=Portland, avg_Value=21.203333333333333, max_Value=22.59; Year=2022, State=Maryland, City=Baltimore, avg_Value=16.036666666666665, max_Value=17.91",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Temperature in__Columbia or Baltimore or Portland or Salem ==,==Nevada or Maryland or Oregon in_2018 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2018' AND State = 'Nevada' AND City = 'Columbia')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) GROUP BY Characteristic",
+      "GTresult": "min_Value=12.8; min_Value=13.53",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Temperature in__Columbia ==,==Nevada in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2022' AND State = 'Nevada' AND City = 'Reno')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Humidity, max_Value=1.23; Characteristic=Temperature, max_Value=3.91",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Temperature in__Reno ==,==Nevada in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2022' AND State = 'Nevada' AND City = 'Reno') OR (Year = '2022' AND State = 'Nevada' AND City = 'Redmond')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Humidity, Year=2022, State=Nevada, City=Redmond, avg_Value=24.135; Characteristic=Humidity, Year=2022, State=Nevada, City=Reno, avg_Value=0.77; Characteristic=Temperature, Year=2022, State=Nevada, City=Redmond, avg_Value=26.94; Characteristic=Temperature, Year=2022, State=Nevada, City=Reno, avg_Value=2.5300000000000002",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Temperature in__Reno or Redmond ==,==Nevada in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2018' AND State = 'Nevada' AND City = 'Columbia')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) ORDER BY Value DESC LIMIT 3",
+      "GTresult": "Value=15.95; Value=13.53; Value=12.97",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Humidity or Temperature in__Columbia ==,==Nevada in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2022' AND State = 'Maryland' AND City = 'Baltimore')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) ORDER BY Value DESC",
+      "GTresult": "Value=19.66; Value=17.91; Value=16.52; Value=13.68",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Humidity or Temperature in__Baltimore ==,==Maryland in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2018' AND State = 'Oregon' AND City = 'Portland')) AND Value > 14.10",
+      "GTresult": "Characteristic=Humidity, Intensity=High; Characteristic=Temperature, Intensity=Medium; Characteristic=Humidity, Intensity=21-30; Characteristic=Temperature, Intensity=31-40",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Portland ==,==Oregon in_2018 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2022' AND State = 'Nevada' AND City = 'Redmond')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2018' AND State = 'Oregon' AND City = 'Portland')) AND Value > 14.10)",
+      "GTresult": "Characteristic=Humidity, Intensity=High, Value=24.1; Characteristic=Temperature, Intensity=Medium, Value=25.96; Characteristic=Humidity, Intensity=21-30, Value=24.17; Characteristic=Temperature, Intensity=31-40, Value=27.92",
+      "NLquestions": []
+    }
+  ]
+}

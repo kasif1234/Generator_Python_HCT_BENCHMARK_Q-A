@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Evolution_of_pollution_in_percent_set338_5_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Redmond' AND Year = '2019')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Thermal'))",
+      "GTresult": "Value=-11.31",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air in__Redmond ==,==Oregon in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Redmond' AND Year = '2019')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Oxygen-depletion') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Groundwater') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Chemical') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Noise') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Thermal'))",
+      "GTresult": "Value=-41.45; Value=89.05; Value=-23.66; Value=-21.48; Value=-11.31; Value=-8.82",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water or Air in__Redmond ==,==Oregon in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Fort Lauderdale' AND Year = '2019') OR (State = 'Florida' AND City = 'Salem' AND Year = '2020')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Noise'))",
+      "GTresult": "Value=14.33; Value=-42.58",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water in__Fort Lauderdale or Salem ==,==Florida in_2019 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT min(Value) AS min_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Tampa' AND Year = '2021') OR (State = 'Oregon' AND City = 'Redmond' AND Year = '2019')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Thermal'))",
+      "GTresult": "min_Value=-11.31, sum_Value=42.14",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air in__Tampa or Redmond ==,==Oregon in_2021 or 2019 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Fort Lauderdale' AND Year = '2019') OR (State = 'Florida' AND City = 'Salem' AND Year = '2020') OR (State = 'Oregon' AND City = 'Redmond' AND Year = '2019')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Oxygen-depletion') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Groundwater') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Noise') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Thermal'))",
+      "GTresult": "Value=1.38; Value=5.55; Value=14.33; Value=15.93; Value=24.18; Value=0.1; Value=82.23; Value=-42.58; Value=-41.68; Value=-40.53; Value=-41.45; Value=89.05; Value=-21.48; Value=-11.31; Value=-8.82",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water or Air in__Fort Lauderdale or Salem or Redmond ==,==Florida or Oregon in_2019 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT max(Value) AS max_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Tampa' AND Year = '2021')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Oxygen-depletion') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Surface water') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Chemical') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Noise'))",
+      "GTresult": "max_Value=58.83, sum_Value=149.59",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Air in__Tampa ==,==Oregon in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT State, City, Year, sum(Value) AS sum_Value, max(Value) AS max_Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Fort Lauderdale' AND Year = '2019') OR (State = 'Oregon' AND City = 'Tampa' AND Year = '2021') OR (State = 'Florida' AND City = 'Salem' AND Year = '2020') OR (State = 'Oregon' AND City = 'Redmond' AND Year = '2019')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Oxygen-depletion') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Surface water') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Chemical')) GROUP BY State, City, Year",
+      "GTresult": "State=Florida, City=Fort Lauderdale, Year=2019, sum_Value=-56.78999999999999, max_Value=24.18; State=Florida, City=Salem, Year=2020, sum_Value=85.89, max_Value=85.15; State=Oregon, City=Redmond, Year=2019, sum_Value=-118.46000000000001, max_Value=-6.68; State=Oregon, City=Tampa, Year=2021, sum_Value=229.91, max_Value=58.83",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Air in__Fort Lauderdale or Tampa or Salem or Redmond ==,==Florida or Oregon in_2019 or 2021 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Tampa' AND Year = '2021')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Air')) GROUP BY Polluted_element",
+      "GTresult": "min_Value=35.7; min_Value=-90.73",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Air in__Tampa ==,==Oregon in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Polluted_element, max(Value) AS max_Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Redmond' AND Year = '2019')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Air')) GROUP BY Polluted_element",
+      "GTresult": "Polluted_element=Air, max_Value=-6.68; Polluted_element=Water, max_Value=89.05",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Air in__Redmond ==,==Oregon in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Polluted_element, State, City, Year, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Fort Lauderdale' AND Year = '2019') OR (State = 'Oregon' AND City = 'Tampa' AND Year = '2021') OR (State = 'Florida' AND City = 'Salem' AND Year = '2020')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Air')) GROUP BY Polluted_element, State, City, Year",
+      "GTresult": "Polluted_element=Air, State=Florida, City=Fort Lauderdale, Year=2019, sum_Value=-66.42; Polluted_element=Air, State=Florida, City=Salem, Year=2020, sum_Value=84.64; Polluted_element=Air, State=Oregon, City=Tampa, Year=2021, sum_Value=194.97; Polluted_element=Water, State=Florida, City=Fort Lauderdale, Year=2019, sum_Value=45.44; Polluted_element=Water, State=Florida, City=Salem, Year=2020, sum_Value=-0.7799999999999955; Polluted_element=Water, State=Oregon, City=Tampa, Year=2021, sum_Value=-82.66",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Air in__Fort Lauderdale or Tampa or Salem ==,==Florida or Oregon in_2019 or 2021 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Fort Lauderdale' AND Year = '2019')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Air')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=24.18; Value=15.93; Value=14.33; Value=10.34; Value=5.55",
+      "NLquestions": [
+        "What are the top/bottom_ evolutions of_((pollution)) of_ of_Water or Air in__Fort Lauderdale ==,==Florida in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Redmond' AND Year = '2019')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Air')) ORDER BY Value ASC",
+      "GTresult": "Value=-41.45; Value=-37.85; Value=-23.66; Value=-21.48; Value=-11.31; Value=-8.82; Value=-6.68; Value=89.05",
+      "NLquestions": [
+        "What are the evolutions /increasing_values of_((pollution)) of_ of_Water or Air in__Redmond ==,==Oregon in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Oregon' AND City = 'Tampa' AND Year = '2021')) AND Value < 3.53",
+      "GTresult": "Polluted_element=Water, Type_of_pollution=Groundwater; Polluted_element=Water, Type_of_pollution=Noise",
+      "NLquestions": [
+        "What is/are_the_ the evolution of_((pollution)) of_ of_ in__Tampa ==,==Oregon in_2021 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Polluted_element, Type_of_pollution, Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Salem' AND Year = '2020')) AND (Polluted_element, Type_of_pollution) IN (SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Oregon' AND City = 'Tampa' AND Year = '2021')) AND Value < 3.53)",
+      "GTresult": "Polluted_element=Water, Type_of_pollution=Groundwater, Value=82.23; Polluted_element=Water, Type_of_pollution=Noise, Value=-42.58",
+      "NLquestions": []
+    }
+  ]
+}

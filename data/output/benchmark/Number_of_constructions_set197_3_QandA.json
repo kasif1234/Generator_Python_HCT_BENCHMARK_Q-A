@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Number_of_constructions_set197_3_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Workshop')) AND ((Quarter = 'Q1' AND Month = 'February'))",
+      "GTresult": "Value=99.12",
+      "NLquestions": [
+        "What is the number of__ in__ ==,== in__February ==,==Q1 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Apartment')) AND ((Quarter = 'Q3' AND Month = 'September') OR (Quarter = 'Q1' AND Month = 'July') OR (Quarter = 'Q3' AND Month = 'August') OR (Quarter = 'Q1' AND Month = 'January') OR (Quarter = 'Q3' AND Month = 'March') OR (Quarter = 'Q1' AND Month = 'February'))",
+      "GTresult": "Value=42.21; Value=42.66; Value=42.16; Value=45.07; Value=45.72; Value=47.01",
+      "NLquestions": [
+        "What is the number of__ in__ ==,== in__September or July or August or January or March or February ==,==Q3 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Apartment') OR (Type_of_building = 'Service' AND Usage = 'House')) AND ((Quarter = 'Q3' AND Month = 'August'))",
+      "GTresult": "Value=42.16; Value=56.41",
+      "NLquestions": [
+        "What is the number of__ in__ ==,== in__August ==,==Q3 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT avg(Value) AS avg_Value, max(Value) AS max_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Apartment') OR (Type_of_building = 'Service' AND Usage = 'House') OR (Type_of_building = 'Residential' AND Usage = 'Hotel') OR (Type_of_building = 'Production' AND Usage = 'Factory') OR (Type_of_building = 'Service' AND Usage = 'Workshop')) AND ((Quarter = 'Q1' AND Month = 'February'))",
+      "GTresult": "avg_Value=75.05, max_Value=99.12",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__ ==,== in__February ==,==Q1 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Hospital') OR (Type_of_building = 'Production' AND Usage = 'Apartment') OR (Type_of_building = 'Service' AND Usage = 'House') OR (Type_of_building = 'Production' AND Usage = 'Factory') OR (Type_of_building = 'Service' AND Usage = 'Workshop')) AND ((Quarter = 'Q3' AND Month = 'September') OR (Quarter = 'Q1' AND Month = 'July') OR (Quarter = 'Q1' AND Month = 'January') OR (Quarter = 'Q1' AND Month = 'February'))",
+      "GTresult": "Value=8.69; Value=10.68; Value=23.89; Value=26.48; Value=42.21; Value=42.66; Value=45.07; Value=47.01; Value=50.23; Value=52.61; Value=60.21; Value=63.21; Value=79.17; Value=83.84; Value=86.73; Value=89.05; Value=90.11; Value=90.1; Value=95.65; Value=99.12",
+      "NLquestions": [
+        "What is the number of__ in__ ==,== in__September or July or January or February ==,==Q3 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Factory')) AND ((Quarter = 'Q3' AND Month = 'September') OR (Quarter = 'Q1' AND Month = 'January'))",
+      "GTresult": "avg_Value=82.95, min_Value=79.17",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__ ==,== in__September or January ==,==Q3 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Type_of_building, Usage, avg(Value) AS avg_Value, max(Value) AS max_Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Hospital') OR (Type_of_building = 'Residential' AND Usage = 'Administration') OR (Type_of_building = 'Production' AND Usage = 'Apartment') OR (Type_of_building = 'Production' AND Usage = 'Factory') OR (Type_of_building = 'Service' AND Usage = 'Workshop')) AND ((Quarter = 'Q3' AND Month = 'September') OR (Quarter = 'Q1' AND Month = 'July') OR (Quarter = 'Q1' AND Month = 'January') OR (Quarter = 'Q3' AND Month = 'March')) GROUP BY Type_of_building, Usage",
+      "GTresult": "Type_of_building=Production, Usage=Apartment, avg_Value=43.915, max_Value=45.72; Type_of_building=Production, Usage=Factory, avg_Value=84.59, max_Value=88.62; Type_of_building=Residential, Usage=Administration, avg_Value=32.0575, max_Value=35.23; Type_of_building=Service, Usage=Hospital, avg_Value=17.2, max_Value=25.54; Type_of_building=Service, Usage=Workshop, avg_Value=93.215, max_Value=97.0",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__September or July or January or March ==,==Q3 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Hospital')) AND ((Quarter = 'Q3') OR (Quarter = 'Q1')) GROUP BY Quarter",
+      "GTresult": "min_Value=10.68; min_Value=8.69",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q3 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Quarter, sum(Value) AS sum_Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'House')) AND ((Quarter = 'Q3') OR (Quarter = 'Q1')) GROUP BY Quarter",
+      "GTresult": "Quarter=Q1, sum_Value=176.03; Quarter=Q3, sum_Value=167.38",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q3 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Quarter, Type_of_building, Usage, min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Apartment') OR (Type_of_building = 'Residential' AND Usage = 'Hotel') OR (Type_of_building = 'Service' AND Usage = 'Workshop')) AND ((Quarter = 'Q3') OR (Quarter = 'Q1')) GROUP BY Quarter, Type_of_building, Usage",
+      "GTresult": "Quarter=Q1, Type_of_building=Production, Usage=Apartment, min_Value=42.66; Quarter=Q1, Type_of_building=Residential, Usage=Hotel, min_Value=69.88; Quarter=Q1, Type_of_building=Service, Usage=Workshop, min_Value=90.1; Quarter=Q3, Type_of_building=Production, Usage=Apartment, min_Value=42.16; Quarter=Q3, Type_of_building=Residential, Usage=Hotel, min_Value=67.68; Quarter=Q3, Type_of_building=Service, Usage=Workshop, min_Value=90.11",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q3 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Hospital')) AND ((Quarter = 'Q3') OR (Quarter = 'Q1')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=8.69; Value=10.68; Value=20.19; Value=23.89; Value=25.54",
+      "NLquestions": [
+        "What are the top/bottom_ numbers of__ in__ ==,== in__ ==,==Q3 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Hospital')) AND ((Quarter = 'Q3') OR (Quarter = 'Q1')) ORDER BY Value DESC",
+      "GTresult": "Value=26.48; Value=25.54; Value=23.89; Value=20.19; Value=10.68; Value=8.69",
+      "NLquestions": [
+        "What are the numbers /ascending_values of__ in__ ==,== in__ ==,==Q3 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Quarter, Month FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Hotel')) AND Value > 57.98",
+      "GTresult": "Quarter=Q3, Month=September; Quarter=Q1, Month=July; Quarter=Q3, Month=August; Quarter=Q1, Month=January; Quarter=Q3, Month=March; Quarter=Q1, Month=February",
+      "NLquestions": [
+        "What is/are_the_ the number of__ in__ ==,== in__ ==,== is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Quarter, Month, Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'House')) AND (Quarter, Month) IN (SELECT Quarter, Month FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Hotel')) AND Value > 57.98)",
+      "GTresult": "Quarter=Q3, Month=September, Value=50.23; Quarter=Q1, Month=July, Value=52.61; Quarter=Q3, Month=August, Value=56.41; Quarter=Q1, Month=January, Value=60.21; Quarter=Q3, Month=March, Value=60.74; Quarter=Q1, Month=February, Value=63.21",
+      "NLquestions": []
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Food_import-export_in_tons_set301_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2022')) AND ((Category = 'Meat' AND Item = 'Coffee'))",
+      "GTresult": "Value=899.59; Value=730.44",
+      "NLquestions": [
+        "What is the amount of_Import of__ Meat in__ ==of==2022 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2022')) AND ((Category = 'Meat' AND Item = 'Camel') OR (Category = 'Beverage' AND Item = 'Beef') OR (Category = 'Meat' AND Item = 'Coffee') OR (Category = 'Beverage' AND Item = 'Tea'))",
+      "GTresult": "Value=288.62; Value=641.49; Value=899.59; Value=772.96; Value=406.36; Value=952.49; Value=730.44; Value=634.26",
+      "NLquestions": [
+        "What is the amount of_Import of__ Meat or Beverage in__ ==of==2022 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2022') OR (Import_Export = 'Import' AND Year = '2018')) AND ((Category = 'Beverage' AND Item = 'Beef'))",
+      "GTresult": "Value=641.49; Value=363.87; Value=952.49",
+      "NLquestions": [
+        "What is the amount of_Import of__ Beverage in__ ==of==2022 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT min(Value) AS min_Value, max(Value) AS max_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2022') OR (Import_Export = 'Import' AND Year = '2019') OR (Import_Export = 'Import' AND Year = '2018')) AND ((Category = 'Meat' AND Item = 'Camel'))",
+      "GTresult": "min_Value=44.86, max_Value=406.36",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Meat in__ ==of==2022 or 2019 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2022') OR (Import_Export = 'Import' AND Year = '2019') OR (Import_Export = 'Import' AND Year = '2018')) AND ((Category = 'Meat' AND Item = 'Camel') OR (Category = 'Meat' AND Item = 'Coffee') OR (Category = 'Beverage' AND Item = 'Tea'))",
+      "GTresult": "Value=288.62; Value=899.59; Value=772.96; Value=391.57; Value=554.36; Value=105.41; Value=44.86; Value=720.14; Value=856.34; Value=406.36; Value=730.44; Value=634.26",
+      "NLquestions": [
+        "What is the amount of_Import of__ Meat or Beverage in__ ==of==2022 or 2019 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT max(Value) AS max_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2018')) AND ((Category = 'Meat' AND Item = 'Camel') OR (Category = 'Meat' AND Item = 'Coffee') OR (Category = 'Beverage' AND Item = 'Tea'))",
+      "GTresult": "max_Value=856.34, sum_Value=1621.34",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Meat or Beverage in__ ==of==2018 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Import_Export, Year, max(Value) AS max_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2022') OR (Import_Export = 'Import' AND Year = '2019')) AND ((Category = 'Meat' AND Item = 'Camel') OR (Category = 'Beverage' AND Item = 'Beef') OR (Category = 'Meat' AND Item = 'Coffee') OR (Category = 'Beverage' AND Item = 'Tea')) GROUP BY Import_Export, Year",
+      "GTresult": "Import_Export=Import, Year=2019, max_Value=649.75, sum_Value=1701.09; Import_Export=Import, Year=2022, max_Value=952.49, sum_Value=5326.21",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Meat or Beverage in__ ==of==2022 or 2019 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2022')) AND ((Category = 'Meat') OR (Category = 'Beverage')) GROUP BY Category",
+      "GTresult": "min_Value=634.26; min_Value=288.62",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Meat or Beverage in__ ==of==2022 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Category, min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2018')) AND ((Category = 'Meat') OR (Category = 'Beverage')) GROUP BY Category",
+      "GTresult": "Category=Beverage, min_Value=363.87; Category=Meat, min_Value=44.86",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Meat or Beverage in__ ==of==2018 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Category, Import_Export, Year, max(Value) AS max_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2022') OR (Import_Export = 'Import' AND Year = '2019') OR (Import_Export = 'Import' AND Year = '2018')) AND ((Category = 'Meat') OR (Category = 'Beverage')) GROUP BY Category, Import_Export, Year",
+      "GTresult": "Category=Beverage, Import_Export=Import, Year=2018, max_Value=856.34; Category=Beverage, Import_Export=Import, Year=2019, max_Value=649.75; Category=Beverage, Import_Export=Import, Year=2022, max_Value=952.49; Category=Meat, Import_Export=Import, Year=2018, max_Value=720.14; Category=Meat, Import_Export=Import, Year=2019, max_Value=554.36; Category=Meat, Import_Export=Import, Year=2022, max_Value=899.59",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Meat or Beverage in__ ==of==2022 or 2019 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2022')) AND ((Category = 'Meat') OR (Category = 'Beverage')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=952.49; Value=899.59; Value=772.96; Value=730.44; Value=641.49",
+      "NLquestions": [
+        "What are the top/bottom_ amounts of_Import of__ Meat or Beverage in__ ==of==2022 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2022')) AND ((Category = 'Meat') OR (Category = 'Beverage')) ORDER BY Value ASC",
+      "GTresult": "Value=288.62; Value=406.36; Value=634.26; Value=641.49; Value=730.44; Value=772.96; Value=899.59; Value=952.49",
+      "NLquestions": [
+        "What are the amounts /increasing_values of_Import of__ Meat or Beverage in__ ==of==2022 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2018')) AND Value < 563.28",
+      "GTresult": "Category=Meat, Item=Camel; Category=Beverage, Item=Beef",
+      "NLquestions": [
+        "What is/are_the_ the amount of_Import of__ in__ ==of==2018 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Category, Item, Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2022')) AND (Category, Item) IN (SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2018')) AND Value < 563.28)",
+      "GTresult": "Category=Meat, Item=Camel, Value=288.62; Category=Beverage, Item=Beef, Value=641.49; Category=Meat, Item=Camel, Value=406.36; Category=Beverage, Item=Beef, Value=952.49",
+      "NLquestions": []
+    }
+  ]
+}

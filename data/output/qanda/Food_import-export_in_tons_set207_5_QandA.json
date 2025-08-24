@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Food_import-export_in_tons_set207_5_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Beverage' AND Item = 'Cream'))",
+      "GTresult": "Value=814.86",
+      "NLquestions": [
+        "What is the amount of_Import of__ Beverage in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Dairy' AND Item = 'Juice') OR (Category = 'Dairy' AND Item = 'Butter') OR (Category = 'Beverage' AND Item = 'Milk') OR (Category = 'Dairy' AND Item = 'Soda'))",
+      "GTresult": "Value=394.25; Value=47.5; Value=440.42; Value=411.27",
+      "NLquestions": [
+        "What is the amount of_Import of__ Dairy or Beverage in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Beverage' AND Item = 'Cream'))",
+      "GTresult": "Value=814.86",
+      "NLquestions": [
+        "What is the amount of_Import of__ Beverage in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Beverage' AND Item = 'Milk'))",
+      "GTresult": "sum_Value=440.42, min_Value=440.42",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Beverage in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Dairy' AND Item = 'Juice') OR (Category = 'Beverage' AND Item = 'Cream') OR (Category = 'Beverage' AND Item = 'Milk'))",
+      "GTresult": "Value=394.25; Value=814.86; Value=440.42",
+      "NLquestions": [
+        "What is the amount of_Import of__ Dairy or Beverage in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Beverage' AND Item = 'Soda') OR (Category = 'Beverage' AND Item = 'Cream') OR (Category = 'Dairy' AND Item = 'Soda'))",
+      "GTresult": "avg_Value=420.5566666666667, min_Value=35.54",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Beverage or Dairy in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Import_Export, sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Beverage' AND Item = 'Soda') OR (Category = 'Dairy' AND Item = 'Juice') OR (Category = 'Beverage' AND Item = 'Cream') OR (Category = 'Dairy' AND Item = 'Butter') OR (Category = 'Beverage' AND Item = 'Milk')) GROUP BY Import_Export",
+      "GTresult": "Import_Export=Import, sum_Value=1732.57, avg_Value=346.514",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Beverage or Dairy in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Beverage') OR (Category = 'Dairy')) GROUP BY Category",
+      "GTresult": "min_Value=35.54; min_Value=47.5",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Beverage or Dairy in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Category, sum(Value) AS sum_Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Beverage') OR (Category = 'Dairy')) GROUP BY Category",
+      "GTresult": "Category=Beverage, sum_Value=1290.82; Category=Dairy, sum_Value=853.02",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Beverage or Dairy in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Category, Import_Export, avg(Value) AS avg_Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Beverage') OR (Category = 'Dairy')) GROUP BY Category, Import_Export",
+      "GTresult": "Category=Beverage, Import_Export=Import, avg_Value=430.2733333333333; Category=Dairy, Import_Export=Import, avg_Value=284.34",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Beverage or Dairy in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Beverage') OR (Category = 'Dairy')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=35.54; Value=47.5; Value=394.25; Value=411.27; Value=440.42",
+      "NLquestions": [
+        "What are the top/bottom_ amounts of_Import of__ Beverage or Dairy in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Beverage') OR (Category = 'Dairy')) ORDER BY Value DESC",
+      "GTresult": "Value=814.86; Value=440.42; Value=411.27; Value=394.25; Value=47.5; Value=35.54",
+      "NLquestions": [
+        "What are the amounts /increasing_values of_Import of__ Beverage or Dairy in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Import')) AND Value > 357.31",
+      "GTresult": "Category=Dairy, Item=Juice; Category=Beverage, Item=Cream; Category=Beverage, Item=Milk; Category=Dairy, Item=Soda",
+      "NLquestions": [
+        "What is/are_the_ the amount of_Import of__ in__ ==of== is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Category, Item, Value FROM DBdata WHERE ((Import_Export = 'Import')) AND (Category, Item) IN (SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Import')) AND Value > 357.31)",
+      "GTresult": "Category=Dairy, Item=Juice, Value=394.25; Category=Beverage, Item=Cream, Value=814.86; Category=Beverage, Item=Milk, Value=440.42; Category=Dairy, Item=Soda, Value=411.27",
+      "NLquestions": []
+    }
+  ]
+}

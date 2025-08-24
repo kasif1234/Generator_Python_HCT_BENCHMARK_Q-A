@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Number_of_constructions_set128_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Museum')) AND ((Quarter = 'Q4' AND Month = 'March' AND State = 'Florida' AND City = 'Boulder City'))",
+      "GTresult": "Value=91.55",
+      "NLquestions": [
+        "What is the number of__ in__Boulder City ==,==Florida in__March ==,==Q4 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Concert')) AND ((Quarter = 'Q1' AND Month = 'January' AND State = 'Nevada' AND City = 'Reno') OR (Quarter = 'Q4' AND Month = 'March' AND State = 'Florida' AND City = 'Boulder City'))",
+      "GTresult": "Value=64.9; Value=65.96",
+      "NLquestions": [
+        "What is the number of__ in__Reno or Boulder City ==,==Nevada or Florida in__January or March ==,==Q1 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Factory') OR (Type_of_building = 'Production' AND Usage = 'Museum')) AND ((Quarter = 'Q1' AND Month = 'October' AND State = 'Nevada' AND City = 'Boulder City'))",
+      "GTresult": "Value=6.39; Value=95.46",
+      "NLquestions": [
+        "What is the number of__ in__Boulder City ==,==Nevada in__October ==,==Q1 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, max(Value) AS max_Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Workshop') OR (Type_of_building = 'Residential' AND Usage = 'Concert') OR (Type_of_building = 'Culture' AND Usage = 'Theatre')) AND ((Quarter = 'Q1' AND Month = 'January' AND State = 'Nevada' AND City = 'Reno'))",
+      "GTresult": "sum_Value=163.74, max_Value=78.69",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__Reno ==,==Nevada in__January ==,==Q1 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Apartment') OR (Type_of_building = 'Production' AND Usage = 'Hotel') OR (Type_of_building = 'Residential' AND Usage = 'Concert') OR (Type_of_building = 'Production' AND Usage = 'Museum')) AND ((Quarter = 'Q1' AND Month = 'January' AND State = 'Nevada' AND City = 'Reno') OR (Quarter = 'Q4' AND Month = 'December' AND State = 'Florida' AND City = 'Reno') OR (Quarter = 'Q1' AND Month = 'October' AND State = 'Nevada' AND City = 'Boulder City'))",
+      "GTresult": "Value=35.0; Value=43.31; Value=44.13; Value=48.59; Value=51.52; Value=55.36; Value=64.9; Value=63.83; Value=73.15; Value=90.92; Value=96.08; Value=95.46",
+      "NLquestions": [
+        "What is the number of__ in__Reno or Boulder City ==,==Nevada or Florida in__January or December or October ==,==Q1 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT max(Value) AS max_Value, min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Factory')) AND ((Quarter = 'Q4' AND Month = 'March' AND State = 'Florida' AND City = 'Boulder City') OR (Quarter = 'Q1' AND Month = 'October' AND State = 'Nevada' AND City = 'Boulder City') OR (Quarter = 'Q4' AND Month = 'November' AND State = 'Florida' AND City = 'Tampa'))",
+      "GTresult": "max_Value=17.84, min_Value=1.9",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__Boulder City or Tampa ==,==Florida or Nevada in__March or October or November ==,==Q4 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Type_of_building, Usage, avg(Value) AS avg_Value, max(Value) AS max_Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Apartment') OR (Type_of_building = 'Production' AND Usage = 'Hotel')) AND ((Quarter = 'Q1' AND Month = 'January' AND State = 'Nevada' AND City = 'Reno') OR (Quarter = 'Q1' AND Month = 'February' AND State = 'Nevada' AND City = 'Tampa') OR (Quarter = 'Q1' AND Month = 'October' AND State = 'Nevada' AND City = 'Boulder City')) GROUP BY Type_of_building, Usage",
+      "GTresult": "Type_of_building=Culture, Usage=Apartment, avg_Value=39.81, max_Value=44.13; Type_of_building=Production, Usage=Hotel, avg_Value=50.68666666666667, max_Value=55.36",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__Reno or Tampa or Boulder City ==,==Nevada in__January or February or October ==,==Q1 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Hotel')) AND ((Quarter = 'Q1') OR (Quarter = 'Q4')) GROUP BY Quarter",
+      "GTresult": "min_Value=48.11; min_Value=49.71",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q1 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Quarter, max(Value) AS max_Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Theatre')) AND ((Quarter = 'Q1') OR (Quarter = 'Q4')) GROUP BY Quarter",
+      "GTresult": "Quarter=Q1, max_Value=85.92; Quarter=Q4, max_Value=89.9",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q1 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Quarter, Type_of_building, Usage, max(Value) AS max_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Factory') OR (Type_of_building = 'Culture' AND Usage = 'Apartment')) AND ((Quarter = 'Q1') OR (Quarter = 'Q4')) GROUP BY Quarter, Type_of_building, Usage",
+      "GTresult": "Quarter=Q1, Type_of_building=Culture, Usage=Apartment, max_Value=44.13; Quarter=Q1, Type_of_building=Production, Usage=Factory, max_Value=6.39; Quarter=Q4, Type_of_building=Culture, Usage=Apartment, max_Value=47.24; Quarter=Q4, Type_of_building=Production, Usage=Factory, max_Value=17.84",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q1 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Hotel')) AND ((Quarter = 'Q1') OR (Quarter = 'Q4')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=63.57; Value=55.36; Value=51.52; Value=49.71; Value=48.59",
+      "NLquestions": [
+        "What are the top/bottom_ numbers of__ in__ ==,== in__ ==,==Q1 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Hotel')) AND ((Quarter = 'Q1') OR (Quarter = 'Q4')) ORDER BY Value ASC",
+      "GTresult": "Value=48.11; Value=48.59; Value=49.71; Value=51.52; Value=55.36; Value=63.57",
+      "NLquestions": [
+        "What are the numbers /ascending_values of__ in__ ==,== in__ ==,==Q1 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Quarter, Month, State, City FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Apartment')) AND Value < 53.28",
+      "GTresult": "Quarter=Q1, Month=January, State=Nevada, City=Reno; Quarter=Q4, Month=March, State=Florida, City=Boulder City; Quarter=Q1, Month=February, State=Nevada, City=Tampa; Quarter=Q4, Month=December, State=Florida, City=Reno; Quarter=Q1, Month=October, State=Nevada, City=Boulder City; Quarter=Q4, Month=November, State=Florida, City=Tampa",
+      "NLquestions": [
+        "What is/are_the_ the number of__ in__ ==,== in__ ==,== is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Quarter, Month, State, City, Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Factory')) AND (Quarter, Month, State, City) IN (SELECT Quarter, Month, State, City FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Apartment')) AND Value < 53.28)",
+      "GTresult": "Quarter=Q1, Month=January, State=Nevada, City=Reno, Value=1.69; Quarter=Q4, Month=March, State=Florida, City=Boulder City, Value=1.9; Quarter=Q1, Month=February, State=Nevada, City=Tampa, Value=3.24; Quarter=Q4, Month=December, State=Florida, City=Reno, Value=6.19; Quarter=Q1, Month=October, State=Nevada, City=Boulder City, Value=6.39; Quarter=Q4, Month=November, State=Florida, City=Tampa, Value=17.84",
+      "NLquestions": []
+    }
+  ]
+}

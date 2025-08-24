@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set328_4_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Michigan' AND City = 'Port Huron')) AND ((Characteristic = 'Temperature' AND Intensity = 'Calm'))",
+      "GTresult": "Value=20.95",
+      "NLquestions": [
+        "How many days with__ Temperature were there in__Port Huron ==,==Michigan in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Washington')) AND ((Characteristic = 'Temperature' AND Intensity = '11-20') OR (Characteristic = 'Wind' AND Intensity = '31-40') OR (Characteristic = 'Temperature' AND Intensity = 'Calm') OR (Characteristic = 'Wind' AND Intensity = 'Storm'))",
+      "GTresult": "Value=1.56; Value=3.44; Value=4.73; Value=5.29",
+      "NLquestions": [
+        "How many days with__ Temperature or Wind were there in__Washington ==,==Georgia in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Washington') OR (Year = '2022' AND State = 'Michigan' AND City = 'Albany') OR (Year = '2020' AND State = 'Georgia' AND City = 'Columbus') OR (Year = '2022' AND State = 'Georgia' AND City = 'Detroit') OR (Year = '2020' AND State = 'Michigan' AND City = 'Flint')) AND ((Characteristic = 'Temperature' AND Intensity = 'Calm'))",
+      "GTresult": "Value=4.73; Value=8.05; Value=13.23; Value=24.04; Value=19.75",
+      "NLquestions": [
+        "How many days with__ Temperature were there in__Washington or Albany or Columbus or Detroit or Flint ==,==Georgia or Michigan in_2021 or 2022 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Washington') OR (Year = '2020' AND State = 'Georgia' AND City = 'Columbus') OR (Year = '2022' AND State = 'Georgia' AND City = 'Detroit')) AND ((Characteristic = 'Temperature' AND Intensity = '11-20'))",
+      "GTresult": "sum_Value=35.51, avg_Value=11.836666666666666",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature in__Washington or Columbus or Detroit ==,==Georgia in_2021 or 2020 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Washington') OR (Year = '2022' AND State = 'Michigan' AND City = 'Albany') OR (Year = '2020' AND State = 'Georgia' AND City = 'Columbus') OR (Year = '2020' AND State = 'Michigan' AND City = 'Flint')) AND ((Characteristic = 'Temperature' AND Intensity = '11-20') OR (Characteristic = 'Wind' AND Intensity = '31-40') OR (Characteristic = 'Temperature' AND Intensity = 'Calm') OR (Characteristic = 'Wind' AND Intensity = 'Storm'))",
+      "GTresult": "Value=1.56; Value=3.44; Value=4.73; Value=5.29; Value=6.14; Value=7.61; Value=8.05; Value=9.51; Value=11.36; Value=11.24; Value=13.23; Value=14.58; Value=26.56; Value=27.9; Value=19.75; Value=27.58",
+      "NLquestions": [
+        "How many days with__ Temperature or Wind were there in__Washington or Albany or Columbus or Flint ==,==Georgia or Michigan in_2021 or 2022 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT min(Value) AS min_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Michigan' AND City = 'Port Huron')) AND ((Characteristic = 'Temperature' AND Intensity = '11-20') OR (Characteristic = 'Temperature' AND Intensity = 'Calm'))",
+      "GTresult": "min_Value=18.6, avg_Value=19.775",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature in__Port Huron ==,==Michigan in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, sum(Value) AS sum_Value, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Washington') OR (Year = '2020' AND State = 'Georgia' AND City = 'Columbus') OR (Year = '2022' AND State = 'Georgia' AND City = 'Detroit') OR (Year = '2020' AND State = 'Michigan' AND City = 'Flint')) AND ((Characteristic = 'Wind' AND Intensity = '31-40') OR (Characteristic = 'Wind' AND Intensity = 'Storm')) GROUP BY Year, State, City",
+      "GTresult": "Year=2020, State=Georgia, City=Columbus, sum_Value=25.82, max_Value=14.58; Year=2020, State=Michigan, City=Flint, sum_Value=55.48, max_Value=27.9; Year=2021, State=Georgia, City=Washington, sum_Value=8.73, max_Value=5.29; Year=2022, State=Georgia, City=Detroit, sum_Value=44.07, max_Value=22.63",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind in__Washington or Columbus or Detroit or Flint ==,==Georgia or Michigan in_2021 or 2020 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Washington')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "min_Value=1.56; min_Value=3.44",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Washington ==,==Georgia in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2020' AND State = 'Michigan' AND City = 'Flint')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Temperature, sum_Value=46.31; Characteristic=Wind, sum_Value=55.48",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Flint ==,==Michigan in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2022' AND State = 'Michigan' AND City = 'Albany') OR (Year = '2020' AND State = 'Georgia' AND City = 'Columbus')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Temperature, Year=2020, State=Georgia, City=Columbus, avg_Value=12.295; Characteristic=Temperature, Year=2022, State=Michigan, City=Albany, avg_Value=7.095000000000001; Characteristic=Wind, Year=2020, State=Georgia, City=Columbus, avg_Value=12.91; Characteristic=Wind, Year=2022, State=Michigan, City=Albany, avg_Value=8.56",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Albany or Columbus ==,==Michigan or Georgia in_2022 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Washington')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) ORDER BY Value ASC LIMIT 3",
+      "GTresult": "Value=1.56; Value=3.44; Value=4.73",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Temperature or Wind in__Washington ==,==Georgia in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Georgia' AND City = 'Columbus')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) ORDER BY Value ASC",
+      "GTresult": "Value=11.24; Value=11.36; Value=13.23; Value=14.58",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Temperature or Wind in__Columbus ==,==Georgia in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2021' AND State = 'Michigan' AND City = 'Port Huron')) AND Value > 15.39",
+      "GTresult": "Characteristic=Temperature, Intensity=11-20; Characteristic=Wind, Intensity=31-40; Characteristic=Temperature, Intensity=Calm; Characteristic=Wind, Intensity=Storm",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Port Huron ==,==Michigan in_2021 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2022' AND State = 'Georgia' AND City = 'Detroit')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2021' AND State = 'Michigan' AND City = 'Port Huron')) AND Value > 15.39)",
+      "GTresult": "Characteristic=Temperature, Intensity=11-20, Value=22.59; Characteristic=Wind, Intensity=31-40, Value=22.63; Characteristic=Temperature, Intensity=Calm, Value=24.04; Characteristic=Wind, Intensity=Storm, Value=21.44",
+      "NLquestions": []
+    }
+  ]
+}

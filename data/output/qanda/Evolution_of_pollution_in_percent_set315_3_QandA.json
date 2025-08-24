@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Evolution_of_pollution_in_percent_set315_3_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Nevada' AND City = 'Reno' AND Year = '2016')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Groundwater'))",
+      "GTresult": "Value=-13.53",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air in__Reno ==,==Nevada in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Hastings' AND Year = '2020')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Noise') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Light') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Thermal') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Solid Waste') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Oxygen-depletion'))",
+      "GTresult": "Value=17.49; Value=20.11; Value=20.26; Value=25.39; Value=-88.85",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil or Water or Air in__Hastings ==,==Minnesota in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Hastings' AND Year = '2020') OR (State = 'Minnesota' AND City = 'Las Vegas' AND Year = '2020') OR (State = 'Nevada' AND City = 'Reno' AND Year = '2016')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Urban Activities'))",
+      "GTresult": "Value=25.11; Value=-54.08; Value=-21.92",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil in__Hastings or Las Vegas or Reno ==,==Minnesota or Nevada in_2020 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT max(Value) AS max_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Hastings' AND Year = '2020') OR (State = 'Nevada' AND City = 'Reno' AND Year = '2016')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Solid Waste'))",
+      "GTresult": "max_Value=25.39, sum_Value=9.14",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water in__Hastings or Reno ==,==Minnesota or Nevada in_2020 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Hastings' AND Year = '2020') OR (State = 'Minnesota' AND City = 'Las Vegas' AND Year = '2020') OR (State = 'Nevada' AND City = 'Reno' AND Year = '2016')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Noise') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Light') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Groundwater') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Oxygen-depletion'))",
+      "GTresult": "Value=17.49; Value=20.11; Value=-89.03; Value=-88.85; Value=-59.3; Value=68.56; Value=78.1; Value=83.77; Value=88.79; Value=-27.82; Value=-13.53; Value=-11.46",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil or Water or Air in__Hastings or Las Vegas or Reno ==,==Minnesota or Nevada in_2020 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT max(Value) AS max_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Nevada' AND City = 'Rochester' AND Year = '2016')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Noise') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Light'))",
+      "GTresult": "max_Value=46.66, sum_Value=-31.120000000000005",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Rochester ==,==Nevada in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT State, City, Year, avg(Value) AS avg_Value, max(Value) AS max_Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Hastings' AND Year = '2020') OR (State = 'Nevada' AND City = 'Rochester' AND Year = '2016') OR (State = 'Minnesota' AND City = 'Las Vegas' AND Year = '2020') OR (State = 'Nevada' AND City = 'Reno' AND Year = '2016')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Oxygen-depletion') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Light')) GROUP BY State, City, Year",
+      "GTresult": "State=Minnesota, City=Hastings, Year=2020, avg_Value=17.4, max_Value=20.11; State=Minnesota, City=Las Vegas, Year=2020, avg_Value=4.91, max_Value=68.56; State=Nevada, City=Reno, Year=2016, avg_Value=29.444999999999997, max_Value=86.71; State=Nevada, City=Rochester, Year=2016, avg_Value=-82.075, max_Value=-77.78",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Water in__Hastings or Rochester or Las Vegas or Reno ==,==Minnesota or Nevada in_2020 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((State = 'Nevada' AND City = 'Rochester' AND Year = '2016')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Soil')) GROUP BY Polluted_element",
+      "GTresult": "min_Value=-86.37; min_Value=-60.21",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Soil in__Rochester ==,==Nevada in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Polluted_element, max(Value) AS max_Value FROM DBdata WHERE ((State = 'Nevada' AND City = 'Rochester' AND Year = '2016')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Soil')) GROUP BY Polluted_element",
+      "GTresult": "Polluted_element=Air, max_Value=64.62; Polluted_element=Soil, max_Value=61.8",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Soil in__Rochester ==,==Nevada in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Polluted_element, State, City, Year, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Nevada' AND City = 'Rochester' AND Year = '2016') OR (State = 'Minnesota' AND City = 'Las Vegas' AND Year = '2020')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Air')) GROUP BY Polluted_element, State, City, Year",
+      "GTresult": "Polluted_element=Air, State=Minnesota, City=Las Vegas, Year=2020, sum_Value=-41.34000000000001; Polluted_element=Air, State=Nevada, City=Rochester, Year=2016, sum_Value=31.79; Polluted_element=Water, State=Minnesota, City=Las Vegas, Year=2020, sum_Value=213.58999999999997; Polluted_element=Water, State=Nevada, City=Rochester, Year=2016, sum_Value=-230.2",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Air in__Rochester or Las Vegas ==,==Nevada or Minnesota in_2016 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Las Vegas' AND Year = '2020')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Air')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=-60.7; Value=-58.74; Value=68.07; Value=68.56; Value=76.96",
+      "NLquestions": [
+        "What are the top/bottom_ evolutions of_((pollution)) of_ of_Water or Air in__Las Vegas ==,==Minnesota in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Hastings' AND Year = '2020')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Air')) ORDER BY Value DESC",
+      "GTresult": "Value=25.39; Value=20.26; Value=20.11; Value=14.69; Value=7.09; Value=-89.03",
+      "NLquestions": [
+        "What are the evolutions /increasing_values of_((pollution)) of_ of_Water or Air in__Hastings ==,==Minnesota in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Hastings' AND Year = '2020')) AND Value < -1.11",
+      "GTresult": "Polluted_element=Air, Type_of_pollution=Groundwater; Polluted_element=Soil, Type_of_pollution=Oxygen-depletion",
+      "NLquestions": [
+        "What is/are_the_ the evolution of_((pollution)) of_ of_ in__Hastings ==,==Minnesota in_2020 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Polluted_element, Type_of_pollution, Value FROM DBdata WHERE ((State = 'Nevada' AND City = 'Reno' AND Year = '2016')) AND (Polluted_element, Type_of_pollution) IN (SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Hastings' AND Year = '2020')) AND Value < -1.11)",
+      "GTresult": "Polluted_element=Air, Type_of_pollution=Groundwater, Value=-13.53; Polluted_element=Soil, Type_of_pollution=Oxygen-depletion, Value=-11.46",
+      "NLquestions": []
+    }
+  ]
+}

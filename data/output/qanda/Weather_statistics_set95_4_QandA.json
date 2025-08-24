@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set95_4_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2022' AND State = 'Michigan' AND City = 'Flint')) AND ((Characteristic = 'Humidity' AND Intensity = 'Medium'))",
+      "GTresult": "Value=11.91",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Flint ==,==Michigan in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'Illinois' AND City = 'Port Huron')) AND ((Characteristic = 'Humidity' AND Intensity = '0-10') OR (Characteristic = 'Humidity' AND Intensity = 'High') OR (Characteristic = 'Humidity' AND Intensity = 'Medium'))",
+      "GTresult": "Value=15.96; Value=17.74; Value=5.19",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Port Huron ==,==Illinois in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Oregon' AND City = 'Champaign') OR (Year = '2016' AND State = 'Oregon' AND City = 'Detroit')) AND ((Characteristic = 'Humidity' AND Intensity = 'High'))",
+      "GTresult": "Value=9.28; Value=27.34",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Champaign or Detroit ==,==Oregon in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Oregon' AND City = 'Detroit') OR (Year = '2022' AND State = 'Michigan' AND City = 'Flint')) AND ((Characteristic = 'Humidity' AND Intensity = 'High'))",
+      "GTresult": "avg_Value=16.55, sum_Value=33.1",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity in__Detroit or Flint ==,==Oregon or Michigan in_2016 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2022' AND State = 'Michigan' AND City = 'Salem') OR (Year = '2017' AND State = 'Illinois' AND City = 'Portland') OR (Year = '2017' AND State = 'Illinois' AND City = 'Port Huron')) AND ((Characteristic = 'Humidity' AND Intensity = '0-10') OR (Characteristic = 'Temperature' AND Intensity = '21-30') OR (Characteristic = 'Humidity' AND Intensity = 'High') OR (Characteristic = 'Temperature' AND Intensity = 'Low'))",
+      "GTresult": "Value=12.29; Value=6.25; Value=11.69; Value=15.37; Value=19.48; Value=17.85; Value=17.37; Value=22.22; Value=15.96; Value=4.62; Value=17.74; Value=17.16",
+      "NLquestions": [
+        "How many days with__ Humidity or Temperature were there in__Salem or Portland or Port Huron ==,==Michigan or Illinois in_2022 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT sum(Value) AS sum_Value, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Oregon' AND City = 'Detroit')) AND ((Characteristic = 'Temperature' AND Intensity = '31-40') OR (Characteristic = 'Humidity' AND Intensity = '0-10') OR (Characteristic = 'Temperature' AND Intensity = '21-30') OR (Characteristic = 'Humidity' AND Intensity = 'High') OR (Characteristic = 'Humidity' AND Intensity = 'Medium'))",
+      "GTresult": "sum_Value=124.44999999999999, max_Value=27.4",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity in__Detroit ==,==Oregon in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, avg(Value) AS avg_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Oregon' AND City = 'Champaign') OR (Year = '2016' AND State = 'Oregon' AND City = 'Detroit') OR (Year = '2022' AND State = 'Michigan' AND City = 'Flint') OR (Year = '2017' AND State = 'Illinois' AND City = 'Port Huron')) AND ((Characteristic = 'Humidity' AND Intensity = '0-10') OR (Characteristic = 'Temperature' AND Intensity = 'Low')) GROUP BY Year, State, City",
+      "GTresult": "Year=2016, State=Oregon, City=Champaign, avg_Value=8.395, min_Value=6.41; Year=2016, State=Oregon, City=Detroit, avg_Value=26.02, min_Value=25.77; Year=2017, State=Illinois, City=Port Huron, avg_Value=16.560000000000002, min_Value=15.96; Year=2022, State=Michigan, City=Flint, avg_Value=17.28, min_Value=7.32",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Temperature in__Champaign or Detroit or Flint or Port Huron ==,==Oregon or Michigan or Illinois in_2016 or 2022 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2022' AND State = 'Michigan' AND City = 'Flint')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) GROUP BY Characteristic",
+      "GTresult": "min_Value=5.76; min_Value=7.32",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity in__Flint ==,==Michigan in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2017' AND State = 'Illinois' AND City = 'Chicago')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Humidity, min_Value=1.49; Characteristic=Temperature, min_Value=0.88",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity in__Chicago ==,==Illinois in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Oregon' AND City = 'Detroit') OR (Year = '2022' AND State = 'Michigan' AND City = 'Flint')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Humidity, Year=2016, State=Oregon, City=Detroit, max_Value=27.4; Characteristic=Humidity, Year=2022, State=Michigan, City=Flint, max_Value=27.24; Characteristic=Temperature, Year=2016, State=Oregon, City=Detroit, max_Value=26.38; Characteristic=Temperature, Year=2022, State=Michigan, City=Flint, max_Value=24.14",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity in__Detroit or Flint ==,==Oregon or Michigan in_2016 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'Illinois' AND City = 'Portland')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=17.24; Value=17.37; Value=17.85; Value=19.48; Value=22.22",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Temperature or Humidity in__Portland ==,==Illinois in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Oregon' AND City = 'Champaign')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) ORDER BY Value DESC",
+      "GTresult": "Value=11.41; Value=10.38; Value=9.28; Value=8.51; Value=6.93; Value=6.41",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Temperature or Humidity in__Champaign ==,==Oregon in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2017' AND State = 'Illinois' AND City = 'Port Huron')) AND Value < 13.83",
+      "GTresult": "Characteristic=Temperature, Intensity=21-30; Characteristic=Humidity, Intensity=Medium",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Port Huron ==,==Illinois in_2017 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2016' AND State = 'Oregon' AND City = 'Detroit')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2017' AND State = 'Illinois' AND City = 'Port Huron')) AND Value < 13.83)",
+      "GTresult": "Characteristic=Temperature, Intensity=21-30, Value=26.38; Characteristic=Humidity, Intensity=Medium, Value=27.4",
+      "NLquestions": []
+    }
+  ]
+}

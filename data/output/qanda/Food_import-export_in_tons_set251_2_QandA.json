@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Food_import-export_in_tons_set251_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Cereals' AND Item = 'Oats'))",
+      "GTresult": "Value=807.8",
+      "NLquestions": [
+        "What is the amount of_Export of__ Cereals in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Dairy' AND Item = 'Yoghurt') OR (Category = 'Cereals' AND Item = 'Butter') OR (Category = 'Dairy' AND Item = 'Milk') OR (Category = 'Cereals' AND Item = 'Oats') OR (Category = 'Dairy' AND Item = 'Soybeans'))",
+      "GTresult": "Value=256.29; Value=963.76; Value=387.6; Value=807.8; Value=776.45",
+      "NLquestions": [
+        "What is the amount of_Export of__ Dairy or Cereals in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Dairy' AND Item = 'Soybeans'))",
+      "GTresult": "Value=776.45",
+      "NLquestions": [
+        "What is the amount of_Export of__ Dairy in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT max(Value) AS max_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Cereals' AND Item = 'Butter'))",
+      "GTresult": "max_Value=963.76, sum_Value=963.76",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Cereals in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Cereals' AND Item = 'Butter') OR (Category = 'Dairy' AND Item = 'Milk') OR (Category = 'Cereals' AND Item = 'Wheat'))",
+      "GTresult": "Value=963.76; Value=387.6; Value=433.96",
+      "NLquestions": [
+        "What is the amount of_Export of__ Cereals or Dairy in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Cereals' AND Item = 'Butter') OR (Category = 'Cereals' AND Item = 'Oats') OR (Category = 'Cereals' AND Item = 'Wheat'))",
+      "GTresult": "sum_Value=2205.52, avg_Value=735.1733333333333",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Cereals in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Import_Export, min(Value) AS min_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Dairy' AND Item = 'Yoghurt') OR (Category = 'Cereals' AND Item = 'Butter') OR (Category = 'Dairy' AND Item = 'Milk') OR (Category = 'Dairy' AND Item = 'Soybeans')) GROUP BY Import_Export",
+      "GTresult": "Import_Export=Export, min_Value=256.29, avg_Value=596.025",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Dairy or Cereals in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Dairy') OR (Category = 'Cereals')) GROUP BY Category",
+      "GTresult": "min_Value=433.96; min_Value=256.29",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Dairy or Cereals in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Category, avg(Value) AS avg_Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Dairy') OR (Category = 'Cereals')) GROUP BY Category",
+      "GTresult": "Category=Cereals, avg_Value=735.1733333333333; Category=Dairy, avg_Value=473.4466666666667",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Dairy or Cereals in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Category, Import_Export, sum(Value) AS sum_Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Dairy') OR (Category = 'Cereals')) GROUP BY Category, Import_Export",
+      "GTresult": "Category=Cereals, Import_Export=Export, sum_Value=2205.52; Category=Dairy, Import_Export=Export, sum_Value=1420.3400000000001",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Dairy or Cereals in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Dairy') OR (Category = 'Cereals')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=256.29; Value=387.6; Value=433.96; Value=776.45; Value=807.8",
+      "NLquestions": [
+        "What are the top/bottom_ amounts of_Export of__ Dairy or Cereals in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export')) AND ((Category = 'Dairy') OR (Category = 'Cereals')) ORDER BY Value ASC",
+      "GTresult": "Value=256.29; Value=387.6; Value=433.96; Value=776.45; Value=807.8; Value=963.76",
+      "NLquestions": [
+        "What are the amounts /increasing_values of_Export of__ Dairy or Cereals in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Export')) AND Value > 604.31",
+      "GTresult": "Category=Cereals, Item=Butter; Category=Cereals, Item=Oats; Category=Dairy, Item=Soybeans",
+      "NLquestions": [
+        "What is/are_the_ the amount of_Export of__ in__ ==of== is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Category, Item, Value FROM DBdata WHERE ((Import_Export = 'Export')) AND (Category, Item) IN (SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Export')) AND Value > 604.31)",
+      "GTresult": "Category=Cereals, Item=Butter, Value=963.76; Category=Cereals, Item=Oats, Value=807.8; Category=Dairy, Item=Soybeans, Value=776.45",
+      "NLquestions": []
+    }
+  ]
+}

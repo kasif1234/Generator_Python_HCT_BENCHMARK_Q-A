@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Number_of_constructions_set132_4_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Administration')) AND ((Quarter = 'Q4' AND Month = 'December' AND State = 'Minnesota' AND City = 'Hastings'))",
+      "GTresult": "Value=48.39",
+      "NLquestions": [
+        "What is the number of__ in__Hastings ==,==Minnesota in__December ==,==Q4 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Concert')) AND ((Quarter = 'Q4' AND Month = 'December' AND State = 'Minnesota' AND City = 'Hastings') OR (Quarter = 'Q2' AND Month = 'November' AND State = 'Minnesota' AND City = 'Hastings') OR (Quarter = 'Q4' AND Month = 'May' AND State = 'Minnesota' AND City = 'Hastings') OR (Quarter = 'Q2' AND Month = 'April' AND State = 'Minnesota' AND City = 'Hastings'))",
+      "GTresult": "Value=43.91; Value=47.24; Value=48.16; Value=49.22",
+      "NLquestions": [
+        "What is the number of__ in__Hastings ==,==Minnesota in__December or November or May or April ==,==Q4 or Q2 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Theatre') OR (Type_of_building = 'Service' AND Usage = 'Museum') OR (Type_of_building = 'Culture' AND Usage = 'Concert') OR (Type_of_building = 'Service' AND Usage = 'Administration') OR (Type_of_building = 'Culture' AND Usage = 'Hospital') OR (Type_of_building = 'Service' AND Usage = 'Library')) AND ((Quarter = 'Q4' AND Month = 'December' AND State = 'Minnesota' AND City = 'Hastings'))",
+      "GTresult": "Value=4.08; Value=21.1; Value=43.91; Value=48.39; Value=60.14; Value=83.84",
+      "NLquestions": [
+        "What is the number of__ in__Hastings ==,==Minnesota in__December ==,==Q4 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, max(Value) AS max_Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Theatre') OR (Type_of_building = 'Culture' AND Usage = 'Hospital')) AND ((Quarter = 'Q2' AND Month = 'November' AND State = 'Minnesota' AND City = 'Hastings'))",
+      "GTresult": "sum_Value=93.61, max_Value=76.87",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__Hastings ==,==Minnesota in__November ==,==Q2 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Concert') OR (Type_of_building = 'Service' AND Usage = 'Administration') OR (Type_of_building = 'Culture' AND Usage = 'Hospital')) AND ((Quarter = 'Q2' AND Month = 'November' AND State = 'Minnesota' AND City = 'Hastings') OR (Quarter = 'Q4' AND Month = 'May' AND State = 'Minnesota' AND City = 'Hastings') OR (Quarter = 'Q2' AND Month = 'April' AND State = 'Minnesota' AND City = 'Hastings'))",
+      "GTresult": "Value=47.24; Value=48.16; Value=49.22; Value=54.89; Value=58.27; Value=59.61; Value=76.87; Value=80.92; Value=82.82",
+      "NLquestions": [
+        "What is the number of__ in__Hastings ==,==Minnesota in__November or May or April ==,==Q2 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Library')) AND ((Quarter = 'Q2' AND Month = 'November' AND State = 'Minnesota' AND City = 'Hastings') OR (Quarter = 'Q4' AND Month = 'May' AND State = 'Minnesota' AND City = 'Hastings') OR (Quarter = 'Q2' AND Month = 'April' AND State = 'Minnesota' AND City = 'Hastings'))",
+      "GTresult": "sum_Value=273.01, avg_Value=91.00333333333333",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__Hastings ==,==Minnesota in__November or May or April ==,==Q2 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Type_of_building, Usage, sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Theatre') OR (Type_of_building = 'Culture' AND Usage = 'Concert') OR (Type_of_building = 'Service' AND Usage = 'Administration') OR (Type_of_building = 'Culture' AND Usage = 'Hospital')) AND ((Quarter = 'Q4' AND Month = 'December' AND State = 'Minnesota' AND City = 'Hastings') OR (Quarter = 'Q2' AND Month = 'November' AND State = 'Minnesota' AND City = 'Hastings') OR (Quarter = 'Q4' AND Month = 'May' AND State = 'Minnesota' AND City = 'Hastings') OR (Quarter = 'Q2' AND Month = 'April' AND State = 'Minnesota' AND City = 'Hastings')) GROUP BY Type_of_building, Usage",
+      "GTresult": "Type_of_building=Culture, Usage=Concert, sum_Value=188.53, min_Value=43.91; Type_of_building=Culture, Usage=Hospital, sum_Value=300.75, min_Value=60.14; Type_of_building=Culture, Usage=Theatre, sum_Value=58.33, min_Value=4.08; Type_of_building=Service, Usage=Administration, sum_Value=221.16, min_Value=48.39",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__Hastings ==,==Minnesota in__December or November or May or April ==,==Q4 or Q2 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Concert')) AND ((Quarter = 'Q4') OR (Quarter = 'Q2')) GROUP BY Quarter",
+      "GTresult": "min_Value=47.24; min_Value=43.91",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q4 or Q2 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Quarter, max(Value) AS max_Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Library')) AND ((Quarter = 'Q4') OR (Quarter = 'Q2')) GROUP BY Quarter",
+      "GTresult": "Quarter=Q2, max_Value=95.21; Quarter=Q4, max_Value=88.96",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q4 or Q2 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Quarter, Type_of_building, Usage, min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Museum') OR (Type_of_building = 'Culture' AND Usage = 'Concert') OR (Type_of_building = 'Culture' AND Usage = 'Hospital')) AND ((Quarter = 'Q4') OR (Quarter = 'Q2')) GROUP BY Quarter, Type_of_building, Usage",
+      "GTresult": "Quarter=Q2, Type_of_building=Culture, Usage=Concert, min_Value=47.24; Quarter=Q2, Type_of_building=Culture, Usage=Hospital, min_Value=76.87; Quarter=Q2, Type_of_building=Service, Usage=Museum, min_Value=24.59; Quarter=Q4, Type_of_building=Culture, Usage=Concert, min_Value=43.91; Quarter=Q4, Type_of_building=Culture, Usage=Hospital, min_Value=60.14; Quarter=Q4, Type_of_building=Service, Usage=Museum, min_Value=21.1",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q4 or Q2 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Hospital')) AND ((Quarter = 'Q4') OR (Quarter = 'Q2')) ORDER BY Value ASC LIMIT 3",
+      "GTresult": "Value=60.14; Value=76.87; Value=80.92",
+      "NLquestions": [
+        "What are the top/bottom_ numbers of__ in__ ==,== in__ ==,==Q4 or Q2 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Administration')) AND ((Quarter = 'Q4') OR (Quarter = 'Q2')) ORDER BY Value ASC",
+      "GTresult": "Value=48.39; Value=54.89; Value=58.27; Value=59.61",
+      "NLquestions": [
+        "What are the numbers /ascending_values of__ in__ ==,== in__ ==,==Q4 or Q2 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Quarter, Month, State, City FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Museum')) AND Value < 52.14",
+      "GTresult": "Quarter=Q4, Month=December, State=Minnesota, City=Hastings; Quarter=Q2, Month=November, State=Minnesota, City=Hastings; Quarter=Q4, Month=May, State=Minnesota, City=Hastings; Quarter=Q2, Month=April, State=Minnesota, City=Hastings",
+      "NLquestions": [
+        "What is/are_the_ the number of__ in__ ==,== in__ ==,== is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Quarter, Month, State, City, Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Administration')) AND (Quarter, Month, State, City) IN (SELECT Quarter, Month, State, City FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Museum')) AND Value < 52.14)",
+      "GTresult": "Quarter=Q4, Month=December, State=Minnesota, City=Hastings, Value=48.39; Quarter=Q2, Month=November, State=Minnesota, City=Hastings, Value=54.89; Quarter=Q4, Month=May, State=Minnesota, City=Hastings, Value=58.27; Quarter=Q2, Month=April, State=Minnesota, City=Hastings, Value=59.61",
+      "NLquestions": []
+    }
+  ]
+}

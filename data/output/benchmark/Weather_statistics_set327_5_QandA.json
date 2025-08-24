@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set327_5_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2015' AND State = 'Nevada' AND City = 'Las Vegas')) AND ((Characteristic = 'Temperature' AND Intensity = 'Breeze'))",
+      "GTresult": "Value=4.49",
+      "NLquestions": [
+        "How many days with__ Temperature were there in__Las Vegas ==,==Nevada in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Washington')) AND ((Characteristic = 'Temperature' AND Intensity = '0-10') OR (Characteristic = 'Wind' AND Intensity = '21-30') OR (Characteristic = 'Temperature' AND Intensity = '31-40') OR (Characteristic = 'Wind' AND Intensity = 'Storm') OR (Characteristic = 'Temperature' AND Intensity = 'Breeze') OR (Characteristic = 'Wind' AND Intensity = '0-10'))",
+      "GTresult": "Value=18.71; Value=21.37; Value=22.19; Value=19.14; Value=26.9; Value=26.64",
+      "NLquestions": [
+        "How many days with__ Temperature or Wind were there in__Washington ==,==Georgia in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'California' AND City = 'Columbus') OR (Year = '2021' AND State = 'Georgia' AND City = 'Berkeley')) AND ((Characteristic = 'Wind' AND Intensity = '21-30'))",
+      "GTresult": "Value=25.73; Value=4.29",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Columbus or Berkeley ==,==California or Georgia in_2017 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Nevada' AND City = 'Las Vegas') OR (Year = '2021' AND State = 'Georgia' AND City = 'Boulder City') OR (Year = '2017' AND State = 'California' AND City = 'Reno') OR (Year = '2021' AND State = 'Georgia' AND City = 'Washington') OR (Year = '2017' AND State = 'California' AND City = 'Columbus') OR (Year = '2021' AND State = 'Georgia' AND City = 'Berkeley')) AND ((Characteristic = 'Wind' AND Intensity = 'Storm'))",
+      "GTresult": "sum_Value=52.13, min_Value=3.41",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind in__Las Vegas or Boulder City or Reno or Washington or Columbus or Berkeley ==,==Nevada or Georgia or California in_2015 or 2021 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2015' AND State = 'Nevada' AND City = 'Las Vegas') OR (Year = '2017' AND State = 'California' AND City = 'Reno') OR (Year = '2021' AND State = 'Georgia' AND City = 'Washington') OR (Year = '2017' AND State = 'California' AND City = 'Columbus')) AND ((Characteristic = 'Wind' AND Intensity = '21-30') OR (Characteristic = 'Temperature' AND Intensity = '31-40') OR (Characteristic = 'Wind' AND Intensity = 'Storm'))",
+      "GTresult": "Value=0.81; Value=2.53; Value=3.41; Value=13.79; Value=14.92; Value=10.0; Value=21.37; Value=22.19; Value=19.14; Value=25.73; Value=25.98; Value=3.42",
+      "NLquestions": [
+        "How many days with__ Wind or Temperature were there in__Las Vegas or Reno or Washington or Columbus ==,==Nevada or California or Georgia in_2015 or 2017 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2017' AND State = 'California' AND City = 'Columbus')) AND ((Characteristic = 'Temperature' AND Intensity = '0-10') OR (Characteristic = 'Wind' AND Intensity = '21-30') OR (Characteristic = 'Wind' AND Intensity = 'Storm') OR (Characteristic = 'Temperature' AND Intensity = 'Breeze') OR (Characteristic = 'Wind' AND Intensity = '0-10'))",
+      "GTresult": "sum_Value=75.93, min_Value=3.42",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Columbus ==,==California in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, max(Value) AS max_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Washington') OR (Year = '2021' AND State = 'Georgia' AND City = 'Berkeley')) AND ((Characteristic = 'Temperature' AND Intensity = '0-10') OR (Characteristic = 'Wind' AND Intensity = '21-30') OR (Characteristic = 'Temperature' AND Intensity = '31-40') OR (Characteristic = 'Wind' AND Intensity = 'Storm') OR (Characteristic = 'Wind' AND Intensity = '0-10')) GROUP BY Year, State, City",
+      "GTresult": "Year=2021, State=Georgia, City=Berkeley, max_Value=15.0, avg_Value=6.922; Year=2021, State=Georgia, City=Washington, max_Value=26.64, avg_Value=21.610000000000003",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Washington or Berkeley ==,==Georgia in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Washington')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "min_Value=18.71; min_Value=19.14",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Washington ==,==Georgia in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Nevada' AND City = 'Las Vegas')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Temperature, sum_Value=7.3; Characteristic=Wind, sum_Value=9.97",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Las Vegas ==,==Nevada in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Nevada' AND City = 'Las Vegas') OR (Year = '2015' AND State = 'Nevada' AND City = 'Albany')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Temperature, Year=2015, State=Nevada, City=Albany, max_Value=19.41; Characteristic=Temperature, Year=2015, State=Nevada, City=Las Vegas, max_Value=4.49; Characteristic=Wind, Year=2015, State=Nevada, City=Albany, max_Value=23.86; Characteristic=Wind, Year=2015, State=Nevada, City=Las Vegas, max_Value=5.75",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Las Vegas or Albany ==,==Nevada in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Boulder City')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=11.22; Value=10.25; Value=9.62; Value=6.89; Value=6.48",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Temperature or Wind in__Boulder City ==,==Georgia in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Berkeley')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) ORDER BY Value ASC",
+      "GTresult": "Value=3.48; Value=4.29; Value=5.3; Value=6.54; Value=15.0; Value=21.63",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Temperature or Wind in__Berkeley ==,==Georgia in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Boulder City')) AND Value > 13.17",
+      "GTresult": "",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Boulder City ==,==Georgia in_2021 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2017' AND State = 'California' AND City = 'Columbus')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Boulder City')) AND Value > 13.17)",
+      "GTresult": "",
+      "NLquestions": []
+    }
+  ]
+}

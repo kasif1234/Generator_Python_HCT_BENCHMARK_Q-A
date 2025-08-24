@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Evolution_of_pollution_in_percent_set27_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Lenox')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Surface water'))",
+      "GTresult": "Value=88.81",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air in__Lenox ==,==Massachusetts in_ ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Lenox')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Thermal') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Noise') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Light') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Industrial') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Solid Waste') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Groundwater') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Surface water') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Oxygen-depletion') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Thermal'))",
+      "GTresult": "Value=77.76; Value=-50.71; Value=-49.06; Value=81.51; Value=83.0; Value=87.54; Value=88.81; Value=89.51; Value=94.8",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air or Soil or Water in__Lenox ==,==Massachusetts in_ ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Portland') OR (State = 'Oregon' AND City = 'Boston')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Industrial'))",
+      "GTresult": "Value=34.06; Value=-20.31",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air in__Portland or Boston ==,==Massachusetts or Oregon in_ ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT min(Value) AS min_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Salem') OR (State = 'Massachusetts' AND City = 'Portland') OR (State = 'Oregon' AND City = 'Cambridge') OR (State = 'Massachusetts' AND City = 'Lenox') OR (State = 'Oregon' AND City = 'Boston')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Solid Waste'))",
+      "GTresult": "min_Value=-13.79, sum_Value=188.66",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil in__Salem or Portland or Cambridge or Lenox or Boston ==,==Oregon or Massachusetts in_ ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Salem') OR (State = 'Massachusetts' AND City = 'Portland') OR (State = 'Massachusetts' AND City = 'Lenox')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Noise') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Groundwater') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Thermal'))",
+      "GTresult": "Value=5.53; Value=20.06; Value=26.28; Value=27.85; Value=37.53; Value=-81.6; Value=-50.71; Value=87.54; Value=94.8",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil or Water in__Salem or Portland or Lenox ==,==Oregon or Massachusetts in_ ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT min(Value) AS min_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Boston')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Thermal') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Noise') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Light') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Solid Waste') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Thermal'))",
+      "GTresult": "min_Value=-33.4, sum_Value=-98.12",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Soil or Water in__Boston ==,==Oregon in_ ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT State, City, sum(Value) AS sum_Value, max(Value) AS max_Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Salem') OR (State = 'Massachusetts' AND City = 'Portland') OR (State = 'Oregon' AND City = 'Cambridge') OR (State = 'Massachusetts' AND City = 'Lenox') OR (State = 'Oregon' AND City = 'Boston')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Thermal') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Groundwater') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Surface water') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Oxygen-depletion')) GROUP BY State, City",
+      "GTresult": "State=Massachusetts, City=Lenox, sum_Value=343.62, max_Value=89.51; State=Massachusetts, City=Portland, sum_Value=14.940000000000005, max_Value=37.53; State=Oregon, City=Boston, sum_Value=-69.28, max_Value=-10.57; State=Oregon, City=Cambridge, sum_Value=135.38, max_Value=73.7; State=Oregon, City=Salem, sum_Value=71.8, max_Value=25.14",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Water or Soil in__Salem or Portland or Cambridge or Lenox or Boston ==,==Oregon or Massachusetts in_ ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Boston')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) GROUP BY Polluted_element",
+      "GTresult": "min_Value=-23.11; min_Value=-21.85",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Boston ==,==Oregon in_ ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Polluted_element, max(Value) AS max_Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Lenox')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Water')) GROUP BY Polluted_element",
+      "GTresult": "Polluted_element=Air, max_Value=88.81; Polluted_element=Water, max_Value=94.8",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Water in__Lenox ==,==Massachusetts in_ ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Polluted_element, State, City, avg(Value) AS avg_Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Portland') OR (State = 'Oregon' AND City = 'Cambridge')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Soil')) GROUP BY Polluted_element, State, City",
+      "GTresult": "Polluted_element=Air, State=Massachusetts, City=Portland, avg_Value=32.330000000000005; Polluted_element=Air, State=Oregon, City=Cambridge, avg_Value=18.203333333333337; Polluted_element=Soil, State=Massachusetts, City=Portland, avg_Value=-6.996666666666665; Polluted_element=Soil, State=Oregon, City=Cambridge, avg_Value=62.74333333333334",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Soil in__Portland or Cambridge ==,==Massachusetts or Oregon in_ ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Boston')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Water')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=-33.4; Value=-21.85; Value=-20.31; Value=-13.43; Value=-11.88",
+      "NLquestions": [
+        "What are the top/bottom_ evolutions of_((pollution)) of_ of_Air or Water in__Boston ==,==Oregon in_ ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Portland')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Water')) ORDER BY Value ASC",
+      "GTresult": "Value=-81.6; Value=26.03; Value=33.74; Value=34.06; Value=36.9; Value=37.53",
+      "NLquestions": [
+        "What are the evolutions /increasing_values of_((pollution)) of_ of_Air or Water in__Portland ==,==Massachusetts in_ ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Oregon' AND City = 'Boston')) AND Value > 16.63",
+      "GTresult": "",
+      "NLquestions": [
+        "What is/are_the_ the evolution of_((pollution)) of_ of_ in__Boston ==,==Oregon in_ is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Polluted_element, Type_of_pollution, Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Lenox')) AND (Polluted_element, Type_of_pollution) IN (SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Oregon' AND City = 'Boston')) AND Value > 16.63)",
+      "GTresult": "",
+      "NLquestions": []
+    }
+  ]
+}

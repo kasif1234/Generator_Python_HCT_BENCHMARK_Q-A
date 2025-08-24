@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set343_1_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2015' AND State = 'Georgia' AND City = 'Albany')) AND ((Characteristic = 'Humidity' AND Intensity = 'Storm'))",
+      "GTresult": "Value=24.69",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Albany ==,==Georgia in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2015' AND State = 'Georgia' AND City = 'Malibu')) AND ((Characteristic = 'Humidity' AND Intensity = '21-30') OR (Characteristic = 'Temperature' AND Intensity = '11-20') OR (Characteristic = 'Temperature' AND Intensity = 'Calm'))",
+      "GTresult": "Value=11.38; Value=11.73; Value=0.03",
+      "NLquestions": [
+        "How many days with__ Humidity or Temperature were there in__Malibu ==,==Georgia in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'California' AND City = 'Washington') OR (Year = '2015' AND State = 'Georgia' AND City = 'Albany') OR (Year = '2020' AND State = 'California' AND City = 'Los-Angeles')) AND ((Characteristic = 'Humidity' AND Intensity = 'Storm'))",
+      "GTresult": "Value=14.87; Value=24.69; Value=27.51",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Washington or Albany or Los-Angeles ==,==California or Georgia in_2020 or 2015 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT avg(Value) AS avg_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Georgia' AND City = 'Albany') OR (Year = '2020' AND State = 'California' AND City = 'Los-Angeles')) AND ((Characteristic = 'Wind' AND Intensity = 'Low'))",
+      "GTresult": "avg_Value=16.975, min_Value=8.35",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind in__Albany or Los-Angeles ==,==Georgia or California in_2015 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2015' AND State = 'Georgia' AND City = 'Columbus') OR (Year = '2020' AND State = 'California' AND City = 'Washington') OR (Year = '2020' AND State = 'California' AND City = 'Los-Angeles') OR (Year = '2015' AND State = 'Georgia' AND City = 'Malibu')) AND ((Characteristic = 'Wind' AND Intensity = 'Medium') OR (Characteristic = 'Humidity' AND Intensity = '21-30') OR (Characteristic = 'Temperature' AND Intensity = '11-20'))",
+      "GTresult": "Value=2.03; Value=2.77; Value=3.03; Value=10.5; Value=12.65; Value=13.31; Value=24.65; Value=4.34; Value=22.6; Value=10.1; Value=11.38; Value=11.73",
+      "NLquestions": [
+        "How many days with__ Wind or Humidity or Temperature were there in__Columbus or Washington or Los-Angeles or Malibu ==,==Georgia or California in_2015 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Georgia' AND City = 'Malibu')) AND ((Characteristic = 'Wind' AND Intensity = '0-10') OR (Characteristic = 'Humidity' AND Intensity = 'Storm') OR (Characteristic = 'Temperature' AND Intensity = 'Calm'))",
+      "GTresult": "sum_Value=25.79, avg_Value=8.596666666666666",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity or Temperature in__Malibu ==,==Georgia in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, max(Value) AS max_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Georgia' AND City = 'Columbus') OR (Year = '2020' AND State = 'California' AND City = 'Washington') OR (Year = '2015' AND State = 'Georgia' AND City = 'Albany') OR (Year = '2020' AND State = 'California' AND City = 'Los-Angeles') OR (Year = '2015' AND State = 'Georgia' AND City = 'Malibu')) AND ((Characteristic = 'Temperature' AND Intensity = '11-20') OR (Characteristic = 'Humidity' AND Intensity = 'Storm') OR (Characteristic = 'Temperature' AND Intensity = 'Calm') OR (Characteristic = 'Wind' AND Intensity = 'Low')) GROUP BY Year, State, City",
+      "GTresult": "Year=2015, State=Georgia, City=Albany, max_Value=25.6, min_Value=18.83; Year=2015, State=Georgia, City=Columbus, max_Value=8.38, min_Value=3.03; Year=2015, State=Georgia, City=Malibu, max_Value=13.78, min_Value=0.03; Year=2020, State=California, City=Los-Angeles, max_Value=27.59, min_Value=8.35; Year=2020, State=California, City=Washington, max_Value=16.31, min_Value=12.83",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity or Wind in__Columbus or Washington or Albany or Los-Angeles or Malibu ==,==Georgia or California in_2015 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2020' AND State = 'California' AND City = 'Berkeley')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "min_Value=15.21; min_Value=3.37",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Berkeley ==,==California in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2020' AND State = 'California' AND City = 'Berkeley')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Humidity, avg_Value=8.726666666666667; Characteristic=Wind, avg_Value=10.06",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Berkeley ==,==California in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2020' AND State = 'California' AND City = 'Los-Angeles') OR (Year = '2020' AND State = 'California' AND City = 'Berkeley')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Humidity, Year=2020, State=California, City=Berkeley, min_Value=1.88; Characteristic=Humidity, Year=2020, State=California, City=Los-Angeles, min_Value=4.34; Characteristic=Wind, Year=2020, State=California, City=Berkeley, min_Value=3.37; Characteristic=Wind, Year=2020, State=California, City=Los-Angeles, min_Value=8.35",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Los-Angeles or Berkeley ==,==California in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'California' AND City = 'Berkeley')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=22.27; Value=21.33; Value=16.37; Value=15.21; Value=4.54",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Temperature or Wind in__Berkeley ==,==California in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2015' AND State = 'Georgia' AND City = 'Columbus')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) ORDER BY Value ASC",
+      "GTresult": "Value=0.46; Value=2.03; Value=3.03; Value=5.3; Value=7.58; Value=8.38",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Temperature or Wind in__Columbus ==,==Georgia in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2015' AND State = 'Georgia' AND City = 'Malibu')) AND Value < 13.18",
+      "GTresult": "Characteristic=Humidity, Intensity=Low; Characteristic=Temperature, Intensity=High; Characteristic=Wind, Intensity=Medium; Characteristic=Humidity, Intensity=21-30; Characteristic=Temperature, Intensity=11-20; Characteristic=Wind, Intensity=0-10; Characteristic=Humidity, Intensity=Storm; Characteristic=Temperature, Intensity=Calm",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Malibu ==,==Georgia in_2015 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2020' AND State = 'California' AND City = 'Washington')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2015' AND State = 'Georgia' AND City = 'Malibu')) AND Value < 13.18)",
+      "GTresult": "Characteristic=Humidity, Intensity=Low, Value=3.34; Characteristic=Temperature, Intensity=High, Value=10.43; Characteristic=Wind, Intensity=Medium, Value=10.5; Characteristic=Humidity, Intensity=21-30, Value=12.65; Characteristic=Temperature, Intensity=11-20, Value=13.31; Characteristic=Wind, Intensity=0-10, Value=14.15; Characteristic=Humidity, Intensity=Storm, Value=14.87; Characteristic=Temperature, Intensity=Calm, Value=16.31",
+      "NLquestions": []
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set322_4_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2015' AND State = 'Maryland' AND City = 'Las Vegas')) AND ((Characteristic = 'Wind' AND Intensity = 'Storm'))",
+      "GTresult": "Value=26.46",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Las Vegas ==,==Maryland in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Illinois' AND City = 'Columbia')) AND ((Characteristic = 'Wind' AND Intensity = 'Storm') OR (Characteristic = 'Temperature' AND Intensity = 'Calm') OR (Characteristic = 'Wind' AND Intensity = '21-30') OR (Characteristic = 'Temperature' AND Intensity = '11-20'))",
+      "GTresult": "Value=1.88; Value=2.68; Value=6.38; Value=6.31",
+      "NLquestions": [
+        "How many days with__ Wind or Temperature were there in__Columbia ==,==Illinois in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2015' AND State = 'Maryland' AND City = 'Baltimore') OR (Year = '2019' AND State = 'Illinois' AND City = 'Columbia')) AND ((Characteristic = 'Wind' AND Intensity = '21-30'))",
+      "GTresult": "Value=1.25; Value=6.38",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Baltimore or Columbia ==,==Maryland or Illinois in_2015 or 2019 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Maryland' AND City = 'Baltimore') OR (Year = '2019' AND State = 'Illinois' AND City = 'Columbia') OR (Year = '2019' AND State = 'Illinois' AND City = 'Champaign') OR (Year = '2022' AND State = 'Nevada' AND City = 'Boulder City') OR (Year = '2015' AND State = 'Maryland' AND City = 'Las Vegas')) AND ((Characteristic = 'Temperature' AND Intensity = '11-20'))",
+      "GTresult": "avg_Value=13.491999999999999, sum_Value=67.46",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature in__Baltimore or Columbia or Champaign or Boulder City or Las Vegas ==,==Maryland or Illinois or Nevada in_2015 or 2019 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2015' AND State = 'Maryland' AND City = 'Chicago') OR (Year = '2019' AND State = 'Illinois' AND City = 'Champaign')) AND ((Characteristic = 'Wind' AND Intensity = 'Storm') OR (Characteristic = 'Temperature' AND Intensity = 'Calm'))",
+      "GTresult": "Value=6.45; Value=8.28; Value=16.12; Value=22.99",
+      "NLquestions": [
+        "How many days with__ Wind or Temperature were there in__Chicago or Champaign ==,==Maryland or Illinois in_2015 or 2019 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Maryland' AND City = 'Las Vegas')) AND ((Characteristic = 'Temperature' AND Intensity = 'Calm') OR (Characteristic = 'Wind' AND Intensity = '21-30') OR (Characteristic = 'Temperature' AND Intensity = '11-20'))",
+      "GTresult": "avg_Value=11.056666666666667, min_Value=2.45",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Las Vegas ==,==Maryland in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, sum(Value) AS sum_Value, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Illinois' AND City = 'Columbia') OR (Year = '2015' AND State = 'Maryland' AND City = 'Chicago') OR (Year = '2015' AND State = 'Maryland' AND City = 'Las Vegas')) AND ((Characteristic = 'Wind' AND Intensity = 'Storm') OR (Characteristic = 'Wind' AND Intensity = '21-30')) GROUP BY Year, State, City",
+      "GTresult": "Year=2015, State=Maryland, City=Chicago, sum_Value=14.41, max_Value=7.96; Year=2015, State=Maryland, City=Las Vegas, sum_Value=28.91, max_Value=26.46; Year=2019, State=Illinois, City=Columbia, sum_Value=8.26, max_Value=6.38",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind in__Columbia or Chicago or Las Vegas ==,==Illinois or Maryland in_2019 or 2015 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2022' AND State = 'Nevada' AND City = 'Springfield')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) GROUP BY Characteristic",
+      "GTresult": "min_Value=9.37; min_Value=8.56",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Springfield ==,==Nevada in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Maryland' AND City = 'Las Vegas')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Temperature, avg_Value=15.360000000000001; Characteristic=Wind, avg_Value=14.455",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Las Vegas ==,==Maryland in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Maryland' AND City = 'Baltimore') OR (Year = '2019' AND State = 'Illinois' AND City = 'Champaign') OR (Year = '2015' AND State = 'Maryland' AND City = 'Las Vegas')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Temperature, Year=2015, State=Maryland, City=Baltimore, min_Value=1.13; Characteristic=Temperature, Year=2015, State=Maryland, City=Las Vegas, min_Value=5.53; Characteristic=Temperature, Year=2019, State=Illinois, City=Champaign, min_Value=22.99; Characteristic=Wind, Year=2015, State=Maryland, City=Baltimore, min_Value=0.79; Characteristic=Wind, Year=2015, State=Maryland, City=Las Vegas, min_Value=2.45; Characteristic=Wind, Year=2019, State=Illinois, City=Champaign, min_Value=16.12",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Baltimore or Champaign or Las Vegas ==,==Maryland or Illinois in_2015 or 2019 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Illinois' AND City = 'Champaign')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) ORDER BY Value DESC LIMIT 3",
+      "GTresult": "Value=24.29; Value=24.02; Value=22.99",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Wind or Temperature in__Champaign ==,==Illinois in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Illinois' AND City = 'Champaign')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) ORDER BY Value DESC",
+      "GTresult": "Value=24.29; Value=24.02; Value=22.99; Value=16.12",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Wind or Temperature in__Champaign ==,==Illinois in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2015' AND State = 'Maryland' AND City = 'Baltimore')) AND Value > 12.73",
+      "GTresult": "",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Baltimore ==,==Maryland in_2015 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2019' AND State = 'Illinois' AND City = 'Champaign')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2015' AND State = 'Maryland' AND City = 'Baltimore')) AND Value > 12.73)",
+      "GTresult": "",
+      "NLquestions": []
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Food_import-export_in_tons_set164_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2018' AND Quarter = 'Q2')) AND ((Category = 'Cereals' AND Item = 'Coffee'))",
+      "GTresult": "Value=986.39",
+      "NLquestions": [
+        "What is the amount of_Export of__ Cereals in__Q2 ==of==2018 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2018' AND Quarter = 'Q2')) AND ((Category = 'Beverage' AND Item = 'Oats') OR (Category = 'Cereals' AND Item = 'Wheat') OR (Category = 'Beverage' AND Item = 'Rice') OR (Category = 'Cereals' AND Item = 'Coffee'))",
+      "GTresult": "Value=851.28; Value=84.57; Value=119.08; Value=986.39",
+      "NLquestions": [
+        "What is the amount of_Export of__ Beverage or Cereals in__Q2 ==of==2018 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2020' AND Quarter = 'Q2') OR (Import_Export = 'Export' AND Year = '2022' AND Quarter = 'Q2') OR (Import_Export = 'Export' AND Year = '2018' AND Quarter = 'Q2')) AND ((Category = 'Cereals' AND Item = 'Coffee'))",
+      "GTresult": "Value=301.26; Value=956.12; Value=986.39; Value=234.92; Value=891.89",
+      "NLquestions": [
+        "What is the amount of_Export of__ Cereals in__Q2 ==of==2020 or 2022 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT min(Value) AS min_Value, max(Value) AS max_Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2020' AND Quarter = 'Q2') OR (Import_Export = 'Export' AND Year = '2022' AND Quarter = 'Q2') OR (Import_Export = 'Export' AND Year = '2018' AND Quarter = 'Q2')) AND ((Category = 'Beverage' AND Item = 'Rice'))",
+      "GTresult": "min_Value=102.96, max_Value=428.33",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Beverage in__Q2 ==of==2020 or 2022 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2020' AND Quarter = 'Q2') OR (Import_Export = 'Export' AND Year = '2022' AND Quarter = 'Q2') OR (Import_Export = 'Export' AND Year = '2018' AND Quarter = 'Q2')) AND ((Category = 'Cereals' AND Item = 'Soda') OR (Category = 'Beverage' AND Item = 'Rice') OR (Category = 'Cereals' AND Item = 'Coffee'))",
+      "GTresult": "Value=538.32; Value=428.33; Value=301.26; Value=688.01; Value=183.22; Value=956.12; Value=835.13; Value=119.08; Value=986.39; Value=219.86; Value=102.96; Value=234.92; Value=494.54; Value=377.23; Value=891.89",
+      "NLquestions": [
+        "What is the amount of_Export of__ Cereals or Beverage in__Q2 ==of==2020 or 2022 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2020' AND Quarter = 'Q2')) AND ((Category = 'Beverage' AND Item = 'Coffee') OR (Category = 'Cereals' AND Item = 'Soda') OR (Category = 'Beverage' AND Item = 'Oats') OR (Category = 'Beverage' AND Item = 'Rice') OR (Category = 'Cereals' AND Item = 'Coffee'))",
+      "GTresult": "avg_Value=358.92199999999997, min_Value=12.88",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Beverage or Cereals in__Q2 ==of==2020 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Import_Export, Year, Quarter, sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2020' AND Quarter = 'Q2') OR (Import_Export = 'Export' AND Year = '2022' AND Quarter = 'Q2') OR (Import_Export = 'Export' AND Year = '2018' AND Quarter = 'Q2')) AND ((Category = 'Beverage' AND Item = 'Coffee') OR (Category = 'Cereals' AND Item = 'Soda') OR (Category = 'Beverage' AND Item = 'Rice')) GROUP BY Import_Export, Year, Quarter",
+      "GTresult": "Import_Export=Export, Year=2018, Quarter=Q2, sum_Value=1275.68, min_Value=119.08; Import_Export=Export, Year=2020, Quarter=Q2, sum_Value=1650.13, min_Value=12.88; Import_Export=Export, Year=2022, Quarter=Q2, sum_Value=2537.92, min_Value=44.19",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Beverage or Cereals in__Q2 ==of==2020 or 2022 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2018' AND Quarter = 'Q2')) AND ((Category = 'Beverage') OR (Category = 'Cereals')) GROUP BY Category",
+      "GTresult": "min_Value=119.08; min_Value=84.57",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Beverage or Cereals in__Q2 ==of==2018 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Category, max(Value) AS max_Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2018' AND Quarter = 'Q2')) AND ((Category = 'Beverage') OR (Category = 'Cereals')) GROUP BY Category",
+      "GTresult": "Category=Beverage, max_Value=851.28; Category=Cereals, max_Value=986.39",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Beverage or Cereals in__Q2 ==of==2018 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Category, Import_Export, Year, Quarter, avg(Value) AS avg_Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2020' AND Quarter = 'Q2') OR (Import_Export = 'Export' AND Year = '2022' AND Quarter = 'Q2')) AND ((Category = 'Beverage') OR (Category = 'Cereals')) GROUP BY Category, Import_Export, Year, Quarter",
+      "GTresult": "Category=Beverage, Import_Export=Export, Year=2020, Quarter=Q2, avg_Value=382.4766666666667; Category=Beverage, Import_Export=Export, Year=2022, Quarter=Q2, avg_Value=338.70166666666665; Category=Cereals, Import_Export=Export, Year=2020, Quarter=Q2, avg_Value=366.145; Category=Cereals, Import_Export=Export, Year=2022, Quarter=Q2, avg_Value=661.6083333333333",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Beverage or Cereals in__Q2 ==of==2020 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2018' AND Quarter = 'Q2')) AND ((Category = 'Beverage') OR (Category = 'Cereals')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=84.57; Value=119.08; Value=321.47; Value=835.13; Value=851.28",
+      "NLquestions": [
+        "What are the top/bottom_ amounts of_Export of__ Beverage or Cereals in__Q2 ==of==2018 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2020' AND Quarter = 'Q2')) AND ((Category = 'Beverage') OR (Category = 'Cereals')) ORDER BY Value DESC",
+      "GTresult": "Value=991.32; Value=547.5; Value=538.32; Value=428.33; Value=411.59; Value=355.01; Value=347.78; Value=301.26; Value=234.92; Value=219.86; Value=102.96; Value=12.88",
+      "NLquestions": [
+        "What are the amounts /increasing_values of_Export of__ Beverage or Cereals in__Q2 ==of==2020 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2022' AND Quarter = 'Q2')) AND Value > 456.38",
+      "GTresult": "Category=Cereals, Item=Soda; Category=Cereals, Item=Wheat; Category=Cereals, Item=Coffee; Category=Beverage, Item=Coffee; Category=Cereals, Item=Soda; Category=Cereals, Item=Coffee",
+      "NLquestions": [
+        "What is/are_the_ the amount of_Export of__ in__Q2 ==of==2022 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Category, Item, Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2018' AND Quarter = 'Q2')) AND (Category, Item) IN (SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2022' AND Quarter = 'Q2')) AND Value > 456.38)",
+      "GTresult": "Category=Beverage, Item=Coffee, Value=321.47; Category=Cereals, Item=Soda, Value=835.13; Category=Cereals, Item=Wheat, Value=84.57; Category=Cereals, Item=Coffee, Value=986.39",
+      "NLquestions": []
+    }
+  ]
+}

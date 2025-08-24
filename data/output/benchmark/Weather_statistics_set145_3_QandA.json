@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set145_3_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Georgia' AND City = 'Columbus')) AND ((Characteristic = 'Wind' AND Intensity = '21-30'))",
+      "GTresult": "Value=3.81",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Columbus ==,==Georgia in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Florida' AND City = 'Washington')) AND ((Characteristic = 'Wind' AND Intensity = 'Storm') OR (Characteristic = 'Temperature' AND Intensity = 'Calm') OR (Characteristic = 'Wind' AND Intensity = '21-30') OR (Characteristic = 'Temperature' AND Intensity = '0-10'))",
+      "GTresult": "Value=4.17; Value=7.13; Value=8.25; Value=27.29",
+      "NLquestions": [
+        "How many days with__ Wind or Temperature were there in__Washington ==,==Florida in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Georgia' AND City = 'Columbus') OR (Year = '2019' AND State = 'Florida' AND City = 'Tampa')) AND ((Characteristic = 'Wind' AND Intensity = 'Storm'))",
+      "GTresult": "Value=0.57; Value=20.38",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Columbus or Tampa ==,==Georgia or Florida in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT min(Value) AS min_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Georgia' AND City = 'Columbus') OR (Year = '2020' AND State = 'Florida' AND City = 'Washington') OR (Year = '2019' AND State = 'Florida' AND City = 'Tampa')) AND ((Characteristic = 'Temperature' AND Intensity = '0-10'))",
+      "GTresult": "min_Value=5.42, sum_Value=59.96",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature in__Columbus or Washington or Tampa ==,==Georgia or Florida in_2019 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Georgia' AND City = 'Columbus') OR (Year = '2020' AND State = 'Florida' AND City = 'Washington') OR (Year = '2015' AND State = 'Georgia' AND City = 'Fort Lauderdale') OR (Year = '2019' AND State = 'Florida' AND City = 'Tampa')) AND ((Characteristic = 'Temperature' AND Intensity = 'Calm') OR (Characteristic = 'Wind' AND Intensity = '21-30'))",
+      "GTresult": "Value=26.41; Value=3.81; Value=7.13; Value=8.25; Value=8.91; Value=12.04; Value=24.67; Value=26.89",
+      "NLquestions": [
+        "How many days with__ Temperature or Wind were there in__Columbus or Washington or Fort Lauderdale or Tampa ==,==Georgia or Florida in_2019 or 2020 or 2015 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Georgia' AND City = 'Fort Lauderdale')) AND ((Characteristic = 'Wind' AND Intensity = 'Storm') OR (Characteristic = 'Temperature' AND Intensity = 'Calm') OR (Characteristic = 'Wind' AND Intensity = '21-30') OR (Characteristic = 'Temperature' AND Intensity = '0-10'))",
+      "GTresult": "sum_Value=49.47, avg_Value=12.3675",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Fort Lauderdale ==,==Georgia in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, avg(Value) AS avg_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2020' AND State = 'Florida' AND City = 'Washington') OR (Year = '2019' AND State = 'Florida' AND City = 'Tampa')) AND ((Characteristic = 'Wind' AND Intensity = 'Storm') OR (Characteristic = 'Wind' AND Intensity = '21-30') OR (Characteristic = 'Temperature' AND Intensity = '0-10')) GROUP BY Year, State, City",
+      "GTresult": "Year=2019, State=Florida, City=Tampa, avg_Value=24.84, min_Value=20.38; Year=2020, State=Florida, City=Washington, avg_Value=13.236666666666666, min_Value=4.17",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Washington or Tampa ==,==Florida in_2020 or 2019 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Georgia' AND City = 'Columbus')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) GROUP BY Characteristic",
+      "GTresult": "min_Value=5.42; min_Value=0.57",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Columbus ==,==Georgia in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Georgia' AND City = 'Fort Lauderdale')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Temperature, avg_Value=13.35; Characteristic=Wind, avg_Value=11.385",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Fort Lauderdale ==,==Georgia in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Georgia' AND City = 'Columbus') OR (Year = '2015' AND State = 'Georgia' AND City = 'Fort Lauderdale') OR (Year = '2019' AND State = 'Florida' AND City = 'Tampa')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Temperature, Year=2015, State=Georgia, City=Fort Lauderdale, sum_Value=26.7; Characteristic=Temperature, Year=2019, State=Florida, City=Tampa, sum_Value=51.92; Characteristic=Temperature, Year=2019, State=Georgia, City=Columbus, sum_Value=31.83; Characteristic=Wind, Year=2015, State=Georgia, City=Fort Lauderdale, sum_Value=22.77; Characteristic=Wind, Year=2019, State=Florida, City=Tampa, sum_Value=47.269999999999996; Characteristic=Wind, Year=2019, State=Georgia, City=Columbus, sum_Value=4.38",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Columbus or Fort Lauderdale or Tampa ==,==Georgia or Florida in_2019 or 2015 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2015' AND State = 'Georgia' AND City = 'Fort Lauderdale')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) ORDER BY Value ASC LIMIT 3",
+      "GTresult": "Value=8.91; Value=10.73; Value=12.04",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Wind or Temperature in__Fort Lauderdale ==,==Georgia in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Florida' AND City = 'Washington')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) ORDER BY Value ASC",
+      "GTresult": "Value=4.17; Value=7.13; Value=8.25; Value=27.29",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Wind or Temperature in__Washington ==,==Florida in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2019' AND State = 'Florida' AND City = 'Tampa')) AND Value > 14.48",
+      "GTresult": "Characteristic=Wind, Intensity=Storm; Characteristic=Temperature, Intensity=Calm; Characteristic=Wind, Intensity=21-30; Characteristic=Temperature, Intensity=0-10",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Tampa ==,==Florida in_2019 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2020' AND State = 'Florida' AND City = 'Washington')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2019' AND State = 'Florida' AND City = 'Tampa')) AND Value > 14.48)",
+      "GTresult": "Characteristic=Wind, Intensity=Storm, Value=4.17; Characteristic=Temperature, Intensity=Calm, Value=7.13; Characteristic=Wind, Intensity=21-30, Value=8.25; Characteristic=Temperature, Intensity=0-10, Value=27.29",
+      "NLquestions": []
+    }
+  ]
+}

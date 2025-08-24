@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set320_1_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Nevada' AND City = 'Las Vegas')) AND ((Characteristic = 'Wind' AND Intensity = '11-20'))",
+      "GTresult": "Value=16.39",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Las Vegas ==,==Nevada in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Oregon' AND City = 'Boulder City')) AND ((Characteristic = 'Humidity' AND Intensity = 'Medium') OR (Characteristic = 'Temperature' AND Intensity = 'High') OR (Characteristic = 'Humidity' AND Intensity = 'Storm') OR (Characteristic = 'Wind' AND Intensity = 'Calm') OR (Characteristic = 'Temperature' AND Intensity = 'Breeze') OR (Characteristic = 'Humidity' AND Intensity = '21-30') OR (Characteristic = 'Wind' AND Intensity = '11-20') OR (Characteristic = 'Temperature' AND Intensity = '31-40'))",
+      "GTresult": "Value=20.41; Value=20.65; Value=20.07; Value=27.91; Value=23.92; Value=23.29; Value=24.58; Value=4.51",
+      "NLquestions": [
+        "How many days with__ Humidity or Temperature or Wind were there in__Boulder City ==,==Oregon in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Georgia' AND City = 'Redmond') OR (Year = '2020' AND State = 'Nevada' AND City = 'Las Vegas') OR (Year = '2020' AND State = 'Oregon' AND City = 'Boulder City')) AND ((Characteristic = 'Temperature' AND Intensity = 'Breeze'))",
+      "GTresult": "Value=26.81; Value=2.45; Value=23.92",
+      "NLquestions": [
+        "How many days with__ Temperature were there in__Redmond or Las Vegas or Boulder City ==,==Georgia or Nevada or Oregon in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT avg(Value) AS avg_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Washington') OR (Year = '2020' AND State = 'Oregon' AND City = 'Albany') OR (Year = '2021' AND State = 'Nevada' AND City = 'Columbus') OR (Year = '2020' AND State = 'Georgia' AND City = 'Redmond') OR (Year = '2021' AND State = 'Oregon' AND City = 'Salem') OR (Year = '2020' AND State = 'Nevada' AND City = 'Las Vegas') OR (Year = '2021' AND State = 'Georgia' AND City = 'Reno') OR (Year = '2020' AND State = 'Oregon' AND City = 'Boulder City')) AND ((Characteristic = 'Temperature' AND Intensity = 'Breeze'))",
+      "GTresult": "avg_Value=13.4975, min_Value=2.45",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature in__Washington or Albany or Columbus or Redmond or Salem or Las Vegas or Reno or Boulder City ==,==Georgia or Oregon or Nevada in_2021 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Washington') OR (Year = '2021' AND State = 'Nevada' AND City = 'Columbus') OR (Year = '2020' AND State = 'Georgia' AND City = 'Redmond') OR (Year = '2020' AND State = 'Oregon' AND City = 'Boulder City')) AND ((Characteristic = 'Wind' AND Intensity = 'Calm') OR (Characteristic = 'Temperature' AND Intensity = 'Breeze') OR (Characteristic = 'Temperature' AND Intensity = '31-40'))",
+      "GTresult": "Value=2.56; Value=5.92; Value=1.1; Value=17.01; Value=23.72; Value=25.08; Value=24.9; Value=26.81; Value=6.92; Value=27.91; Value=23.92; Value=4.51",
+      "NLquestions": [
+        "How many days with__ Wind or Temperature were there in__Washington or Columbus or Redmond or Boulder City ==,==Georgia or Nevada or Oregon in_2021 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Reno')) AND ((Characteristic = 'Humidity' AND Intensity = 'Storm') OR (Characteristic = 'Wind' AND Intensity = 'Calm') OR (Characteristic = 'Temperature' AND Intensity = 'Breeze'))",
+      "GTresult": "sum_Value=30.240000000000002, min_Value=5.14",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind or Temperature in__Reno ==,==Georgia in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, max(Value) AS max_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Washington') OR (Year = '2020' AND State = 'Oregon' AND City = 'Albany') OR (Year = '2020' AND State = 'Georgia' AND City = 'Redmond') OR (Year = '2020' AND State = 'Nevada' AND City = 'Las Vegas') OR (Year = '2020' AND State = 'Oregon' AND City = 'Boulder City')) AND ((Characteristic = 'Humidity' AND Intensity = 'Medium') OR (Characteristic = 'Temperature' AND Intensity = 'High') OR (Characteristic = 'Temperature' AND Intensity = 'Breeze') OR (Characteristic = 'Wind' AND Intensity = '11-20') OR (Characteristic = 'Temperature' AND Intensity = '31-40')) GROUP BY Year, State, City",
+      "GTresult": "Year=2020, State=Georgia, City=Redmond, max_Value=27.23, sum_Value=113.32; Year=2020, State=Nevada, City=Las Vegas, max_Value=17.78, sum_Value=62.14; Year=2020, State=Oregon, City=Albany, max_Value=17.97, sum_Value=67.00999999999999; Year=2020, State=Oregon, City=Boulder City, max_Value=24.58, sum_Value=94.07; Year=2021, State=Georgia, City=Washington, max_Value=6.34, sum_Value=16.43",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Temperature or Wind in__Washington or Albany or Redmond or Las Vegas or Boulder City ==,==Georgia or Oregon or Nevada in_2021 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2020' AND State = 'Nevada' AND City = 'Las Vegas')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) GROUP BY Characteristic",
+      "GTresult": "min_Value=2.45; min_Value=12.03",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Las Vegas ==,==Nevada in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2020' AND State = 'Nevada' AND City = 'Las Vegas')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Humidity, sum_Value=41.35; Characteristic=Temperature, sum_Value=33.4",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Temperature in__Las Vegas ==,==Nevada in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2020' AND State = 'Oregon' AND City = 'Albany') OR (Year = '2020' AND State = 'Nevada' AND City = 'Las Vegas') OR (Year = '2021' AND State = 'Georgia' AND City = 'Reno')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Humidity, Year=2020, State=Nevada, City=Las Vegas, min_Value=12.35; Characteristic=Humidity, Year=2020, State=Oregon, City=Albany, min_Value=7.32; Characteristic=Humidity, Year=2021, State=Georgia, City=Reno, min_Value=17.15; Characteristic=Wind, Year=2020, State=Nevada, City=Las Vegas, min_Value=12.03; Characteristic=Wind, Year=2020, State=Oregon, City=Albany, min_Value=10.54; Characteristic=Wind, Year=2021, State=Georgia, City=Reno, min_Value=5.14",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Albany or Las Vegas or Reno ==,==Oregon or Nevada or Georgia in_2020 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Nevada' AND City = 'Las Vegas')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=2.45; Value=12.35; Value=13.17; Value=13.45; Value=15.55",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Humidity or Temperature in__Las Vegas ==,==Nevada in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Oregon' AND City = 'Albany')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) ORDER BY Value ASC",
+      "GTresult": "Value=10.28; Value=10.54; Value=13.69; Value=14.69; Value=16.75; Value=17.97",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Wind or Temperature in__Albany ==,==Oregon in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2020' AND State = 'Oregon' AND City = 'Boulder City')) AND Value < 14.73",
+      "GTresult": "Characteristic=Wind, Intensity=Low; Characteristic=Temperature, Intensity=31-40",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Boulder City ==,==Oregon in_2020 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Reno')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2020' AND State = 'Oregon' AND City = 'Boulder City')) AND Value < 14.73)",
+      "GTresult": "Characteristic=Wind, Intensity=Low, Value=17.7; Characteristic=Temperature, Intensity=31-40, Value=19.52",
+      "NLquestions": []
+    }
+  ]
+}

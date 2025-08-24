@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set77_4_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Minnesota' AND City = 'Tampa')) AND ((Characteristic = 'Temperature' AND Intensity = '31-40'))",
+      "GTresult": "Value=20.63",
+      "NLquestions": [
+        "How many days with__ Temperature were there in__Tampa ==,==Minnesota in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2018' AND State = 'Maryland' AND City = 'Rochester')) AND ((Characteristic = 'Temperature' AND Intensity = '21-30') OR (Characteristic = 'Humidity' AND Intensity = 'Low'))",
+      "GTresult": "Value=12.27; Value=14.71",
+      "NLquestions": [
+        "How many days with__ Temperature or Humidity were there in__Rochester ==,==Maryland in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Minnesota' AND City = 'Minneapolis') OR (Year = '2018' AND State = 'Maryland' AND City = 'Rochester') OR (Year = '2020' AND State = 'Minnesota' AND City = 'Tampa') OR (Year = '2015' AND State = 'Florida' AND City = 'Fort Lauderdale') OR (Year = '2018' AND State = 'Maryland' AND City = 'Columbia') OR (Year = '2020' AND State = 'Minnesota' AND City = 'Aberdeen')) AND ((Characteristic = 'Temperature' AND Intensity = 'High'))",
+      "GTresult": "Value=4.86; Value=14.48; Value=18.95; Value=21.18; Value=11.29; Value=21.95",
+      "NLquestions": [
+        "How many days with__ Temperature were there in__Minneapolis or Rochester or Tampa or Fort Lauderdale or Columbia or Aberdeen ==,==Minnesota or Maryland or Florida in_2020 or 2018 or 2015 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2020' AND State = 'Minnesota' AND City = 'Minneapolis') OR (Year = '2015' AND State = 'Florida' AND City = 'Hastings') OR (Year = '2018' AND State = 'Maryland' AND City = 'Columbia') OR (Year = '2020' AND State = 'Minnesota' AND City = 'Aberdeen')) AND ((Characteristic = 'Temperature' AND Intensity = '31-40'))",
+      "GTresult": "avg_Value=13.3075, sum_Value=53.23",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature in__Minneapolis or Hastings or Columbia or Aberdeen ==,==Minnesota or Florida or Maryland in_2020 or 2015 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Minnesota' AND City = 'Minneapolis') OR (Year = '2015' AND State = 'Florida' AND City = 'Hastings') OR (Year = '2018' AND State = 'Maryland' AND City = 'Rochester') OR (Year = '2015' AND State = 'Florida' AND City = 'Fort Lauderdale') OR (Year = '2018' AND State = 'Maryland' AND City = 'Columbia')) AND ((Characteristic = 'Humidity' AND Intensity = '11-20') OR (Characteristic = 'Temperature' AND Intensity = '31-40') OR (Characteristic = 'Temperature' AND Intensity = 'High'))",
+      "GTresult": "Value=1.03; Value=2.8; Value=4.86; Value=5.65; Value=8.01; Value=10.14; Value=13.37; Value=13.97; Value=14.48; Value=25.09; Value=22.32; Value=21.18; Value=23.59; Value=23.99; Value=11.29",
+      "NLquestions": [
+        "How many days with__ Humidity or Temperature were there in__Minneapolis or Hastings or Rochester or Fort Lauderdale or Columbia ==,==Minnesota or Florida or Maryland in_2020 or 2015 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT max(Value) AS max_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2018' AND State = 'Maryland' AND City = 'Columbia')) AND ((Characteristic = 'Humidity' AND Intensity = '11-20') OR (Characteristic = 'Temperature' AND Intensity = 'High'))",
+      "GTresult": "max_Value=23.59, avg_Value=17.439999999999998",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Temperature in__Columbia ==,==Maryland in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, avg(Value) AS avg_Value, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Florida' AND City = 'Hastings') OR (Year = '2018' AND State = 'Maryland' AND City = 'Rochester') OR (Year = '2020' AND State = 'Minnesota' AND City = 'Tampa') OR (Year = '2015' AND State = 'Florida' AND City = 'Fort Lauderdale') OR (Year = '2020' AND State = 'Minnesota' AND City = 'Aberdeen')) AND ((Characteristic = 'Humidity' AND Intensity = '11-20') OR (Characteristic = 'Temperature' AND Intensity = '31-40') OR (Characteristic = 'Temperature' AND Intensity = 'High') OR (Characteristic = 'Humidity' AND Intensity = 'Medium')) GROUP BY Year, State, City",
+      "GTresult": "Year=2015, State=Florida, City=Fort Lauderdale, avg_Value=22.8825, max_Value=25.09; Year=2015, State=Florida, City=Hastings, avg_Value=8.735, max_Value=11.14; Year=2018, State=Maryland, City=Rochester, avg_Value=14.940000000000001, max_Value=17.94; Year=2020, State=Minnesota, City=Aberdeen, avg_Value=20.2625, max_Value=22.21; Year=2020, State=Minnesota, City=Tampa, avg_Value=20.585, max_Value=23.37",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Temperature in__Hastings or Rochester or Tampa or Fort Lauderdale or Aberdeen ==,==Florida or Maryland or Minnesota in_2015 or 2018 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2018' AND State = 'Maryland' AND City = 'Columbia')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) GROUP BY Characteristic",
+      "GTresult": "min_Value=9.06; min_Value=11.29",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity in__Columbia ==,==Maryland in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2018' AND State = 'Maryland' AND City = 'Rochester')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Humidity, sum_Value=46.02; Characteristic=Temperature, sum_Value=40.72",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity in__Rochester ==,==Maryland in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2020' AND State = 'Minnesota' AND City = 'Minneapolis') OR (Year = '2015' AND State = 'Florida' AND City = 'Fort Lauderdale')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Humidity, Year=2015, State=Florida, City=Fort Lauderdale, min_Value=22.94; Characteristic=Humidity, Year=2020, State=Minnesota, City=Minneapolis, min_Value=1.03; Characteristic=Temperature, Year=2015, State=Florida, City=Fort Lauderdale, min_Value=20.36; Characteristic=Temperature, Year=2020, State=Minnesota, City=Minneapolis, min_Value=0.43",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity in__Minneapolis or Fort Lauderdale ==,==Minnesota or Florida in_2020 or 2015 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Minnesota' AND City = 'Tampa')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=18.51; Value=18.95; Value=19.39; Value=19.94; Value=20.63",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Temperature or Humidity in__Tampa ==,==Minnesota in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Minnesota' AND City = 'Aberdeen')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) ORDER BY Value DESC",
+      "GTresult": "Value=22.21; Value=21.95; Value=18.84; Value=18.46; Value=18.43; Value=16.09",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Temperature or Humidity in__Aberdeen ==,==Minnesota in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2018' AND State = 'Maryland' AND City = 'Columbia')) AND Value < 15.06",
+      "GTresult": "Characteristic=Humidity, Intensity=Low; Characteristic=Temperature, Intensity=High; Characteristic=Humidity, Intensity=Medium",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Columbia ==,==Maryland in_2018 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2020' AND State = 'Minnesota' AND City = 'Aberdeen')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2018' AND State = 'Maryland' AND City = 'Columbia')) AND Value < 15.06)",
+      "GTresult": "Characteristic=Humidity, Intensity=Low, Value=18.84; Characteristic=Temperature, Intensity=High, Value=21.95; Characteristic=Humidity, Intensity=Medium, Value=22.21",
+      "NLquestions": []
+    }
+  ]
+}

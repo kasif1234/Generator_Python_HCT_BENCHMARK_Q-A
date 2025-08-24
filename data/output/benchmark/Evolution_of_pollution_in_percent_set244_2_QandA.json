@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Evolution_of_pollution_in_percent_set244_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'California' AND City = 'Tampa')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Oxygen-depletion'))",
+      "GTresult": "Value=-23.22",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air in__Tampa ==,==California in_ ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'California' AND City = 'San Francisco')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Urban Activities') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Inferior Irrigation') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Thermal') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Inferior Irrigation'))",
+      "GTresult": "Value=1.61; Value=4.17; Value=24.98; Value=26.69",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil or Water or Air in__San Francisco ==,==California in_ ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'California' AND City = 'San Francisco') OR (State = 'California' AND City = 'Los-Angeles') OR (State = 'Florida' AND City = 'Fort Lauderdale') OR (State = 'California' AND City = 'Tampa')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Urban Activities'))",
+      "GTresult": "Value=24.06; Value=71.9; Value=89.15; Value=-4.27",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water in__San Francisco or Los-Angeles or Fort Lauderdale or Tampa ==,==California or Florida in_ ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, max(Value) AS max_Value FROM DBdata WHERE ((State = 'California' AND City = 'San Francisco') OR (State = 'Florida' AND City = 'Fort Lauderdale') OR (State = 'California' AND City = 'Tampa')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Oxygen-depletion'))",
+      "GTresult": "sum_Value=-58.43, max_Value=14.65",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air in__San Francisco or Fort Lauderdale or Tampa ==,==California or Florida in_ ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Malibu') OR (State = 'Florida' AND City = 'Fort Lauderdale')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Surface water') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Noise') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Thermal'))",
+      "GTresult": "Value=37.26; Value=37.33; Value=-84.81; Value=82.31; Value=-42.65; Value=-40.08",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil or Water in__Malibu or Fort Lauderdale ==,==Florida in_ ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT max(Value) AS max_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Malibu')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Chemical') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Surface water') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Light') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Inferior Irrigation'))",
+      "GTresult": "max_Value=48.94, sum_Value=-93.59",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Soil or Air in__Malibu ==,==Florida in_ ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT State, City, avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Malibu') OR (State = 'California' AND City = 'Los-Angeles') OR (State = 'Florida' AND City = 'Fort Lauderdale') OR (State = 'California' AND City = 'Tampa')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Chemical') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Oxygen-depletion') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Noise') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Thermal') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Inferior Irrigation')) GROUP BY State, City",
+      "GTresult": "State=California, City=Los-Angeles, avg_Value=-16.13, sum_Value=-80.64999999999999; State=California, City=Tampa, avg_Value=-15.968, sum_Value=-79.84; State=Florida, City=Fort Lauderdale, avg_Value=-18.764, sum_Value=-93.82; State=Florida, City=Malibu, avg_Value=-11.188, sum_Value=-55.940000000000005",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Air or Soil in__Malibu or Los-Angeles or Fort Lauderdale or Tampa ==,==Florida or California in_ ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Fort Lauderdale')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) GROUP BY Polluted_element",
+      "GTresult": "min_Value=-55.46; min_Value=-42.65",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Fort Lauderdale ==,==Florida in_ ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Polluted_element, max(Value) AS max_Value FROM DBdata WHERE ((State = 'California' AND City = 'Los-Angeles')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) GROUP BY Polluted_element",
+      "GTresult": "Polluted_element=Soil, max_Value=48.64; Polluted_element=Water, max_Value=71.9",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Los-Angeles ==,==California in_ ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Polluted_element, State, City, min(Value) AS min_Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Malibu') OR (State = 'California' AND City = 'Tampa')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Air')) GROUP BY Polluted_element, State, City",
+      "GTresult": "Polluted_element=Air, State=California, City=Tampa, min_Value=-23.22; Polluted_element=Air, State=Florida, City=Malibu, min_Value=-96.81; Polluted_element=Soil, State=California, City=Tampa, min_Value=-40.16; Polluted_element=Soil, State=Florida, City=Malibu, min_Value=-94.86",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Air in__Malibu or Tampa ==,==Florida or California in_ ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Malibu')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Air')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=-96.81; Value=-93.41; Value=-86.38; Value=31.79; Value=36.01",
+      "NLquestions": [
+        "What are the top/bottom_ evolutions of_((pollution)) of_ of_Water or Air in__Malibu ==,==Florida in_ ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Fort Lauderdale')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Air')) ORDER BY Value DESC",
+      "GTresult": "Value=89.15; Value=87.08; Value=78.33; Value=76.5; Value=74.44; Value=-39.56; Value=-42.65; Value=-49.86",
+      "NLquestions": [
+        "What are the evolutions /increasing_values of_((pollution)) of_ of_Water or Air in__Fort Lauderdale ==,==Florida in_ ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'California' AND City = 'Tampa')) AND Value < -2.14",
+      "GTresult": "Polluted_element=Soil, Type_of_pollution=Urban Activities; Polluted_element=Water, Type_of_pollution=Inferior Irrigation; Polluted_element=Water, Type_of_pollution=Chemical; Polluted_element=Air, Type_of_pollution=Oxygen-depletion; Polluted_element=Soil, Type_of_pollution=Surface water; Polluted_element=Water, Type_of_pollution=Noise; Polluted_element=Air, Type_of_pollution=Light; Polluted_element=Soil, Type_of_pollution=Thermal; Polluted_element=Water, Type_of_pollution=Urban Activities; Polluted_element=Air, Type_of_pollution=Inferior Irrigation",
+      "NLquestions": [
+        "What is/are_the_ the evolution of_((pollution)) of_ of_ in__Tampa ==,==California in_ is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Polluted_element, Type_of_pollution, Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Malibu')) AND (Polluted_element, Type_of_pollution) IN (SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'California' AND City = 'Tampa')) AND Value < -2.14)",
+      "GTresult": "Polluted_element=Soil, Type_of_pollution=Urban Activities, Value=26.67; Polluted_element=Water, Type_of_pollution=Inferior Irrigation, Value=31.79; Polluted_element=Water, Type_of_pollution=Chemical, Value=-93.41; Polluted_element=Air, Type_of_pollution=Oxygen-depletion, Value=36.01; Polluted_element=Soil, Type_of_pollution=Surface water, Value=37.26; Polluted_element=Water, Type_of_pollution=Noise, Value=37.33; Polluted_element=Air, Type_of_pollution=Light, Value=-86.38; Polluted_element=Soil, Type_of_pollution=Thermal, Value=-84.81; Polluted_element=Water, Type_of_pollution=Urban Activities, Value=46.48; Polluted_element=Air, Type_of_pollution=Inferior Irrigation, Value=48.94",
+      "NLquestions": []
+    }
+  ]
+}

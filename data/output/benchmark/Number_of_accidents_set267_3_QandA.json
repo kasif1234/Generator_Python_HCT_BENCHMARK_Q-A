@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Number_of_accidents_set267_3_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Gender = 'Male' AND Year = '2018')) AND ((Event = 'Traffic'))",
+      "GTresult": "Value=11.34; Value=30.7",
+      "NLquestions": [
+        "What is the number of_((accidents)) of__ involving_ in__ ==of==2018 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Gender = 'Male' AND Year = '2018')) AND ((Event = 'Fire') OR (Event = 'Traffic'))",
+      "GTresult": "Value=32.53; Value=11.34; Value=58.87; Value=30.7",
+      "NLquestions": [
+        "What is the number of_((accidents)) of__ involving_ in__ ==of==2018 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Gender = 'Male' AND Year = '2018') OR (Gender = 'Male' AND Year = '2015') OR (Gender = 'Male' AND Year = '2020')) AND ((Event = 'Traffic'))",
+      "GTresult": "Value=11.34; Value=78.29; Value=20.93; Value=30.7",
+      "NLquestions": [
+        "What is the number of_((accidents)) of__ involving_ in__ ==of==2018 or 2015 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, max(Value) AS max_Value FROM DBdata WHERE ((Gender = 'Male' AND Year = '2015') OR (Gender = 'Male' AND Year = '2020')) AND ((Event = 'Traffic'))",
+      "GTresult": "sum_Value=99.22, max_Value=78.29",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((accidents)) of__ involving_ in__ ==of==2015 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Gender = 'Male' AND Year = '2018') OR (Gender = 'Male' AND Year = '2020')) AND ((Event = 'Fire') OR (Event = 'Traffic'))",
+      "GTresult": "Value=32.53; Value=11.34; Value=77.38; Value=20.93; Value=58.87; Value=30.7",
+      "NLquestions": [
+        "What is the number of_((accidents)) of__ involving_ in__ ==of==2018 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, max(Value) AS max_Value FROM DBdata WHERE ((Gender = 'Male' AND Year = '2015')) AND ((Event = 'Fire') OR (Event = 'Traffic'))",
+      "GTresult": "avg_Value=78.14, max_Value=78.29",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((accidents)) of__ involving_ in__ ==of==2015 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Gender, Year, avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Gender = 'Male' AND Year = '2018') OR (Gender = 'Male' AND Year = '2015') OR (Gender = 'Male' AND Year = '2020')) AND ((Event = 'Fire') OR (Event = 'Traffic')) GROUP BY Gender, Year",
+      "GTresult": "Gender=Male, Year=2015, avg_Value=78.14, sum_Value=156.28; Gender=Male, Year=2018, avg_Value=33.36, sum_Value=133.44; Gender=Male, Year=2020, avg_Value=49.155, sum_Value=98.31",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((accidents)) of__ involving_ in__ ==of==2018 or 2015 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Gender = 'Male' AND Year = '2015')) AND ((Event = 'Fire') OR (Event = 'Traffic')) GROUP BY Event",
+      "GTresult": "min_Value=77.99; min_Value=78.29",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((accidents)) of__ involving_ in__ ==of==2015 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Event, sum(Value) AS sum_Value FROM DBdata WHERE ((Gender = 'Male' AND Year = '2020')) AND ((Event = 'Fire') OR (Event = 'Traffic')) GROUP BY Event",
+      "GTresult": "Event=Fire, sum_Value=77.38; Event=Traffic, sum_Value=20.93",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((accidents)) of__ involving_ in__ ==of==2020 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Event, Gender, Year, max(Value) AS max_Value FROM DBdata WHERE ((Gender = 'Male' AND Year = '2018') OR (Gender = 'Male' AND Year = '2015') OR (Gender = 'Male' AND Year = '2020')) AND ((Event = 'Fire') OR (Event = 'Traffic')) GROUP BY Event, Gender, Year",
+      "GTresult": "Event=Fire, Gender=Male, Year=2015, max_Value=77.99; Event=Fire, Gender=Male, Year=2018, max_Value=58.87; Event=Fire, Gender=Male, Year=2020, max_Value=77.38; Event=Traffic, Gender=Male, Year=2015, max_Value=78.29; Event=Traffic, Gender=Male, Year=2018, max_Value=30.7; Event=Traffic, Gender=Male, Year=2020, max_Value=20.93",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((accidents)) of__ involving_ in__ ==of==2018 or 2015 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Gender = 'Male' AND Year = '2020')) AND ((Event = 'Fire') OR (Event = 'Traffic')) ORDER BY Value ASC LIMIT 2",
+      "GTresult": "Value=20.93; Value=77.38",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers of_((accidents)) of__ involving_ in__ ==of==2020 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Gender = 'Male' AND Year = '2018')) AND ((Event = 'Fire') OR (Event = 'Traffic')) ORDER BY Value DESC",
+      "GTresult": "Value=58.87; Value=32.53; Value=30.7; Value=11.34",
+      "NLquestions": [
+        "What are the numbers /increasing_values of_((accidents)) of__ involving_ in__ ==of==2018 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Event FROM DBdata WHERE ((Gender = 'Male' AND Year = '2018')) AND Value < 48.50",
+      "GTresult": "Event=Fire; Event=Traffic; Event=Traffic",
+      "NLquestions": [
+        "What is/are_the_ the number of_((accidents)) of__ involving_ in__ ==of==2018 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Event, Value FROM DBdata WHERE ((Gender = 'Male' AND Year = '2015')) AND (Event) IN (SELECT Event FROM DBdata WHERE ((Gender = 'Male' AND Year = '2018')) AND Value < 48.50)",
+      "GTresult": "Event=Fire, Value=77.99; Event=Traffic, Value=78.29",
+      "NLquestions": []
+    }
+  ]
+}

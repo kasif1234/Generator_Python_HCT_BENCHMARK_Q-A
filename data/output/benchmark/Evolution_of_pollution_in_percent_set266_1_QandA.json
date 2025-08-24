@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Evolution_of_pollution_in_percent_set266_1_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Minneapolis' AND Year = '2020')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Inorganic Fertilizers'))",
+      "GTresult": "Value=39.37",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil in__Minneapolis ==,==Maryland in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Baltimore' AND Year = '2020')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Industrial') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Oxygen-depletion') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Light'))",
+      "GTresult": "Value=77.18; Value=-48.6; Value=-44.51",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil or Air in__Baltimore ==,==Maryland in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Minneapolis' AND Year = '2020') OR (State = 'Minnesota' AND City = 'Hastings' AND Year = '2022') OR (State = 'Maryland' AND City = 'Baltimore' AND Year = '2020') OR (State = 'Minnesota' AND City = 'Columbia' AND Year = '2022') OR (State = 'Maryland' AND City = 'Aberdeen' AND Year = '2020')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Light'))",
+      "GTresult": "Value=47.69; Value=-61.61; Value=-44.51; Value=-28.33; Value=-4.49",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil in__Minneapolis or Hastings or Baltimore or Columbia or Aberdeen ==,==Maryland or Minnesota in_2020 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, max(Value) AS max_Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Hastings' AND Year = '2022') OR (State = 'Minnesota' AND City = 'Columbia' AND Year = '2022') OR (State = 'Maryland' AND City = 'Aberdeen' AND Year = '2020')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Noise'))",
+      "GTresult": "sum_Value=152.65, max_Value=99.4",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air in__Hastings or Columbia or Aberdeen ==,==Minnesota or Maryland in_2022 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Minneapolis' AND Year = '2020') OR (State = 'Maryland' AND City = 'Baltimore' AND Year = '2020') OR (State = 'Minnesota' AND City = 'Columbia' AND Year = '2022') OR (State = 'Maryland' AND City = 'Aberdeen' AND Year = '2020')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Oxygen-depletion') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Surface water') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Thermal') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Inorganic Fertilizers'))",
+      "GTresult": "Value=-4.7; Value=-83.76; Value=-82.03; Value=-79.53; Value=-48.6; Value=-47.72; Value=84.47; Value=-44.93; Value=89.94; Value=-33.38; Value=-26.69; Value=-28.65; Value=-14.8; Value=-13.97; Value=-3.1; Value=-1.83",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air or Soil or Water in__Minneapolis or Baltimore or Columbia or Aberdeen ==,==Maryland or Minnesota in_2020 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT max(Value) AS max_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Rochester' AND Year = '2022')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Inferior Irrigation') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Industrial') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Oxygen-depletion') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Light') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Thermal'))",
+      "GTresult": "max_Value=17.67, avg_Value=-27.419999999999998",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Soil or Water in__Rochester ==,==Minnesota in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT State, City, Year, min(Value) AS min_Value, max(Value) AS max_Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Minneapolis' AND Year = '2020') OR (State = 'Minnesota' AND City = 'Hastings' AND Year = '2022')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Inferior Irrigation') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Groundwater') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Surface water') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Inorganic Fertilizers')) GROUP BY State, City, Year",
+      "GTresult": "State=Maryland, City=Minneapolis, Year=2020, min_Value=-88.36, max_Value=-79.53; State=Minnesota, City=Hastings, Year=2022, min_Value=-73.58, max_Value=58.05",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Water or Soil in__Minneapolis or Hastings ==,==Maryland or Minnesota in_2020 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Baltimore' AND Year = '2020')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) GROUP BY Polluted_element",
+      "GTresult": "min_Value=-54.44; min_Value=-54.53",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Baltimore ==,==Maryland in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Polluted_element, max(Value) AS max_Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Aberdeen' AND Year = '2020')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Air')) GROUP BY Polluted_element",
+      "GTresult": "Polluted_element=Air, max_Value=-1.83; Polluted_element=Water, max_Value=-3.1",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Air in__Aberdeen ==,==Maryland in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Polluted_element, State, City, Year, avg(Value) AS avg_Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Rochester' AND Year = '2022') OR (State = 'Maryland' AND City = 'Minneapolis' AND Year = '2020') OR (State = 'Maryland' AND City = 'Aberdeen' AND Year = '2020')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Air')) GROUP BY Polluted_element, State, City, Year",
+      "GTresult": "Polluted_element=Air, State=Maryland, City=Aberdeen, Year=2020, avg_Value=-12.3475; Polluted_element=Air, State=Maryland, City=Minneapolis, Year=2020, avg_Value=-31.365000000000002; Polluted_element=Air, State=Minnesota, City=Rochester, Year=2022, avg_Value=-6.332500000000001; Polluted_element=Soil, State=Maryland, City=Aberdeen, Year=2020, avg_Value=-16.245; Polluted_element=Soil, State=Maryland, City=Minneapolis, Year=2020, avg_Value=11.177499999999997; Polluted_element=Soil, State=Minnesota, City=Rochester, Year=2022, avg_Value=-15.197500000000002",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Air in__Rochester or Minneapolis or Aberdeen ==,==Minnesota or Maryland in_2022 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Baltimore' AND Year = '2020')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=84.47; Value=80.91; Value=79.5; Value=77.18; Value=-44.51",
+      "NLquestions": [
+        "What are the top/bottom_ evolutions of_((pollution)) of_ of_Soil or Water in__Baltimore ==,==Maryland in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Rochester' AND Year = '2022')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) ORDER BY Value ASC",
+      "GTresult": "Value=-93.01; Value=-91.38; Value=-0.72; Value=5.66; Value=14.1; Value=15.02; Value=17.92; Value=23.26",
+      "NLquestions": [
+        "What are the evolutions /increasing_values of_((pollution)) of_ of_Soil or Water in__Rochester ==,==Minnesota in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Rochester' AND Year = '2022')) AND Value < -10.83",
+      "GTresult": "Polluted_element=Soil, Type_of_pollution=Light; Polluted_element=Water, Type_of_pollution=Thermal; Polluted_element=Air, Type_of_pollution=Inorganic Fertilizers",
+      "NLquestions": [
+        "What is/are_the_ the evolution of_((pollution)) of_ of_ in__Rochester ==,==Minnesota in_2022 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Polluted_element, Type_of_pollution, Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Hastings' AND Year = '2022')) AND (Polluted_element, Type_of_pollution) IN (SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Rochester' AND Year = '2022')) AND Value < -10.83)",
+      "GTresult": "Polluted_element=Soil, Type_of_pollution=Light, Value=-61.61; Polluted_element=Water, Type_of_pollution=Thermal, Value=-61.91; Polluted_element=Air, Type_of_pollution=Inorganic Fertilizers, Value=-59.95",
+      "NLquestions": []
+    }
+  ]
+}

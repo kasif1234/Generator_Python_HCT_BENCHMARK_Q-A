@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set345_4_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Massachusetts' AND City = 'Boston')) AND ((Characteristic = 'Humidity' AND Intensity = 'Breeze'))",
+      "GTresult": "Value=16.16",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Boston ==,==Massachusetts in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Massachusetts' AND City = 'Cambridge')) AND ((Characteristic = 'Temperature' AND Intensity = 'High') OR (Characteristic = 'Humidity' AND Intensity = 'Calm'))",
+      "GTresult": "Value=2.06; Value=7.04",
+      "NLquestions": [
+        "How many days with__ Temperature or Humidity were there in__Cambridge ==,==Massachusetts in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Massachusetts' AND City = 'Cambridge') OR (Year = '2015' AND State = 'Florida' AND City = 'Lenox') OR (Year = '2019' AND State = 'Massachusetts' AND City = 'Boston') OR (Year = '2019' AND State = 'Massachusetts' AND City = 'Fort Lauderdale')) AND ((Characteristic = 'Humidity' AND Intensity = 'Breeze'))",
+      "GTresult": "Value=1.67; Value=10.43; Value=16.16; Value=13.02",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Cambridge or Lenox or Boston or Fort Lauderdale ==,==Massachusetts or Florida in_2019 or 2015 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Massachusetts' AND City = 'Cambridge') OR (Year = '2015' AND State = 'Florida' AND City = 'Lenox') OR (Year = '2019' AND State = 'Massachusetts' AND City = 'Boston') OR (Year = '2015' AND State = 'Florida' AND City = 'Tampa') OR (Year = '2019' AND State = 'Massachusetts' AND City = 'Fort Lauderdale')) AND ((Characteristic = 'Humidity' AND Intensity = '31-40'))",
+      "GTresult": "avg_Value=12.378, sum_Value=61.89",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity in__Cambridge or Lenox or Boston or Tampa or Fort Lauderdale ==,==Massachusetts or Florida in_2019 or 2015 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Massachusetts' AND City = 'Cambridge') OR (Year = '2019' AND State = 'Massachusetts' AND City = 'Boston') OR (Year = '2019' AND State = 'Massachusetts' AND City = 'Fort Lauderdale')) AND ((Characteristic = 'Temperature' AND Intensity = 'High') OR (Characteristic = 'Humidity' AND Intensity = '31-40') OR (Characteristic = 'Temperature' AND Intensity = '11-20'))",
+      "GTresult": "Value=2.06; Value=3.59; Value=5.79; Value=20.32; Value=22.82; Value=23.2; Value=3.13; Value=17.8; Value=6.13",
+      "NLquestions": [
+        "How many days with__ Temperature or Humidity were there in__Cambridge or Boston or Fort Lauderdale ==,==Massachusetts in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT min(Value) AS min_Value, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Massachusetts' AND City = 'Fort Lauderdale')) AND ((Characteristic = 'Humidity' AND Intensity = 'Breeze') OR (Characteristic = 'Humidity' AND Intensity = '31-40'))",
+      "GTresult": "min_Value=13.02, max_Value=17.8",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity in__Fort Lauderdale ==,==Massachusetts in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, min(Value) AS min_Value, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Massachusetts' AND City = 'Cambridge') OR (Year = '2015' AND State = 'Florida' AND City = 'Tampa') OR (Year = '2019' AND State = 'Massachusetts' AND City = 'Fort Lauderdale')) AND ((Characteristic = 'Humidity' AND Intensity = 'Breeze') OR (Characteristic = 'Humidity' AND Intensity = '31-40') OR (Characteristic = 'Wind' AND Intensity = '21-30') OR (Characteristic = 'Humidity' AND Intensity = 'Calm')) GROUP BY Year, State, City",
+      "GTresult": "Year=2015, State=Florida, City=Tampa, min_Value=3.91, max_Value=8.09; Year=2019, State=Massachusetts, City=Cambridge, min_Value=1.67, max_Value=7.04; Year=2019, State=Massachusetts, City=Fort Lauderdale, min_Value=13.02, max_Value=21.63",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Cambridge or Tampa or Fort Lauderdale ==,==Massachusetts or Florida in_2019 or 2015 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Florida' AND City = 'Tampa')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) GROUP BY Characteristic",
+      "GTresult": "min_Value=3.91; min_Value=11.76",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Temperature in__Tampa ==,==Florida in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Florida' AND City = 'Lenox')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Humidity, avg_Value=12.51; Characteristic=Wind, avg_Value=11.303333333333333",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Lenox ==,==Florida in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Florida' AND City = 'Lenox') OR (Year = '2019' AND State = 'Massachusetts' AND City = 'Boston') OR (Year = '2019' AND State = 'Massachusetts' AND City = 'Fort Lauderdale')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Temperature, Year=2015, State=Florida, City=Lenox, avg_Value=14.393333333333333; Characteristic=Temperature, Year=2019, State=Massachusetts, City=Boston, avg_Value=22.486666666666668; Characteristic=Temperature, Year=2019, State=Massachusetts, City=Fort Lauderdale, avg_Value=4.216666666666667; Characteristic=Wind, Year=2015, State=Florida, City=Lenox, avg_Value=11.303333333333333; Characteristic=Wind, Year=2019, State=Massachusetts, City=Boston, avg_Value=18.996666666666666; Characteristic=Wind, Year=2019, State=Massachusetts, City=Fort Lauderdale, avg_Value=16.326666666666668",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Lenox or Boston or Fort Lauderdale ==,==Florida or Massachusetts in_2015 or 2019 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Massachusetts' AND City = 'Boston')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=16.16; Value=20.14; Value=20.32; Value=22.82; Value=23.2",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Humidity or Temperature in__Boston ==,==Massachusetts in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Massachusetts' AND City = 'Boston')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) ORDER BY Value DESC",
+      "GTresult": "Value=23.94; Value=23.2; Value=22.82; Value=20.32; Value=20.14; Value=16.16",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Humidity or Temperature in__Boston ==,==Massachusetts in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2019' AND State = 'Massachusetts' AND City = 'Fort Lauderdale')) AND Value < 13.01",
+      "GTresult": "Characteristic=Wind, Intensity=Calm; Characteristic=Temperature, Intensity=High; Characteristic=Temperature, Intensity=11-20; Characteristic=Temperature, Intensity=Breeze",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Fort Lauderdale ==,==Massachusetts in_2019 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2019' AND State = 'Massachusetts' AND City = 'Boston')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2019' AND State = 'Massachusetts' AND City = 'Fort Lauderdale')) AND Value < 13.01)",
+      "GTresult": "Characteristic=Wind, Intensity=Calm, Value=17.9; Characteristic=Temperature, Intensity=High, Value=20.32; Characteristic=Temperature, Intensity=11-20, Value=23.2; Characteristic=Temperature, Intensity=Breeze, Value=23.94",
+      "NLquestions": []
+    }
+  ]
+}

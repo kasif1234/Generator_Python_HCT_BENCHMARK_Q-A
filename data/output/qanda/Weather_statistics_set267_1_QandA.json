@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set267_1_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Minnesota' AND City = 'Minneapolis')) AND ((Characteristic = 'Temperature' AND Intensity = '11-20'))",
+      "GTresult": "Value=24.08",
+      "NLquestions": [
+        "How many days with__ Temperature were there in__Minneapolis ==,==Minnesota in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Minnesota' AND City = 'Flint')) AND ((Characteristic = 'Temperature' AND Intensity = '11-20') OR (Characteristic = 'Wind' AND Intensity = '31-40') OR (Characteristic = 'Temperature' AND Intensity = 'Storm') OR (Characteristic = 'Wind' AND Intensity = 'Calm') OR (Characteristic = 'Temperature' AND Intensity = 'Breeze') OR (Characteristic = 'Wind' AND Intensity = '11-20'))",
+      "GTresult": "Value=13.98; Value=7.51; Value=15.83; Value=10.25; Value=17.66; Value=13.04",
+      "NLquestions": [
+        "How many days with__ Temperature or Wind were there in__Flint ==,==Minnesota in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Minnesota' AND City = 'Flint') OR (Year = '2015' AND State = 'Florida' AND City = 'Port Huron') OR (Year = '2022' AND State = 'Michigan' AND City = 'Rochester') OR (Year = '2021' AND State = 'Minnesota' AND City = 'Minneapolis') OR (Year = '2015' AND State = 'Florida' AND City = 'Hastings')) AND ((Characteristic = 'Temperature' AND Intensity = 'Breeze'))",
+      "GTresult": "Value=17.66; Value=22.7; Value=21.04; Value=9.93; Value=22.99",
+      "NLquestions": [
+        "How many days with__ Temperature were there in__Flint or Port Huron or Rochester or Minneapolis or Hastings ==,==Minnesota or Florida or Michigan in_2021 or 2015 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Florida' AND City = 'Tampa') OR (Year = '2015' AND State = 'Florida' AND City = 'Port Huron') OR (Year = '2015' AND State = 'Florida' AND City = 'Hastings')) AND ((Characteristic = 'Wind' AND Intensity = 'Calm'))",
+      "GTresult": "sum_Value=31.439999999999998, avg_Value=10.479999999999999",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind in__Tampa or Port Huron or Hastings ==,==Florida in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2015' AND State = 'Florida' AND City = 'Tampa') OR (Year = '2022' AND State = 'Michigan' AND City = 'Fort Lauderdale') OR (Year = '2015' AND State = 'Florida' AND City = 'Port Huron') OR (Year = '2022' AND State = 'Michigan' AND City = 'Rochester') OR (Year = '2015' AND State = 'Florida' AND City = 'Hastings')) AND ((Characteristic = 'Wind' AND Intensity = '31-40') OR (Characteristic = 'Temperature' AND Intensity = 'Storm') OR (Characteristic = 'Temperature' AND Intensity = 'Breeze'))",
+      "GTresult": "Value=1.2; Value=3.42; Value=4.59; Value=8.26; Value=9.72; Value=9.19; Value=20.3; Value=21.59; Value=22.7; Value=26.01; Value=27.18; Value=21.04; Value=18.26; Value=18.87; Value=22.99",
+      "NLquestions": [
+        "How many days with__ Wind or Temperature were there in__Tampa or Fort Lauderdale or Port Huron or Rochester or Hastings ==,==Florida or Michigan in_2015 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT max(Value) AS max_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2022' AND State = 'Michigan' AND City = 'Fort Lauderdale')) AND ((Characteristic = 'Wind' AND Intensity = '31-40') OR (Characteristic = 'Temperature' AND Intensity = 'Breeze') OR (Characteristic = 'Wind' AND Intensity = '11-20'))",
+      "GTresult": "max_Value=11.55, min_Value=8.26",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Fort Lauderdale ==,==Michigan in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, max(Value) AS max_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Florida' AND City = 'Port Huron') OR (Year = '2022' AND State = 'Michigan' AND City = 'Rochester') OR (Year = '2021' AND State = 'Minnesota' AND City = 'Minneapolis') OR (Year = '2015' AND State = 'Florida' AND City = 'Hastings')) AND ((Characteristic = 'Wind' AND Intensity = '31-40') OR (Characteristic = 'Wind' AND Intensity = 'Calm') OR (Characteristic = 'Temperature' AND Intensity = 'Breeze') OR (Characteristic = 'Wind' AND Intensity = '11-20')) GROUP BY Year, State, City",
+      "GTresult": "Year=2015, State=Florida, City=Hastings, max_Value=23.38, sum_Value=70.76; Year=2015, State=Florida, City=Port Huron, max_Value=24.86, sum_Value=89.08; Year=2021, State=Minnesota, City=Minneapolis, max_Value=24.93, sum_Value=55.85; Year=2022, State=Michigan, City=Rochester, max_Value=26.01, sum_Value=94.21000000000001",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Port Huron or Rochester or Minneapolis or Hastings ==,==Florida or Michigan or Minnesota in_2015 or 2022 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Minnesota' AND City = 'Minneapolis')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "min_Value=9.93; min_Value=8.43",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Minneapolis ==,==Minnesota in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2022' AND State = 'Michigan' AND City = 'Rochester')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Temperature, sum_Value=72.22; Characteristic=Wind, sum_Value=73.17",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Rochester ==,==Michigan in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Florida' AND City = 'Tampa') OR (Year = '2022' AND State = 'Michigan' AND City = 'Fort Lauderdale') OR (Year = '2015' AND State = 'Florida' AND City = 'Port Huron')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Temperature, Year=2015, State=Florida, City=Port Huron, sum_Value=63.87; Characteristic=Temperature, Year=2015, State=Florida, City=Tampa, sum_Value=8.65; Characteristic=Temperature, Year=2022, State=Michigan, City=Fort Lauderdale, sum_Value=26.77; Characteristic=Wind, Year=2015, State=Florida, City=Port Huron, sum_Value=66.38; Characteristic=Wind, Year=2015, State=Florida, City=Tampa, sum_Value=10.86; Characteristic=Wind, Year=2022, State=Michigan, City=Fort Lauderdale, sum_Value=30.0",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Tampa or Fort Lauderdale or Port Huron ==,==Florida or Michigan in_2015 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2022' AND State = 'Michigan' AND City = 'Fort Lauderdale')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=7.86; Value=8.26; Value=9.19; Value=9.72; Value=10.19",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Temperature or Wind in__Fort Lauderdale ==,==Michigan in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Minnesota' AND City = 'Minneapolis')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) ORDER BY Value ASC",
+      "GTresult": "Value=8.43; Value=9.93; Value=12.56; Value=24.08; Value=24.93; Value=27.44",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Temperature or Wind in__Minneapolis ==,==Minnesota in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2015' AND State = 'Florida' AND City = 'Port Huron')) AND Value < 15.35",
+      "GTresult": "",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Port Huron ==,==Florida in_2015 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2022' AND State = 'Michigan' AND City = 'Rochester')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2015' AND State = 'Florida' AND City = 'Port Huron')) AND Value < 15.35)",
+      "GTresult": "",
+      "NLquestions": []
+    }
+  ]
+}

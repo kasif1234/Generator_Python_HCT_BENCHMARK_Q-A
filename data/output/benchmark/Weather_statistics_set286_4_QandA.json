@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set286_4_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Michigan' AND City = 'Baltimore')) AND ((Characteristic = 'Wind' AND Intensity = 'Breeze'))",
+      "GTresult": "Value=20.81",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Baltimore ==,==Michigan in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Michigan' AND City = 'Baltimore')) AND ((Characteristic = 'Wind' AND Intensity = 'Breeze') OR (Characteristic = 'Humidity' AND Intensity = 'Calm'))",
+      "GTresult": "Value=20.81; Value=20.4",
+      "NLquestions": [
+        "How many days with__ Wind or Humidity were there in__Baltimore ==,==Michigan in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Michigan' AND City = 'Baltimore') OR (Year = '2015' AND State = 'Maryland' AND City = 'Columbia')) AND ((Characteristic = 'Wind' AND Intensity = 'Calm'))",
+      "GTresult": "Value=18.42; Value=16.14",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Baltimore or Columbia ==,==Michigan or Maryland in_2016 or 2015 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Georgia' AND City = 'Port Huron') OR (Year = '2016' AND State = 'Georgia' AND City = 'Aberdeen')) AND ((Characteristic = 'Wind' AND Intensity = 'Medium'))",
+      "GTresult": "sum_Value=20.85, min_Value=8.16",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind in__Port Huron or Aberdeen ==,==Georgia in_2015 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2015' AND State = 'Michigan' AND City = 'Detroit') OR (Year = '2015' AND State = 'Georgia' AND City = 'Port Huron') OR (Year = '2016' AND State = 'Michigan' AND City = 'Baltimore') OR (Year = '2015' AND State = 'Maryland' AND City = 'Columbia') OR (Year = '2016' AND State = 'Maryland' AND City = 'Columbus')) AND ((Characteristic = 'Humidity' AND Intensity = 'Storm') OR (Characteristic = 'Wind' AND Intensity = 'Breeze') OR (Characteristic = 'Humidity' AND Intensity = 'High'))",
+      "GTresult": "Value=1.66; Value=2.09; Value=3.65; Value=12.33; Value=11.26; Value=13.84; Value=14.56; Value=20.81; Value=12.0; Value=25.51; Value=26.54; Value=26.6; Value=16.95; Value=17.88; Value=2.33",
+      "NLquestions": [
+        "How many days with__ Humidity or Wind were there in__Detroit or Port Huron or Baltimore or Columbia or Columbus ==,==Michigan or Georgia or Maryland in_2015 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT max(Value) AS max_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Michigan' AND City = 'Detroit')) AND ((Characteristic = 'Wind' AND Intensity = 'Breeze') OR (Characteristic = 'Humidity' AND Intensity = 'High'))",
+      "GTresult": "max_Value=3.65, sum_Value=5.74",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Detroit ==,==Michigan in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Michigan' AND City = 'Detroit') OR (Year = '2016' AND State = 'Maryland' AND City = 'Flint') OR (Year = '2016' AND State = 'Georgia' AND City = 'Aberdeen')) AND ((Characteristic = 'Wind' AND Intensity = 'Calm') OR (Characteristic = 'Humidity' AND Intensity = 'Storm') OR (Characteristic = 'Wind' AND Intensity = 'Breeze') OR (Characteristic = 'Wind' AND Intensity = 'Medium') OR (Characteristic = 'Humidity' AND Intensity = 'Calm')) GROUP BY Year, State, City",
+      "GTresult": "Year=2015, State=Michigan, City=Detroit, sum_Value=14.35, avg_Value=2.87; Year=2016, State=Georgia, City=Aberdeen, sum_Value=66.98, avg_Value=13.396; Year=2016, State=Maryland, City=Flint, sum_Value=42.95, avg_Value=8.59",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Detroit or Flint or Aberdeen ==,==Michigan or Maryland or Georgia in_2015 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Maryland' AND City = 'Flint')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) GROUP BY Characteristic",
+      "GTresult": "min_Value=6.01; min_Value=6.11",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Flint ==,==Maryland in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Maryland' AND City = 'Columbus')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Humidity, avg_Value=13.563333333333333; Characteristic=Wind, avg_Value=10.633333333333333",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Columbus ==,==Maryland in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Michigan' AND City = 'Baltimore') OR (Year = '2015' AND State = 'Maryland' AND City = 'Columbia') OR (Year = '2015' AND State = 'Michigan' AND City = 'Washington')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Humidity, Year=2015, State=Maryland, City=Columbia, avg_Value=26.080000000000002; Characteristic=Humidity, Year=2015, State=Michigan, City=Washington, avg_Value=7.266666666666667; Characteristic=Humidity, Year=2016, State=Michigan, City=Baltimore, avg_Value=15.653333333333334; Characteristic=Wind, Year=2015, State=Maryland, City=Columbia, avg_Value=14.786666666666667; Characteristic=Wind, Year=2015, State=Michigan, City=Washington, avg_Value=5.663333333333334; Characteristic=Wind, Year=2016, State=Michigan, City=Baltimore, avg_Value=19.256666666666664",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Baltimore or Columbia or Washington ==,==Michigan or Maryland in_2016 or 2015 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Maryland' AND City = 'Columbus')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=0.08; Value=2.33; Value=13.94; Value=16.95; Value=17.88",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Wind or Humidity in__Columbus ==,==Maryland in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2015' AND State = 'Georgia' AND City = 'Port Huron')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) ORDER BY Value DESC",
+      "GTresult": "Value=17.17; Value=13.84; Value=12.69; Value=12.38; Value=12.33; Value=11.26",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Wind or Humidity in__Port Huron ==,==Georgia in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2016' AND State = 'Maryland' AND City = 'Flint')) AND Value < 11.74",
+      "GTresult": "Characteristic=Wind, Intensity=Calm; Characteristic=Humidity, Intensity=Storm; Characteristic=Wind, Intensity=Breeze; Characteristic=Humidity, Intensity=High; Characteristic=Wind, Intensity=Medium",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Flint ==,==Maryland in_2016 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2016' AND State = 'Michigan' AND City = 'Baltimore')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2016' AND State = 'Maryland' AND City = 'Flint')) AND Value < 11.74)",
+      "GTresult": "Characteristic=Wind, Intensity=Calm, Value=18.42; Characteristic=Humidity, Intensity=Storm, Value=14.56; Characteristic=Wind, Intensity=Breeze, Value=20.81; Characteristic=Humidity, Intensity=High, Value=12.0; Characteristic=Wind, Intensity=Medium, Value=18.54",
+      "NLquestions": []
+    }
+  ]
+}

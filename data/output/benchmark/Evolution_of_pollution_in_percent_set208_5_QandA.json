@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Evolution_of_pollution_in_percent_set208_5_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Aberdeen')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Groundwater'))",
+      "GTresult": "Value=-87.8",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil in__Aberdeen ==,==Maryland in_ ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Aberdeen')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Thermal') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Noise') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Groundwater'))",
+      "GTresult": "Value=13.19; Value=-98.83; Value=-87.8; Value=49.78; Value=49.15",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air or Soil in__Aberdeen ==,==Maryland in_ ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Aberdeen') OR (State = 'Maryland' AND City = 'Champaign') OR (State = 'Illinois' AND City = 'Chicago')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Light'))",
+      "GTresult": "Value=-96.19; Value=-71.13; Value=86.01; Value=-28.55; Value=-24.36; Value=-1.68",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water in__Aberdeen or Champaign or Chicago ==,==Maryland or Illinois in_ ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT max(Value) AS max_Value, min(Value) AS min_Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Aberdeen') OR (State = 'Illinois' AND City = 'Columbia')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Inferior Irrigation'))",
+      "GTresult": "max_Value=40.28, min_Value=-54.33",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air in__Aberdeen or Columbia ==,==Maryland or Illinois in_ ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Aberdeen') OR (State = 'Maryland' AND City = 'Champaign') OR (State = 'Illinois' AND City = 'Chicago')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Inorganic Fertilizers') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Inferior Irrigation'))",
+      "GTresult": "Value=37.45; Value=40.28; Value=89.21; Value=-37.12; Value=-22.79; Value=-4.42",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil or Air in__Aberdeen or Champaign or Chicago ==,==Maryland or Illinois in_ ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT max(Value) AS max_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Chicago')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Thermal') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Urban Activities') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Inferior Irrigation'))",
+      "GTresult": "max_Value=-4.42, sum_Value=-71.06",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air in__Chicago ==,==Illinois in_ ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT State, City, avg(Value) AS avg_Value, min(Value) AS min_Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Aberdeen') OR (State = 'Illinois' AND City = 'Columbia')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Thermal') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Noise') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Light') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Inorganic Fertilizers') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Groundwater')) GROUP BY State, City",
+      "GTresult": "State=Illinois, City=Columbia, avg_Value=22.5225, min_Value=-69.72; State=Maryland, City=Aberdeen, avg_Value=-25.5475, min_Value=-98.83",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Soil or Water in__Aberdeen or Columbia ==,==Maryland or Illinois in_ ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Champaign')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) GROUP BY Polluted_element",
+      "GTresult": "min_Value=86.63; min_Value=-33.73",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Champaign ==,==Maryland in_ ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Polluted_element, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Chicago')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) GROUP BY Polluted_element",
+      "GTresult": "Polluted_element=Soil, sum_Value=54.28; Polluted_element=Water, sum_Value=-60.35",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Chicago ==,==Illinois in_ ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Polluted_element, State, City, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Aberdeen') OR (State = 'Illinois' AND City = 'Columbia')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Soil')) GROUP BY Polluted_element, State, City",
+      "GTresult": "Polluted_element=Air, State=Illinois, City=Columbia, sum_Value=82.64999999999999; Polluted_element=Air, State=Maryland, City=Aberdeen, sum_Value=7.680000000000009; Polluted_element=Soil, State=Illinois, City=Columbia, sum_Value=25.620000000000005; Polluted_element=Soil, State=Maryland, City=Aberdeen, sum_Value=-100.03",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Soil in__Aberdeen or Columbia ==,==Maryland or Illinois in_ ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Champaign')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Soil')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=-43.22; Value=-41.56; Value=-37.12; Value=86.63; Value=89.21",
+      "NLquestions": [
+        "What are the top/bottom_ evolutions of_((pollution)) of_ of_Air or Soil in__Champaign ==,==Maryland in_ ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Aberdeen')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Water')) ORDER BY Value ASC",
+      "GTresult": "Value=-96.19; Value=-95.57; Value=-89.94; Value=-81.6; Value=-71.13; Value=13.19; Value=40.28; Value=49.78",
+      "NLquestions": [
+        "What are the evolutions /increasing_values of_((pollution)) of_ of_Air or Water in__Aberdeen ==,==Maryland in_ ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Maryland' AND City = 'Champaign')) AND Value > 4.71",
+      "GTresult": "Polluted_element=Soil, Type_of_pollution=Noise; Polluted_element=Water, Type_of_pollution=Light; Polluted_element=Soil, Type_of_pollution=Inorganic Fertilizers; Polluted_element=Water, Type_of_pollution=Solid Waste; Polluted_element=Soil, Type_of_pollution=Groundwater; Polluted_element=Air, Type_of_pollution=Thermal; Polluted_element=Soil, Type_of_pollution=Noise",
+      "NLquestions": [
+        "What is/are_the_ the evolution of_((pollution)) of_ of_ in__Champaign ==,==Maryland in_ is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Polluted_element, Type_of_pollution, Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Chicago')) AND (Polluted_element, Type_of_pollution) IN (SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Maryland' AND City = 'Champaign')) AND Value > 4.71)",
+      "GTresult": "Polluted_element=Air, Type_of_pollution=Thermal, Value=-27.12; Polluted_element=Soil, Type_of_pollution=Noise, Value=99.19; Polluted_element=Water, Type_of_pollution=Light, Value=-24.36; Polluted_element=Soil, Type_of_pollution=Inorganic Fertilizers, Value=-22.79; Polluted_element=Water, Type_of_pollution=Solid Waste, Value=-20.11; Polluted_element=Soil, Type_of_pollution=Groundwater, Value=-17.31; Polluted_element=Air, Type_of_pollution=Thermal, Value=-14.76; Polluted_element=Soil, Type_of_pollution=Noise, Value=-4.81; Polluted_element=Water, Type_of_pollution=Light, Value=-1.68",
+      "NLquestions": []
+    }
+  ]
+}

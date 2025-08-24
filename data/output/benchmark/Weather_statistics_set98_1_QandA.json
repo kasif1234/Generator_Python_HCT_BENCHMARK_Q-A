@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set98_1_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2015' AND State = 'Maryland' AND City = 'Aberdeen')) AND ((Characteristic = 'Temperature' AND Intensity = '0-10'))",
+      "GTresult": "Value=2.38",
+      "NLquestions": [
+        "How many days with__ Temperature were there in__Aberdeen ==,==Maryland in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Illinois' AND City = 'Washington')) AND ((Characteristic = 'Temperature' AND Intensity = '11-20') OR (Characteristic = 'Humidity' AND Intensity = '21-30') OR (Characteristic = 'Temperature' AND Intensity = '0-10'))",
+      "GTresult": "Value=22.54; Value=23.8; Value=26.04",
+      "NLquestions": [
+        "How many days with__ Temperature or Humidity were there in__Washington ==,==Illinois in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2015' AND State = 'Maryland' AND City = 'Aberdeen') OR (Year = '2016' AND State = 'Illinois' AND City = 'Columbia') OR (Year = '2015' AND State = 'Maryland' AND City = 'Columbus') OR (Year = '2020' AND State = 'Georgia' AND City = 'Springfield')) AND ((Characteristic = 'Temperature' AND Intensity = '0-10'))",
+      "GTresult": "Value=2.38; Value=15.3; Value=21.15; Value=21.43",
+      "NLquestions": [
+        "How many days with__ Temperature were there in__Aberdeen or Columbia or Columbus or Springfield ==,==Maryland or Illinois or Georgia in_2015 or 2016 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT avg(Value) AS avg_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Maryland' AND City = 'Aberdeen') OR (Year = '2020' AND State = 'Georgia' AND City = 'Baltimore') OR (Year = '2016' AND State = 'Illinois' AND City = 'Columbia') OR (Year = '2015' AND State = 'Maryland' AND City = 'Columbus') OR (Year = '2020' AND State = 'Georgia' AND City = 'Albany') OR (Year = '2016' AND State = 'Illinois' AND City = 'Washington') OR (Year = '2015' AND State = 'Maryland' AND City = 'Champaign') OR (Year = '2020' AND State = 'Georgia' AND City = 'Springfield')) AND ((Characteristic = 'Humidity' AND Intensity = 'Medium'))",
+      "GTresult": "avg_Value=17.02875, min_Value=3.14",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity in__Aberdeen or Baltimore or Columbia or Columbus or Albany or Washington or Champaign or Springfield ==,==Maryland or Georgia or Illinois in_2015 or 2020 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Georgia' AND City = 'Baltimore') OR (Year = '2016' AND State = 'Illinois' AND City = 'Columbia') OR (Year = '2020' AND State = 'Georgia' AND City = 'Albany') OR (Year = '2016' AND State = 'Illinois' AND City = 'Washington') OR (Year = '2015' AND State = 'Maryland' AND City = 'Champaign')) AND ((Characteristic = 'Humidity' AND Intensity = '21-30') OR (Characteristic = 'Temperature' AND Intensity = '0-10') OR (Characteristic = 'Temperature' AND Intensity = 'Low') OR (Characteristic = 'Humidity' AND Intensity = '11-20'))",
+      "GTresult": "Value=7.4; Value=8.78; Value=11.66; Value=12.71; Value=12.47; Value=15.3; Value=15.8; Value=18.63; Value=23.59; Value=23.91; Value=24.89; Value=22.31; Value=23.8; Value=26.04; Value=27.88; Value=12.6; Value=15.71; Value=15.54; Value=16.92; Value=20.44",
+      "NLquestions": [
+        "How many days with__ Humidity or Temperature were there in__Baltimore or Columbia or Albany or Washington or Champaign ==,==Georgia or Illinois or Maryland in_2020 or 2016 or 2015 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT min(Value) AS min_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Maryland' AND City = 'Columbus')) AND ((Characteristic = 'Temperature' AND Intensity = '0-10') OR (Characteristic = 'Temperature' AND Intensity = 'Low') OR (Characteristic = 'Humidity' AND Intensity = '11-20'))",
+      "GTresult": "min_Value=20.87, avg_Value=21.916666666666668",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity in__Columbus ==,==Maryland in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Maryland' AND City = 'Aberdeen') OR (Year = '2020' AND State = 'Georgia' AND City = 'Baltimore') OR (Year = '2016' AND State = 'Illinois' AND City = 'Columbia') OR (Year = '2020' AND State = 'Georgia' AND City = 'Albany') OR (Year = '2016' AND State = 'Illinois' AND City = 'Washington')) AND ((Characteristic = 'Temperature' AND Intensity = 'Low') OR (Characteristic = 'Humidity' AND Intensity = '11-20')) GROUP BY Year, State, City",
+      "GTresult": "Year=2015, State=Maryland, City=Aberdeen, avg_Value=5.045, sum_Value=10.09; Year=2016, State=Illinois, City=Columbia, avg_Value=17.215, sum_Value=34.43; Year=2016, State=Illinois, City=Washington, avg_Value=20.24, sum_Value=40.48; Year=2020, State=Georgia, City=Albany, avg_Value=23.6, sum_Value=47.2; Year=2020, State=Georgia, City=Baltimore, avg_Value=12.185, sum_Value=24.37",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity in__Aberdeen or Baltimore or Columbia or Albany or Washington ==,==Maryland or Georgia or Illinois in_2015 or 2020 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Illinois' AND City = 'Columbia')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) GROUP BY Characteristic",
+      "GTresult": "min_Value=12.47; min_Value=12.17",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity in__Columbia ==,==Illinois in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Maryland' AND City = 'Champaign')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Humidity, min_Value=15.71; Characteristic=Temperature, min_Value=0.23",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity in__Champaign ==,==Maryland in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Maryland' AND City = 'Aberdeen') OR (Year = '2020' AND State = 'Georgia' AND City = 'Albany')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Humidity, Year=2015, State=Maryland, City=Aberdeen, sum_Value=9.25; Characteristic=Humidity, Year=2020, State=Georgia, City=Albany, sum_Value=66.22999999999999; Characteristic=Temperature, Year=2015, State=Maryland, City=Aberdeen, sum_Value=7.720000000000001; Characteristic=Temperature, Year=2020, State=Georgia, City=Albany, sum_Value=73.94",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity in__Aberdeen or Albany ==,==Maryland or Georgia in_2015 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Georgia' AND City = 'Baltimore')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=12.71; Value=11.66; Value=10.23; Value=8.78; Value=7.4",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Temperature or Humidity in__Baltimore ==,==Georgia in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Georgia' AND City = 'Springfield')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) ORDER BY Value DESC",
+      "GTresult": "Value=24.81; Value=23.89; Value=22.11; Value=21.43; Value=20.52; Value=20.05",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Temperature or Humidity in__Springfield ==,==Georgia in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2015' AND State = 'Maryland' AND City = 'Columbus')) AND Value > 16.44",
+      "GTresult": "Characteristic=Temperature, Intensity=11-20; Characteristic=Humidity, Intensity=21-30; Characteristic=Temperature, Intensity=0-10; Characteristic=Humidity, Intensity=Medium; Characteristic=Temperature, Intensity=Low; Characteristic=Humidity, Intensity=11-20",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Columbus ==,==Maryland in_2015 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2015' AND State = 'Maryland' AND City = 'Champaign')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2015' AND State = 'Maryland' AND City = 'Columbus')) AND Value > 16.44)",
+      "GTresult": "Characteristic=Temperature, Intensity=11-20, Value=0.23; Characteristic=Humidity, Intensity=21-30, Value=15.71; Characteristic=Temperature, Intensity=0-10, Value=15.54; Characteristic=Humidity, Intensity=Medium, Value=16.73; Characteristic=Temperature, Intensity=Low, Value=16.92; Characteristic=Humidity, Intensity=11-20, Value=20.44",
+      "NLquestions": []
+    }
+  ]
+}

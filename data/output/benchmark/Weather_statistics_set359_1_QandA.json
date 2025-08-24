@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set359_1_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Illinois' AND City = 'Chicago')) AND ((Characteristic = 'Humidity' AND Intensity = 'Storm'))",
+      "GTresult": "Value=21.94",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Chicago ==,==Illinois in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Florida' AND City = 'Fort Lauderdale')) AND ((Characteristic = 'Humidity' AND Intensity = 'Storm') OR (Characteristic = 'Wind' AND Intensity = 'Calm') OR (Characteristic = 'Humidity' AND Intensity = 'Breeze') OR (Characteristic = 'Wind' AND Intensity = 'Medium'))",
+      "GTresult": "Value=3.77; Value=4.52; Value=5.92; Value=4.31",
+      "NLquestions": [
+        "How many days with__ Humidity or Wind were there in__Fort Lauderdale ==,==Florida in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Florida' AND City = 'Fort Lauderdale') OR (Year = '2019' AND State = 'Illinois' AND City = 'Tampa') OR (Year = '2016' AND State = 'Florida' AND City = 'Champaign') OR (Year = '2016' AND State = 'Florida' AND City = 'Springfield')) AND ((Characteristic = 'Humidity' AND Intensity = 'Storm'))",
+      "GTresult": "Value=3.77; Value=10.75; Value=16.65; Value=12.57",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Fort Lauderdale or Tampa or Champaign or Springfield ==,==Florida or Illinois in_2016 or 2019 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT min(Value) AS min_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Florida' AND City = 'Fort Lauderdale') OR (Year = '2019' AND State = 'Illinois' AND City = 'Tampa') OR (Year = '2016' AND State = 'Florida' AND City = 'Champaign') OR (Year = '2019' AND State = 'Illinois' AND City = 'Chicago') OR (Year = '2016' AND State = 'Florida' AND City = 'Springfield')) AND ((Characteristic = 'Humidity' AND Intensity = 'Breeze'))",
+      "GTresult": "min_Value=5.92, sum_Value=75.03",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity in__Fort Lauderdale or Tampa or Champaign or Chicago or Springfield ==,==Florida or Illinois in_2016 or 2019 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Florida' AND City = 'Fort Lauderdale') OR (Year = '2016' AND State = 'Florida' AND City = 'Champaign')) AND ((Characteristic = 'Wind' AND Intensity = 'Low') OR (Characteristic = 'Wind' AND Intensity = 'Calm') OR (Characteristic = 'Wind' AND Intensity = 'Medium'))",
+      "GTresult": "Value=2.08; Value=4.52; Value=4.31; Value=15.66; Value=17.11; Value=15.16",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Fort Lauderdale or Champaign ==,==Florida in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Illinois' AND City = 'Tampa')) AND ((Characteristic = 'Humidity' AND Intensity = 'Storm') OR (Characteristic = 'Wind' AND Intensity = 'Calm') OR (Characteristic = 'Wind' AND Intensity = 'Medium'))",
+      "GTresult": "avg_Value=11.25, max_Value=12.04",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Tampa ==,==Illinois in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, max(Value) AS max_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Florida' AND City = 'Fort Lauderdale') OR (Year = '2016' AND State = 'Florida' AND City = 'Champaign') OR (Year = '2019' AND State = 'Illinois' AND City = 'Chicago')) AND ((Characteristic = 'Humidity' AND Intensity = 'Storm') OR (Characteristic = 'Humidity' AND Intensity = 'Breeze')) GROUP BY Year, State, City",
+      "GTresult": "Year=2016, State=Florida, City=Champaign, max_Value=16.65, min_Value=16.23; Year=2016, State=Florida, City=Fort Lauderdale, max_Value=5.92, min_Value=3.77; Year=2019, State=Illinois, City=Chicago, max_Value=24.33, min_Value=21.94",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity in__Fort Lauderdale or Champaign or Chicago ==,==Florida or Illinois in_2016 or 2019 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Florida' AND City = 'Champaign')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "min_Value=12.9; min_Value=15.16",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Champaign ==,==Florida in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Florida' AND City = 'Champaign')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Humidity, sum_Value=45.78; Characteristic=Wind, sum_Value=47.93",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Champaign ==,==Florida in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Illinois' AND City = 'Tampa') OR (Year = '2016' AND State = 'Florida' AND City = 'Champaign') OR (Year = '2019' AND State = 'Illinois' AND City = 'Chicago')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Humidity, Year=2016, State=Florida, City=Champaign, sum_Value=45.78; Characteristic=Humidity, Year=2019, State=Illinois, City=Chicago, sum_Value=62.3; Characteristic=Humidity, Year=2019, State=Illinois, City=Tampa, sum_Value=30.630000000000003; Characteristic=Wind, Year=2016, State=Florida, City=Champaign, sum_Value=47.93; Characteristic=Wind, Year=2019, State=Illinois, City=Chicago, sum_Value=70.93; Characteristic=Wind, Year=2019, State=Illinois, City=Tampa, sum_Value=30.740000000000002",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Tampa or Champaign or Chicago ==,==Illinois or Florida in_2019 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Florida' AND City = 'Champaign')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=17.11; Value=16.65; Value=16.23; Value=15.66; Value=15.16",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Humidity or Wind in__Champaign ==,==Florida in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Florida' AND City = 'Springfield')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) ORDER BY Value ASC",
+      "GTresult": "Value=12.57; Value=16.08; Value=16.88; Value=18.0; Value=22.64; Value=22.98",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Humidity or Wind in__Springfield ==,==Florida in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2019' AND State = 'Illinois' AND City = 'Chicago')) AND Value < 13.94",
+      "GTresult": "",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Chicago ==,==Illinois in_2019 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2019' AND State = 'Illinois' AND City = 'Tampa')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2019' AND State = 'Illinois' AND City = 'Chicago')) AND Value < 13.94)",
+      "GTresult": "",
+      "NLquestions": []
+    }
+  ]
+}

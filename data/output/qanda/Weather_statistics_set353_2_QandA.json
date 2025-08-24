@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set353_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2015' AND State = 'Massachusetts' AND City = 'Redmond')) AND ((Characteristic = 'Humidity' AND Intensity = '11-20'))",
+      "GTresult": "Value=15.87",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Redmond ==,==Massachusetts in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2018' AND State = 'Oregon' AND City = 'Portland')) AND ((Characteristic = 'Wind' AND Intensity = 'High') OR (Characteristic = 'Humidity' AND Intensity = 'Storm') OR (Characteristic = 'Wind' AND Intensity = '21-30'))",
+      "GTresult": "Value=0.29; Value=3.27; Value=7.03",
+      "NLquestions": [
+        "How many days with__ Wind or Humidity were there in__Portland ==,==Oregon in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2018' AND State = 'Oregon' AND City = 'Portland') OR (Year = '2018' AND State = 'Oregon' AND City = 'Salem') OR (Year = '2015' AND State = 'Massachusetts' AND City = 'Cambridge') OR (Year = '2015' AND State = 'Massachusetts' AND City = 'Lenox')) AND ((Characteristic = 'Wind' AND Intensity = 'Calm'))",
+      "GTresult": "Value=4.74; Value=20.09; Value=27.43; Value=21.47",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Portland or Salem or Cambridge or Lenox ==,==Oregon or Massachusetts in_2018 or 2015 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2018' AND State = 'Oregon' AND City = 'Portland') OR (Year = '2018' AND State = 'Oregon' AND City = 'Salem') OR (Year = '2018' AND State = 'Oregon' AND City = 'Boston')) AND ((Characteristic = 'Temperature' AND Intensity = '31-40'))",
+      "GTresult": "sum_Value=33.4, avg_Value=11.133333333333333",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature in__Portland or Salem or Boston ==,==Oregon in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2018' AND State = 'Oregon' AND City = 'Portland') OR (Year = '2018' AND State = 'Oregon' AND City = 'Salem') OR (Year = '2015' AND State = 'Massachusetts' AND City = 'Cambridge') OR (Year = '2015' AND State = 'Massachusetts' AND City = 'Lenox')) AND ((Characteristic = 'Wind' AND Intensity = 'Calm') OR (Characteristic = 'Humidity' AND Intensity = '11-20'))",
+      "GTresult": "Value=4.74; Value=5.18; Value=20.09; Value=24.99; Value=27.43; Value=25.66; Value=21.47; Value=3.47",
+      "NLquestions": [
+        "How many days with__ Wind or Humidity were there in__Portland or Salem or Cambridge or Lenox ==,==Oregon or Massachusetts in_2018 or 2015 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT max(Value) AS max_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2018' AND State = 'Oregon' AND City = 'Salem')) AND ((Characteristic = 'Wind' AND Intensity = 'Calm') OR (Characteristic = 'Humidity' AND Intensity = '11-20'))",
+      "GTresult": "max_Value=24.99, sum_Value=45.08",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Salem ==,==Oregon in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2018' AND State = 'Oregon' AND City = 'Portland') OR (Year = '2018' AND State = 'Oregon' AND City = 'Salem') OR (Year = '2015' AND State = 'Massachusetts' AND City = 'Cambridge') OR (Year = '2015' AND State = 'Massachusetts' AND City = 'Lenox')) AND ((Characteristic = 'Temperature' AND Intensity = '31-40') OR (Characteristic = 'Humidity' AND Intensity = '11-20') OR (Characteristic = 'Temperature' AND Intensity = 'Low')) GROUP BY Year, State, City",
+      "GTresult": "Year=2015, State=Massachusetts, City=Cambridge, avg_Value=20.49, sum_Value=61.47; Year=2015, State=Massachusetts, City=Lenox, avg_Value=10.360000000000001, sum_Value=31.080000000000002; Year=2018, State=Oregon, City=Portland, avg_Value=5.53, sum_Value=16.59; Year=2018, State=Oregon, City=Salem, avg_Value=22.98, sum_Value=68.94",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity in__Portland or Salem or Cambridge or Lenox ==,==Oregon or Massachusetts in_2018 or 2015 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2018' AND State = 'Oregon' AND City = 'Boston')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) GROUP BY Characteristic",
+      "GTresult": "min_Value=5.37; min_Value=4.85",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Boston ==,==Oregon in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2018' AND State = 'Oregon' AND City = 'Salem')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Humidity, min_Value=18.35; Characteristic=Temperature, min_Value=19.13",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Temperature in__Salem ==,==Oregon in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Massachusetts' AND City = 'Redmond') OR (Year = '2018' AND State = 'Oregon' AND City = 'Salem')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Humidity, Year=2015, State=Massachusetts, City=Redmond, sum_Value=37.019999999999996; Characteristic=Humidity, Year=2018, State=Oregon, City=Salem, sum_Value=65.26; Characteristic=Temperature, Year=2015, State=Massachusetts, City=Redmond, sum_Value=39.12; Characteristic=Temperature, Year=2018, State=Oregon, City=Salem, sum_Value=63.08",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Temperature in__Redmond or Salem ==,==Massachusetts or Oregon in_2015 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2018' AND State = 'Oregon' AND City = 'Portland')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=0.29; Value=0.88; Value=4.11; Value=4.74; Value=7.03",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Wind or Temperature in__Portland ==,==Oregon in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2018' AND State = 'Oregon' AND City = 'Portland')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) ORDER BY Value DESC",
+      "GTresult": "Value=7.03; Value=5.18; Value=4.74; Value=3.27; Value=0.31; Value=0.29",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Humidity or Wind in__Portland ==,==Oregon in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2018' AND State = 'Oregon' AND City = 'Portland')) AND Value < 14.31",
+      "GTresult": "Characteristic=Humidity, Intensity=Low; Characteristic=Wind, Intensity=High; Characteristic=Temperature, Intensity=Breeze; Characteristic=Humidity, Intensity=Storm; Characteristic=Wind, Intensity=Calm; Characteristic=Temperature, Intensity=31-40; Characteristic=Humidity, Intensity=11-20; Characteristic=Wind, Intensity=21-30; Characteristic=Temperature, Intensity=Low",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Portland ==,==Oregon in_2018 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2015' AND State = 'Massachusetts' AND City = 'Cambridge')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2018' AND State = 'Oregon' AND City = 'Portland')) AND Value < 14.31)",
+      "GTresult": "Characteristic=Humidity, Intensity=Low, Value=27.32; Characteristic=Wind, Intensity=High, Value=20.66; Characteristic=Temperature, Intensity=Breeze, Value=22.06; Characteristic=Humidity, Intensity=Storm, Value=24.92; Characteristic=Wind, Intensity=Calm, Value=27.43; Characteristic=Temperature, Intensity=31-40, Value=27.31; Characteristic=Humidity, Intensity=11-20, Value=25.66; Characteristic=Wind, Intensity=21-30, Value=5.85; Characteristic=Temperature, Intensity=Low, Value=8.5",
+      "NLquestions": []
+    }
+  ]
+}

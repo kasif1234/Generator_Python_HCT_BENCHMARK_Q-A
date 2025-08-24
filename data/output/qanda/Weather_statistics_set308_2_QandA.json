@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set308_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Georgia' AND City = 'Lenox')) AND ((Characteristic = 'Humidity' AND Intensity = 'Low'))",
+      "GTresult": "Value=13.2",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Lenox ==,==Georgia in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Georgia' AND City = 'Albany')) AND ((Characteristic = 'Wind' AND Intensity = 'Storm') OR (Characteristic = 'Temperature' AND Intensity = 'Calm'))",
+      "GTresult": "Value=1.78; Value=15.81",
+      "NLquestions": [
+        "How many days with__ Wind or Temperature were there in__Albany ==,==Georgia in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Massachusetts' AND City = 'Boston') OR (Year = '2019' AND State = 'Georgia' AND City = 'Lenox') OR (Year = '2016' AND State = 'Georgia' AND City = 'Albany')) AND ((Characteristic = 'Humidity' AND Intensity = 'Low'))",
+      "GTresult": "Value=4.09; Value=13.2; Value=10.22",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Boston or Lenox or Albany ==,==Massachusetts or Georgia in_2016 or 2019 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Georgia' AND City = 'Lenox') OR (Year = '2016' AND State = 'Georgia' AND City = 'Albany')) AND ((Characteristic = 'Humidity' AND Intensity = 'Low'))",
+      "GTresult": "sum_Value=23.42, avg_Value=11.71",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity in__Lenox or Albany ==,==Georgia in_2019 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Massachusetts' AND City = 'Boston') OR (Year = '2019' AND State = 'Georgia' AND City = 'Lenox') OR (Year = '2020' AND State = 'Massachusetts' AND City = 'Columbus') OR (Year = '2016' AND State = 'Georgia' AND City = 'Albany')) AND ((Characteristic = 'Wind' AND Intensity = 'High') OR (Characteristic = 'Wind' AND Intensity = 'Storm') OR (Characteristic = 'Humidity' AND Intensity = '21-30') OR (Characteristic = 'Wind' AND Intensity = '11-20'))",
+      "GTresult": "Value=2.86; Value=5.48; Value=7.26; Value=8.76; Value=11.7; Value=5.85; Value=16.81; Value=15.59; Value=19.09; Value=19.31; Value=25.0; Value=26.16; Value=23.14; Value=1.78; Value=0.55; Value=17.39",
+      "NLquestions": [
+        "How many days with__ Wind or Humidity were there in__Boston or Lenox or Columbus or Albany ==,==Massachusetts or Georgia in_2016 or 2019 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Georgia' AND City = 'Lenox')) AND ((Characteristic = 'Humidity' AND Intensity = 'Low') OR (Characteristic = 'Wind' AND Intensity = '11-20'))",
+      "GTresult": "sum_Value=28.79, avg_Value=14.395",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Lenox ==,==Georgia in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Massachusetts' AND City = 'Boston') OR (Year = '2019' AND State = 'Georgia' AND City = 'Lenox') OR (Year = '2020' AND State = 'Massachusetts' AND City = 'Columbus') OR (Year = '2016' AND State = 'Georgia' AND City = 'Albany')) AND ((Characteristic = 'Temperature' AND Intensity = 'Medium') OR (Characteristic = 'Humidity' AND Intensity = 'Low') OR (Characteristic = 'Humidity' AND Intensity = '21-30') OR (Characteristic = 'Wind' AND Intensity = '11-20')) GROUP BY Year, State, City",
+      "GTresult": "Year=2016, State=Georgia, City=Albany, sum_Value=31.44, min_Value=0.55; Year=2016, State=Massachusetts, City=Boston, sum_Value=23.869999999999997, min_Value=3.76; Year=2019, State=Georgia, City=Lenox, sum_Value=58.29, min_Value=12.69; Year=2020, State=Massachusetts, City=Columbus, sum_Value=94.02, min_Value=20.5",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity or Wind in__Boston or Lenox or Columbus or Albany ==,==Massachusetts or Georgia in_2016 or 2019 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Georgia' AND City = 'Lenox')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "min_Value=4.85; min_Value=5.85",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Lenox ==,==Georgia in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Massachusetts' AND City = 'Boston')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Humidity, avg_Value=3.9633333333333334; Characteristic=Wind, avg_Value=5.7",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Boston ==,==Massachusetts in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Massachusetts' AND City = 'Boston') OR (Year = '2019' AND State = 'Georgia' AND City = 'Lenox') OR (Year = '2020' AND State = 'Massachusetts' AND City = 'Columbus')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Humidity, Year=2016, State=Massachusetts, City=Boston, avg_Value=3.9633333333333334; Characteristic=Humidity, Year=2019, State=Georgia, City=Lenox, avg_Value=11.62; Characteristic=Humidity, Year=2020, State=Massachusetts, City=Columbus, avg_Value=22.136666666666667; Characteristic=Temperature, Year=2016, State=Massachusetts, City=Boston, avg_Value=3.283333333333333; Characteristic=Temperature, Year=2019, State=Georgia, City=Lenox, avg_Value=12.346666666666666; Characteristic=Temperature, Year=2020, State=Massachusetts, City=Columbus, avg_Value=19.983333333333334",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity in__Boston or Lenox or Columbus ==,==Massachusetts or Georgia in_2016 or 2019 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Georgia' AND City = 'Albany')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=1.78; Value=3.28; Value=15.81; Value=17.39; Value=22.43",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Temperature or Wind in__Albany ==,==Georgia in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Massachusetts' AND City = 'Boston')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) ORDER BY Value ASC",
+      "GTresult": "Value=0.54; Value=2.86; Value=4.09; Value=5.48; Value=7.26; Value=8.76",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Humidity or Wind in__Boston ==,==Massachusetts in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2019' AND State = 'Georgia' AND City = 'Lenox')) AND Value > 12.47",
+      "GTresult": "Characteristic=Temperature, Intensity=Medium; Characteristic=Humidity, Intensity=Low; Characteristic=Temperature, Intensity=Calm; Characteristic=Humidity, Intensity=21-30; Characteristic=Wind, Intensity=11-20",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Lenox ==,==Georgia in_2019 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2016' AND State = 'Georgia' AND City = 'Albany')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2019' AND State = 'Georgia' AND City = 'Lenox')) AND Value > 12.47)",
+      "GTresult": "Characteristic=Temperature, Intensity=Medium, Value=3.28; Characteristic=Humidity, Intensity=Low, Value=10.22; Characteristic=Temperature, Intensity=Calm, Value=15.81; Characteristic=Humidity, Intensity=21-30, Value=0.55; Characteristic=Wind, Intensity=11-20, Value=17.39",
+      "NLquestions": []
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Evolution_of_pollution_in_percent_set309_1_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Baltimore' AND Year = '2018')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Urban Activities'))",
+      "GTresult": "Value=-89.32",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water in__Baltimore ==,==Illinois in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Nevada' AND City = 'Columbia' AND Year = '2022')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Solid Waste') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Oxygen-depletion') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Groundwater') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Inferior Irrigation'))",
+      "GTresult": "Value=73.25; Value=74.2; Value=76.97; Value=89.55",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water or Air in__Columbia ==,==Nevada in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Nevada' AND City = 'Columbia' AND Year = '2022') OR (State = 'Illinois' AND City = 'Baltimore' AND Year = '2018') OR (State = 'Nevada' AND City = 'Las Vegas' AND Year = '2018') OR (State = 'Illinois' AND City = 'Reno' AND Year = '2022')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Industrial'))",
+      "GTresult": "Value=52.15; Value=90.39; Value=-65.85; Value=-4.0",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water in__Columbia or Baltimore or Las Vegas or Reno ==,==Nevada or Illinois in_2022 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT min(Value) AS min_Value, max(Value) AS max_Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Springfield' AND Year = '2022') OR (State = 'Nevada' AND City = 'Las Vegas' AND Year = '2018') OR (State = 'Illinois' AND City = 'Reno' AND Year = '2022')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Inferior Irrigation'))",
+      "GTresult": "min_Value=-61.36, max_Value=12.8",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil in__Springfield or Las Vegas or Reno ==,==Illinois or Nevada in_2022 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Chicago' AND Year = '2018') OR (State = 'Maryland' AND City = 'Boulder City' AND Year = '2022') OR (State = 'Illinois' AND City = 'Reno' AND Year = '2022')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Thermal') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Inferior Irrigation'))",
+      "GTresult": "Value=46.44; Value=44.17; Value=-76.03; Value=-67.16; Value=-11.45; Value=-4.83",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil or Air in__Chicago or Boulder City or Reno ==,==Maryland or Illinois in_2018 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, max(Value) AS max_Value FROM DBdata WHERE ((State = 'Nevada' AND City = 'Columbia' AND Year = '2022')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Industrial') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Solid Waste'))",
+      "GTresult": "avg_Value=62.7, max_Value=73.25",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water in__Columbia ==,==Nevada in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT State, City, Year, min(Value) AS min_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Springfield' AND Year = '2022') OR (State = 'Nevada' AND City = 'Las Vegas' AND Year = '2018') OR (State = 'Illinois' AND City = 'Reno' AND Year = '2022')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Oxygen-depletion') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Groundwater')) GROUP BY State, City, Year",
+      "GTresult": "State=Illinois, City=Reno, Year=2022, min_Value=-14.81, sum_Value=-27.67; State=Illinois, City=Springfield, Year=2022, min_Value=19.2, sum_Value=41.43; State=Nevada, City=Las Vegas, Year=2018, min_Value=-56.02, sum_Value=-104.4",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Water in__Springfield or Las Vegas or Reno ==,==Illinois or Nevada in_2022 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Baltimore' AND Year = '2018')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) GROUP BY Polluted_element",
+      "GTresult": "min_Value=-94.28; min_Value=-95.28",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Baltimore ==,==Illinois in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Polluted_element, max(Value) AS max_Value FROM DBdata WHERE ((State = 'Nevada' AND City = 'Columbia' AND Year = '2022')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) GROUP BY Polluted_element",
+      "GTresult": "Polluted_element=Soil, max_Value=89.43; Polluted_element=Water, max_Value=89.76",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Columbia ==,==Nevada in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Polluted_element, State, City, Year, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Chicago' AND Year = '2018') OR (State = 'Nevada' AND City = 'Columbia' AND Year = '2022') OR (State = 'Maryland' AND City = 'Boulder City' AND Year = '2022')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) GROUP BY Polluted_element, State, City, Year",
+      "GTresult": "Polluted_element=Soil, State=Maryland, City=Boulder City, Year=2022, sum_Value=-401.37; Polluted_element=Soil, State=Maryland, City=Chicago, Year=2018, sum_Value=215.94; Polluted_element=Soil, State=Nevada, City=Columbia, Year=2022, sum_Value=363.74; Polluted_element=Water, State=Maryland, City=Boulder City, Year=2022, sum_Value=-392.65; Polluted_element=Water, State=Maryland, City=Chicago, Year=2018, sum_Value=201.18; Polluted_element=Water, State=Nevada, City=Columbia, Year=2022, sum_Value=378.61",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Chicago or Columbia or Boulder City ==,==Maryland or Nevada in_2018 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Boulder City' AND Year = '2022')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=-86.95; Value=-86.87; Value=-83.78; Value=-83.29; Value=-82.81",
+      "NLquestions": [
+        "What are the top/bottom_ evolutions of_((pollution)) of_ of_Soil or Water in__Boulder City ==,==Maryland in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Baltimore' AND Year = '2018')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Air')) ORDER BY Value ASC",
+      "GTresult": "Value=-95.28; Value=-94.15; Value=-93.38; Value=-93.14; Value=-90.35; Value=-89.32; Value=44.1; Value=90.39; Value=94.11; Value=94.94",
+      "NLquestions": [
+        "What are the evolutions /increasing_values of_((pollution)) of_ of_Water or Air in__Baltimore ==,==Illinois in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Illinois' AND City = 'Springfield' AND Year = '2022')) AND Value > -1.99",
+      "GTresult": "Polluted_element=Soil, Type_of_pollution=Inorganic Fertilizers; Polluted_element=Water, Type_of_pollution=Industrial; Polluted_element=Air, Type_of_pollution=Urban Activities; Polluted_element=Soil, Type_of_pollution=Inferior Irrigation; Polluted_element=Water, Type_of_pollution=Solid Waste; Polluted_element=Air, Type_of_pollution=Oxygen-depletion; Polluted_element=Soil, Type_of_pollution=Surface water; Polluted_element=Water, Type_of_pollution=Groundwater; Polluted_element=Air, Type_of_pollution=Chemical; Polluted_element=Soil, Type_of_pollution=Thermal; Polluted_element=Water, Type_of_pollution=Light; Polluted_element=Air, Type_of_pollution=Inorganic Fertilizers; Polluted_element=Soil, Type_of_pollution=Industrial; Polluted_element=Water, Type_of_pollution=Urban Activities; Polluted_element=Air, Type_of_pollution=Inferior Irrigation",
+      "NLquestions": [
+        "What is/are_the_ the evolution of_((pollution)) of_ of_ in__Springfield ==,==Illinois in_2022 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Polluted_element, Type_of_pollution, Value FROM DBdata WHERE ((State = 'Nevada' AND City = 'Columbia' AND Year = '2022')) AND (Polluted_element, Type_of_pollution) IN (SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Illinois' AND City = 'Springfield' AND Year = '2022')) AND Value > -1.99)",
+      "GTresult": "Polluted_element=Soil, Type_of_pollution=Inorganic Fertilizers, Value=52.88; Polluted_element=Water, Type_of_pollution=Industrial, Value=52.15; Polluted_element=Air, Type_of_pollution=Urban Activities, Value=57.5; Polluted_element=Soil, Type_of_pollution=Inferior Irrigation, Value=66.61; Polluted_element=Water, Type_of_pollution=Solid Waste, Value=73.25; Polluted_element=Air, Type_of_pollution=Oxygen-depletion, Value=74.2; Polluted_element=Soil, Type_of_pollution=Surface water, Value=75.12; Polluted_element=Water, Type_of_pollution=Groundwater, Value=76.97; Polluted_element=Air, Type_of_pollution=Chemical, Value=76.2; Polluted_element=Soil, Type_of_pollution=Thermal, Value=79.7; Polluted_element=Water, Type_of_pollution=Light, Value=86.48; Polluted_element=Air, Type_of_pollution=Inorganic Fertilizers, Value=87.16; Polluted_element=Soil, Type_of_pollution=Industrial, Value=89.43; Polluted_element=Water, Type_of_pollution=Urban Activities, Value=89.76; Polluted_element=Air, Type_of_pollution=Inferior Irrigation, Value=89.55",
+      "NLquestions": []
+    }
+  ]
+}

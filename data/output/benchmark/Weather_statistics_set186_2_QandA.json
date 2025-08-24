@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set186_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019')) AND ((Characteristic = 'Wind' AND Intensity = 'Storm'))",
+      "GTresult": "Value=0.67",
+      "NLquestions": [
+        "How many days with__ Wind were there in__ ==,== in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019')) AND ((Characteristic = 'Wind' AND Intensity = '31-40') OR (Characteristic = 'Humidity' AND Intensity = 'Calm'))",
+      "GTresult": "Value=8.81; Value=14.13",
+      "NLquestions": [
+        "How many days with__ Wind or Humidity were there in__ ==,== in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019') OR (Year = '2022')) AND ((Characteristic = 'Wind' AND Intensity = '31-40'))",
+      "GTresult": "Value=8.81; Value=20.96",
+      "NLquestions": [
+        "How many days with__ Wind were there in__ ==,== in_2019 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2019') OR (Year = '2022')) AND ((Characteristic = 'Humidity' AND Intensity = 'Calm'))",
+      "GTresult": "sum_Value=41.33, avg_Value=20.665",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity in__ ==,== in_2019 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019') OR (Year = '2022')) AND ((Characteristic = 'Wind' AND Intensity = 'Storm') OR (Characteristic = 'Wind' AND Intensity = '31-40') OR (Characteristic = 'Temperature' AND Intensity = '11-20') OR (Characteristic = 'Humidity' AND Intensity = 'High'))",
+      "GTresult": "Value=0.67; Value=8.81; Value=9.06; Value=11.98; Value=14.58; Value=20.96; Value=21.74; Value=22.01",
+      "NLquestions": [
+        "How many days with__ Wind or Temperature or Humidity were there in__ ==,== in_2019 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2022')) AND ((Characteristic = 'Wind' AND Intensity = 'Storm') OR (Characteristic = 'Temperature' AND Intensity = 'Calm') OR (Characteristic = 'Wind' AND Intensity = 'Low'))",
+      "GTresult": "avg_Value=11.950000000000001, max_Value=21.23",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__ ==,== in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, max(Value) AS max_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2019') OR (Year = '2022')) AND ((Characteristic = 'Wind' AND Intensity = 'Storm') OR (Characteristic = 'Humidity' AND Intensity = '21-30') OR (Characteristic = 'Humidity' AND Intensity = 'High') OR (Characteristic = 'Temperature' AND Intensity = 'Storm') OR (Characteristic = 'Humidity' AND Intensity = 'Calm')) GROUP BY Year",
+      "GTresult": "Year=2019, max_Value=14.13, min_Value=0.67; Year=2022, max_Value=27.2, min_Value=14.58",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity or Temperature in__ ==,== in_2019 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2019')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) GROUP BY Characteristic",
+      "GTresult": "min_Value=2.09; min_Value=0.67",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__ ==,== in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2019')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Humidity, max_Value=14.13; Characteristic=Temperature, max_Value=13.87",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity in__ ==,== in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2019') OR (Year = '2022')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) GROUP BY Characteristic, Year",
+      "GTresult": "Characteristic=Humidity, Year=2019, avg_Value=10.033333333333333; Characteristic=Humidity, Year=2022, avg_Value=22.11; Characteristic=Wind, Year=2019, avg_Value=6.900000000000001; Characteristic=Wind, Year=2022, avg_Value=18.923333333333336",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__ ==,== in_2019 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2022')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=0.04; Value=14.58; Value=20.96; Value=21.15; Value=21.23",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Wind or Temperature in__ ==,== in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) ORDER BY Value DESC",
+      "GTresult": "Value=14.13; Value=13.87; Value=11.98; Value=9.06; Value=3.99; Value=2.09",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Temperature or Humidity in__ ==,== in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2019')) AND Value > 13.44",
+      "GTresult": "Characteristic=Temperature, Intensity=Storm; Characteristic=Humidity, Intensity=Calm",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__ ==,== in_2019 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2022')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2019')) AND Value > 13.44)",
+      "GTresult": "Characteristic=Temperature, Intensity=Storm, Value=21.15; Characteristic=Humidity, Intensity=Calm, Value=27.2",
+      "NLquestions": []
+    }
+  ]
+}

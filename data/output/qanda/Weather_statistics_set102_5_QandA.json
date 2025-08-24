@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set102_5_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'Illinois' AND City = 'Columbia')) AND ((Characteristic = 'Temperature' AND Intensity = 'Storm'))",
+      "GTresult": "Value=10.65",
+      "NLquestions": [
+        "How many days with__ Temperature were there in__Columbia ==,==Illinois in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'Massachusetts' AND City = 'Boston')) AND ((Characteristic = 'Wind' AND Intensity = 'Breeze') OR (Characteristic = 'Wind' AND Intensity = 'Calm'))",
+      "GTresult": "Value=26.44; Value=7.35",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Boston ==,==Massachusetts in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Maryland' AND City = 'Baltimore') OR (Year = '2017' AND State = 'Illinois' AND City = 'Columbia') OR (Year = '2016' AND State = 'Massachusetts' AND City = 'Aberdeen') OR (Year = '2017' AND State = 'Maryland' AND City = 'Chicago') OR (Year = '2016' AND State = 'Maryland' AND City = 'Cambridge')) AND ((Characteristic = 'Temperature' AND Intensity = 'Storm'))",
+      "GTresult": "Value=4.67; Value=10.65; Value=16.65; Value=18.7; Value=15.72",
+      "NLquestions": [
+        "How many days with__ Temperature were there in__Baltimore or Columbia or Aberdeen or Chicago or Cambridge ==,==Maryland or Illinois or Massachusetts in_2016 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT min(Value) AS min_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Maryland' AND City = 'Baltimore') OR (Year = '2017' AND State = 'Illinois' AND City = 'Columbia') OR (Year = '2016' AND State = 'Massachusetts' AND City = 'Aberdeen') OR (Year = '2017' AND State = 'Maryland' AND City = 'Chicago') OR (Year = '2016' AND State = 'Illinois' AND City = 'Springfield') OR (Year = '2017' AND State = 'Massachusetts' AND City = 'Boston') OR (Year = '2016' AND State = 'Maryland' AND City = 'Cambridge') OR (Year = '2017' AND State = 'Illinois' AND City = 'Lenox')) AND ((Characteristic = 'Temperature' AND Intensity = 'Storm'))",
+      "GTresult": "min_Value=4.67, sum_Value=123.86",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature in__Baltimore or Columbia or Aberdeen or Chicago or Springfield or Boston or Cambridge or Lenox ==,==Maryland or Illinois or Massachusetts in_2016 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Massachusetts' AND City = 'Aberdeen') OR (Year = '2017' AND State = 'Maryland' AND City = 'Chicago') OR (Year = '2016' AND State = 'Illinois' AND City = 'Springfield') OR (Year = '2017' AND State = 'Massachusetts' AND City = 'Boston') OR (Year = '2016' AND State = 'Maryland' AND City = 'Cambridge')) AND ((Characteristic = 'Temperature' AND Intensity = '0-10') OR (Characteristic = 'Wind' AND Intensity = 'Calm'))",
+      "GTresult": "Value=11.94; Value=17.48; Value=19.56; Value=14.04; Value=25.87; Value=21.31; Value=23.95; Value=7.35; Value=11.04; Value=16.03",
+      "NLquestions": [
+        "How many days with__ Temperature or Wind were there in__Aberdeen or Chicago or Springfield or Boston or Cambridge ==,==Massachusetts or Maryland or Illinois in_2016 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2017' AND State = 'Maryland' AND City = 'Chicago')) AND ((Characteristic = 'Temperature' AND Intensity = '0-10') OR (Characteristic = 'Wind' AND Intensity = 'Calm'))",
+      "GTresult": "sum_Value=33.599999999999994, avg_Value=16.799999999999997",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Chicago ==,==Maryland in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, min(Value) AS min_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Maryland' AND City = 'Baltimore') OR (Year = '2016' AND State = 'Massachusetts' AND City = 'Aberdeen') OR (Year = '2017' AND State = 'Maryland' AND City = 'Chicago') OR (Year = '2017' AND State = 'Illinois' AND City = 'Lenox')) AND ((Characteristic = 'Temperature' AND Intensity = '31-40') OR (Characteristic = 'Wind' AND Intensity = '11-20')) GROUP BY Year, State, City",
+      "GTresult": "Year=2016, State=Maryland, City=Baltimore, min_Value=0.83, sum_Value=2.7199999999999998; Year=2016, State=Massachusetts, City=Aberdeen, min_Value=12.43, sum_Value=25.48; Year=2017, State=Illinois, City=Lenox, min_Value=16.07, sum_Value=33.7; Year=2017, State=Maryland, City=Chicago, min_Value=17.61, sum_Value=35.69",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Baltimore or Aberdeen or Chicago or Lenox ==,==Maryland or Massachusetts or Illinois in_2016 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2017' AND State = 'Massachusetts' AND City = 'Boston')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "min_Value=23.95; min_Value=6.74",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Boston ==,==Massachusetts in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Maryland' AND City = 'Cambridge')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Temperature, min_Value=9.22; Characteristic=Wind, min_Value=1.03",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Cambridge ==,==Maryland in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Massachusetts' AND City = 'Aberdeen') OR (Year = '2016' AND State = 'Maryland' AND City = 'Cambridge')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Temperature, Year=2016, State=Maryland, City=Cambridge, min_Value=9.22; Characteristic=Temperature, Year=2016, State=Massachusetts, City=Aberdeen, min_Value=11.94; Characteristic=Wind, Year=2016, State=Maryland, City=Cambridge, min_Value=1.03; Characteristic=Wind, Year=2016, State=Massachusetts, City=Aberdeen, min_Value=13.05",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Aberdeen or Cambridge ==,==Massachusetts or Maryland in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'Massachusetts' AND City = 'Boston')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=6.74; Value=7.35; Value=23.95; Value=25.29; Value=26.31",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Temperature or Wind in__Boston ==,==Massachusetts in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Illinois' AND City = 'Springfield')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) ORDER BY Value ASC",
+      "GTresult": "Value=16.82; Value=21.31; Value=25.21; Value=25.68; Value=25.87; Value=26.11",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Temperature or Wind in__Springfield ==,==Illinois in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2016' AND State = 'Maryland' AND City = 'Cambridge')) AND Value > 13.54",
+      "GTresult": "Characteristic=Wind, Intensity=Breeze; Characteristic=Temperature, Intensity=Storm; Characteristic=Wind, Intensity=Calm",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Cambridge ==,==Maryland in_2016 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2017' AND State = 'Illinois' AND City = 'Lenox')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2016' AND State = 'Maryland' AND City = 'Cambridge')) AND Value > 13.54)",
+      "GTresult": "Characteristic=Wind, Intensity=Breeze, Value=18.52; Characteristic=Temperature, Intensity=Storm, Value=6.97; Characteristic=Wind, Intensity=Calm, Value=1.57",
+      "NLquestions": []
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set93_3_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2018' AND State = 'Minnesota' AND City = 'Lenox')) AND ((Characteristic = 'Humidity' AND Intensity = 'Low'))",
+      "GTresult": "Value=2.6",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Lenox ==,==Minnesota in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2018' AND State = 'Minnesota' AND City = 'Aberdeen')) AND ((Characteristic = 'Humidity' AND Intensity = 'Medium') OR (Characteristic = 'Wind' AND Intensity = 'Breeze') OR (Characteristic = 'Humidity' AND Intensity = 'Calm') OR (Characteristic = 'Wind' AND Intensity = 'Storm'))",
+      "GTresult": "Value=19.43; Value=21.22; Value=22.63; Value=22.55",
+      "NLquestions": [
+        "How many days with__ Humidity or Wind were there in__Aberdeen ==,==Minnesota in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2018' AND State = 'Minnesota' AND City = 'Hastings') OR (Year = '2022' AND State = 'Maryland' AND City = 'Minneapolis') OR (Year = '2019' AND State = 'Massachusetts' AND City = 'Rochester') OR (Year = '2018' AND State = 'Minnesota' AND City = 'Aberdeen') OR (Year = '2022' AND State = 'Maryland' AND City = 'Cambridge') OR (Year = '2019' AND State = 'Massachusetts' AND City = 'Boston')) AND ((Characteristic = 'Wind' AND Intensity = 'Breeze'))",
+      "GTresult": "Value=3.81; Value=7.21; Value=15.58; Value=21.22; Value=18.07; Value=3.06",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Hastings or Minneapolis or Rochester or Aberdeen or Cambridge or Boston ==,==Minnesota or Maryland or Massachusetts in_2018 or 2022 or 2019 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT min(Value) AS min_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2018' AND State = 'Minnesota' AND City = 'Hastings') OR (Year = '2022' AND State = 'Maryland' AND City = 'Minneapolis') OR (Year = '2019' AND State = 'Massachusetts' AND City = 'Rochester') OR (Year = '2018' AND State = 'Minnesota' AND City = 'Aberdeen') OR (Year = '2022' AND State = 'Maryland' AND City = 'Cambridge') OR (Year = '2019' AND State = 'Massachusetts' AND City = 'Boston')) AND ((Characteristic = 'Humidity' AND Intensity = 'Calm'))",
+      "GTresult": "min_Value=2.16, avg_Value=12.084999999999999",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity in__Hastings or Minneapolis or Rochester or Aberdeen or Cambridge or Boston ==,==Minnesota or Maryland or Massachusetts in_2018 or 2022 or 2019 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2018' AND State = 'Minnesota' AND City = 'Hastings') OR (Year = '2018' AND State = 'Minnesota' AND City = 'Lenox') OR (Year = '2022' AND State = 'Maryland' AND City = 'Cambridge') OR (Year = '2019' AND State = 'Massachusetts' AND City = 'Boston')) AND ((Characteristic = 'Wind' AND Intensity = 'High') OR (Characteristic = 'Humidity' AND Intensity = 'Medium') OR (Characteristic = 'Wind' AND Intensity = 'Breeze') OR (Characteristic = 'Wind' AND Intensity = 'Storm'))",
+      "GTresult": "Value=0.14; Value=2.86; Value=3.81; Value=5.42; Value=10.09; Value=10.88; Value=12.37; Value=3.54; Value=16.38; Value=17.81; Value=18.07; Value=19.5; Value=22.37; Value=3.97; Value=3.06; Value=23.81",
+      "NLquestions": [
+        "How many days with__ Wind or Humidity were there in__Hastings or Lenox or Cambridge or Boston ==,==Minnesota or Maryland or Massachusetts in_2018 or 2022 or 2019 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2018' AND State = 'Minnesota' AND City = 'Lenox')) AND ((Characteristic = 'Wind' AND Intensity = 'High') OR (Characteristic = 'Humidity' AND Intensity = 'Medium') OR (Characteristic = 'Humidity' AND Intensity = 'Calm') OR (Characteristic = 'Wind' AND Intensity = 'Storm'))",
+      "GTresult": "avg_Value=9.3925, sum_Value=37.57",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Lenox ==,==Minnesota in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, max(Value) AS max_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2022' AND State = 'Maryland' AND City = 'Minneapolis') OR (Year = '2018' AND State = 'Minnesota' AND City = 'Aberdeen') OR (Year = '2022' AND State = 'Maryland' AND City = 'Baltimore') OR (Year = '2018' AND State = 'Minnesota' AND City = 'Lenox') OR (Year = '2022' AND State = 'Maryland' AND City = 'Cambridge')) AND ((Characteristic = 'Humidity' AND Intensity = 'Low') OR (Characteristic = 'Wind' AND Intensity = 'Breeze') OR (Characteristic = 'Humidity' AND Intensity = 'Calm')) GROUP BY Year, State, City",
+      "GTresult": "Year=2018, State=Minnesota, City=Aberdeen, max_Value=22.63, avg_Value=15.87; Year=2018, State=Minnesota, City=Lenox, max_Value=13.06, avg_Value=9.343333333333334; Year=2022, State=Maryland, City=Baltimore, max_Value=25.13, avg_Value=24.49; Year=2022, State=Maryland, City=Cambridge, max_Value=18.07, avg_Value=13.68; Year=2022, State=Maryland, City=Minneapolis, max_Value=7.21, avg_Value=6.006666666666667",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Minneapolis or Aberdeen or Baltimore or Lenox or Cambridge ==,==Maryland or Minnesota in_2022 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2022' AND State = 'Maryland' AND City = 'Baltimore')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "min_Value=24.16; min_Value=24.18",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Baltimore ==,==Maryland in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2022' AND State = 'Maryland' AND City = 'Minneapolis')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Humidity, min_Value=5.18; Characteristic=Wind, min_Value=5.56",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Minneapolis ==,==Maryland in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2018' AND State = 'Minnesota' AND City = 'Hastings') OR (Year = '2018' AND State = 'Minnesota' AND City = 'Aberdeen') OR (Year = '2018' AND State = 'Minnesota' AND City = 'Lenox')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Humidity, Year=2018, State=Minnesota, City=Aberdeen, min_Value=3.76; Characteristic=Humidity, Year=2018, State=Minnesota, City=Hastings, min_Value=0.99; Characteristic=Humidity, Year=2018, State=Minnesota, City=Lenox, min_Value=2.6; Characteristic=Wind, Year=2018, State=Minnesota, City=Aberdeen, min_Value=19.34; Characteristic=Wind, Year=2018, State=Minnesota, City=Hastings, min_Value=0.14; Characteristic=Wind, Year=2018, State=Minnesota, City=Lenox, min_Value=3.54",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Hastings or Aberdeen or Lenox ==,==Minnesota in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2018' AND State = 'Minnesota' AND City = 'Hastings')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=0.14; Value=0.99; Value=2.16; Value=2.86; Value=3.81",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Humidity or Wind in__Hastings ==,==Minnesota in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Massachusetts' AND City = 'Columbia')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) ORDER BY Value ASC",
+      "GTresult": "Value=8.38; Value=23.18; Value=25.3; Value=25.5; Value=27.4; Value=27.77",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Humidity or Wind in__Columbia ==,==Massachusetts in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2018' AND State = 'Minnesota' AND City = 'Lenox')) AND Value > 14.26",
+      "GTresult": "",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Lenox ==,==Minnesota in_2018 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2022' AND State = 'Maryland' AND City = 'Minneapolis')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2018' AND State = 'Minnesota' AND City = 'Lenox')) AND Value > 14.26)",
+      "GTresult": "",
+      "NLquestions": []
+    }
+  ]
+}

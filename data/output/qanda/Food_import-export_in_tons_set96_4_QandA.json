@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Food_import-export_in_tons_set96_4_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2017')) AND ((Category = 'Dairy' AND Item = 'Cream'))",
+      "GTresult": "Value=298.49",
+      "NLquestions": [
+        "What is the amount of_Import of__ Dairy in__ ==of==2017 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2018')) AND ((Category = 'Dairy' AND Item = 'Cream') OR (Category = 'Meat' AND Item = 'Cheese') OR (Category = 'Dairy' AND Item = 'Butter') OR (Category = 'Meat' AND Item = 'Duck') OR (Category = 'Dairy' AND Item = 'Beef') OR (Category = 'Meat' AND Item = 'Cream'))",
+      "GTresult": "Value=34.93; Value=414.26; Value=420.34; Value=455.09; Value=297.81; Value=554.82; Value=600.06; Value=953.84; Value=795.33; Value=349.49; Value=93.96; Value=190.61",
+      "NLquestions": [
+        "What is the amount of_Import of__ Dairy or Meat in__ ==of==2018 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2018') OR (Import_Export = 'Import' AND Year = '2017')) AND ((Category = 'Dairy' AND Item = 'Butter'))",
+      "GTresult": "Value=420.34; Value=429.64; Value=795.33",
+      "NLquestions": [
+        "What is the amount of_Import of__ Dairy in__ ==of==2018 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT min(Value) AS min_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2018') OR (Import_Export = 'Import' AND Year = '2017')) AND ((Category = 'Meat' AND Item = 'Duck'))",
+      "GTresult": "min_Value=251.03, sum_Value=1055.61",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Meat in__ ==of==2018 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2018') OR (Import_Export = 'Import' AND Year = '2017')) AND ((Category = 'Dairy' AND Item = 'Cream') OR (Category = 'Meat' AND Item = 'Cheese') OR (Category = 'Dairy' AND Item = 'Butter'))",
+      "GTresult": "Value=34.93; Value=414.26; Value=420.34; Value=298.49; Value=781.14; Value=429.64; Value=600.06; Value=953.84; Value=795.33",
+      "NLquestions": [
+        "What is the amount of_Import of__ Dairy or Meat in__ ==of==2018 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2017')) AND ((Category = 'Dairy' AND Item = 'Cream') OR (Category = 'Dairy' AND Item = 'Butter') OR (Category = 'Meat' AND Item = 'Duck'))",
+      "GTresult": "sum_Value=979.16, avg_Value=326.38666666666666",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Dairy or Meat in__ ==of==2017 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Import_Export, Year, sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2018') OR (Import_Export = 'Import' AND Year = '2017')) AND ((Category = 'Dairy' AND Item = 'Cream') OR (Category = 'Meat' AND Item = 'Cheese') OR (Category = 'Dairy' AND Item = 'Butter') OR (Category = 'Dairy' AND Item = 'Beef')) GROUP BY Import_Export, Year",
+      "GTresult": "Import_Export=Import, Year=2017, sum_Value=2199.2799999999997, avg_Value=549.8199999999999; Import_Export=Import, Year=2018, sum_Value=3610.53, avg_Value=451.31625",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Dairy or Meat in__ ==of==2018 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2017')) AND ((Category = 'Dairy') OR (Category = 'Meat')) GROUP BY Category",
+      "GTresult": "min_Value=298.49; min_Value=251.03",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Dairy or Meat in__ ==of==2017 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Category, max(Value) AS max_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2018')) AND ((Category = 'Dairy') OR (Category = 'Meat')) GROUP BY Category",
+      "GTresult": "Category=Dairy, max_Value=795.33; Category=Meat, max_Value=953.84",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Dairy or Meat in__ ==of==2018 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Category, Import_Export, Year, sum(Value) AS sum_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2018') OR (Import_Export = 'Import' AND Year = '2017')) AND ((Category = 'Dairy') OR (Category = 'Meat')) GROUP BY Category, Import_Export, Year",
+      "GTresult": "Category=Dairy, Import_Export=Import, Year=2017, sum_Value=1418.1399999999999; Category=Dairy, Import_Export=Import, Year=2018, sum_Value=2242.43; Category=Meat, Import_Export=Import, Year=2017, sum_Value=1567.67; Category=Meat, Import_Export=Import, Year=2018, sum_Value=2918.11",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Dairy or Meat in__ ==of==2018 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2018')) AND ((Category = 'Dairy') OR (Category = 'Meat')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=34.93; Value=93.96; Value=190.61; Value=297.81; Value=349.49",
+      "NLquestions": [
+        "What are the top/bottom_ amounts of_Import of__ Dairy or Meat in__ ==of==2018 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2018')) AND ((Category = 'Dairy') OR (Category = 'Meat')) ORDER BY Value ASC",
+      "GTresult": "Value=34.93; Value=93.96; Value=190.61; Value=297.81; Value=349.49; Value=414.26; Value=420.34; Value=455.09; Value=554.82; Value=600.06; Value=795.33; Value=953.84",
+      "NLquestions": [
+        "What are the amounts /increasing_values of_Import of__ Dairy or Meat in__ ==of==2018 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2017')) AND Value < 452.57",
+      "GTresult": "Category=Dairy, Item=Cream; Category=Dairy, Item=Butter; Category=Meat, Item=Duck",
+      "NLquestions": [
+        "What is/are_the_ the amount of_Import of__ in__ ==of==2017 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Category, Item, Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2018')) AND (Category, Item) IN (SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2017')) AND Value < 452.57)",
+      "GTresult": "Category=Dairy, Item=Cream, Value=34.93; Category=Dairy, Item=Butter, Value=420.34; Category=Meat, Item=Duck, Value=455.09; Category=Dairy, Item=Cream, Value=600.06; Category=Dairy, Item=Butter, Value=795.33; Category=Meat, Item=Duck, Value=349.49",
+      "NLquestions": []
+    }
+  ]
+}

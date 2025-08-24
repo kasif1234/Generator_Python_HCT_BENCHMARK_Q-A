@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set306_5_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Chicago')) AND ((Characteristic = 'Temperature' AND Intensity = 'Storm'))",
+      "GTresult": "Value=4.76",
+      "NLquestions": [
+        "How many days with__ Temperature were there in__Chicago ==,==Georgia in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Illinois' AND City = 'Champaign')) AND ((Characteristic = 'Humidity' AND Intensity = 'Storm') OR (Characteristic = 'Temperature' AND Intensity = 'High') OR (Characteristic = 'Wind' AND Intensity = 'Low') OR (Characteristic = 'Temperature' AND Intensity = '31-40') OR (Characteristic = 'Humidity' AND Intensity = 'Calm'))",
+      "GTresult": "Value=27.32; Value=27.6; Value=23.24; Value=5.67; Value=8.15",
+      "NLquestions": [
+        "How many days with__ Humidity or Temperature or Wind were there in__Champaign ==,==Illinois in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Washington') OR (Year = '2016' AND State = 'Illinois' AND City = 'Columbus') OR (Year = '2021' AND State = 'Georgia' AND City = 'Albany') OR (Year = '2021' AND State = 'Georgia' AND City = 'Chicago')) AND ((Characteristic = 'Humidity' AND Intensity = 'Medium'))",
+      "GTresult": "Value=2.86; Value=13.85; Value=23.77; Value=20.19",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Washington or Columbus or Albany or Chicago ==,==Georgia or Illinois in_2021 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT min(Value) AS min_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Washington') OR (Year = '2021' AND State = 'Georgia' AND City = 'Albany')) AND ((Characteristic = 'Temperature' AND Intensity = 'Storm'))",
+      "GTresult": "min_Value=6.36, sum_Value=34.07",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature in__Washington or Albany ==,==Georgia in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Washington') OR (Year = '2016' AND State = 'Illinois' AND City = 'Columbus') OR (Year = '2021' AND State = 'Georgia' AND City = 'Albany') OR (Year = '2016' AND State = 'Illinois' AND City = 'Champaign') OR (Year = '2021' AND State = 'Georgia' AND City = 'Chicago')) AND ((Characteristic = 'Humidity' AND Intensity = 'Medium') OR (Characteristic = 'Temperature' AND Intensity = '31-40') OR (Characteristic = 'Temperature' AND Intensity = 'Storm'))",
+      "GTresult": "Value=2.86; Value=6.85; Value=6.36; Value=13.85; Value=14.9; Value=12.78; Value=23.77; Value=22.74; Value=27.71; Value=24.08; Value=5.67; Value=11.95; Value=20.19; Value=20.47; Value=4.76",
+      "NLquestions": [
+        "How many days with__ Humidity or Temperature were there in__Washington or Columbus or Albany or Champaign or Chicago ==,==Georgia or Illinois in_2021 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT max(Value) AS max_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Albany')) AND ((Characteristic = 'Wind' AND Intensity = '0-10') OR (Characteristic = 'Humidity' AND Intensity = 'Calm') OR (Characteristic = 'Temperature' AND Intensity = 'Storm'))",
+      "GTresult": "max_Value=27.71, min_Value=24.87",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity or Temperature in__Albany ==,==Georgia in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, min(Value) AS min_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Washington') OR (Year = '2016' AND State = 'Illinois' AND City = 'Columbus') OR (Year = '2021' AND State = 'Georgia' AND City = 'Albany') OR (Year = '2016' AND State = 'Illinois' AND City = 'Champaign') OR (Year = '2021' AND State = 'Georgia' AND City = 'Chicago')) AND ((Characteristic = 'Temperature' AND Intensity = '31-40') OR (Characteristic = 'Wind' AND Intensity = '0-10')) GROUP BY Year, State, City",
+      "GTresult": "Year=2016, State=Illinois, City=Champaign, min_Value=5.67, sum_Value=11.99; Year=2016, State=Illinois, City=Columbus, min_Value=14.9, sum_Value=31.840000000000003; Year=2021, State=Georgia, City=Albany, min_Value=22.74, sum_Value=47.61; Year=2021, State=Georgia, City=Chicago, min_Value=20.47, sum_Value=42.769999999999996; Year=2021, State=Georgia, City=Washington, min_Value=6.85, sum_Value=14.239999999999998",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Washington or Columbus or Albany or Champaign or Chicago ==,==Georgia or Illinois in_2021 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Albany')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) GROUP BY Characteristic",
+      "GTresult": "min_Value=20.74; min_Value=19.78",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Albany ==,==Georgia in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Albany')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Humidity, sum_Value=69.3; Characteristic=Temperature, sum_Value=71.19",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Temperature in__Albany ==,==Georgia in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Illinois' AND City = 'Champaign') OR (Year = '2021' AND State = 'Georgia' AND City = 'Chicago')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Humidity, Year=2016, State=Illinois, City=Champaign, min_Value=8.15; Characteristic=Humidity, Year=2021, State=Georgia, City=Chicago, min_Value=2.84; Characteristic=Wind, Year=2016, State=Illinois, City=Champaign, min_Value=6.32; Characteristic=Wind, Year=2021, State=Georgia, City=Chicago, min_Value=13.55",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Champaign or Chicago ==,==Illinois or Georgia in_2016 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Illinois' AND City = 'Champaign')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=6.32; Value=8.15; Value=23.24; Value=24.08; Value=27.32",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Wind or Humidity in__Champaign ==,==Illinois in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Albany')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) ORDER BY Value ASC",
+      "GTresult": "Value=19.52; Value=20.74; Value=22.74; Value=23.77; Value=26.01; Value=27.71",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Humidity or Temperature in__Albany ==,==Georgia in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2016' AND State = 'Illinois' AND City = 'Columbus')) AND Value > 14.69",
+      "GTresult": "Characteristic=Temperature, Intensity=31-40; Characteristic=Wind, Intensity=0-10",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Columbus ==,==Illinois in_2016 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Albany')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2016' AND State = 'Illinois' AND City = 'Columbus')) AND Value > 14.69)",
+      "GTresult": "Characteristic=Temperature, Intensity=31-40, Value=22.74; Characteristic=Wind, Intensity=0-10, Value=24.87",
+      "NLquestions": []
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set326_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'California' AND City = 'San Francisco')) AND ((Characteristic = 'Temperature' AND Intensity = 'Medium'))",
+      "GTresult": "Value=13.48",
+      "NLquestions": [
+        "How many days with__ Temperature were there in__San Francisco ==,==California in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'California' AND City = 'Columbus')) AND ((Characteristic = 'Humidity' AND Intensity = '0-10') OR (Characteristic = 'Temperature' AND Intensity = 'Calm') OR (Characteristic = 'Temperature' AND Intensity = 'Medium') OR (Characteristic = 'Wind' AND Intensity = '31-40') OR (Characteristic = 'Humidity' AND Intensity = '11-20'))",
+      "GTresult": "Value=11.46; Value=12.27; Value=14.52; Value=16.47; Value=17.37",
+      "NLquestions": [
+        "How many days with__ Humidity or Temperature or Wind were there in__Columbus ==,==California in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Washington') OR (Year = '2017' AND State = 'California' AND City = 'Columbus') OR (Year = '2017' AND State = 'Georgia' AND City = 'Los-Angeles') OR (Year = '2017' AND State = 'Illinois' AND City = 'Springfield') OR (Year = '2021' AND State = 'Georgia' AND City = 'Chicago')) AND ((Characteristic = 'Humidity' AND Intensity = '11-20'))",
+      "GTresult": "Value=6.35; Value=17.37; Value=26.67; Value=19.22; Value=25.79",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Washington or Columbus or Los-Angeles or Springfield or Chicago ==,==Georgia or California or Illinois in_2021 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT avg(Value) AS avg_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Washington') OR (Year = '2017' AND State = 'California' AND City = 'Columbus') OR (Year = '2021' AND State = 'California' AND City = 'San Francisco') OR (Year = '2017' AND State = 'Illinois' AND City = 'Springfield') OR (Year = '2021' AND State = 'Georgia' AND City = 'Chicago')) AND ((Characteristic = 'Temperature' AND Intensity = '31-40'))",
+      "GTresult": "avg_Value=3.9259999999999997, min_Value=0.39",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature in__Washington or Columbus or San Francisco or Springfield or Chicago ==,==Georgia or California or Illinois in_2021 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Washington') OR (Year = '2017' AND State = 'California' AND City = 'Columbus') OR (Year = '2017' AND State = 'Georgia' AND City = 'Los-Angeles') OR (Year = '2017' AND State = 'Illinois' AND City = 'Springfield') OR (Year = '2021' AND State = 'Georgia' AND City = 'Chicago')) AND ((Characteristic = 'Temperature' AND Intensity = '31-40') OR (Characteristic = 'Wind' AND Intensity = '11-20') OR (Characteristic = 'Temperature' AND Intensity = 'Medium') OR (Characteristic = 'Wind' AND Intensity = '31-40'))",
+      "GTresult": "Value=0.41; Value=1.81; Value=6.69; Value=7.51; Value=0.39; Value=10.19; Value=14.52; Value=16.47; Value=26.75; Value=26.28; Value=26.84; Value=27.64; Value=4.28; Value=17.45; Value=19.02; Value=19.23; Value=7.2; Value=20.59; Value=23.79; Value=23.0",
+      "NLquestions": [
+        "How many days with__ Temperature or Wind were there in__Washington or Columbus or Los-Angeles or Springfield or Chicago ==,==Georgia or California or Illinois in_2021 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT sum(Value) AS sum_Value, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2017' AND State = 'California' AND City = 'Columbus')) AND ((Characteristic = 'Wind' AND Intensity = 'Breeze') OR (Characteristic = 'Humidity' AND Intensity = 'High') OR (Characteristic = 'Humidity' AND Intensity = '11-20'))",
+      "GTresult": "sum_Value=43.68, max_Value=17.37",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Columbus ==,==California in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, min(Value) AS min_Value, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Illinois' AND City = 'Berkeley') OR (Year = '2017' AND State = 'Georgia' AND City = 'Los-Angeles') OR (Year = '2021' AND State = 'California' AND City = 'San Francisco') OR (Year = '2017' AND State = 'Illinois' AND City = 'Springfield') OR (Year = '2021' AND State = 'Georgia' AND City = 'Chicago')) AND ((Characteristic = 'Humidity' AND Intensity = '0-10') OR (Characteristic = 'Temperature' AND Intensity = 'Calm') OR (Characteristic = 'Wind' AND Intensity = '31-40') OR (Characteristic = 'Humidity' AND Intensity = '11-20')) GROUP BY Year, State, City",
+      "GTresult": "Year=2017, State=Georgia, City=Los-Angeles, min_Value=21.3, max_Value=27.64; Year=2017, State=Illinois, City=Springfield, min_Value=4.31, max_Value=19.23; Year=2021, State=California, City=San Francisco, min_Value=8.66, max_Value=16.95; Year=2021, State=Georgia, City=Chicago, min_Value=21.55, max_Value=25.79; Year=2021, State=Illinois, City=Berkeley, min_Value=18.83, max_Value=26.55",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Temperature or Wind in__Berkeley or Los-Angeles or San Francisco or Springfield or Chicago ==,==Illinois or Georgia or California in_2021 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2017' AND State = 'Georgia' AND City = 'Los-Angeles')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) GROUP BY Characteristic",
+      "GTresult": "min_Value=21.3; min_Value=22.31",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Los-Angeles ==,==Georgia in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Illinois' AND City = 'Berkeley')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Humidity, avg_Value=22.78; Characteristic=Temperature, avg_Value=20.97",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity in__Berkeley ==,==Illinois in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Washington') OR (Year = '2021' AND State = 'Illinois' AND City = 'Berkeley')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Temperature, Year=2021, State=Georgia, City=Washington, sum_Value=10.85; Characteristic=Temperature, Year=2021, State=Illinois, City=Berkeley, sum_Value=62.91; Characteristic=Wind, Year=2021, State=Georgia, City=Washington, sum_Value=13.219999999999999; Characteristic=Wind, Year=2021, State=Illinois, City=Berkeley, sum_Value=66.0",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Washington or Berkeley ==,==Georgia or Illinois in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'Illinois' AND City = 'Springfield')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=19.23; Value=19.02; Value=18.96; Value=17.45; Value=4.31",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Temperature or Wind in__Springfield ==,==Illinois in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Chicago')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) ORDER BY Value ASC",
+      "GTresult": "Value=20.59; Value=21.61; Value=21.67; Value=22.43; Value=23.0; Value=25.79",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Wind or Humidity in__Chicago ==,==Georgia in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Chicago')) AND Value < 15.77",
+      "GTresult": "Characteristic=Temperature, Intensity=31-40",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Chicago ==,==Georgia in_2021 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2017' AND State = 'California' AND City = 'Columbus')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Chicago')) AND Value < 15.77)",
+      "GTresult": "Characteristic=Temperature, Intensity=31-40, Value=0.39",
+      "NLquestions": []
+    }
+  ]
+}

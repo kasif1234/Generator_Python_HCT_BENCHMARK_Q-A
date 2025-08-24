@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Evolution_of_pollution_in_percent_set75_5_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'California' AND City = 'Los-Angeles' AND Year = '2017')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Inferior Irrigation'))",
+      "GTresult": "Value=-8.69",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water in__Los-Angeles ==,==California in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'California' AND City = 'Malibu' AND Year = '2017')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Groundwater') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Surface water') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Industrial') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Inferior Irrigation') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Solid Waste') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Groundwater'))",
+      "GTresult": "Value=59.32; Value=-68.2; Value=67.27; Value=69.15; Value=-55.84; Value=-52.73",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water or Air or Soil in__Malibu ==,==California in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'California' AND City = 'Boston' AND Year = '2017') OR (State = 'California' AND City = 'Malibu' AND Year = '2017') OR (State = 'Massachusetts' AND City = 'San Francisco' AND Year = '2022') OR (State = 'California' AND City = 'Los-Angeles' AND Year = '2017')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Groundwater'))",
+      "GTresult": "Value=43.47; Value=-52.73; Value=89.41; Value=-2.65",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil in__Boston or Malibu or San Francisco or Los-Angeles ==,==California or Massachusetts in_2017 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT min(Value) AS min_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'California' AND City = 'Boston' AND Year = '2017') OR (State = 'California' AND City = 'Los-Angeles' AND Year = '2017')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Thermal'))",
+      "GTresult": "min_Value=-92.12, sum_Value=-110.08000000000001",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil in__Boston or Los-Angeles ==,==California in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'California' AND City = 'Boston' AND Year = '2017') OR (State = 'California' AND City = 'Malibu' AND Year = '2017') OR (State = 'Massachusetts' AND City = 'San Francisco' AND Year = '2022') OR (State = 'California' AND City = 'Los-Angeles' AND Year = '2017')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Surface water') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Oxygen-depletion'))",
+      "GTresult": "Value=-96.72; Value=33.17; Value=-68.2; Value=65.69; Value=-50.48; Value=-49.57; Value=-34.87; Value=95.9",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air or Soil in__Boston or Malibu or San Francisco or Los-Angeles ==,==California or Massachusetts in_2017 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT sum(Value) AS sum_Value, max(Value) AS max_Value FROM DBdata WHERE ((State = 'California' AND City = 'Malibu' AND Year = '2017')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Groundwater') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Oxygen-depletion') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Thermal') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Inferior Irrigation') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Groundwater'))",
+      "GTresult": "sum_Value=207.57, max_Value=69.15",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Soil in__Malibu ==,==California in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT State, City, Year, avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Lenox' AND Year = '2022') OR (State = 'California' AND City = 'Boston' AND Year = '2017') OR (State = 'Massachusetts' AND City = 'Cambridge' AND Year = '2022') OR (State = 'California' AND City = 'Malibu' AND Year = '2017') OR (State = 'California' AND City = 'Los-Angeles' AND Year = '2017')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Thermal') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Industrial') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Solid Waste')) GROUP BY State, City, Year",
+      "GTresult": "State=California, City=Boston, Year=2017, avg_Value=-5.946666666666668, sum_Value=-17.840000000000003; State=California, City=Los-Angeles, Year=2017, avg_Value=-12.023333333333333, sum_Value=-36.07; State=California, City=Malibu, Year=2017, avg_Value=25.856666666666666, sum_Value=77.57; State=Massachusetts, City=Cambridge, Year=2022, avg_Value=10.49666666666667, sum_Value=31.49000000000001; State=Massachusetts, City=Lenox, Year=2022, avg_Value=23.823333333333334, sum_Value=71.47",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Air in__Lenox or Boston or Cambridge or Malibu or Los-Angeles ==,==Massachusetts or California in_2022 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((State = 'California' AND City = 'Boston' AND Year = '2017')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Soil')) GROUP BY Polluted_element",
+      "GTresult": "min_Value=-96.72; min_Value=-92.12",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Soil in__Boston ==,==California in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Polluted_element, avg(Value) AS avg_Value FROM DBdata WHERE ((State = 'California' AND City = 'Los-Angeles' AND Year = '2017')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Soil')) GROUP BY Polluted_element",
+      "GTresult": "Polluted_element=Air, avg_Value=-18.5025; Polluted_element=Soil, avg_Value=15.655000000000001",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Soil in__Los-Angeles ==,==California in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Polluted_element, State, City, Year, min(Value) AS min_Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Lenox' AND Year = '2022') OR (State = 'Massachusetts' AND City = 'Cambridge' AND Year = '2022') OR (State = 'Massachusetts' AND City = 'San Francisco' AND Year = '2022')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Air')) GROUP BY Polluted_element, State, City, Year",
+      "GTresult": "Polluted_element=Air, State=Massachusetts, City=Cambridge, Year=2022, min_Value=43.23; Polluted_element=Air, State=Massachusetts, City=Lenox, Year=2022, min_Value=5.05; Polluted_element=Air, State=Massachusetts, City=San Francisco, Year=2022, min_Value=-50.48; Polluted_element=Water, State=Massachusetts, City=Cambridge, Year=2022, min_Value=44.48; Polluted_element=Water, State=Massachusetts, City=Lenox, Year=2022, min_Value=4.37; Polluted_element=Water, State=Massachusetts, City=San Francisco, Year=2022, min_Value=-51.09",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Air in__Lenox or Cambridge or San Francisco ==,==Massachusetts in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'California' AND City = 'Los-Angeles' AND Year = '2017')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Soil')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=-38.49; Value=-29.27; Value=-17.96; Value=-15.69; Value=-12.67",
+      "NLquestions": [
+        "What are the top/bottom_ evolutions of_((pollution)) of_ of_Water or Soil in__Los-Angeles ==,==California in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Lenox' AND Year = '2022')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Soil')) ORDER BY Value ASC",
+      "GTresult": "Value=5.05; Value=6.42; Value=9.46; Value=19.78; Value=20.35; Value=22.33; Value=29.36; Value=30.38",
+      "NLquestions": [
+        "What are the evolutions /increasing_values of_((pollution)) of_ of_Air or Soil in__Lenox ==,==Massachusetts in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Cambridge' AND Year = '2022')) AND Value < 8.99",
+      "GTresult": "Polluted_element=Soil, Type_of_pollution=Oxygen-depletion; Polluted_element=Soil, Type_of_pollution=Thermal",
+      "NLquestions": [
+        "What is/are_the_ the evolution of_((pollution)) of_ of_ in__Cambridge ==,==Massachusetts in_2022 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Polluted_element, Type_of_pollution, Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'San Francisco' AND Year = '2022')) AND (Polluted_element, Type_of_pollution) IN (SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Cambridge' AND Year = '2022')) AND Value < 8.99)",
+      "GTresult": "Polluted_element=Soil, Type_of_pollution=Oxygen-depletion, Value=-49.57; Polluted_element=Soil, Type_of_pollution=Thermal, Value=-44.73",
+      "NLquestions": []
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Number_of_constructions_set135_1_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Administration')) AND ((Quarter = 'Q4' AND Month = 'December' AND State = 'Georgia' AND City = 'Columbus'))",
+      "GTresult": "Value=32.76",
+      "NLquestions": [
+        "What is the number of__ in__Columbus ==,==Georgia in__December ==,==Q4 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Museum')) AND ((Quarter = 'Q2' AND Month = 'April' AND State = 'Georgia' AND City = 'Columbus') OR (Quarter = 'Q4' AND Month = 'May' AND State = 'Georgia' AND City = 'Columbus') OR (Quarter = 'Q4' AND Month = 'December' AND State = 'Georgia' AND City = 'Columbus') OR (Quarter = 'Q2' AND Month = 'November' AND State = 'Georgia' AND City = 'Columbus') OR (Quarter = 'Q4' AND Month = 'October' AND State = 'Georgia' AND City = 'Columbus'))",
+      "GTresult": "Value=73.45; Value=75.91; Value=77.51; Value=76.71; Value=80.69",
+      "NLquestions": [
+        "What is the number of__ in__Columbus ==,==Georgia in__April or May or December or November or October ==,==Q2 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Workshop') OR (Type_of_building = 'Service' AND Usage = 'Factory') OR (Type_of_building = 'Production' AND Usage = 'School') OR (Type_of_building = 'Culture' AND Usage = 'Theatre')) AND ((Quarter = 'Q4' AND Month = 'May' AND State = 'Georgia' AND City = 'Columbus'))",
+      "GTresult": "Value=6.82; Value=15.0; Value=39.63; Value=66.68",
+      "NLquestions": [
+        "What is the number of__ in__Columbus ==,==Georgia in__May ==,==Q4 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Workshop') OR (Type_of_building = 'Service' AND Usage = 'Hospital') OR (Type_of_building = 'Culture' AND Usage = 'Theatre')) AND ((Quarter = 'Q2' AND Month = 'November' AND State = 'Georgia' AND City = 'Columbus'))",
+      "GTresult": "avg_Value=46.64333333333334, sum_Value=139.93",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__Columbus ==,==Georgia in__November ==,==Q2 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'School') OR (Type_of_building = 'Production' AND Usage = 'Museum') OR (Type_of_building = 'Service' AND Usage = 'Concert')) AND ((Quarter = 'Q2' AND Month = 'April' AND State = 'Georgia' AND City = 'Columbus') OR (Quarter = 'Q2' AND Month = 'June' AND State = 'Georgia' AND City = 'Columbus'))",
+      "GTresult": "Value=32.32; Value=40.5; Value=73.45; Value=76.01; Value=81.35; Value=85.46",
+      "NLquestions": [
+        "What is the number of__ in__Columbus ==,==Georgia in__April or June ==,==Q2 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT min(Value) AS min_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'School')) AND ((Quarter = 'Q4' AND Month = 'May' AND State = 'Georgia' AND City = 'Columbus') OR (Quarter = 'Q4' AND Month = 'December' AND State = 'Georgia' AND City = 'Columbus') OR (Quarter = 'Q2' AND Month = 'November' AND State = 'Georgia' AND City = 'Columbus') OR (Quarter = 'Q4' AND Month = 'October' AND State = 'Georgia' AND City = 'Columbus'))",
+      "GTresult": "min_Value=39.18, sum_Value=169.47",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__Columbus ==,==Georgia in__May or December or November or October ==,==Q4 or Q2 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Type_of_building, Usage, avg(Value) AS avg_Value, max(Value) AS max_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Workshop') OR (Type_of_building = 'Service' AND Usage = 'Factory') OR (Type_of_building = 'Culture' AND Usage = 'Theatre') OR (Type_of_building = 'Service' AND Usage = 'Concert')) AND ((Quarter = 'Q4' AND Month = 'December' AND State = 'Georgia' AND City = 'Columbus') OR (Quarter = 'Q2' AND Month = 'November' AND State = 'Georgia' AND City = 'Columbus') OR (Quarter = 'Q4' AND Month = 'October' AND State = 'Georgia' AND City = 'Columbus')) GROUP BY Type_of_building, Usage",
+      "GTresult": "Type_of_building=Culture, Usage=Theatre, avg_Value=69.32666666666667, max_Value=71.14; Type_of_building=Production, Usage=Workshop, avg_Value=13.873333333333335, max_Value=14.3; Type_of_building=Service, Usage=Concert, avg_Value=88.37, max_Value=93.08; Type_of_building=Service, Usage=Factory, avg_Value=25.16, max_Value=25.84",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__Columbus ==,==Georgia in__December or November or October ==,==Q4 or Q2 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Workshop')) AND ((Quarter = 'Q2') OR (Quarter = 'Q4')) GROUP BY Quarter",
+      "GTresult": "min_Value=4.74; min_Value=6.82",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q2 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Quarter, max(Value) AS max_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Museum')) AND ((Quarter = 'Q2') OR (Quarter = 'Q4')) GROUP BY Quarter",
+      "GTresult": "Quarter=Q2, max_Value=76.71; Quarter=Q4, max_Value=80.69",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q2 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Quarter, Type_of_building, Usage, sum(Value) AS sum_Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Administration') OR (Type_of_building = 'Production' AND Usage = 'School') OR (Type_of_building = 'Culture' AND Usage = 'Theatre')) AND ((Quarter = 'Q2') OR (Quarter = 'Q4')) GROUP BY Quarter, Type_of_building, Usage",
+      "GTresult": "Quarter=Q2, Type_of_building=Culture, Usage=Administration, sum_Value=92.93; Quarter=Q2, Type_of_building=Culture, Usage=Theatre, sum_Value=200.92000000000002; Quarter=Q2, Type_of_building=Production, Usage=School, sum_Value=112.0; Quarter=Q4, Type_of_building=Culture, Usage=Administration, sum_Value=95.8; Quarter=Q4, Type_of_building=Culture, Usage=Theatre, sum_Value=206.62; Quarter=Q4, Type_of_building=Production, Usage=School, sum_Value=130.29000000000002",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q2 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Workshop')) AND ((Quarter = 'Q2') OR (Quarter = 'Q4')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=4.74; Value=6.82; Value=9.45; Value=13.3; Value=14.02",
+      "NLquestions": [
+        "What are the top/bottom_ numbers of__ in__ ==,== in__ ==,==Q2 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Factory')) AND ((Quarter = 'Q2') OR (Quarter = 'Q4')) ORDER BY Value ASC",
+      "GTresult": "Value=14.13; Value=15.0; Value=19.53; Value=24.47; Value=25.17; Value=25.84",
+      "NLquestions": [
+        "What are the numbers /ascending_values of__ in__ ==,== in__ ==,==Q2 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Quarter, Month, State, City FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Museum')) AND Value > 48.32",
+      "GTresult": "Quarter=Q2, Month=April, State=Georgia, City=Columbus; Quarter=Q4, Month=May, State=Georgia, City=Columbus; Quarter=Q2, Month=June, State=Georgia, City=Columbus; Quarter=Q4, Month=December, State=Georgia, City=Columbus; Quarter=Q2, Month=November, State=Georgia, City=Columbus; Quarter=Q4, Month=October, State=Georgia, City=Columbus",
+      "NLquestions": [
+        "What is/are_the_ the number of__ in__ ==,== in__ ==,== is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Quarter, Month, State, City, Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Hospital')) AND (Quarter, Month, State, City) IN (SELECT Quarter, Month, State, City FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Museum')) AND Value > 48.32)",
+      "GTresult": "Quarter=Q2, Month=April, State=Georgia, City=Columbus, Value=49.52; Quarter=Q4, Month=May, State=Georgia, City=Columbus, Value=48.46; Quarter=Q2, Month=June, State=Georgia, City=Columbus, Value=48.86; Quarter=Q4, Month=December, State=Georgia, City=Columbus, Value=55.68; Quarter=Q2, Month=November, State=Georgia, City=Columbus, Value=57.87; Quarter=Q4, Month=October, State=Georgia, City=Columbus, Value=57.61",
+      "NLquestions": []
+    }
+  ]
+}

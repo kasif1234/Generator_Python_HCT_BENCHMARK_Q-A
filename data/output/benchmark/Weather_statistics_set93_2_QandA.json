@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set93_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Massachusetts' AND City = 'Albany')) AND ((Characteristic = 'Humidity' AND Intensity = 'Low'))",
+      "GTresult": "Value=11.96",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Albany ==,==Massachusetts in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Massachusetts' AND City = 'Albany')) AND ((Characteristic = 'Wind' AND Intensity = 'Breeze') OR (Characteristic = 'Wind' AND Intensity = 'High') OR (Characteristic = 'Humidity' AND Intensity = 'Breeze'))",
+      "GTresult": "Value=8.35; Value=11.82; Value=15.95",
+      "NLquestions": [
+        "How many days with__ Wind or Humidity were there in__Albany ==,==Massachusetts in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2015' AND State = 'Georgia' AND City = 'Columbus') OR (Year = '2019' AND State = 'Massachusetts' AND City = 'Albany')) AND ((Characteristic = 'Humidity' AND Intensity = 'Calm'))",
+      "GTresult": "Value=3.0; Value=8.76",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Columbus or Albany ==,==Georgia or Massachusetts in_2015 or 2019 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Georgia' AND City = 'Columbus') OR (Year = '2019' AND State = 'Massachusetts' AND City = 'Albany') OR (Year = '2015' AND State = 'Georgia' AND City = 'Boston')) AND ((Characteristic = 'Wind' AND Intensity = 'Storm'))",
+      "GTresult": "sum_Value=29.91, min_Value=4.21",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind in__Columbus or Albany or Boston ==,==Georgia or Massachusetts in_2015 or 2019 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2015' AND State = 'Georgia' AND City = 'Columbus') OR (Year = '2019' AND State = 'Massachusetts' AND City = 'Albany') OR (Year = '2015' AND State = 'Georgia' AND City = 'Boston') OR (Year = '2019' AND State = 'Massachusetts' AND City = 'Cambridge')) AND ((Characteristic = 'Wind' AND Intensity = 'Breeze') OR (Characteristic = 'Humidity' AND Intensity = 'Calm') OR (Characteristic = 'Wind' AND Intensity = 'Storm') OR (Characteristic = 'Wind' AND Intensity = 'High'))",
+      "GTresult": "Value=0.19; Value=3.0; Value=4.21; Value=6.7; Value=8.35; Value=8.76; Value=7.31; Value=11.82; Value=16.57; Value=17.02; Value=18.39; Value=15.78; Value=21.94; Value=21.32; Value=21.62; Value=26.53",
+      "NLquestions": [
+        "How many days with__ Wind or Humidity were there in__Columbus or Albany or Boston or Cambridge ==,==Georgia or Massachusetts in_2015 or 2019 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT sum(Value) AS sum_Value, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Massachusetts' AND City = 'Albany')) AND ((Characteristic = 'Wind' AND Intensity = 'Breeze') OR (Characteristic = 'Humidity' AND Intensity = 'Calm') OR (Characteristic = 'Humidity' AND Intensity = 'Low') OR (Characteristic = 'Wind' AND Intensity = 'High') OR (Characteristic = 'Humidity' AND Intensity = 'Breeze'))",
+      "GTresult": "sum_Value=56.84, max_Value=15.95",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Albany ==,==Massachusetts in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, avg(Value) AS avg_Value, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Georgia' AND City = 'Columbus') OR (Year = '2019' AND State = 'Massachusetts' AND City = 'Albany') OR (Year = '2015' AND State = 'Georgia' AND City = 'Boston') OR (Year = '2019' AND State = 'Massachusetts' AND City = 'Cambridge')) AND ((Characteristic = 'Wind' AND Intensity = 'Breeze') OR (Characteristic = 'Humidity' AND Intensity = 'Calm') OR (Characteristic = 'Wind' AND Intensity = 'Storm') OR (Characteristic = 'Humidity' AND Intensity = 'Low') OR (Characteristic = 'Humidity' AND Intensity = 'Breeze')) GROUP BY Year, State, City",
+      "GTresult": "Year=2015, State=Georgia, City=Boston, avg_Value=18.726, max_Value=21.75; Year=2015, State=Georgia, City=Columbus, avg_Value=3.386, max_Value=5.79; Year=2019, State=Massachusetts, City=Albany, avg_Value=10.466, max_Value=15.95; Year=2019, State=Massachusetts, City=Cambridge, avg_Value=17.91, max_Value=24.58",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Columbus or Albany or Boston or Cambridge ==,==Georgia or Massachusetts in_2015 or 2019 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Massachusetts' AND City = 'Cambridge')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) GROUP BY Characteristic",
+      "GTresult": "min_Value=0.09; min_Value=21.62",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Cambridge ==,==Massachusetts in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Georgia' AND City = 'Columbus')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Humidity, avg_Value=4.176666666666667; Characteristic=Wind, avg_Value=3.6999999999999997",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Columbus ==,==Georgia in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Georgia' AND City = 'Columbus') OR (Year = '2019' AND State = 'Massachusetts' AND City = 'Albany')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Humidity, Year=2015, State=Georgia, City=Columbus, min_Value=3.0; Characteristic=Humidity, Year=2019, State=Massachusetts, City=Albany, min_Value=8.76; Characteristic=Wind, Year=2015, State=Georgia, City=Columbus, min_Value=0.19; Characteristic=Wind, Year=2019, State=Massachusetts, City=Albany, min_Value=7.31",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Columbus or Albany ==,==Georgia or Massachusetts in_2015 or 2019 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Massachusetts' AND City = 'Albany')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=7.31; Value=8.35; Value=8.76; Value=11.82; Value=11.96",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Wind or Humidity in__Albany ==,==Massachusetts in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Massachusetts' AND City = 'Albany')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) ORDER BY Value DESC",
+      "GTresult": "Value=15.95; Value=11.96; Value=11.82; Value=8.76; Value=8.35; Value=7.31",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Wind or Humidity in__Albany ==,==Massachusetts in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2015' AND State = 'Georgia' AND City = 'Columbus')) AND Value > 13.05",
+      "GTresult": "",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Columbus ==,==Georgia in_2015 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2019' AND State = 'Massachusetts' AND City = 'Albany')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2015' AND State = 'Georgia' AND City = 'Columbus')) AND Value > 13.05)",
+      "GTresult": "",
+      "NLquestions": []
+    }
+  ]
+}

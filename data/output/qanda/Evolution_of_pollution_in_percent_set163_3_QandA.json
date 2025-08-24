@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Evolution_of_pollution_in_percent_set163_3_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Fort Lauderdale' AND Year = '2022')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Groundwater'))",
+      "GTresult": "Value=-77.95",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air in__Fort Lauderdale ==,==Minnesota in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Fort Lauderdale' AND Year = '2022')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Industrial') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Surface water'))",
+      "GTresult": "Value=-60.42; Value=-58.23",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water or Soil in__Fort Lauderdale ==,==Minnesota in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Tampa' AND Year = '2021') OR (State = 'Minnesota' AND City = 'Fort Lauderdale' AND Year = '2022') OR (State = 'Florida' AND City = 'Rochester' AND Year = '2017') OR (State = 'Minnesota' AND City = 'Minneapolis' AND Year = '2020')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Thermal'))",
+      "GTresult": "Value=-98.31; Value=-73.61; Value=-47.71; Value=-26.96",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water in__Tampa or Fort Lauderdale or Rochester or Minneapolis ==,==Florida or Minnesota in_2021 or 2022 or 2017 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Tampa' AND Year = '2021') OR (State = 'Minnesota' AND City = 'Fort Lauderdale' AND Year = '2022') OR (State = 'Minnesota' AND City = 'Minneapolis' AND Year = '2020')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Inorganic Fertilizers'))",
+      "GTresult": "sum_Value=-16.069999999999997, min_Value=-59.26",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air in__Tampa or Fort Lauderdale or Minneapolis ==,==Florida or Minnesota in_2021 or 2022 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Fort Lauderdale' AND Year = '2022') OR (State = 'Florida' AND City = 'Rochester' AND Year = '2017') OR (State = 'Minnesota' AND City = 'Minneapolis' AND Year = '2020')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Groundwater') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Light') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Inorganic Fertilizers') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Surface water'))",
+      "GTresult": "Value=-77.95; Value=-74.82; Value=-59.26; Value=-58.23; Value=-54.95; Value=-51.26; Value=90.76; Value=-37.81; Value=-30.71; Value=-30.37; Value=-2.73; Value=-1.59",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air or Soil in__Fort Lauderdale or Rochester or Minneapolis ==,==Minnesota or Florida in_2022 or 2017 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, min(Value) AS min_Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Tampa' AND Year = '2021')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Surface water') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Groundwater') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Surface water'))",
+      "GTresult": "avg_Value=22.349999999999998, min_Value=3.35",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Air or Soil in__Tampa ==,==Florida in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT State, City, Year, sum(Value) AS sum_Value, max(Value) AS max_Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Tampa' AND Year = '2021') OR (State = 'Florida' AND City = 'Rochester' AND Year = '2017') OR (State = 'Minnesota' AND City = 'Minneapolis' AND Year = '2020')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Surface water') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Thermal') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Industrial') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Surface water')) GROUP BY State, City, Year",
+      "GTresult": "State=Florida, City=Rochester, Year=2017, sum_Value=72.06, max_Value=88.86; State=Florida, City=Tampa, Year=2021, sum_Value=1.2000000000000015, max_Value=49.92; State=Minnesota, City=Minneapolis, Year=2020, sum_Value=-67.97, max_Value=-1.59",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Soil in__Tampa or Rochester or Minneapolis ==,==Florida or Minnesota in_2021 or 2017 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Rochester' AND Year = '2017')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Soil')) GROUP BY Polluted_element",
+      "GTresult": "min_Value=-51.26; min_Value=-47.71",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Soil in__Rochester ==,==Florida in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Polluted_element, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Minneapolis' AND Year = '2020')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Soil')) GROUP BY Polluted_element",
+      "GTresult": "Polluted_element=Air, sum_Value=-55.82; Polluted_element=Soil, sum_Value=-51.17",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Soil in__Minneapolis ==,==Minnesota in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Polluted_element, State, City, Year, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Fort Lauderdale' AND Year = '2022') OR (State = 'Florida' AND City = 'Rochester' AND Year = '2017') OR (State = 'Minnesota' AND City = 'Minneapolis' AND Year = '2020')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Air')) GROUP BY Polluted_element, State, City, Year",
+      "GTresult": "Polluted_element=Air, State=Florida, City=Rochester, Year=2017, sum_Value=119.0; Polluted_element=Air, State=Minnesota, City=Fort Lauderdale, Year=2022, sum_Value=-205.37; Polluted_element=Air, State=Minnesota, City=Minneapolis, Year=2020, sum_Value=-55.82; Polluted_element=Water, State=Florida, City=Rochester, Year=2017, sum_Value=109.87; Polluted_element=Water, State=Minnesota, City=Fort Lauderdale, Year=2022, sum_Value=-212.29000000000002; Polluted_element=Water, State=Minnesota, City=Minneapolis, Year=2020, sum_Value=-66.38",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Air in__Fort Lauderdale or Rochester or Minneapolis ==,==Minnesota or Florida in_2022 or 2017 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Rochester' AND Year = '2017')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Air')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=-54.95; Value=-47.71; Value=68.72; Value=83.19; Value=88.86",
+      "NLquestions": [
+        "What are the top/bottom_ evolutions of_((pollution)) of_ of_Water or Air in__Rochester ==,==Florida in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Tampa' AND Year = '2021')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Soil')) ORDER BY Value ASC",
+      "GTresult": "Value=-98.31; Value=-83.01; Value=3.35; Value=28.38; Value=46.24; Value=49.92",
+      "NLquestions": [
+        "What are the evolutions /increasing_values of_((pollution)) of_ of_Water or Soil in__Tampa ==,==Florida in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Florida' AND City = 'Rochester' AND Year = '2017')) AND Value > -14.57",
+      "GTresult": "Polluted_element=Water, Type_of_pollution=Surface water; Polluted_element=Air, Type_of_pollution=Noise; Polluted_element=Soil, Type_of_pollution=Urban Activities; Polluted_element=Water, Type_of_pollution=Industrial; Polluted_element=Air, Type_of_pollution=Inorganic Fertilizers",
+      "NLquestions": [
+        "What is/are_the_ the evolution of_((pollution)) of_ of_ in__Rochester ==,==Florida in_2017 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Polluted_element, Type_of_pollution, Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Fort Lauderdale' AND Year = '2022')) AND (Polluted_element, Type_of_pollution) IN (SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Florida' AND City = 'Rochester' AND Year = '2017')) AND Value > -14.57)",
+      "GTresult": "Polluted_element=Water, Type_of_pollution=Surface water, Value=-78.26; Polluted_element=Air, Type_of_pollution=Noise, Value=-68.16; Polluted_element=Soil, Type_of_pollution=Urban Activities, Value=61.86; Polluted_element=Water, Type_of_pollution=Industrial, Value=-60.42; Polluted_element=Air, Type_of_pollution=Inorganic Fertilizers, Value=-59.26",
+      "NLquestions": []
+    }
+  ]
+}

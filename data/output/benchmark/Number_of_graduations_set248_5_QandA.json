@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Number_of_graduations_set248_5_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'MSc')) AND ((Year = '2015/2016' AND Language = 'English'))",
+      "GTresult": "Value=201.16",
+      "NLquestions": [
+        "What is the number of graduations of_ with_a_MSc in_English in_2015/2016 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'MSc')) AND ((Year = '2015/2016' AND Language = 'English') OR (Year = '2022/2023' AND Language = 'German'))",
+      "GTresult": "Value=201.16; Value=157.08",
+      "NLquestions": [
+        "What is the number of graduations of_ with_a_MSc in_English or German in_2015/2016 or 2022/2023 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'MSc')) AND ((Year = '2017/2018' AND Language = 'Other'))",
+      "GTresult": "Value=333.18",
+      "NLquestions": [
+        "What is the number of graduations of_ with_a_MSc in_Other in_2017/2018 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT max(Value) AS max_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Degree = 'MSc')) AND ((Year = '2022/2023' AND Language = 'German'))",
+      "GTresult": "max_Value=157.08, avg_Value=157.08",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_MSc in_German in_2022/2023 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'MSc')) AND ((Year = '2015/2016' AND Language = 'English') OR (Year = '2022/2023' AND Language = 'German'))",
+      "GTresult": "Value=201.16; Value=157.08",
+      "NLquestions": [
+        "What is the number of graduations of_ with_a_MSc in_English or German in_2015/2016 or 2022/2023 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT min(Value) AS min_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Degree = 'MSc')) AND ((Year = '2015/2016' AND Language = 'English') OR (Year = '2017/2018' AND Language = 'Other') OR (Year = '2022/2023' AND Language = 'German'))",
+      "GTresult": "min_Value=157.08, avg_Value=230.47333333333336",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_MSc in_English or Other or German in_2015/2016 or 2017/2018 or 2022/2023 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Degree, max(Value) AS max_Value, min(Value) AS min_Value FROM DBdata WHERE ((Degree = 'MSc')) AND ((Year = '2015/2016' AND Language = 'English') OR (Year = '2017/2018' AND Language = 'Other')) GROUP BY Degree",
+      "GTresult": "Degree=MSc, max_Value=333.18, min_Value=201.16",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_MSc in_English or Other in_2015/2016 or 2017/2018 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Degree = 'MSc')) AND ((Year = '2015/2016') OR (Year = '2017/2018')) GROUP BY Year",
+      "GTresult": "min_Value=201.16; min_Value=333.18",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_MSc in_ in_2015/2016 or 2017/2018 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Year, avg(Value) AS avg_Value FROM DBdata WHERE ((Degree = 'MSc')) AND ((Year = '2017/2018') OR (Year = '2022/2023')) GROUP BY Year",
+      "GTresult": "Year=2017/2018, avg_Value=333.18; Year=2022/2023, avg_Value=157.08",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_MSc in_ in_2017/2018 or 2022/2023 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Year, Degree, sum(Value) AS sum_Value FROM DBdata WHERE ((Degree = 'MSc')) AND ((Year = '2017/2018') OR (Year = '2022/2023')) GROUP BY Year, Degree",
+      "GTresult": "Year=2017/2018, Degree=MSc, sum_Value=333.18; Year=2022/2023, Degree=MSc, sum_Value=157.08",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_MSc in_ in_2017/2018 or 2022/2023 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'MSc')) AND ((Year = '2015/2016') OR (Year = '2017/2018')) ORDER BY Value ASC LIMIT 2",
+      "GTresult": "Value=201.16; Value=333.18",
+      "NLquestions": [
+        "What are the top/bottom_ numbers of graduations of_ with_a_MSc in_ in_2015/2016 or 2017/2018 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'MSc')) AND ((Year = '2015/2016') OR (Year = '2022/2023')) ORDER BY Value DESC",
+      "GTresult": "Value=201.16; Value=157.08",
+      "NLquestions": [
+        "What are the numbers of graduations /increasing_values of_ with_a_MSc in_ in_2015/2016 or 2022/2023 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Year, Language FROM DBdata WHERE ((Degree = 'MSc')) AND Value < 230.47",
+      "GTresult": "Year=2015/2016, Language=English; Year=2022/2023, Language=German",
+      "NLquestions": [
+        "What is/are_the_ the number of graduations of_ with_a_MSc in_ in_ is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Year, Language, Value FROM DBdata WHERE ((Degree = 'MSc')) AND (Year, Language) IN (SELECT Year, Language FROM DBdata WHERE ((Degree = 'MSc')) AND Value < 230.47)",
+      "GTresult": "Year=2015/2016, Language=English, Value=201.16; Year=2022/2023, Language=German, Value=157.08",
+      "NLquestions": []
+    }
+  ]
+}

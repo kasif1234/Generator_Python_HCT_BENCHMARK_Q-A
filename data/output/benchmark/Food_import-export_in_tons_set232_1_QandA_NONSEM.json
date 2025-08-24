@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Food_import-export_in_tons_set232_1_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((AA = 'AAdk')) AND ((BB = 'BBtw' AND CC = 'CChv'))",
+      "GTresult": "Value=984.06",
+      "NLquestions": [
+        "What is the amount of_AAdk of__ BBtw in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((AA = 'AAdk')) AND ((BB = 'BBtw' AND CC = 'CChv') OR (BB = 'BBtw' AND CC = 'CCtv') OR (BB = 'BBdn' AND CC = 'CCrz'))",
+      "GTresult": "Value=984.06; Value=390.89; Value=807.32",
+      "NLquestions": [
+        "What is the amount of_AAdk of__ BBtw or BBdn in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((AA = 'AAdk')) AND ((BB = 'BBdn' AND CC = 'CCrv'))",
+      "GTresult": "Value=991.41",
+      "NLquestions": [
+        "What is the amount of_AAdk of__ BBdn in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT min(Value) AS min_Value, max(Value) AS max_Value FROM DBdata WHERE ((AA = 'AAdk')) AND ((BB = 'BBtw' AND CC = 'CChv'))",
+      "GTresult": "min_Value=984.06, max_Value=984.06",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_AAdk of__ BBtw in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((AA = 'AAdk')) AND ((BB = 'BBdn' AND CC = 'CCrv') OR (BB = 'BBdn' AND CC = 'CCrz'))",
+      "GTresult": "Value=991.41; Value=807.32",
+      "NLquestions": [
+        "What is the amount of_AAdk of__ BBdn in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((AA = 'AAdk')) AND ((BB = 'BBtw' AND CC = 'CChv') OR (BB = 'BBdn' AND CC = 'CCrv') OR (BB = 'BBdn' AND CC = 'CCrz'))",
+      "GTresult": "sum_Value=2782.79, min_Value=807.32",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_AAdk of__ BBtw or BBdn in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT AA, max(Value) AS max_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((AA = 'AAdk')) AND ((BB = 'BBdn' AND CC = 'CCrv') OR (BB = 'BBdn' AND CC = 'CCrz')) GROUP BY AA",
+      "GTresult": "AA=AAdk, max_Value=991.41, avg_Value=899.365",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_AAdk of__ BBdn in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((AA = 'AAdk')) AND ((BB = 'BBtw') OR (BB = 'BBdn')) GROUP BY BB",
+      "GTresult": "min_Value=390.89; min_Value=807.32",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_AAdk of__ BBtw or BBdn in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT BB, sum(Value) AS sum_Value FROM DBdata WHERE ((AA = 'AAdk')) AND ((BB = 'BBtw') OR (BB = 'BBdn')) GROUP BY BB",
+      "GTresult": "BB=BBtw, sum_Value=1374.9499999999998; BB=BBdn, sum_Value=1798.73",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_AAdk of__ BBtw or BBdn in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT BB, AA, sum(Value) AS sum_Value FROM DBdata WHERE ((AA = 'AAdk')) AND ((BB = 'BBtw') OR (BB = 'BBdn')) GROUP BY BB, AA",
+      "GTresult": "BB=BBtw, AA=AAdk, sum_Value=1374.9499999999998; BB=BBdn, AA=AAdk, sum_Value=1798.73",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_AAdk of__ BBtw or BBdn in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((AA = 'AAdk')) AND ((BB = 'BBtw') OR (BB = 'BBdn')) ORDER BY Value DESC LIMIT 3",
+      "GTresult": "Value=991.41; Value=984.06; Value=807.32",
+      "NLquestions": [
+        "What are the top/bottom_ amounts of_AAdk of__ BBtw or BBdn in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((AA = 'AAdk')) AND ((BB = 'BBtw') OR (BB = 'BBdn')) ORDER BY Value DESC",
+      "GTresult": "Value=991.41; Value=984.06; Value=807.32; Value=390.89",
+      "NLquestions": [
+        "What are the amounts /increasing_values of_AAdk of__ BBtw or BBdn in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT BB, CC FROM DBdata WHERE ((AA = 'AAdk')) AND Value > 793.42",
+      "GTresult": "BB=BBtw, CC=CChv; BB=BBdn, CC=CCrv; BB=BBdn, CC=CCrz",
+      "NLquestions": [
+        "What is/are_the_ the amount of_AAdk of__ in__ ==of== is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT BB, CC, Value FROM DBdata WHERE ((AA = 'AAdk')) AND (BB, CC) IN (SELECT BB, CC FROM DBdata WHERE ((AA = 'AAdk')) AND Value > 793.42)",
+      "GTresult": "BB=BBtw, CC=CChv, Value=984.06; BB=BBdn, CC=CCrv, Value=991.41; BB=BBdn, CC=CCrz, Value=807.32",
+      "NLquestions": []
+    }
+  ]
+}

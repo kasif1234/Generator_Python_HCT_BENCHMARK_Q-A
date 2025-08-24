@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set327_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2015' AND State = 'Illinois' AND City = 'Champaign')) AND ((Characteristic = 'Temperature' AND Intensity = '0-10'))",
+      "GTresult": "Value=2.14",
+      "NLquestions": [
+        "How many days with__ Temperature were there in__Champaign ==,==Illinois in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Minnesota' AND City = 'Hastings')) AND ((Characteristic = 'Temperature' AND Intensity = '0-10') OR (Characteristic = 'Humidity' AND Intensity = '21-30') OR (Characteristic = 'Temperature' AND Intensity = 'Medium') OR (Characteristic = 'Humidity' AND Intensity = 'High'))",
+      "GTresult": "Value=21.71; Value=21.75; Value=23.3; Value=23.48",
+      "NLquestions": [
+        "How many days with__ Temperature or Humidity were there in__Hastings ==,==Minnesota in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2015' AND State = 'Illinois' AND City = 'Champaign') OR (Year = '2021' AND State = 'Minnesota' AND City = 'Springfield') OR (Year = '2015' AND State = 'Illinois' AND City = 'Minneapolis')) AND ((Characteristic = 'Temperature' AND Intensity = 'Medium'))",
+      "GTresult": "Value=7.09; Value=11.7; Value=19.98",
+      "NLquestions": [
+        "How many days with__ Temperature were there in__Champaign or Springfield or Minneapolis ==,==Illinois or Minnesota in_2015 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT min(Value) AS min_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Illinois' AND City = 'Champaign') OR (Year = '2015' AND State = 'Illinois' AND City = 'Minneapolis') OR (Year = '2021' AND State = 'Minnesota' AND City = 'Hastings')) AND ((Characteristic = 'Humidity' AND Intensity = '21-30'))",
+      "GTresult": "min_Value=6.25, sum_Value=46.15",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity in__Champaign or Minneapolis or Hastings ==,==Illinois or Minnesota in_2015 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2015' AND State = 'Illinois' AND City = 'Champaign') OR (Year = '2021' AND State = 'Minnesota' AND City = 'Springfield') OR (Year = '2015' AND State = 'Illinois' AND City = 'Minneapolis') OR (Year = '2021' AND State = 'Minnesota' AND City = 'Hastings')) AND ((Characteristic = 'Temperature' AND Intensity = '0-10') OR (Characteristic = 'Humidity' AND Intensity = '21-30') OR (Characteristic = 'Temperature' AND Intensity = 'Medium'))",
+      "GTresult": "Value=2.14; Value=6.25; Value=7.09; Value=9.96; Value=9.11; Value=11.7; Value=17.4; Value=18.15; Value=19.98; Value=21.71; Value=21.75; Value=23.3",
+      "NLquestions": [
+        "How many days with__ Temperature or Humidity were there in__Champaign or Springfield or Minneapolis or Hastings ==,==Illinois or Minnesota in_2015 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT max(Value) AS max_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Minnesota' AND City = 'Hastings')) AND ((Characteristic = 'Temperature' AND Intensity = '0-10') OR (Characteristic = 'Humidity' AND Intensity = '21-30') OR (Characteristic = 'Temperature' AND Intensity = 'Medium'))",
+      "GTresult": "max_Value=23.3, avg_Value=22.253333333333334",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity in__Hastings ==,==Minnesota in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Illinois' AND City = 'Champaign') OR (Year = '2021' AND State = 'Minnesota' AND City = 'Springfield') OR (Year = '2015' AND State = 'Illinois' AND City = 'Minneapolis')) AND ((Characteristic = 'Temperature' AND Intensity = '0-10') OR (Characteristic = 'Humidity' AND Intensity = '21-30') OR (Characteristic = 'Temperature' AND Intensity = 'Medium') OR (Characteristic = 'Humidity' AND Intensity = 'High')) GROUP BY Year, State, City",
+      "GTresult": "Year=2015, State=Illinois, City=Champaign, avg_Value=5.6275, sum_Value=22.51; Year=2015, State=Illinois, City=Minneapolis, avg_Value=18.905, sum_Value=75.62; Year=2021, State=Minnesota, City=Springfield, avg_Value=11.84, sum_Value=47.36",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity in__Champaign or Springfield or Minneapolis ==,==Illinois or Minnesota in_2015 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Minnesota' AND City = 'Springfield')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) GROUP BY Characteristic",
+      "GTresult": "min_Value=9.11; min_Value=9.96",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity in__Springfield ==,==Minnesota in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Illinois' AND City = 'Champaign')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Humidity, avg_Value=6.640000000000001; Characteristic=Temperature, avg_Value=4.615",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity in__Champaign ==,==Illinois in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Illinois' AND City = 'Champaign') OR (Year = '2015' AND State = 'Illinois' AND City = 'Minneapolis')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Humidity, Year=2015, State=Illinois, City=Champaign, sum_Value=13.280000000000001; Characteristic=Humidity, Year=2015, State=Illinois, City=Minneapolis, sum_Value=38.239999999999995; Characteristic=Temperature, Year=2015, State=Illinois, City=Champaign, sum_Value=9.23; Characteristic=Temperature, Year=2015, State=Illinois, City=Minneapolis, sum_Value=37.379999999999995",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity in__Champaign or Minneapolis ==,==Illinois in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2015' AND State = 'Illinois' AND City = 'Champaign')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) ORDER BY Value ASC LIMIT 3",
+      "GTresult": "Value=2.14; Value=6.25; Value=7.03",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Temperature or Humidity in__Champaign ==,==Illinois in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Minnesota' AND City = 'Hastings')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) ORDER BY Value ASC",
+      "GTresult": "Value=21.71; Value=21.75; Value=23.3; Value=23.48",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Temperature or Humidity in__Hastings ==,==Minnesota in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2015' AND State = 'Illinois' AND City = 'Champaign')) AND Value > 14.73",
+      "GTresult": "",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Champaign ==,==Illinois in_2015 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2015' AND State = 'Illinois' AND City = 'Minneapolis')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2015' AND State = 'Illinois' AND City = 'Champaign')) AND Value > 14.73)",
+      "GTresult": "",
+      "NLquestions": []
+    }
+  ]
+}

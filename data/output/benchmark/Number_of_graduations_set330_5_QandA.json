@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Number_of_graduations_set330_5_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'BSc' AND Gender = 'Female' AND Nationality = 'Qatari')) AND ((Year = '2016/2017' AND Language = 'Other'))",
+      "GTresult": "Value=462.02; Value=468.44; Value=414.61",
+      "NLquestions": [
+        "What is the number of graduations of_ with_a_BSc in_Other in_2016/2017 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'BSc' AND Gender = 'Female' AND Nationality = 'Qatari')) AND ((Year = '2018/2019' AND Language = 'Other') OR (Year = '2022/2023' AND Language = 'English') OR (Year = '2015/2016' AND Language = 'French') OR (Year = '2021/2022' AND Language = 'German') OR (Year = '2016/2017' AND Language = 'Other'))",
+      "GTresult": "Value=98.6; Value=167.12; Value=204.57; Value=206.32; Value=462.02; Value=336.53; Value=240.77; Value=306.81; Value=401.54; Value=468.44; Value=312.78; Value=409.29; Value=154.5; Value=219.86; Value=414.61",
+      "NLquestions": [
+        "What is the number of graduations of_ with_a_BSc in_Other or English or French or German in_2018/2019 or 2022/2023 or 2015/2016 or 2021/2022 or 2016/2017 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'BSc' AND Gender = 'Female' AND Nationality = 'Qatari')) AND ((Year = '2021/2022' AND Language = 'German'))",
+      "GTresult": "Value=206.32; Value=401.54; Value=219.86",
+      "NLquestions": [
+        "What is the number of graduations of_ with_a_BSc in_German in_2021/2022 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT avg(Value) AS avg_Value, max(Value) AS max_Value FROM DBdata WHERE ((Degree = 'BSc' AND Gender = 'Female' AND Nationality = 'Qatari')) AND ((Year = '2018/2019' AND Language = 'Other'))",
+      "GTresult": "avg_Value=249.3033333333333, max_Value=336.53",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_BSc in_Other in_2018/2019 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'BSc' AND Gender = 'Female' AND Nationality = 'Qatari')) AND ((Year = '2022/2023' AND Language = 'English') OR (Year = '2015/2016' AND Language = 'French') OR (Year = '2021/2022' AND Language = 'German'))",
+      "GTresult": "Value=167.12; Value=204.57; Value=206.32; Value=240.77; Value=306.81; Value=401.54; Value=409.29; Value=154.5; Value=219.86",
+      "NLquestions": [
+        "What is the number of graduations of_ with_a_BSc in_English or French or German in_2022/2023 or 2015/2016 or 2021/2022 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT max(Value) AS max_Value, min(Value) AS min_Value FROM DBdata WHERE ((Degree = 'BSc' AND Gender = 'Female' AND Nationality = 'Qatari')) AND ((Year = '2018/2019' AND Language = 'Other') OR (Year = '2022/2023' AND Language = 'English') OR (Year = '2015/2016' AND Language = 'French') OR (Year = '2021/2022' AND Language = 'German') OR (Year = '2016/2017' AND Language = 'Other'))",
+      "GTresult": "max_Value=468.44, min_Value=98.6",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_BSc in_Other or English or French or German in_2018/2019 or 2022/2023 or 2015/2016 or 2021/2022 or 2016/2017 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Degree, Gender, Nationality, max(Value) AS max_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Degree = 'BSc' AND Gender = 'Female' AND Nationality = 'Qatari')) AND ((Year = '2018/2019' AND Language = 'Other') OR (Year = '2021/2022' AND Language = 'German')) GROUP BY Degree, Gender, Nationality",
+      "GTresult": "Degree=BSc, Gender=Female, Nationality=Qatari, max_Value=401.54, sum_Value=1575.6299999999999",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_BSc in_Other or German in_2018/2019 or 2021/2022 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Degree = 'BSc' AND Gender = 'Female' AND Nationality = 'Qatari')) AND ((Year = '2018/2019') OR (Year = '2022/2023')) GROUP BY Year",
+      "GTresult": "min_Value=98.6; min_Value=167.12",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_BSc in_ in_2018/2019 or 2022/2023 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Year, max(Value) AS max_Value FROM DBdata WHERE ((Degree = 'BSc' AND Gender = 'Female' AND Nationality = 'Qatari')) AND ((Year = '2018/2019') OR (Year = '2021/2022')) GROUP BY Year",
+      "GTresult": "Year=2018/2019, max_Value=336.53; Year=2021/2022, max_Value=401.54",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_BSc in_ in_2018/2019 or 2021/2022 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Year, Degree, Gender, Nationality, sum(Value) AS sum_Value FROM DBdata WHERE ((Degree = 'BSc' AND Gender = 'Female' AND Nationality = 'Qatari')) AND ((Year = '2015/2016') OR (Year = '2016/2017')) GROUP BY Year, Degree, Gender, Nationality",
+      "GTresult": "Year=2015/2016, Degree=BSc, Gender=Female, Nationality=Qatari, sum_Value=665.88; Year=2016/2017, Degree=BSc, Gender=Female, Nationality=Qatari, sum_Value=1345.07",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_BSc in_ in_2015/2016 or 2016/2017 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'BSc' AND Gender = 'Female' AND Nationality = 'Qatari')) AND ((Year = '2018/2019') OR (Year = '2015/2016')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=336.53; Value=312.78; Value=306.81; Value=204.57; Value=154.5",
+      "NLquestions": [
+        "What are the top/bottom_ numbers of graduations of_ with_a_BSc in_ in_2018/2019 or 2015/2016 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'BSc' AND Gender = 'Female' AND Nationality = 'Qatari')) AND ((Year = '2015/2016') OR (Year = '2021/2022')) ORDER BY Value ASC",
+      "GTresult": "Value=154.5; Value=204.57; Value=206.32; Value=219.86; Value=306.81; Value=401.54",
+      "NLquestions": [
+        "What are the numbers of graduations /increasing_values of_ with_a_BSc in_ in_2015/2016 or 2021/2022 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Year, Language FROM DBdata WHERE ((Degree = 'BSc' AND Gender = 'Female' AND Nationality = 'Qatari')) AND Value > 293.58",
+      "GTresult": "Year=2016/2017, Language=Other; Year=2018/2019, Language=Other; Year=2015/2016, Language=French; Year=2021/2022, Language=German; Year=2016/2017, Language=Other; Year=2018/2019, Language=Other; Year=2022/2023, Language=English; Year=2016/2017, Language=Other",
+      "NLquestions": [
+        "What is/are_the_ the number of graduations of_ with_a_BSc in_ in_ is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Year, Language, Value FROM DBdata WHERE ((Degree = 'BSc' AND Gender = 'Female' AND Nationality = 'Qatari')) AND (Year, Language) IN (SELECT Year, Language FROM DBdata WHERE ((Degree = 'BSc' AND Gender = 'Female' AND Nationality = 'Qatari')) AND Value > 293.58)",
+      "GTresult": "Year=2018/2019, Language=Other, Value=98.6; Year=2022/2023, Language=English, Value=167.12; Year=2015/2016, Language=French, Value=204.57; Year=2021/2022, Language=German, Value=206.32; Year=2016/2017, Language=Other, Value=462.02; Year=2018/2019, Language=Other, Value=336.53; Year=2022/2023, Language=English, Value=240.77; Year=2015/2016, Language=French, Value=306.81; Year=2021/2022, Language=German, Value=401.54; Year=2016/2017, Language=Other, Value=468.44; Year=2018/2019, Language=Other, Value=312.78; Year=2022/2023, Language=English, Value=409.29; Year=2015/2016, Language=French, Value=154.5; Year=2021/2022, Language=German, Value=219.86; Year=2016/2017, Language=Other, Value=414.61",
+      "NLquestions": []
+    }
+  ]
+}

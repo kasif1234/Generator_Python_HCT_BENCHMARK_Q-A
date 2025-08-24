@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Evolution_of_pollution_in_percent_set100_5_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Georgia' AND City = 'Columbus' AND Year = '2021')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Urban Activities'))",
+      "GTresult": "Value=5.11",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air in__Columbus ==,==Georgia in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Michigan' AND City = 'Port Huron' AND Year = '2015')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Thermal') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Light') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Urban Activities') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Inorganic Fertilizers') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Solid Waste') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Oxygen-depletion') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Groundwater') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Chemical') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Surface water') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Thermal'))",
+      "GTresult": "Value=-89.45; Value=-88.94; Value=-86.71; Value=-85.55; Value=-83.09; Value=-87.5; Value=-81.38; Value=-74.8; Value=-74.22; Value=-73.44",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air or Soil or Water in__Port Huron ==,==Michigan in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Georgia' AND City = 'Columbus' AND Year = '2021') OR (State = 'Massachusetts' AND City = 'Boston' AND Year = '2020')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Thermal'))",
+      "GTresult": "Value=29.81; Value=-46.97",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water in__Columbus or Boston ==,==Georgia or Massachusetts in_2021 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT max(Value) AS max_Value, min(Value) AS min_Value FROM DBdata WHERE ((State = 'Georgia' AND City = 'Columbus' AND Year = '2021') OR (State = 'Michigan' AND City = 'Albany' AND Year = '2015') OR (State = 'Georgia' AND City = 'Flint' AND Year = '2021') OR (State = 'Georgia' AND City = 'Cambridge' AND Year = '2021')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Industrial'))",
+      "GTresult": "max_Value=96.68, min_Value=-27.26",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil in__Columbus or Albany or Flint or Cambridge ==,==Georgia or Michigan in_2021 or 2015 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Michigan' AND City = 'Albany' AND Year = '2015') OR (State = 'Massachusetts' AND City = 'Boston' AND Year = '2020') OR (State = 'Georgia' AND City = 'Cambridge' AND Year = '2021')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Groundwater') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Surface water'))",
+      "GTresult": "Value=56.12; Value=58.52; Value=-49.73; Value=-47.57; Value=-17.73; Value=-3.34",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water or Soil in__Albany or Boston or Cambridge ==,==Michigan or Massachusetts or Georgia in_2015 or 2020 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT min(Value) AS min_Value, max(Value) AS max_Value FROM DBdata WHERE ((State = 'Michigan' AND City = 'Albany' AND Year = '2015')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Light') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Industrial') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Groundwater') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Thermal'))",
+      "GTresult": "min_Value=37.12, max_Value=60.45",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Albany ==,==Michigan in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT State, City, Year, min(Value) AS min_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Michigan' AND City = 'Albany' AND Year = '2015') OR (State = 'Massachusetts' AND City = 'Washington' AND Year = '2020') OR (State = 'Georgia' AND City = 'Flint' AND Year = '2021')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Inorganic Fertilizers') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Chemical')) GROUP BY State, City, Year",
+      "GTresult": "State=Georgia, City=Flint, Year=2021, min_Value=-97.42, sum_Value=0.519999999999996; State=Massachusetts, City=Washington, Year=2020, min_Value=75.57, sum_Value=155.07999999999998; State=Michigan, City=Albany, Year=2015, min_Value=47.25, sum_Value=106.22",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Air in__Albany or Washington or Flint ==,==Michigan or Massachusetts or Georgia in_2015 or 2020 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((State = 'Georgia' AND City = 'Cambridge' AND Year = '2021')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Soil')) GROUP BY Polluted_element",
+      "GTresult": "min_Value=-47.49; min_Value=-43.08",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Soil in__Cambridge ==,==Georgia in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Polluted_element, avg(Value) AS avg_Value FROM DBdata WHERE ((State = 'Georgia' AND City = 'Cambridge' AND Year = '2021')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) GROUP BY Polluted_element",
+      "GTresult": "Polluted_element=Soil, avg_Value=-23.16; Polluted_element=Water, avg_Value=-23.1325",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Cambridge ==,==Georgia in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Polluted_element, State, City, Year, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Washington' AND Year = '2020') OR (State = 'Georgia' AND City = 'Flint' AND Year = '2021')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) GROUP BY Polluted_element, State, City, Year",
+      "GTresult": "Polluted_element=Soil, State=Georgia, City=Flint, Year=2021, sum_Value=92.75; Polluted_element=Soil, State=Massachusetts, City=Washington, Year=2020, sum_Value=294.36; Polluted_element=Water, State=Georgia, City=Flint, Year=2021, sum_Value=-1.240000000000009; Polluted_element=Water, State=Massachusetts, City=Washington, Year=2020, sum_Value=307.58",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Washington or Flint ==,==Massachusetts or Georgia in_2020 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Boston' AND Year = '2020')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Water')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=-46.97; Value=-47.95; Value=-49.73; Value=-56.32; Value=-62.21",
+      "NLquestions": [
+        "What are the top/bottom_ evolutions of_((pollution)) of_ of_Air or Water in__Boston ==,==Massachusetts in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Washington' AND Year = '2020')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Water')) ORDER BY Value DESC",
+      "GTresult": "Value=87.21; Value=79.51; Value=75.57; Value=75.35; Value=74.38; Value=73.18; Value=69.45; Value=64.87",
+      "NLquestions": [
+        "What are the evolutions /increasing_values of_((pollution)) of_ of_Air or Water in__Washington ==,==Massachusetts in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Michigan' AND City = 'Port Huron' AND Year = '2015')) AND Value < -2.30",
+      "GTresult": "Polluted_element=Air, Type_of_pollution=Thermal; Polluted_element=Soil, Type_of_pollution=Light; Polluted_element=Water, Type_of_pollution=Noise; Polluted_element=Air, Type_of_pollution=Urban Activities; Polluted_element=Soil, Type_of_pollution=Industrial; Polluted_element=Water, Type_of_pollution=Inorganic Fertilizers; Polluted_element=Air, Type_of_pollution=Solid Waste; Polluted_element=Soil, Type_of_pollution=Oxygen-depletion; Polluted_element=Water, Type_of_pollution=Groundwater; Polluted_element=Air, Type_of_pollution=Chemical; Polluted_element=Soil, Type_of_pollution=Surface water; Polluted_element=Water, Type_of_pollution=Thermal",
+      "NLquestions": [
+        "What is/are_the_ the evolution of_((pollution)) of_ of_ in__Port Huron ==,==Michigan in_2015 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Polluted_element, Type_of_pollution, Value FROM DBdata WHERE ((State = 'Georgia' AND City = 'Columbus' AND Year = '2021')) AND (Polluted_element, Type_of_pollution) IN (SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Michigan' AND City = 'Port Huron' AND Year = '2015')) AND Value < -2.30)",
+      "GTresult": "Polluted_element=Air, Type_of_pollution=Thermal, Value=0.51; Polluted_element=Soil, Type_of_pollution=Light, Value=3.02; Polluted_element=Water, Type_of_pollution=Noise, Value=4.48; Polluted_element=Air, Type_of_pollution=Urban Activities, Value=5.11; Polluted_element=Soil, Type_of_pollution=Industrial, Value=10.84; Polluted_element=Water, Type_of_pollution=Inorganic Fertilizers, Value=11.17; Polluted_element=Air, Type_of_pollution=Solid Waste, Value=16.23; Polluted_element=Soil, Type_of_pollution=Oxygen-depletion, Value=17.82; Polluted_element=Water, Type_of_pollution=Groundwater, Value=-3.57; Polluted_element=Air, Type_of_pollution=Chemical, Value=19.28; Polluted_element=Soil, Type_of_pollution=Surface water, Value=20.42; Polluted_element=Water, Type_of_pollution=Thermal, Value=29.81",
+      "NLquestions": []
+    }
+  ]
+}

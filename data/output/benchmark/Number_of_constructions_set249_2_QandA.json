@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Number_of_constructions_set249_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Factory')) AND ((Quarter = 'Q1' AND Month = 'July' AND State = 'Michigan' AND City = 'Hastings'))",
+      "GTresult": "Value=85.41",
+      "NLquestions": [
+        "What is the number of__ in__Hastings ==,==Michigan in__July ==,==Q1 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Hotel')) AND ((Quarter = 'Q3' AND Month = 'September' AND State = 'Michigan' AND City = 'Port Huron') OR (Quarter = 'Q4' AND Month = 'August' AND State = 'Minnesota' AND City = 'Flint') OR (Quarter = 'Q1' AND Month = 'July' AND State = 'Michigan' AND City = 'Hastings') OR (Quarter = 'Q3' AND Month = 'December' AND State = 'Minnesota' AND City = 'Port Huron') OR (Quarter = 'Q4' AND Month = 'November' AND State = 'Michigan' AND City = 'Flint') OR (Quarter = 'Q1' AND Month = 'February' AND State = 'Minnesota' AND City = 'Hastings') OR (Quarter = 'Q3' AND Month = 'March' AND State = 'Michigan' AND City = 'Port Huron') OR (Quarter = 'Q4' AND Month = 'September' AND State = 'Minnesota' AND City = 'Flint') OR (Quarter = 'Q1' AND Month = 'August' AND State = 'Michigan' AND City = 'Hastings'))",
+      "GTresult": "Value=5.75; Value=8.16; Value=8.6; Value=12.67; Value=17.02; Value=19.69; Value=26.0; Value=29.61; Value=30.7",
+      "NLquestions": [
+        "What is the number of__ in__Port Huron or Flint or Hastings ==,==Michigan or Minnesota in__September or August or July or December or November or February or March ==,==Q3 or Q4 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Workshop') OR (Type_of_building = 'Production' AND Usage = 'Factory')) AND ((Quarter = 'Q1' AND Month = 'August' AND State = 'Michigan' AND City = 'Hastings'))",
+      "GTresult": "Value=74.47; Value=99.24",
+      "NLquestions": [
+        "What is the number of__ in__Hastings ==,==Michigan in__August ==,==Q1 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT avg(Value) AS avg_Value, max(Value) AS max_Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Hotel') OR (Type_of_building = 'Production' AND Usage = 'House')) AND ((Quarter = 'Q4' AND Month = 'November' AND State = 'Michigan' AND City = 'Flint'))",
+      "GTresult": "avg_Value=31.21, max_Value=45.4",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__Flint ==,==Michigan in__November ==,==Q4 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'House') OR (Type_of_building = 'Residential' AND Usage = 'Workshop')) AND ((Quarter = 'Q1' AND Month = 'July' AND State = 'Michigan' AND City = 'Hastings') OR (Quarter = 'Q1' AND Month = 'August' AND State = 'Michigan' AND City = 'Hastings'))",
+      "GTresult": "Value=39.97; Value=56.37; Value=60.35; Value=74.47",
+      "NLquestions": [
+        "What is the number of__ in__Hastings ==,==Michigan in__July or August ==,==Q1 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT min(Value) AS min_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Factory')) AND ((Quarter = 'Q4' AND Month = 'November' AND State = 'Michigan' AND City = 'Flint') OR (Quarter = 'Q4' AND Month = 'September' AND State = 'Minnesota' AND City = 'Flint'))",
+      "GTresult": "min_Value=92.64, avg_Value=95.7",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__Flint ==,==Michigan or Minnesota in__November or September ==,==Q4 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Type_of_building, Usage, sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Hotel') OR (Type_of_building = 'Production' AND Usage = 'House') OR (Type_of_building = 'Residential' AND Usage = 'Workshop') OR (Type_of_building = 'Production' AND Usage = 'Factory')) AND ((Quarter = 'Q1' AND Month = 'July' AND State = 'Michigan' AND City = 'Hastings') OR (Quarter = 'Q4' AND Month = 'November' AND State = 'Michigan' AND City = 'Flint') OR (Quarter = 'Q3' AND Month = 'March' AND State = 'Michigan' AND City = 'Port Huron') OR (Quarter = 'Q1' AND Month = 'August' AND State = 'Michigan' AND City = 'Hastings')) GROUP BY Type_of_building, Usage",
+      "GTresult": "Type_of_building=Production, Usage=Factory, sum_Value=374.96, min_Value=85.41; Type_of_building=Production, Usage=House, sum_Value=190.09, min_Value=39.97; Type_of_building=Residential, Usage=Hotel, sum_Value=82.32, min_Value=8.6; Type_of_building=Residential, Usage=Workshop, sum_Value=262.73, min_Value=60.35",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__Hastings or Flint or Port Huron ==,==Michigan in__July or November or March or August ==,==Q1 or Q4 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Hotel')) AND ((Quarter = 'Q3') OR (Quarter = 'Q4')) GROUP BY Quarter",
+      "GTresult": "min_Value=5.75; min_Value=8.16",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q3 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Quarter, avg(Value) AS avg_Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Workshop')) AND ((Quarter = 'Q3') OR (Quarter = 'Q1')) GROUP BY Quarter",
+      "GTresult": "Quarter=Q1, avg_Value=66.16333333333334; Quarter=Q3, avg_Value=61.836666666666666",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q3 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Quarter, Type_of_building, Usage, avg(Value) AS avg_Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Hotel') OR (Type_of_building = 'Production' AND Usage = 'House')) AND ((Quarter = 'Q3') OR (Quarter = 'Q4')) GROUP BY Quarter, Type_of_building, Usage",
+      "GTresult": "Quarter=Q3, Type_of_building=Production, Usage=House, avg_Value=41.32333333333333; Quarter=Q3, Type_of_building=Residential, Usage=Hotel, avg_Value=14.806666666666667; Quarter=Q4, Type_of_building=Production, Usage=House, avg_Value=44.44333333333333; Quarter=Q4, Type_of_building=Residential, Usage=Hotel, avg_Value=18.263333333333332",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q3 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Factory')) AND ((Quarter = 'Q3') OR (Quarter = 'Q4')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=77.57; Value=85.48; Value=89.47; Value=92.64; Value=97.67",
+      "NLquestions": [
+        "What are the top/bottom_ numbers of__ in__ ==,== in__ ==,==Q3 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Workshop')) AND ((Quarter = 'Q4') OR (Quarter = 'Q1')) ORDER BY Value ASC",
+      "GTresult": "Value=59.05; Value=60.35; Value=61.49; Value=63.67; Value=67.88; Value=74.47",
+      "NLquestions": [
+        "What are the numbers /ascending_values of__ in__ ==,== in__ ==,==Q4 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Quarter, Month, State, City FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Factory')) AND Value > 54.20",
+      "GTresult": "Quarter=Q3, Month=September, State=Michigan, City=Port Huron; Quarter=Q4, Month=August, State=Minnesota, City=Flint; Quarter=Q1, Month=July, State=Michigan, City=Hastings; Quarter=Q3, Month=December, State=Minnesota, City=Port Huron; Quarter=Q4, Month=November, State=Michigan, City=Flint; Quarter=Q1, Month=February, State=Minnesota, City=Hastings; Quarter=Q3, Month=March, State=Michigan, City=Port Huron; Quarter=Q4, Month=September, State=Minnesota, City=Flint; Quarter=Q1, Month=August, State=Michigan, City=Hastings",
+      "NLquestions": [
+        "What is/are_the_ the number of__ in__ ==,== in__ ==,== is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Quarter, Month, State, City, Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Workshop')) AND (Quarter, Month, State, City) IN (SELECT Quarter, Month, State, City FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Factory')) AND Value > 54.20)",
+      "GTresult": "Quarter=Q3, Month=September, State=Michigan, City=Port Huron, Value=57.4; Quarter=Q4, Month=August, State=Minnesota, City=Flint, Value=59.05; Quarter=Q1, Month=July, State=Michigan, City=Hastings, Value=60.35; Quarter=Q3, Month=December, State=Minnesota, City=Port Huron, Value=61.69; Quarter=Q4, Month=November, State=Michigan, City=Flint, Value=61.49; Quarter=Q1, Month=February, State=Minnesota, City=Hastings, Value=63.67; Quarter=Q3, Month=March, State=Michigan, City=Port Huron, Value=66.42; Quarter=Q4, Month=September, State=Minnesota, City=Flint, Value=67.88; Quarter=Q1, Month=August, State=Michigan, City=Hastings, Value=74.47",
+      "NLquestions": []
+    }
+  ]
+}

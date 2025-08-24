@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set277_1_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Michigan' AND City = 'Boulder City')) AND ((Characteristic = 'Wind' AND Intensity = 'Low'))",
+      "GTresult": "Value=9.24",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Boulder City ==,==Michigan in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Michigan' AND City = 'Boulder City')) AND ((Characteristic = 'Temperature' AND Intensity = 'High') OR (Characteristic = 'Wind' AND Intensity = 'Low') OR (Characteristic = 'Temperature' AND Intensity = '11-20') OR (Characteristic = 'Wind' AND Intensity = '21-30') OR (Characteristic = 'Humidity' AND Intensity = 'Calm') OR (Characteristic = 'Temperature' AND Intensity = 'Storm'))",
+      "GTresult": "Value=8.87; Value=9.24; Value=9.12; Value=11.33; Value=11.99; Value=12.74",
+      "NLquestions": [
+        "How many days with__ Temperature or Wind or Humidity were there in__Boulder City ==,==Michigan in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Michigan' AND City = 'Rochester') OR (Year = '2018' AND State = 'Nevada' AND City = 'Detroit') OR (Year = '2019' AND State = 'Michigan' AND City = 'Boulder City') OR (Year = '2018' AND State = 'Nevada' AND City = 'Las Vegas')) AND ((Characteristic = 'Wind' AND Intensity = 'Calm'))",
+      "GTresult": "Value=9.08; Value=18.45; Value=8.44; Value=12.54",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Rochester or Detroit or Boulder City or Las Vegas ==,==Michigan or Nevada in_2019 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2020' AND State = 'Minnesota' AND City = 'Hastings') OR (Year = '2019' AND State = 'Michigan' AND City = 'Rochester') OR (Year = '2018' AND State = 'Nevada' AND City = 'Detroit') OR (Year = '2019' AND State = 'Michigan' AND City = 'Boulder City')) AND ((Characteristic = 'Wind' AND Intensity = '21-30'))",
+      "GTresult": "avg_Value=14.1925, sum_Value=56.77",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind in__Hastings or Rochester or Detroit or Boulder City ==,==Minnesota or Michigan or Nevada in_2020 or 2019 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Minnesota' AND City = 'Hastings') OR (Year = '2018' AND State = 'Nevada' AND City = 'Detroit') OR (Year = '2019' AND State = 'Michigan' AND City = 'Boulder City') OR (Year = '2018' AND State = 'Nevada' AND City = 'Las Vegas') OR (Year = '2020' AND State = 'Minnesota' AND City = 'Reno')) AND ((Characteristic = 'Humidity' AND Intensity = 'Storm') OR (Characteristic = 'Temperature' AND Intensity = 'High') OR (Characteristic = 'Wind' AND Intensity = '21-30') OR (Characteristic = 'Temperature' AND Intensity = 'Storm'))",
+      "GTresult": "Value=1.47; Value=2.98; Value=5.64; Value=7.54; Value=16.93; Value=20.5; Value=24.03; Value=24.43; Value=8.42; Value=8.87; Value=11.33; Value=12.74; Value=13.49; Value=1.21; Value=4.54; Value=5.89; Value=18.1; Value=6.78; Value=22.22; Value=23.75",
+      "NLquestions": [
+        "How many days with__ Humidity or Temperature or Wind were there in__Hastings or Detroit or Boulder City or Las Vegas or Reno ==,==Minnesota or Nevada or Michigan in_2020 or 2018 or 2019 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2020' AND State = 'Minnesota' AND City = 'Hastings')) AND ((Characteristic = 'Temperature' AND Intensity = 'High') OR (Characteristic = 'Humidity' AND Intensity = '0-10'))",
+      "GTresult": "sum_Value=6.720000000000001, avg_Value=3.3600000000000003",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity in__Hastings ==,==Minnesota in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2018' AND State = 'Nevada' AND City = 'Detroit') OR (Year = '2020' AND State = 'Minnesota' AND City = 'Port Huron') OR (Year = '2019' AND State = 'Michigan' AND City = 'Boulder City') OR (Year = '2018' AND State = 'Nevada' AND City = 'Las Vegas')) AND ((Characteristic = 'Humidity' AND Intensity = '0-10') OR (Characteristic = 'Humidity' AND Intensity = 'Calm')) GROUP BY Year, State, City",
+      "GTresult": "Year=2018, State=Nevada, City=Detroit, sum_Value=40.58, avg_Value=20.29; Year=2018, State=Nevada, City=Las Vegas, sum_Value=20.740000000000002, avg_Value=10.370000000000001; Year=2019, State=Michigan, City=Boulder City, sum_Value=21.29, avg_Value=10.645; Year=2020, State=Minnesota, City=Port Huron, sum_Value=8.35, avg_Value=4.175",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity in__Detroit or Port Huron or Boulder City or Las Vegas ==,==Nevada or Minnesota or Michigan in_2018 or 2020 or 2019 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Michigan' AND City = 'Boulder City')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) GROUP BY Characteristic",
+      "GTresult": "min_Value=8.87; min_Value=8.44",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Boulder City ==,==Michigan in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2020' AND State = 'Minnesota' AND City = 'Port Huron')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Humidity, sum_Value=34.57; Characteristic=Wind, sum_Value=37.66",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Port Huron ==,==Minnesota in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Michigan' AND City = 'Boulder City') OR (Year = '2018' AND State = 'Nevada' AND City = 'Las Vegas') OR (Year = '2020' AND State = 'Minnesota' AND City = 'Reno')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Humidity, Year=2018, State=Nevada, City=Las Vegas, max_Value=17.87; Characteristic=Humidity, Year=2019, State=Michigan, City=Boulder City, max_Value=11.99; Characteristic=Humidity, Year=2020, State=Minnesota, City=Reno, max_Value=18.1; Characteristic=Temperature, Year=2018, State=Nevada, City=Las Vegas, max_Value=15.07; Characteristic=Temperature, Year=2019, State=Michigan, City=Boulder City, max_Value=12.74; Characteristic=Temperature, Year=2020, State=Minnesota, City=Reno, max_Value=23.75",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Temperature in__Boulder City or Las Vegas or Reno ==,==Michigan or Nevada or Minnesota in_2019 or 2018 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Michigan' AND City = 'Rochester')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=16.34; Value=15.77; Value=13.88; Value=12.78; Value=10.46",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Wind or Humidity in__Rochester ==,==Michigan in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Michigan' AND City = 'Rochester')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) ORDER BY Value ASC",
+      "GTresult": "Value=9.08; Value=11.57; Value=12.52; Value=12.78; Value=15.77; Value=17.49",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Wind or Temperature in__Rochester ==,==Michigan in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2019' AND State = 'Michigan' AND City = 'Rochester')) AND Value < 12.12",
+      "GTresult": "Characteristic=Wind, Intensity=Calm; Characteristic=Humidity, Intensity=Storm; Characteristic=Temperature, Intensity=High",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Rochester ==,==Michigan in_2019 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2018' AND State = 'Nevada' AND City = 'Las Vegas')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2019' AND State = 'Michigan' AND City = 'Rochester')) AND Value < 12.12)",
+      "GTresult": "Characteristic=Wind, Intensity=Calm, Value=12.54; Characteristic=Humidity, Intensity=Storm, Value=13.49; Characteristic=Temperature, Intensity=High, Value=1.21",
+      "NLquestions": []
+    }
+  ]
+}

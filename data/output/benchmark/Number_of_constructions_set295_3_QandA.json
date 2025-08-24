@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Number_of_constructions_set295_3_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Administration')) AND ((Quarter = 'Q1' AND Month = 'January' AND State = 'Maryland' AND City = 'Boulder City'))",
+      "GTresult": "Value=79.21",
+      "NLquestions": [
+        "What is the number of__ in__Boulder City ==,==Maryland in__January ==,==Q1 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Theatre')) AND ((Quarter = 'Q3' AND Month = 'September' AND State = 'Maryland' AND City = 'Columbia') OR (Quarter = 'Q4' AND Month = 'August' AND State = 'Nevada' AND City = 'Reno') OR (Quarter = 'Q3' AND Month = 'December' AND State = 'Nevada' AND City = 'Columbia') OR (Quarter = 'Q1' AND Month = 'November' AND State = 'Nevada' AND City = 'Boulder City'))",
+      "GTresult": "Value=25.93; Value=25.94; Value=27.65; Value=30.18",
+      "NLquestions": [
+        "What is the number of__ in__Columbia or Reno or Boulder City ==,==Maryland or Nevada in__September or August or December or November ==,==Q3 or Q4 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Concert') OR (Type_of_building = 'Production' AND Usage = 'Administration')) AND ((Quarter = 'Q1' AND Month = 'November' AND State = 'Nevada' AND City = 'Boulder City'))",
+      "GTresult": "Value=15.9; Value=71.33",
+      "NLquestions": [
+        "What is the number of__ in__Boulder City ==,==Nevada in__November ==,==Q1 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT avg(Value) AS avg_Value, max(Value) AS max_Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Concert') OR (Type_of_building = 'Production' AND Usage = 'Theatre') OR (Type_of_building = 'Culture' AND Usage = 'School') OR (Type_of_building = 'Production' AND Usage = 'Administration') OR (Type_of_building = 'Service' AND Usage = 'Factory')) AND ((Quarter = 'Q3' AND Month = 'February' AND State = 'Maryland' AND City = 'Columbia'))",
+      "GTresult": "avg_Value=54.15, max_Value=97.74",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__Columbia ==,==Maryland in__February ==,==Q3 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Museum') OR (Type_of_building = 'Service' AND Usage = 'Concert') OR (Type_of_building = 'Service' AND Usage = 'Library')) AND ((Quarter = 'Q3' AND Month = 'September' AND State = 'Maryland' AND City = 'Columbia') OR (Quarter = 'Q1' AND Month = 'July' AND State = 'Maryland' AND City = 'Boulder City') OR (Quarter = 'Q3' AND Month = 'December' AND State = 'Nevada' AND City = 'Columbia') OR (Quarter = 'Q1' AND Month = 'January' AND State = 'Maryland' AND City = 'Boulder City'))",
+      "GTresult": "Value=3.41; Value=6.79; Value=6.08; Value=13.97; Value=14.9; Value=16.0; Value=15.66; Value=22.78; Value=47.6; Value=52.78; Value=53.52; Value=64.56",
+      "NLquestions": [
+        "What is the number of__ in__Columbia or Boulder City ==,==Maryland or Nevada in__September or July or December or January ==,==Q3 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Administration')) AND ((Quarter = 'Q3' AND Month = 'December' AND State = 'Nevada' AND City = 'Columbia') OR (Quarter = 'Q3' AND Month = 'February' AND State = 'Maryland' AND City = 'Columbia') OR (Quarter = 'Q1' AND Month = 'January' AND State = 'Maryland' AND City = 'Boulder City'))",
+      "GTresult": "avg_Value=75.95, sum_Value=227.85",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__Columbia or Boulder City ==,==Nevada or Maryland in__December or February or January ==,==Q3 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Type_of_building, Usage, sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'School') OR (Type_of_building = 'Service' AND Usage = 'Library') OR (Type_of_building = 'Service' AND Usage = 'Factory')) AND ((Quarter = 'Q1' AND Month = 'July' AND State = 'Maryland' AND City = 'Boulder City') OR (Quarter = 'Q1' AND Month = 'November' AND State = 'Nevada' AND City = 'Boulder City')) GROUP BY Type_of_building, Usage",
+      "GTresult": "Type_of_building=Culture, Usage=School, sum_Value=80.93, min_Value=37.24; Type_of_building=Service, Usage=Factory, sum_Value=187.86, min_Value=91.35; Type_of_building=Service, Usage=Library, sum_Value=64.91, min_Value=12.13",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__Boulder City ==,==Maryland or Nevada in__July or November ==,==Q1 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Library')) AND ((Quarter = 'Q3') OR (Quarter = 'Q4')) GROUP BY Quarter",
+      "GTresult": "min_Value=47.6; min_Value=48.01",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q3 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Quarter, min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Factory')) AND ((Quarter = 'Q3') OR (Quarter = 'Q1')) GROUP BY Quarter",
+      "GTresult": "Quarter=Q1, min_Value=91.35; Quarter=Q3, min_Value=91.22",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q3 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Quarter, Type_of_building, Usage, min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Museum') OR (Type_of_building = 'Production' AND Usage = 'Administration')) AND ((Quarter = 'Q3') OR (Quarter = 'Q4')) GROUP BY Quarter, Type_of_building, Usage",
+      "GTresult": "Quarter=Q3, Type_of_building=Culture, Usage=Museum, min_Value=3.41; Quarter=Q3, Type_of_building=Production, Usage=Administration, min_Value=70.51; Quarter=Q4, Type_of_building=Culture, Usage=Museum, min_Value=5.18; Quarter=Q4, Type_of_building=Production, Usage=Administration, min_Value=71.19",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q3 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Theatre')) AND ((Quarter = 'Q3') OR (Quarter = 'Q4')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=33.79; Value=31.78; Value=29.9; Value=27.65; Value=25.94",
+      "NLquestions": [
+        "What are the top/bottom_ numbers of__ in__ ==,== in__ ==,==Q3 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Museum')) AND ((Quarter = 'Q4') OR (Quarter = 'Q1')) ORDER BY Value DESC",
+      "GTresult": "Value=13.97; Value=12.03; Value=9.85; Value=6.86; Value=6.79; Value=5.18",
+      "NLquestions": [
+        "What are the numbers /ascending_values of__ in__ ==,== in__ ==,==Q4 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Quarter, Month, State, City FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Theatre')) AND Value < 49.64",
+      "GTresult": "Quarter=Q3, Month=September, State=Maryland, City=Columbia; Quarter=Q4, Month=August, State=Nevada, City=Reno; Quarter=Q1, Month=July, State=Maryland, City=Boulder City; Quarter=Q3, Month=December, State=Nevada, City=Columbia; Quarter=Q4, Month=October, State=Maryland, City=Reno; Quarter=Q1, Month=November, State=Nevada, City=Boulder City; Quarter=Q3, Month=February, State=Maryland, City=Columbia; Quarter=Q4, Month=March, State=Nevada, City=Reno; Quarter=Q1, Month=January, State=Maryland, City=Boulder City",
+      "NLquestions": [
+        "What is/are_the_ the number of__ in__ ==,== in__ ==,== is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Quarter, Month, State, City, Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Concert')) AND (Quarter, Month, State, City) IN (SELECT Quarter, Month, State, City FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Theatre')) AND Value < 49.64)",
+      "GTresult": "Quarter=Q3, Month=September, State=Maryland, City=Columbia, Value=14.9; Quarter=Q4, Month=August, State=Nevada, City=Reno, Value=15.95; Quarter=Q1, Month=July, State=Maryland, City=Boulder City, Value=16.0; Quarter=Q3, Month=December, State=Nevada, City=Columbia, Value=15.66; Quarter=Q4, Month=October, State=Maryland, City=Reno, Value=17.19; Quarter=Q1, Month=November, State=Nevada, City=Boulder City, Value=15.9; Quarter=Q3, Month=February, State=Maryland, City=Columbia, Value=20.22; Quarter=Q4, Month=March, State=Nevada, City=Reno, Value=18.79; Quarter=Q1, Month=January, State=Maryland, City=Boulder City, Value=22.78",
+      "NLquestions": []
+    }
+  ]
+}

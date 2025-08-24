@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Number_of_constructions_set112_4_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Factory')) AND ((Quarter = 'Q4' AND Month = 'July' AND State = 'California' AND City = 'Columbus'))",
+      "GTresult": "Value=8.69",
+      "NLquestions": [
+        "What is the number of__ in__Columbus ==,==California in__July ==,==Q4 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Apartment')) AND ((Quarter = 'Q4' AND Month = 'May' AND State = 'Georgia' AND City = 'Columbus') OR (Quarter = 'Q4' AND Month = 'July' AND State = 'California' AND City = 'Columbus') OR (Quarter = 'Q3' AND Month = 'August' AND State = 'Georgia' AND City = 'Washington') OR (Quarter = 'Q4' AND Month = 'April' AND State = 'Georgia' AND City = 'Columbus'))",
+      "GTresult": "Value=85.37; Value=90.91; Value=95.4; Value=97.0",
+      "NLquestions": [
+        "What is the number of__ in__Columbus or Washington ==,==Georgia or California in__May or July or August or April ==,==Q4 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Workshop') OR (Type_of_building = 'Residential' AND Usage = 'Hotel') OR (Type_of_building = 'Production' AND Usage = 'Apartment')) AND ((Quarter = 'Q2' AND Month = 'September' AND State = 'California' AND City = 'San Francisco'))",
+      "GTresult": "Value=45.68; Value=77.89; Value=95.15",
+      "NLquestions": [
+        "What is the number of__ in__San Francisco ==,==California in__September ==,==Q2 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT avg(Value) AS avg_Value, max(Value) AS max_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Factory') OR (Type_of_building = 'Residential' AND Usage = 'Workshop') OR (Type_of_building = 'Production' AND Usage = 'House') OR (Type_of_building = 'Residential' AND Usage = 'Hotel') OR (Type_of_building = 'Production' AND Usage = 'Apartment')) AND ((Quarter = 'Q4' AND Month = 'April' AND State = 'Georgia' AND City = 'Columbus'))",
+      "GTresult": "avg_Value=62.184000000000005, max_Value=97.0",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__Columbus ==,==Georgia in__April ==,==Q4 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Factory') OR (Type_of_building = 'Residential' AND Usage = 'Workshop') OR (Type_of_building = 'Production' AND Usage = 'House') OR (Type_of_building = 'Residential' AND Usage = 'Hotel') OR (Type_of_building = 'Production' AND Usage = 'Apartment')) AND ((Quarter = 'Q4' AND Month = 'July' AND State = 'California' AND City = 'Columbus') OR (Quarter = 'Q3' AND Month = 'August' AND State = 'Georgia' AND City = 'Washington') OR (Quarter = 'Q2' AND Month = 'September' AND State = 'California' AND City = 'San Francisco') OR (Quarter = 'Q3' AND Month = 'May' AND State = 'California' AND City = 'Washington'))",
+      "GTresult": "Value=8.69; Value=15.42; Value=17.86; Value=21.31; Value=33.57; Value=36.88; Value=45.68; Value=45.57; Value=63.4; Value=65.37; Value=66.43; Value=68.65; Value=73.28; Value=74.02; Value=77.89; Value=81.78; Value=90.91; Value=95.4; Value=95.15; Value=97.36",
+      "NLquestions": [
+        "What is the number of__ in__Columbus or Washington or San Francisco ==,==California or Georgia in__July or August or September or May ==,==Q4 or Q3 or Q2 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, max(Value) AS max_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'House')) AND ((Quarter = 'Q3' AND Month = 'October' AND State = 'California' AND City = 'Washington') OR (Quarter = 'Q2' AND Month = 'November' AND State = 'Georgia' AND City = 'San Francisco') OR (Quarter = 'Q4' AND Month = 'July' AND State = 'California' AND City = 'Columbus') OR (Quarter = 'Q2' AND Month = 'September' AND State = 'California' AND City = 'San Francisco') OR (Quarter = 'Q4' AND Month = 'April' AND State = 'Georgia' AND City = 'Columbus'))",
+      "GTresult": "avg_Value=63.33, max_Value=67.53",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__Washington or San Francisco or Columbus ==,==California or Georgia in__October or November or July or September or April ==,==Q3 or Q2 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Type_of_building, Usage, sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Factory') OR (Type_of_building = 'Residential' AND Usage = 'Workshop') OR (Type_of_building = 'Production' AND Usage = 'House') OR (Type_of_building = 'Residential' AND Usage = 'Hotel') OR (Type_of_building = 'Production' AND Usage = 'Apartment')) AND ((Quarter = 'Q2' AND Month = 'April' AND State = 'California' AND City = 'San Francisco') OR (Quarter = 'Q3' AND Month = 'May' AND State = 'California' AND City = 'Washington')) GROUP BY Type_of_building, Usage",
+      "GTresult": "Type_of_building=Production, Usage=Apartment, sum_Value=182.78, avg_Value=91.39; Type_of_building=Production, Usage=Factory, sum_Value=22.43, avg_Value=11.215; Type_of_building=Production, Usage=House, sum_Value=118.09, avg_Value=59.045; Type_of_building=Residential, Usage=Hotel, sum_Value=150.41, avg_Value=75.205; Type_of_building=Residential, Usage=Workshop, sum_Value=70.58, avg_Value=35.29",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__San Francisco or Washington ==,==California in__April or May ==,==Q2 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Apartment')) AND ((Quarter = 'Q2') OR (Quarter = 'Q4')) GROUP BY Quarter",
+      "GTresult": "min_Value=85.42; min_Value=85.37",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q2 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Quarter, max(Value) AS max_Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Hotel')) AND ((Quarter = 'Q2') OR (Quarter = 'Q3')) GROUP BY Quarter",
+      "GTresult": "Quarter=Q2, max_Value=77.89; Quarter=Q3, max_Value=81.78",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q2 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Quarter, Type_of_building, Usage, sum(Value) AS sum_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Factory') OR (Type_of_building = 'Residential' AND Usage = 'Hotel') OR (Type_of_building = 'Production' AND Usage = 'Apartment')) AND ((Quarter = 'Q2') OR (Quarter = 'Q4')) GROUP BY Quarter, Type_of_building, Usage",
+      "GTresult": "Quarter=Q2, Type_of_building=Production, Usage=Apartment, sum_Value=267.31; Quarter=Q2, Type_of_building=Production, Usage=Factory, sum_Value=26.33; Quarter=Q2, Type_of_building=Residential, Usage=Hotel, sum_Value=217.94; Quarter=Q4, Type_of_building=Production, Usage=Apartment, sum_Value=273.28; Quarter=Q4, Type_of_building=Production, Usage=Factory, sum_Value=30.9; Quarter=Q4, Type_of_building=Residential, Usage=Hotel, sum_Value=218.51",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q2 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Workshop')) AND ((Quarter = 'Q2') OR (Quarter = 'Q4')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=25.01; Value=25.12; Value=32.62; Value=33.57; Value=45.68",
+      "NLquestions": [
+        "What are the top/bottom_ numbers of__ in__ ==,== in__ ==,==Q2 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Workshop')) AND ((Quarter = 'Q2') OR (Quarter = 'Q3')) ORDER BY Value ASC",
+      "GTresult": "Value=25.01; Value=27.28; Value=32.62; Value=36.88; Value=45.57; Value=45.68",
+      "NLquestions": [
+        "What are the numbers /ascending_values of__ in__ ==,== in__ ==,==Q2 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Quarter, Month, State, City FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Hotel')) AND Value > 54.45",
+      "GTresult": "Quarter=Q2, Month=April, State=California, City=San Francisco; Quarter=Q4, Month=May, State=Georgia, City=Columbus; Quarter=Q3, Month=October, State=California, City=Washington; Quarter=Q2, Month=November, State=Georgia, City=San Francisco; Quarter=Q4, Month=July, State=California, City=Columbus; Quarter=Q3, Month=August, State=Georgia, City=Washington; Quarter=Q2, Month=September, State=California, City=San Francisco; Quarter=Q4, Month=April, State=Georgia, City=Columbus; Quarter=Q3, Month=May, State=California, City=Washington",
+      "NLquestions": [
+        "What is/are_the_ the number of__ in__ ==,== in__ ==,== is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Quarter, Month, State, City, Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'House')) AND (Quarter, Month, State, City) IN (SELECT Quarter, Month, State, City FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Hotel')) AND Value > 54.45)",
+      "GTresult": "Quarter=Q2, Month=April, State=California, City=San Francisco, Value=49.44; Quarter=Q4, Month=May, State=Georgia, City=Columbus, Value=49.03; Quarter=Q3, Month=October, State=California, City=Washington, Value=58.73; Quarter=Q2, Month=November, State=Georgia, City=San Francisco, Value=60.56; Quarter=Q4, Month=July, State=California, City=Columbus, Value=63.4; Quarter=Q3, Month=August, State=Georgia, City=Washington, Value=65.37; Quarter=Q2, Month=September, State=California, City=San Francisco, Value=66.43; Quarter=Q4, Month=April, State=Georgia, City=Columbus, Value=67.53; Quarter=Q3, Month=May, State=California, City=Washington, Value=68.65",
+      "NLquestions": []
+    }
+  ]
+}

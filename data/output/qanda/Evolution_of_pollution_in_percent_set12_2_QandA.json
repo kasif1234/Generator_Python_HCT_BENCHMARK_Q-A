@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Evolution_of_pollution_in_percent_set12_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'California' AND City = 'Cambridge')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Light'))",
+      "GTresult": "Value=36.98",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air in__Cambridge ==,==California in_ ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Lenox')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Noise') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Oxygen-depletion'))",
+      "GTresult": "Value=11.26; Value=14.48",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air or Water in__Lenox ==,==Massachusetts in_ ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Lenox') OR (State = 'Massachusetts' AND City = 'Malibu') OR (State = 'California' AND City = 'Los-Angeles')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Light'))",
+      "GTresult": "Value=27.66; Value=-47.08; Value=-26.99",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water in__Lenox or Malibu or Los-Angeles ==,==Massachusetts or California in_ ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((State = 'California' AND City = 'Cambridge') OR (State = 'Massachusetts' AND City = 'Malibu') OR (State = 'California' AND City = 'Los-Angeles') OR (State = 'Massachusetts' AND City = 'San Francisco')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Oxygen-depletion'))",
+      "GTresult": "sum_Value=63.88, min_Value=-88.82",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water in__Cambridge or Malibu or Los-Angeles or San Francisco ==,==California or Massachusetts in_ ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Lenox') OR (State = 'California' AND City = 'Cambridge') OR (State = 'Massachusetts' AND City = 'Malibu')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Light') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Surface water') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Groundwater'))",
+      "GTresult": "Value=3.63; Value=17.26; Value=18.96; Value=36.98; Value=39.01; Value=-72.12; Value=-69.11; Value=-56.05; Value=-48.4",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air in__Lenox or Cambridge or Malibu ==,==Massachusetts or California in_ ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((State = 'California' AND City = 'Cambridge')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Noise') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Oxygen-depletion') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Groundwater') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Light'))",
+      "GTresult": "sum_Value=-321.41999999999996, avg_Value=-80.35499999999999",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Water in__Cambridge ==,==California in_ ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT State, City, min(Value) AS min_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Lenox') OR (State = 'California' AND City = 'Cambridge') OR (State = 'Massachusetts' AND City = 'San Francisco')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Thermal') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Chemical')) GROUP BY State, City",
+      "GTresult": "State=California, City=Cambridge, min_Value=-90.88, sum_Value=-38.38999999999999; State=Massachusetts, City=Lenox, min_Value=3.33, sum_Value=21.22; State=Massachusetts, City=San Francisco, min_Value=-20.94, sum_Value=-31.8",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water in__Lenox or Cambridge or San Francisco ==,==Massachusetts or California in_ ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'San Francisco')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Water')) GROUP BY Polluted_element",
+      "GTresult": "min_Value=-26.43; min_Value=-20.94",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Water in__San Francisco ==,==Massachusetts in_ ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Polluted_element, min(Value) AS min_Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'San Francisco')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Water')) GROUP BY Polluted_element",
+      "GTresult": "Polluted_element=Air, min_Value=-26.43; Polluted_element=Water, min_Value=-20.94",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Water in__San Francisco ==,==Massachusetts in_ ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Polluted_element, State, City, min(Value) AS min_Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Lenox') OR (State = 'California' AND City = 'Cambridge')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Water')) GROUP BY Polluted_element, State, City",
+      "GTresult": "Polluted_element=Air, State=California, City=Cambridge, min_Value=-89.85; Polluted_element=Air, State=Massachusetts, City=Lenox, min_Value=3.63; Polluted_element=Water, State=California, City=Cambridge, min_Value=-90.88; Polluted_element=Water, State=Massachusetts, City=Lenox, min_Value=3.33",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Water in__Lenox or Cambridge ==,==Massachusetts or California in_ ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Lenox')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Water')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=27.66; Value=18.96; Value=17.89; Value=17.26; Value=14.48",
+      "NLquestions": [
+        "What are the top/bottom_ evolutions of_((pollution)) of_ of_Air or Water in__Lenox ==,==Massachusetts in_ ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'California' AND City = 'Cambridge')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Water')) ORDER BY Value DESC",
+      "GTresult": "Value=52.49; Value=39.01; Value=36.98; Value=-70.63; Value=-72.12; Value=-88.82; Value=-89.85; Value=-90.88",
+      "NLquestions": [
+        "What are the evolutions /increasing_values of_((pollution)) of_ of_Air or Water in__Cambridge ==,==California in_ ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Lenox')) AND Value > -12.85",
+      "GTresult": "Polluted_element=Air, Type_of_pollution=Light; Polluted_element=Water, Type_of_pollution=Thermal; Polluted_element=Air, Type_of_pollution=Noise; Polluted_element=Water, Type_of_pollution=Oxygen-depletion; Polluted_element=Air, Type_of_pollution=Surface water; Polluted_element=Water, Type_of_pollution=Chemical; Polluted_element=Air, Type_of_pollution=Groundwater; Polluted_element=Water, Type_of_pollution=Light",
+      "NLquestions": [
+        "What is/are_the_ the evolution of_((pollution)) of_ of_ in__Lenox ==,==Massachusetts in_ is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Polluted_element, Type_of_pollution, Value FROM DBdata WHERE ((State = 'California' AND City = 'Cambridge')) AND (Polluted_element, Type_of_pollution) IN (SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Lenox')) AND Value > -12.85)",
+      "GTresult": "Polluted_element=Air, Type_of_pollution=Light, Value=36.98; Polluted_element=Water, Type_of_pollution=Thermal, Value=-90.88; Polluted_element=Air, Type_of_pollution=Noise, Value=-89.85; Polluted_element=Water, Type_of_pollution=Oxygen-depletion, Value=-88.82; Polluted_element=Air, Type_of_pollution=Surface water, Value=39.01; Polluted_element=Water, Type_of_pollution=Chemical, Value=52.49; Polluted_element=Air, Type_of_pollution=Groundwater, Value=-72.12; Polluted_element=Water, Type_of_pollution=Light, Value=-70.63",
+      "NLquestions": []
+    }
+  ]
+}

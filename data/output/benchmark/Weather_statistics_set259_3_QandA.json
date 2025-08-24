@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set259_3_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2015' AND State = 'Florida' AND City = 'Washington')) AND ((Characteristic = 'Temperature' AND Intensity = '11-20'))",
+      "GTresult": "Value=11.33",
+      "NLquestions": [
+        "How many days with__ Temperature were there in__Washington ==,==Florida in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2015' AND State = 'Florida' AND City = 'Tampa')) AND ((Characteristic = 'Humidity' AND Intensity = 'Low') OR (Characteristic = 'Temperature' AND Intensity = 'Medium') OR (Characteristic = 'Humidity' AND Intensity = '0-10') OR (Characteristic = 'Temperature' AND Intensity = '11-20'))",
+      "GTresult": "Value=22.33; Value=21.95; Value=18.35; Value=26.38",
+      "NLquestions": [
+        "How many days with__ Humidity or Temperature were there in__Tampa ==,==Florida in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Columbus') OR (Year = '2015' AND State = 'Florida' AND City = 'Washington') OR (Year = '2021' AND State = 'Georgia' AND City = 'Fort Lauderdale') OR (Year = '2015' AND State = 'Florida' AND City = 'Tampa')) AND ((Characteristic = 'Humidity' AND Intensity = 'Low'))",
+      "GTresult": "Value=7.93; Value=12.04; Value=18.41; Value=22.33",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Columbus or Washington or Fort Lauderdale or Tampa ==,==Georgia or Florida in_2021 or 2015 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT min(Value) AS min_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Columbus') OR (Year = '2015' AND State = 'Florida' AND City = 'Washington') OR (Year = '2015' AND State = 'Florida' AND City = 'Tampa')) AND ((Characteristic = 'Humidity' AND Intensity = 'Low'))",
+      "GTresult": "min_Value=7.93, sum_Value=42.3",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity in__Columbus or Washington or Tampa ==,==Georgia or Florida in_2021 or 2015 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Columbus') OR (Year = '2015' AND State = 'Florida' AND City = 'Tampa')) AND ((Characteristic = 'Temperature' AND Intensity = 'Medium') OR (Characteristic = 'Humidity' AND Intensity = '0-10') OR (Characteristic = 'Temperature' AND Intensity = '11-20'))",
+      "GTresult": "Value=11.28; Value=12.6; Value=13.24; Value=21.95; Value=18.35; Value=26.38",
+      "NLquestions": [
+        "How many days with__ Temperature or Humidity were there in__Columbus or Tampa ==,==Georgia or Florida in_2021 or 2015 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Florida' AND City = 'Tampa')) AND ((Characteristic = 'Temperature' AND Intensity = 'Medium') OR (Characteristic = 'Temperature' AND Intensity = '11-20'))",
+      "GTresult": "sum_Value=48.33, avg_Value=24.165",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature in__Tampa ==,==Florida in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Florida' AND City = 'Washington') OR (Year = '2021' AND State = 'Georgia' AND City = 'Fort Lauderdale')) AND ((Characteristic = 'Temperature' AND Intensity = 'Medium') OR (Characteristic = 'Temperature' AND Intensity = '11-20')) GROUP BY Year, State, City",
+      "GTresult": "Year=2015, State=Florida, City=Washington, sum_Value=26.46, avg_Value=13.23; Year=2021, State=Georgia, City=Fort Lauderdale, sum_Value=41.010000000000005, avg_Value=20.505000000000003",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature in__Washington or Fort Lauderdale ==,==Florida or Georgia in_2015 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Columbus')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) GROUP BY Characteristic",
+      "GTresult": "min_Value=7.93; min_Value=11.28",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Temperature in__Columbus ==,==Georgia in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Florida' AND City = 'Washington')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Humidity, min_Value=12.04; Characteristic=Temperature, min_Value=11.33",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Temperature in__Washington ==,==Florida in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Columbus') OR (Year = '2015' AND State = 'Florida' AND City = 'Washington') OR (Year = '2015' AND State = 'Florida' AND City = 'Tampa')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Humidity, Year=2015, State=Florida, City=Tampa, avg_Value=20.34; Characteristic=Humidity, Year=2015, State=Florida, City=Washington, avg_Value=14.094999999999999; Characteristic=Humidity, Year=2021, State=Georgia, City=Columbus, avg_Value=10.265; Characteristic=Temperature, Year=2015, State=Florida, City=Tampa, avg_Value=24.165; Characteristic=Temperature, Year=2015, State=Florida, City=Washington, avg_Value=13.23; Characteristic=Temperature, Year=2021, State=Georgia, City=Columbus, avg_Value=12.26",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Temperature in__Columbus or Washington or Tampa ==,==Georgia or Florida in_2021 or 2015 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Columbus')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) ORDER BY Value DESC LIMIT 3",
+      "GTresult": "Value=13.24; Value=12.6; Value=11.28",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Humidity or Temperature in__Columbus ==,==Georgia in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Columbus')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) ORDER BY Value ASC",
+      "GTresult": "Value=7.93; Value=11.28; Value=12.6; Value=13.24",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Humidity or Temperature in__Columbus ==,==Georgia in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Fort Lauderdale')) AND Value < 16.71",
+      "GTresult": "",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Fort Lauderdale ==,==Georgia in_2021 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2015' AND State = 'Florida' AND City = 'Washington')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Fort Lauderdale')) AND Value < 16.71)",
+      "GTresult": "",
+      "NLquestions": []
+    }
+  ]
+}

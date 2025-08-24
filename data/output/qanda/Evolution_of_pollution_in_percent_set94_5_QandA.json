@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Evolution_of_pollution_in_percent_set94_5_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Hastings' AND Year = '2016')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Chemical'))",
+      "GTresult": "Value=-35.45",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil in__Hastings ==,==Minnesota in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Rochester' AND Year = '2016')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Urban Activities') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Groundwater'))",
+      "GTresult": "Value=-14.46; Value=-11.42",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water in__Rochester ==,==Florida in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Nevada' AND City = 'Boulder City' AND Year = '2022') OR (State = 'Florida' AND City = 'Las Vegas' AND Year = '2016') OR (State = 'Minnesota' AND City = 'Reno' AND Year = '2022') OR (State = 'Nevada' AND City = 'Tampa' AND Year = '2016') OR (State = 'Minnesota' AND City = 'Hastings' AND Year = '2016') OR (State = 'Nevada' AND City = 'Minneapolis' AND Year = '2022')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Urban Activities'))",
+      "GTresult": "Value=12.55; Value=34.93; Value=52.22; Value=-65.43; Value=-39.27; Value=-23.96",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water in__Boulder City or Las Vegas or Reno or Tampa or Hastings or Minneapolis ==,==Nevada or Florida or Minnesota in_2022 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT min(Value) AS min_Value, max(Value) AS max_Value FROM DBdata WHERE ((State = 'Nevada' AND City = 'Tampa' AND Year = '2016') OR (State = 'Florida' AND City = 'Fort Lauderdale' AND Year = '2022') OR (State = 'Minnesota' AND City = 'Hastings' AND Year = '2016')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Groundwater'))",
+      "GTresult": "min_Value=-50.74, max_Value=91.86",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water in__Tampa or Fort Lauderdale or Hastings ==,==Nevada or Florida or Minnesota in_2016 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Reno' AND Year = '2022') OR (State = 'Nevada' AND City = 'Tampa' AND Year = '2016') OR (State = 'Florida' AND City = 'Rochester' AND Year = '2016')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Groundwater') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Inferior Irrigation'))",
+      "GTresult": "Value=54.63; Value=-70.77; Value=67.58; Value=-56.34; Value=-11.42; Value=-4.02",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water in__Reno or Tampa or Rochester ==,==Minnesota or Nevada or Florida in_2022 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT min(Value) AS min_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Fort Lauderdale' AND Year = '2022')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Urban Activities') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Inferior Irrigation'))",
+      "GTresult": "min_Value=-49.93, avg_Value=12.059999999999999",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water in__Fort Lauderdale ==,==Florida in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT State, City, Year, min(Value) AS min_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Reno' AND Year = '2022') OR (State = 'Nevada' AND City = 'Tampa' AND Year = '2016') OR (State = 'Nevada' AND City = 'Minneapolis' AND Year = '2022')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Inferior Irrigation') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Industrial') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Inferior Irrigation')) GROUP BY State, City, Year",
+      "GTresult": "State=Minnesota, City=Reno, Year=2022, min_Value=-77.95, avg_Value=-75.10666666666667; State=Nevada, City=Minneapolis, Year=2022, min_Value=-24.47, avg_Value=-21.883333333333336; State=Nevada, City=Tampa, Year=2016, min_Value=-65.55, avg_Value=-60.97666666666667",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Reno or Tampa or Minneapolis ==,==Minnesota or Nevada in_2022 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Fort Lauderdale' AND Year = '2022')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) GROUP BY Polluted_element",
+      "GTresult": "min_Value=73.23; min_Value=-50.74",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Fort Lauderdale ==,==Florida in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Polluted_element, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Rochester' AND Year = '2016')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) GROUP BY Polluted_element",
+      "GTresult": "Polluted_element=Soil, sum_Value=-39.019999999999996; Polluted_element=Water, sum_Value=-29.9",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Rochester ==,==Florida in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Polluted_element, State, City, Year, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Nevada' AND City = 'Boulder City' AND Year = '2022') OR (State = 'Minnesota' AND City = 'Reno' AND Year = '2022') OR (State = 'Minnesota' AND City = 'Hastings' AND Year = '2016')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) GROUP BY Polluted_element, State, City, Year",
+      "GTresult": "Polluted_element=Soil, State=Minnesota, City=Hastings, Year=2016, sum_Value=144.67000000000002; Polluted_element=Soil, State=Minnesota, City=Reno, Year=2022, sum_Value=-96.65; Polluted_element=Soil, State=Nevada, City=Boulder City, Year=2022, sum_Value=46.18; Polluted_element=Water, State=Minnesota, City=Hastings, Year=2016, sum_Value=20.719999999999995; Polluted_element=Water, State=Minnesota, City=Reno, Year=2022, sum_Value=36.080000000000005; Polluted_element=Water, State=Nevada, City=Boulder City, Year=2022, sum_Value=64.59",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Boulder City or Reno or Hastings ==,==Nevada or Minnesota in_2022 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Nevada' AND City = 'Boulder City' AND Year = '2022')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=27.44; Value=25.02; Value=24.6; Value=17.45; Value=12.55",
+      "NLquestions": [
+        "What are the top/bottom_ evolutions of_((pollution)) of_ of_Soil or Water in__Boulder City ==,==Nevada in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Las Vegas' AND Year = '2016')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) ORDER BY Value DESC",
+      "GTresult": "Value=48.86; Value=35.53; Value=34.93; Value=32.14; Value=-78.5; Value=-83.07",
+      "NLquestions": [
+        "What are the evolutions /increasing_values of_((pollution)) of_ of_Soil or Water in__Las Vegas ==,==Florida in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Florida' AND City = 'Rochester' AND Year = '2016')) AND Value > -0.69",
+      "GTresult": "",
+      "NLquestions": [
+        "What is/are_the_ the evolution of_((pollution)) of_ of_ in__Rochester ==,==Florida in_2016 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Polluted_element, Type_of_pollution, Value FROM DBdata WHERE ((State = 'Nevada' AND City = 'Boulder City' AND Year = '2022')) AND (Polluted_element, Type_of_pollution) IN (SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Florida' AND City = 'Rochester' AND Year = '2016')) AND Value > -0.69)",
+      "GTresult": "",
+      "NLquestions": []
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set78_3_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Massachusetts' AND City = 'Port Huron')) AND ((Characteristic = 'Humidity' AND Intensity = 'Storm'))",
+      "GTresult": "Value=23.52",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Port Huron ==,==Massachusetts in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Massachusetts' AND City = 'Port Huron')) AND ((Characteristic = 'Wind' AND Intensity = 'Calm') OR (Characteristic = 'Humidity' AND Intensity = 'Low') OR (Characteristic = 'Wind' AND Intensity = 'High'))",
+      "GTresult": "Value=27.9; Value=27.92; Value=25.1",
+      "NLquestions": [
+        "How many days with__ Wind or Humidity were there in__Port Huron ==,==Massachusetts in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Minnesota' AND City = 'Detroit') OR (Year = '2020' AND State = 'Massachusetts' AND City = 'Port Huron')) AND ((Characteristic = 'Wind' AND Intensity = 'High'))",
+      "GTresult": "Value=22.56; Value=25.1",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Detroit or Port Huron ==,==Minnesota or Massachusetts in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2017' AND State = 'Minnesota' AND City = 'Hastings') OR (Year = '2020' AND State = 'Michigan' AND City = 'Rochester') OR (Year = '2017' AND State = 'Massachusetts' AND City = 'Minneapolis') OR (Year = '2017' AND State = 'Michigan' AND City = 'Flint') OR (Year = '2017' AND State = 'Minnesota' AND City = 'Cambridge') OR (Year = '2020' AND State = 'Michigan' AND City = 'Lenox')) AND ((Characteristic = 'Wind' AND Intensity = 'High'))",
+      "GTresult": "avg_Value=11.941666666666668, sum_Value=71.65",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind in__Hastings or Rochester or Minneapolis or Flint or Cambridge or Lenox ==,==Minnesota or Michigan or Massachusetts in_2017 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'Minnesota' AND City = 'Hastings') OR (Year = '2020' AND State = 'Michigan' AND City = 'Rochester')) AND ((Characteristic = 'Wind' AND Intensity = 'Calm') OR (Characteristic = 'Humidity' AND Intensity = 'Low') OR (Characteristic = 'Humidity' AND Intensity = 'Breeze'))",
+      "GTresult": "Value=1.17; Value=2.42; Value=5.22; Value=8.39; Value=9.03; Value=11.12",
+      "NLquestions": [
+        "How many days with__ Wind or Humidity were there in__Hastings or Rochester ==,==Minnesota or Michigan in_2017 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT min(Value) AS min_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2020' AND State = 'Massachusetts' AND City = 'Port Huron')) AND ((Characteristic = 'Humidity' AND Intensity = 'Storm') OR (Characteristic = 'Humidity' AND Intensity = 'Low') OR (Characteristic = 'Wind' AND Intensity = 'High') OR (Characteristic = 'Humidity' AND Intensity = 'Breeze'))",
+      "GTresult": "min_Value=8.1, avg_Value=21.16",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Port Huron ==,==Massachusetts in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, sum(Value) AS sum_Value, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2017' AND State = 'Minnesota' AND City = 'Hastings') OR (Year = '2020' AND State = 'Michigan' AND City = 'Rochester') OR (Year = '2020' AND State = 'Minnesota' AND City = 'Detroit') OR (Year = '2020' AND State = 'Massachusetts' AND City = 'Port Huron') OR (Year = '2020' AND State = 'Michigan' AND City = 'Lenox')) AND ((Characteristic = 'Humidity' AND Intensity = 'Storm') OR (Characteristic = 'Wind' AND Intensity = 'Calm') OR (Characteristic = 'Humidity' AND Intensity = 'Low')) GROUP BY Year, State, City",
+      "GTresult": "Year=2017, State=Minnesota, City=Hastings, sum_Value=5.2, max_Value=2.42; Year=2020, State=Massachusetts, City=Port Huron, sum_Value=79.34, max_Value=27.92; Year=2020, State=Michigan, City=Lenox, sum_Value=33.35, max_Value=18.95; Year=2020, State=Michigan, City=Rochester, sum_Value=24.97, max_Value=9.03; Year=2020, State=Minnesota, City=Detroit, sum_Value=60.36, max_Value=20.28",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Hastings or Rochester or Detroit or Port Huron or Lenox ==,==Minnesota or Michigan or Massachusetts in_2017 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2020' AND State = 'Massachusetts' AND City = 'Port Huron')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) GROUP BY Characteristic",
+      "GTresult": "min_Value=8.1; min_Value=5.85",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Port Huron ==,==Massachusetts in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2020' AND State = 'Minnesota' AND City = 'Detroit')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Humidity, avg_Value=21.330000000000002; Characteristic=Wind, avg_Value=17.766666666666666",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Detroit ==,==Minnesota in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2017' AND State = 'Minnesota' AND City = 'Hastings') OR (Year = '2017' AND State = 'Michigan' AND City = 'Flint') OR (Year = '2017' AND State = 'Minnesota' AND City = 'Cambridge')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Humidity, Year=2017, State=Michigan, City=Flint, min_Value=23.75; Characteristic=Humidity, Year=2017, State=Minnesota, City=Cambridge, min_Value=9.69; Characteristic=Humidity, Year=2017, State=Minnesota, City=Hastings, min_Value=1.61; Characteristic=Wind, Year=2017, State=Michigan, City=Flint, min_Value=20.05; Characteristic=Wind, Year=2017, State=Minnesota, City=Cambridge, min_Value=8.57; Characteristic=Wind, Year=2017, State=Minnesota, City=Hastings, min_Value=0.33",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Hastings or Flint or Cambridge ==,==Minnesota or Michigan in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'Minnesota' AND City = 'Cambridge')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=8.57; Value=9.69; Value=11.46; Value=13.38; Value=16.91",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Wind or Humidity in__Cambridge ==,==Minnesota in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'Minnesota' AND City = 'Hastings')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) ORDER BY Value ASC",
+      "GTresult": "Value=0.33; Value=1.17; Value=1.61; Value=2.39; Value=2.42; Value=5.22",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Wind or Humidity in__Hastings ==,==Minnesota in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2017' AND State = 'Massachusetts' AND City = 'Minneapolis')) AND Value < 14.35",
+      "GTresult": "Characteristic=Wind, Intensity=Breeze; Characteristic=Humidity, Intensity=Storm; Characteristic=Wind, Intensity=High",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Minneapolis ==,==Massachusetts in_2017 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2020' AND State = 'Massachusetts' AND City = 'Port Huron')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2017' AND State = 'Massachusetts' AND City = 'Minneapolis')) AND Value < 14.35)",
+      "GTresult": "Characteristic=Wind, Intensity=Breeze, Value=5.85; Characteristic=Humidity, Intensity=Storm, Value=23.52; Characteristic=Wind, Intensity=High, Value=25.1",
+      "NLquestions": []
+    }
+  ]
+}

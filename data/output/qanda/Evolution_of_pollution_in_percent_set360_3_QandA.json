@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Evolution_of_pollution_in_percent_set360_3_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Minneapolis' AND Year = '2017')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Surface water'))",
+      "GTresult": "Value=3.21; Value=26.08",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil in__Minneapolis ==,==Minnesota in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Rochester' AND Year = '2016')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Oxygen-depletion') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Solid Waste'))",
+      "GTresult": "Value=34.58; Value=41.53",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water or Soil in__Rochester ==,==Florida in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Minneapolis' AND Year = '2017') OR (State = 'Florida' AND City = 'Rochester' AND Year = '2016') OR (State = 'Minnesota' AND City = 'Hastings' AND Year = '2017') OR (State = 'Florida' AND City = 'Tampa' AND Year = '2016') OR (State = 'Minnesota' AND City = 'Fort Lauderdale' AND Year = '2017')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Solid Waste'))",
+      "GTresult": "Value=20.9; Value=41.53; Value=-70.24; Value=-49.12; Value=-17.33",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil in__Minneapolis or Rochester or Hastings or Tampa or Fort Lauderdale ==,==Minnesota or Florida in_2017 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT max(Value) AS max_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Rochester' AND Year = '2016') OR (State = 'Minnesota' AND City = 'Hastings' AND Year = '2017') OR (State = 'Minnesota' AND City = 'Fort Lauderdale' AND Year = '2017')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Surface water'))",
+      "GTresult": "max_Value=96.07, sum_Value=-102.91",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil in__Rochester or Hastings or Fort Lauderdale ==,==Florida or Minnesota in_2016 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Hastings' AND Year = '2017') OR (State = 'Florida' AND City = 'Tampa' AND Year = '2016') OR (State = 'Minnesota' AND City = 'Fort Lauderdale' AND Year = '2017')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Surface water') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Oxygen-depletion') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Inorganic Fertilizers'))",
+      "GTresult": "Value=-77.99; Value=-72.56; Value=58.98; Value=-67.3; Value=-70.51; Value=-65.85; Value=-59.43; Value=85.81; Value=96.07; Value=-21.63; Value=-21.04; Value=-2.53",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil or Water in__Hastings or Tampa or Fort Lauderdale ==,==Minnesota or Florida in_2017 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT max(Value) AS max_Value, min(Value) AS min_Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Hastings' AND Year = '2017')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Surface water') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Oxygen-depletion') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Groundwater') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Solid Waste'))",
+      "GTresult": "max_Value=57.75, min_Value=-77.99",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Hastings ==,==Minnesota in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT State, City, Year, avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Minneapolis' AND Year = '2017') OR (State = 'Florida' AND City = 'Rochester' AND Year = '2016') OR (State = 'Florida' AND City = 'Tampa' AND Year = '2016') OR (State = 'Minnesota' AND City = 'Fort Lauderdale' AND Year = '2017')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Chemical') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Surface water') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Solid Waste')) GROUP BY State, City, Year",
+      "GTresult": "State=Florida, City=Rochester, Year=2016, avg_Value=12.802000000000001, sum_Value=64.01; State=Florida, City=Tampa, Year=2016, avg_Value=-4.296000000000001, sum_Value=-21.480000000000004; State=Minnesota, City=Fort Lauderdale, Year=2017, avg_Value=31.107999999999997, sum_Value=155.54; State=Minnesota, City=Minneapolis, Year=2017, avg_Value=14.968, sum_Value=74.84",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Soil in__Minneapolis or Rochester or Tampa or Fort Lauderdale ==,==Minnesota or Florida in_2017 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Hastings' AND Year = '2017')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Soil')) GROUP BY Polluted_element",
+      "GTresult": "min_Value=-77.99; min_Value=-72.56",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Soil in__Hastings ==,==Minnesota in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Polluted_element, avg(Value) AS avg_Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Hastings' AND Year = '2017')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Soil')) GROUP BY Polluted_element",
+      "GTresult": "Polluted_element=Soil, avg_Value=-39.44499999999999; Polluted_element=Water, avg_Value=-8.355000000000002",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Soil in__Hastings ==,==Minnesota in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Polluted_element, State, City, Year, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Minneapolis' AND Year = '2017') OR (State = 'Minnesota' AND City = 'Hastings' AND Year = '2017') OR (State = 'Minnesota' AND City = 'Fort Lauderdale' AND Year = '2017')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Soil')) GROUP BY Polluted_element, State, City, Year",
+      "GTresult": "Polluted_element=Soil, State=Minnesota, City=Fort Lauderdale, Year=2017, sum_Value=55.63999999999999; Polluted_element=Soil, State=Minnesota, City=Hastings, Year=2017, sum_Value=-157.77999999999997; Polluted_element=Soil, State=Minnesota, City=Minneapolis, Year=2017, sum_Value=58.98; Polluted_element=Water, State=Minnesota, City=Fort Lauderdale, Year=2017, sum_Value=36.660000000000004; Polluted_element=Water, State=Minnesota, City=Hastings, Year=2017, sum_Value=-33.42000000000001; Polluted_element=Water, State=Minnesota, City=Minneapolis, Year=2017, sum_Value=42.550000000000004",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Soil in__Minneapolis or Hastings or Fort Lauderdale ==,==Minnesota in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Rochester' AND Year = '2016')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Soil')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=-96.71; Value=30.13; Value=34.58; Value=37.68; Value=37.75",
+      "NLquestions": [
+        "What are the top/bottom_ evolutions of_((pollution)) of_ of_Water or Soil in__Rochester ==,==Florida in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Rochester' AND Year = '2016')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Soil')) ORDER BY Value DESC",
+      "GTresult": "Value=45.55; Value=43.51; Value=41.53; Value=37.75; Value=37.68; Value=34.58; Value=30.13; Value=-96.71",
+      "NLquestions": [
+        "What are the evolutions /increasing_values of_((pollution)) of_ of_Water or Soil in__Rochester ==,==Florida in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Fort Lauderdale' AND Year = '2017')) AND Value < -0.80",
+      "GTresult": "Polluted_element=Water, Type_of_pollution=Oxygen-depletion; Polluted_element=Soil, Type_of_pollution=Groundwater; Polluted_element=Water, Type_of_pollution=Inorganic Fertilizers; Polluted_element=Soil, Type_of_pollution=Solid Waste; Polluted_element=Water, Type_of_pollution=Chemical; Polluted_element=Soil, Type_of_pollution=Surface water",
+      "NLquestions": [
+        "What is/are_the_ the evolution of_((pollution)) of_ of_ in__Fort Lauderdale ==,==Minnesota in_2017 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Polluted_element, Type_of_pollution, Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Tampa' AND Year = '2016')) AND (Polluted_element, Type_of_pollution) IN (SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Fort Lauderdale' AND Year = '2017')) AND Value < -0.80)",
+      "GTresult": "Polluted_element=Water, Type_of_pollution=Chemical, Value=60.37; Polluted_element=Soil, Type_of_pollution=Surface water, Value=-70.51; Polluted_element=Water, Type_of_pollution=Oxygen-depletion, Value=-65.85; Polluted_element=Soil, Type_of_pollution=Groundwater, Value=-62.06; Polluted_element=Water, Type_of_pollution=Inorganic Fertilizers, Value=-59.43; Polluted_element=Soil, Type_of_pollution=Solid Waste, Value=-49.12; Polluted_element=Water, Type_of_pollution=Chemical, Value=-48.03; Polluted_element=Soil, Type_of_pollution=Surface water, Value=85.81",
+      "NLquestions": []
+    }
+  ]
+}

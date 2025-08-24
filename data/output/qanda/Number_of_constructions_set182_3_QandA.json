@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Number_of_constructions_set182_3_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'School')) AND ((Quarter = 'Q4' AND Month = 'April'))",
+      "GTresult": "Value=31.25",
+      "NLquestions": [
+        "What is the number of__ in__ ==,== in__April ==,==Q4 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Hospital')) AND ((Quarter = 'Q4' AND Month = 'April') OR (Quarter = 'Q3' AND Month = 'October') OR (Quarter = 'Q2' AND Month = 'December') OR (Quarter = 'Q4' AND Month = 'August') OR (Quarter = 'Q2' AND Month = 'September'))",
+      "GTresult": "Value=26.03; Value=27.21; Value=28.7; Value=28.09; Value=28.51",
+      "NLquestions": [
+        "What is the number of__ in__ ==,== in__April or October or December or August or September ==,==Q4 or Q3 or Q2 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Library') OR (Type_of_building = 'Residential' AND Usage = 'Hospital') OR (Type_of_building = 'Service' AND Usage = 'School') OR (Type_of_building = 'Residential' AND Usage = 'House') OR (Type_of_building = 'Service' AND Usage = 'Hotel')) AND ((Quarter = 'Q3' AND Month = 'October'))",
+      "GTresult": "Value=6.53; Value=27.21; Value=36.54; Value=50.09; Value=78.96",
+      "NLquestions": [
+        "What is the number of__ in__ ==,== in__October ==,==Q3 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT avg(Value) AS avg_Value, max(Value) AS max_Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Library') OR (Type_of_building = 'Residential' AND Usage = 'Hospital') OR (Type_of_building = 'Service' AND Usage = 'School') OR (Type_of_building = 'Residential' AND Usage = 'House')) AND ((Quarter = 'Q4' AND Month = 'June'))",
+      "GTresult": "avg_Value=38.7, max_Value=54.88",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__ ==,== in__June ==,==Q4 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Hospital') OR (Type_of_building = 'Service' AND Usage = 'School')) AND ((Quarter = 'Q2' AND Month = 'December') OR (Quarter = 'Q4' AND Month = 'August') OR (Quarter = 'Q3' AND Month = 'July') OR (Quarter = 'Q4' AND Month = 'June'))",
+      "GTresult": "Value=28.7; Value=28.09; Value=30.75; Value=32.86; Value=37.15; Value=43.29; Value=43.64; Value=46.48",
+      "NLquestions": [
+        "What is the number of__ in__ ==,== in__December or August or July or June ==,==Q2 or Q4 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT min(Value) AS min_Value, max(Value) AS max_Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'House')) AND ((Quarter = 'Q2' AND Month = 'December') OR (Quarter = 'Q4' AND Month = 'August'))",
+      "GTresult": "min_Value=44.56, max_Value=47.95",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__ ==,== in__December or August ==,==Q2 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Type_of_building, Usage, avg(Value) AS avg_Value, max(Value) AS max_Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Hospital') OR (Type_of_building = 'Service' AND Usage = 'School') OR (Type_of_building = 'Residential' AND Usage = 'House') OR (Type_of_building = 'Service' AND Usage = 'Hotel')) AND ((Quarter = 'Q4' AND Month = 'April') OR (Quarter = 'Q2' AND Month = 'December') OR (Quarter = 'Q3' AND Month = 'July')) GROUP BY Type_of_building, Usage",
+      "GTresult": "Type_of_building=Residential, Usage=Hospital, avg_Value=28.493333333333336, max_Value=30.75; Type_of_building=Residential, Usage=House, avg_Value=48.626666666666665, max_Value=49.24; Type_of_building=Service, Usage=Hotel, avg_Value=79.92, max_Value=85.38; Type_of_building=Service, Usage=School, avg_Value=37.346666666666664, max_Value=43.64",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__April or December or July ==,==Q4 or Q2 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'House')) AND ((Quarter = 'Q2') OR (Quarter = 'Q3')) GROUP BY Quarter",
+      "GTresult": "min_Value=47.18; min_Value=48.69",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q2 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Quarter, avg(Value) AS avg_Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Hospital')) AND ((Quarter = 'Q4') OR (Quarter = 'Q3')) GROUP BY Quarter",
+      "GTresult": "Quarter=Q3, avg_Value=29.606666666666666; Quarter=Q4, avg_Value=28.993333333333336",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q4 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Quarter, Type_of_building, Usage, sum(Value) AS sum_Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Library') OR (Type_of_building = 'Service' AND Usage = 'School') OR (Type_of_building = 'Residential' AND Usage = 'House')) AND ((Quarter = 'Q2') OR (Quarter = 'Q4')) GROUP BY Quarter, Type_of_building, Usage",
+      "GTresult": "Quarter=Q2, Type_of_building=Residential, Usage=House, sum_Value=150.02; Quarter=Q2, Type_of_building=Service, Usage=Library, sum_Value=29.330000000000002; Quarter=Q2, Type_of_building=Service, Usage=School, sum_Value=114.83; Quarter=Q4, Type_of_building=Residential, Usage=House, sum_Value=148.68; Quarter=Q4, Type_of_building=Service, Usage=Library, sum_Value=34.78; Quarter=Q4, Type_of_building=Service, Usage=School, sum_Value=121.02",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q2 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'House')) AND ((Quarter = 'Q4') OR (Quarter = 'Q3')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=44.56; Value=48.69; Value=49.24; Value=50.09; Value=54.88",
+      "NLquestions": [
+        "What are the top/bottom_ numbers of__ in__ ==,== in__ ==,==Q4 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Hotel')) AND ((Quarter = 'Q2') OR (Quarter = 'Q3')) ORDER BY Value DESC",
+      "GTresult": "Value=93.02; Value=89.7; Value=85.38; Value=79.74; Value=78.96; Value=64.81",
+      "NLquestions": [
+        "What are the numbers /ascending_values of__ in__ ==,== in__ ==,==Q2 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Quarter, Month FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'School')) AND Value > 42.79",
+      "GTresult": "Quarter=Q4, Month=August; Quarter=Q3, Month=July; Quarter=Q2, Month=September; Quarter=Q4, Month=June; Quarter=Q3, Month=April",
+      "NLquestions": [
+        "What is/are_the_ the number of__ in__ ==,== in__ ==,== is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Quarter, Month, Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Hospital')) AND (Quarter, Month) IN (SELECT Quarter, Month FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'School')) AND Value > 42.79)",
+      "GTresult": "Quarter=Q4, Month=August, Value=28.09; Quarter=Q3, Month=July, Value=30.75; Quarter=Q2, Month=September, Value=28.51; Quarter=Q4, Month=June, Value=32.86; Quarter=Q3, Month=April, Value=30.86",
+      "NLquestions": []
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Number_of_accidents_set39_3_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Gender = 'Male')) AND ((Event = 'Traffic' AND Severity = 'Slight'))",
+      "GTresult": "Value=30.74",
+      "NLquestions": [
+        "What is the number of_((accidents)) of__ involving_ in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Gender = 'Male')) AND ((Event = 'Drowning' AND Severity = 'Slight') OR (Event = 'Traffic' AND Severity = 'Slight'))",
+      "GTresult": "Value=10.08; Value=30.74",
+      "NLquestions": [
+        "What is the number of_((accidents)) of__ involving_ in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Gender = 'Male')) AND ((Event = 'Traffic' AND Severity = 'Slight'))",
+      "GTresult": "Value=30.74",
+      "NLquestions": [
+        "What is the number of_((accidents)) of__ involving_ in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, max(Value) AS max_Value FROM DBdata WHERE ((Gender = 'Male')) AND ((Event = 'Fire' AND Severity = 'Slight'))",
+      "GTresult": "sum_Value=85.55, max_Value=85.55",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((accidents)) of__ involving_ in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Gender = 'Male')) AND ((Event = 'Drowning' AND Severity = 'Slight') OR (Event = 'Fire' AND Severity = 'Slight') OR (Event = 'Traffic' AND Severity = 'Slight'))",
+      "GTresult": "Value=10.08; Value=85.55; Value=30.74",
+      "NLquestions": [
+        "What is the number of_((accidents)) of__ involving_ in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT min(Value) AS min_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Gender = 'Male')) AND ((Event = 'Drowning' AND Severity = 'Slight') OR (Event = 'Fire' AND Severity = 'Slight') OR (Event = 'Traffic' AND Severity = 'Slight'))",
+      "GTresult": "min_Value=10.08, avg_Value=42.12333333333333",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((accidents)) of__ involving_ in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Gender, sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((Gender = 'Male')) AND ((Event = 'Drowning' AND Severity = 'Slight') OR (Event = 'Fire' AND Severity = 'Slight')) GROUP BY Gender",
+      "GTresult": "Gender=Male, sum_Value=95.63, min_Value=10.08",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((accidents)) of__ involving_ in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Gender = 'Male')) AND ((Event = 'Drowning') OR (Event = 'Traffic')) GROUP BY Event",
+      "GTresult": "min_Value=10.08; min_Value=30.74",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((accidents)) of__ involving_ in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Event, sum(Value) AS sum_Value FROM DBdata WHERE ((Gender = 'Male')) AND ((Event = 'Drowning') OR (Event = 'Fire')) GROUP BY Event",
+      "GTresult": "Event=Drowning, sum_Value=10.08; Event=Fire, sum_Value=85.55",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((accidents)) of__ involving_ in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Event, Gender, avg(Value) AS avg_Value FROM DBdata WHERE ((Gender = 'Male')) AND ((Event = 'Drowning') OR (Event = 'Fire')) GROUP BY Event, Gender",
+      "GTresult": "Event=Drowning, Gender=Male, avg_Value=10.08; Event=Fire, Gender=Male, avg_Value=85.55",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((accidents)) of__ involving_ in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Gender = 'Male')) AND ((Event = 'Drowning') OR (Event = 'Fire')) ORDER BY Value DESC LIMIT 2",
+      "GTresult": "Value=85.55; Value=10.08",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers of_((accidents)) of__ involving_ in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Gender = 'Male')) AND ((Event = 'Drowning') OR (Event = 'Fire')) ORDER BY Value DESC",
+      "GTresult": "Value=85.55; Value=10.08",
+      "NLquestions": [
+        "What are the numbers /increasing_values of_((accidents)) of__ involving_ in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Event, Severity FROM DBdata WHERE ((Gender = 'Male')) AND Value < 42.12",
+      "GTresult": "Event=Drowning, Severity=Slight; Event=Traffic, Severity=Slight",
+      "NLquestions": [
+        "What is/are_the_ the number of_((accidents)) of__ involving_ in__ ==of== is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Event, Severity, Value FROM DBdata WHERE ((Gender = 'Male')) AND (Event, Severity) IN (SELECT Event, Severity FROM DBdata WHERE ((Gender = 'Male')) AND Value < 42.12)",
+      "GTresult": "Event=Drowning, Severity=Slight, Value=10.08; Event=Traffic, Severity=Slight, Value=30.74",
+      "NLquestions": []
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Number_of_graduations_set301_1_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Female')) AND ((Year = '2016/2017' AND Language = 'French'))",
+      "GTresult": "Value=229.17; Value=85.97",
+      "NLquestions": [
+        "What is the number of graduations of_ with_a_PhD in_French in_2016/2017 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Female')) AND ((Year = '2022/2023' AND Language = 'Arabic') OR (Year = '2016/2017' AND Language = 'French') OR (Year = '2020/2021' AND Language = 'English') OR (Year = '2021/2022' AND Language = 'Other'))",
+      "GTresult": "Value=196.09; Value=229.17; Value=103.63; Value=107.8; Value=333.08; Value=85.97; Value=87.12; Value=312.14",
+      "NLquestions": [
+        "What is the number of graduations of_ with_a_PhD in_Arabic or French or English or Other in_2022/2023 or 2016/2017 or 2020/2021 or 2021/2022 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Female')) AND ((Year = '2022/2023' AND Language = 'Arabic'))",
+      "GTresult": "Value=196.09; Value=333.08",
+      "NLquestions": [
+        "What is the number of graduations of_ with_a_PhD in_Arabic in_2022/2023 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT avg(Value) AS avg_Value, max(Value) AS max_Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Female')) AND ((Year = '2022/2023' AND Language = 'Arabic'))",
+      "GTresult": "avg_Value=264.585, max_Value=333.08",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_PhD in_Arabic in_2022/2023 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Female')) AND ((Year = '2022/2023' AND Language = 'Arabic') OR (Year = '2020/2021' AND Language = 'English') OR (Year = '2021/2022' AND Language = 'Other'))",
+      "GTresult": "Value=196.09; Value=103.63; Value=107.8; Value=333.08; Value=87.12; Value=312.14",
+      "NLquestions": [
+        "What is the number of graduations of_ with_a_PhD in_Arabic or English or Other in_2022/2023 or 2020/2021 or 2021/2022 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT max(Value) AS max_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Female')) AND ((Year = '2022/2023' AND Language = 'Arabic') OR (Year = '2016/2017' AND Language = 'French') OR (Year = '2020/2021' AND Language = 'English') OR (Year = '2021/2022' AND Language = 'Other'))",
+      "GTresult": "max_Value=333.08, avg_Value=181.875",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_PhD in_Arabic or French or English or Other in_2022/2023 or 2016/2017 or 2020/2021 or 2021/2022 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Degree, Gender, max(Value) AS max_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Female')) AND ((Year = '2022/2023' AND Language = 'Arabic') OR (Year = '2016/2017' AND Language = 'French') OR (Year = '2020/2021' AND Language = 'English') OR (Year = '2021/2022' AND Language = 'Other')) GROUP BY Degree, Gender",
+      "GTresult": "Degree=PhD, Gender=Female, max_Value=333.08, avg_Value=181.875",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_PhD in_Arabic or French or English or Other in_2022/2023 or 2016/2017 or 2020/2021 or 2021/2022 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Female')) AND ((Year = '2022/2023') OR (Year = '2016/2017')) GROUP BY Year",
+      "GTresult": "min_Value=85.97; min_Value=196.09",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_PhD in_ in_2022/2023 or 2016/2017 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Year, avg(Value) AS avg_Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Female')) AND ((Year = '2016/2017') OR (Year = '2021/2022')) GROUP BY Year",
+      "GTresult": "Year=2016/2017, avg_Value=157.57; Year=2021/2022, avg_Value=209.97",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_PhD in_ in_2016/2017 or 2021/2022 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Year, Degree, Gender, sum(Value) AS sum_Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Female')) AND ((Year = '2016/2017') OR (Year = '2021/2022')) GROUP BY Year, Degree, Gender",
+      "GTresult": "Year=2016/2017, Degree=PhD, Gender=Female, sum_Value=315.14; Year=2021/2022, Degree=PhD, Gender=Female, sum_Value=419.94",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_PhD in_ in_2016/2017 or 2021/2022 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Female')) AND ((Year = '2022/2023') OR (Year = '2021/2022')) ORDER BY Value ASC LIMIT 3",
+      "GTresult": "Value=107.8; Value=196.09; Value=312.14",
+      "NLquestions": [
+        "What are the top/bottom_ numbers of graduations of_ with_a_PhD in_ in_2022/2023 or 2021/2022 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Female')) AND ((Year = '2022/2023') OR (Year = '2016/2017')) ORDER BY Value DESC",
+      "GTresult": "Value=333.08; Value=229.17; Value=196.09; Value=85.97",
+      "NLquestions": [
+        "What are the numbers of graduations /increasing_values of_ with_a_PhD in_ in_2022/2023 or 2016/2017 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Year, Language FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Female')) AND Value < 181.88",
+      "GTresult": "Year=2020/2021, Language=English; Year=2021/2022, Language=Other; Year=2016/2017, Language=French; Year=2020/2021, Language=English",
+      "NLquestions": [
+        "What is/are_the_ the number of graduations of_ with_a_PhD in_ in_ is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Year, Language, Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Female')) AND (Year, Language) IN (SELECT Year, Language FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Female')) AND Value < 181.88)",
+      "GTresult": "Year=2016/2017, Language=French, Value=229.17; Year=2020/2021, Language=English, Value=103.63; Year=2021/2022, Language=Other, Value=107.8; Year=2016/2017, Language=French, Value=85.97; Year=2020/2021, Language=English, Value=87.12; Year=2021/2022, Language=Other, Value=312.14",
+      "NLquestions": []
+    }
+  ]
+}

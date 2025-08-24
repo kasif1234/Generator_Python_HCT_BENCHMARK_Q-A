@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Evolution_of_pollution_in_percent_set96_1_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Columbia' AND Year = '2022')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Groundwater'))",
+      "GTresult": "Value=74.81",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water in__Columbia ==,==Minnesota in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Rochester' AND Year = '2017')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Surface water') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Inferior Irrigation') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Inorganic Fertilizers') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Chemical'))",
+      "GTresult": "Value=-82.87; Value=-76.66; Value=59.11; Value=67.6",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air or Soil in__Rochester ==,==Maryland in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Rochester' AND Year = '2017') OR (State = 'Minnesota' AND City = 'Columbia' AND Year = '2022') OR (State = 'Maryland' AND City = 'Aberdeen' AND Year = '2020')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Surface water'))",
+      "GTresult": "Value=-82.87; Value=-56.48; Value=99.84",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air in__Rochester or Columbia or Aberdeen ==,==Maryland or Minnesota in_2017 or 2022 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT min(Value) AS min_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Rochester' AND Year = '2017') OR (State = 'Minnesota' AND City = 'Columbia' AND Year = '2022')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Chemical'))",
+      "GTresult": "min_Value=67.6, sum_Value=154.72",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil in__Rochester or Columbia ==,==Maryland or Minnesota in_2017 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Minneapolis' AND Year = '2019') OR (State = 'Maryland' AND City = 'Rochester' AND Year = '2017') OR (State = 'Minnesota' AND City = 'Columbia' AND Year = '2022') OR (State = 'Maryland' AND City = 'Aberdeen' AND Year = '2020')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Chemical') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Inferior Irrigation') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Inorganic Fertilizers') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Urban Activities'))",
+      "GTresult": "Value=0.48; Value=11.18; Value=12.46; Value=10.42; Value=36.78; Value=-76.66; Value=59.11; Value=59.88; Value=-59.21; Value=-53.43; Value=-51.3; Value=80.19; Value=-36.36; Value=-19.71; Value=-17.76; Value=-16.04",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water or Soil or Air in__Minneapolis or Rochester or Columbia or Aberdeen ==,==Minnesota or Maryland in_2019 or 2017 or 2022 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT min(Value) AS min_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Minneapolis' AND Year = '2019')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Oxygen-depletion') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Noise') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Light') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Thermal'))",
+      "GTresult": "min_Value=-96.24, avg_Value=-10.4475",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Air or Water in__Minneapolis ==,==Minnesota in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT State, City, Year, avg(Value) AS avg_Value, max(Value) AS max_Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Minneapolis' AND Year = '2019') OR (State = 'Maryland' AND City = 'Rochester' AND Year = '2017') OR (State = 'Maryland' AND City = 'Aberdeen' AND Year = '2020')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Surface water') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Inferior Irrigation') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Noise') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Light') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Oxygen-depletion')) GROUP BY State, City, Year",
+      "GTresult": "State=Maryland, City=Aberdeen, Year=2020, avg_Value=11.454, max_Value=99.84; State=Maryland, City=Rochester, Year=2017, avg_Value=-44.844, max_Value=64.96; State=Minnesota, City=Minneapolis, Year=2019, avg_Value=20.394, max_Value=35.77",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Soil in__Minneapolis or Rochester or Aberdeen ==,==Minnesota or Maryland in_2019 or 2017 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Rochester' AND Year = '2017')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Air')) GROUP BY Polluted_element",
+      "GTresult": "min_Value=-82.87; min_Value=0.03",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Air in__Rochester ==,==Maryland in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Polluted_element, max(Value) AS max_Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Rochester' AND Year = '2017')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Soil')) GROUP BY Polluted_element",
+      "GTresult": "Polluted_element=Soil, max_Value=67.6; Polluted_element=Water, max_Value=59.88",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Soil in__Rochester ==,==Maryland in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Polluted_element, State, City, Year, avg(Value) AS avg_Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Minneapolis' AND Year = '2019') OR (State = 'Minnesota' AND City = 'Columbia' AND Year = '2022')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Air')) GROUP BY Polluted_element, State, City, Year",
+      "GTresult": "Polluted_element=Air, State=Minnesota, City=Columbia, Year=2022, avg_Value=-15.607499999999998; Polluted_element=Air, State=Minnesota, City=Minneapolis, Year=2019, avg_Value=20.5025; Polluted_element=Water, State=Minnesota, City=Columbia, Year=2022, avg_Value=13.0575; Polluted_element=Water, State=Minnesota, City=Minneapolis, Year=2019, avg_Value=-18.615",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Air in__Minneapolis or Columbia ==,==Minnesota in_2019 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Minneapolis' AND Year = '2019')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Air')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=35.77; Value=25.11; Value=21.24; Value=12.46; Value=11.18",
+      "NLquestions": [
+        "What are the top/bottom_ evolutions of_((pollution)) of_ of_Soil or Air in__Minneapolis ==,==Minnesota in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Aberdeen' AND Year = '2020')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Soil')) ORDER BY Value ASC",
+      "GTresult": "Value=-36.36; Value=-32.0; Value=-24.45; Value=-19.71; Value=-16.04; Value=-10.82; Value=-10.66; Value=-10.0",
+      "NLquestions": [
+        "What are the evolutions /increasing_values of_((pollution)) of_ of_Water or Soil in__Aberdeen ==,==Maryland in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Minneapolis' AND Year = '2019')) AND Value > -5.48",
+      "GTresult": "Polluted_element=Water, Type_of_pollution=Chemical; Polluted_element=Soil, Type_of_pollution=Oxygen-depletion; Polluted_element=Air, Type_of_pollution=Surface water; Polluted_element=Water, Type_of_pollution=Groundwater; Polluted_element=Soil, Type_of_pollution=Inferior Irrigation; Polluted_element=Air, Type_of_pollution=Inorganic Fertilizers; Polluted_element=Water, Type_of_pollution=Urban Activities; Polluted_element=Soil, Type_of_pollution=Noise; Polluted_element=Air, Type_of_pollution=Light; Polluted_element=Air, Type_of_pollution=Oxygen-depletion",
+      "NLquestions": [
+        "What is/are_the_ the evolution of_((pollution)) of_ of_ in__Minneapolis ==,==Minnesota in_2019 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Polluted_element, Type_of_pollution, Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Aberdeen' AND Year = '2020')) AND (Polluted_element, Type_of_pollution) IN (SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Minneapolis' AND Year = '2019')) AND Value > -5.48)",
+      "GTresult": "Polluted_element=Water, Type_of_pollution=Chemical, Value=-36.36; Polluted_element=Soil, Type_of_pollution=Oxygen-depletion, Value=-32.0; Polluted_element=Air, Type_of_pollution=Surface water, Value=99.84; Polluted_element=Water, Type_of_pollution=Groundwater, Value=-24.45; Polluted_element=Soil, Type_of_pollution=Inferior Irrigation, Value=-19.71; Polluted_element=Air, Type_of_pollution=Inorganic Fertilizers, Value=-17.76; Polluted_element=Water, Type_of_pollution=Urban Activities, Value=-16.04; Polluted_element=Soil, Type_of_pollution=Noise, Value=-10.82; Polluted_element=Air, Type_of_pollution=Light, Value=-9.47; Polluted_element=Air, Type_of_pollution=Oxygen-depletion, Value=-2.57",
+      "NLquestions": []
+    }
+  ]
+}

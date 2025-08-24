@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Number_of_graduations_set113_3_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'MSc' AND Gender = 'Male')) AND ((Year = '2016/2017' AND Language = 'English'))",
+      "GTresult": "Value=355.65; Value=141.2",
+      "NLquestions": [
+        "What is the number of graduations of_ with_a_MSc in_English in_2016/2017 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'MSc' AND Gender = 'Male')) AND ((Year = '2015/2016' AND Language = 'Arabic') OR (Year = '2016/2017' AND Language = 'English') OR (Year = '2022/2023' AND Language = 'Other'))",
+      "GTresult": "Value=65.69; Value=355.65; Value=483.87; Value=328.01; Value=141.2; Value=471.97",
+      "NLquestions": [
+        "What is the number of graduations of_ with_a_MSc in_Arabic or English or Other in_2015/2016 or 2016/2017 or 2022/2023 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'MSc' AND Gender = 'Male')) AND ((Year = '2022/2023' AND Language = 'Other'))",
+      "GTresult": "Value=483.87; Value=471.97",
+      "NLquestions": [
+        "What is the number of graduations of_ with_a_MSc in_Other in_2022/2023 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT avg(Value) AS avg_Value, min(Value) AS min_Value FROM DBdata WHERE ((Degree = 'MSc' AND Gender = 'Male')) AND ((Year = '2020/2021' AND Language = 'Spanish'))",
+      "GTresult": "avg_Value=321.235, min_Value=154.57",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_MSc in_Spanish in_2020/2021 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'MSc' AND Gender = 'Male')) AND ((Year = '2016/2017' AND Language = 'English') OR (Year = '2022/2023' AND Language = 'Other') OR (Year = '2020/2021' AND Language = 'Spanish'))",
+      "GTresult": "Value=355.65; Value=483.87; Value=487.9; Value=141.2; Value=471.97; Value=154.57",
+      "NLquestions": [
+        "What is the number of graduations of_ with_a_MSc in_English or Other or Spanish in_2016/2017 or 2022/2023 or 2020/2021 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT max(Value) AS max_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Degree = 'MSc' AND Gender = 'Male')) AND ((Year = '2022/2023' AND Language = 'Other') OR (Year = '2020/2021' AND Language = 'Spanish'))",
+      "GTresult": "max_Value=487.9, sum_Value=1598.31",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_MSc in_Other or Spanish in_2022/2023 or 2020/2021 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Degree, Gender, max(Value) AS max_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Degree = 'MSc' AND Gender = 'Male')) AND ((Year = '2016/2017' AND Language = 'English') OR (Year = '2020/2021' AND Language = 'Spanish')) GROUP BY Degree, Gender",
+      "GTresult": "Degree=MSc, Gender=Male, max_Value=487.9, sum_Value=1139.32",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_MSc in_English or Spanish in_2016/2017 or 2020/2021 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Degree = 'MSc' AND Gender = 'Male')) AND ((Year = '2022/2023') OR (Year = '2020/2021')) GROUP BY Year",
+      "GTresult": "min_Value=154.57; min_Value=471.97",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_MSc in_ in_2022/2023 or 2020/2021 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Year, avg(Value) AS avg_Value FROM DBdata WHERE ((Degree = 'MSc' AND Gender = 'Male')) AND ((Year = '2015/2016') OR (Year = '2020/2021')) GROUP BY Year",
+      "GTresult": "Year=2015/2016, avg_Value=196.85; Year=2020/2021, avg_Value=321.235",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_MSc in_ in_2015/2016 or 2020/2021 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Year, Degree, Gender, avg(Value) AS avg_Value FROM DBdata WHERE ((Degree = 'MSc' AND Gender = 'Male')) AND ((Year = '2015/2016') OR (Year = '2020/2021')) GROUP BY Year, Degree, Gender",
+      "GTresult": "Year=2015/2016, Degree=MSc, Gender=Male, avg_Value=196.85; Year=2020/2021, Degree=MSc, Gender=Male, avg_Value=321.235",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_MSc in_ in_2015/2016 or 2020/2021 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'MSc' AND Gender = 'Male')) AND ((Year = '2022/2023') OR (Year = '2020/2021')) ORDER BY Value ASC LIMIT 3",
+      "GTresult": "Value=154.57; Value=471.97; Value=483.87",
+      "NLquestions": [
+        "What are the top/bottom_ numbers of graduations of_ with_a_MSc in_ in_2022/2023 or 2020/2021 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'MSc' AND Gender = 'Male')) AND ((Year = '2022/2023') OR (Year = '2020/2021')) ORDER BY Value DESC",
+      "GTresult": "Value=487.9; Value=483.87; Value=471.97; Value=154.57",
+      "NLquestions": [
+        "What are the numbers of graduations /increasing_values of_ with_a_MSc in_ in_2022/2023 or 2020/2021 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Year, Language FROM DBdata WHERE ((Degree = 'MSc' AND Gender = 'Male')) AND Value < 311.11",
+      "GTresult": "Year=2015/2016, Language=Arabic; Year=2016/2017, Language=English; Year=2020/2021, Language=Spanish",
+      "NLquestions": [
+        "What is/are_the_ the number of graduations of_ with_a_MSc in_ in_ is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Year, Language, Value FROM DBdata WHERE ((Degree = 'MSc' AND Gender = 'Male')) AND (Year, Language) IN (SELECT Year, Language FROM DBdata WHERE ((Degree = 'MSc' AND Gender = 'Male')) AND Value < 311.11)",
+      "GTresult": "Year=2015/2016, Language=Arabic, Value=65.69; Year=2016/2017, Language=English, Value=355.65; Year=2020/2021, Language=Spanish, Value=487.9; Year=2015/2016, Language=Arabic, Value=328.01; Year=2016/2017, Language=English, Value=141.2; Year=2020/2021, Language=Spanish, Value=154.57",
+      "NLquestions": []
+    }
+  ]
+}

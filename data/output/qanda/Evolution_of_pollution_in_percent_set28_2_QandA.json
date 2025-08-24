@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Evolution_of_pollution_in_percent_set28_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Salem')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Noise'))",
+      "GTresult": "Value=-67.82",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air in__Salem ==,==Oregon in_ ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Salem')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Thermal') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Urban Activities') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Industrial') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Inorganic Fertilizers'))",
+      "GTresult": "Value=59.86; Value=71.14; Value=-53.23; Value=-52.9",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil or Air in__Salem ==,==Oregon in_ ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Redmond') OR (State = 'Michigan' AND City = 'Portland') OR (State = 'Michigan' AND City = 'Flint') OR (State = 'Oregon' AND City = 'Port Huron')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Thermal'))",
+      "GTresult": "Value=21.83; Value=46.48; Value=77.77; Value=95.2",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil in__Redmond or Portland or Flint or Port Huron ==,==Oregon or Michigan in_ ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT min(Value) AS min_Value, max(Value) AS max_Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Salem') OR (State = 'Oregon' AND City = 'Port Huron')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Light'))",
+      "GTresult": "min_Value=-25.58, max_Value=68.54",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air in__Salem or Port Huron ==,==Oregon in_ ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Salem') OR (State = 'Oregon' AND City = 'Port Huron')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Thermal') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Inorganic Fertilizers'))",
+      "GTresult": "Value=59.86; Value=-52.9; Value=95.2; Value=-1.4",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil in__Salem or Port Huron ==,==Oregon in_ ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, max(Value) AS max_Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Redmond')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Noise') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Thermal') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Urban Activities') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Industrial') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Inorganic Fertilizers'))",
+      "GTresult": "avg_Value=4.362, max_Value=36.5",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Soil in__Redmond ==,==Oregon in_ ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT State, City, avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Redmond') OR (State = 'Michigan' AND City = 'Portland') OR (State = 'Oregon' AND City = 'Salem') OR (State = 'Michigan' AND City = 'Flint')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Noise') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Thermal') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Urban Activities') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Industrial') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Inorganic Fertilizers')) GROUP BY State, City",
+      "GTresult": "State=Michigan, City=Flint, avg_Value=-20.302000000000003, sum_Value=-101.51000000000002; State=Michigan, City=Portland, avg_Value=27.868000000000002, sum_Value=139.34; State=Oregon, City=Redmond, avg_Value=4.362, sum_Value=21.81; State=Oregon, City=Salem, avg_Value=-8.589999999999998, sum_Value=-42.94999999999999",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Soil in__Redmond or Portland or Salem or Flint ==,==Oregon or Michigan in_ ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Salem')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Soil')) GROUP BY Polluted_element",
+      "GTresult": "min_Value=-67.82; min_Value=-52.9",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Soil in__Salem ==,==Oregon in_ ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Polluted_element, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Michigan' AND City = 'Flint')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Soil')) GROUP BY Polluted_element",
+      "GTresult": "Polluted_element=Air, sum_Value=-11.84000000000001; Polluted_element=Soil, sum_Value=-8.430000000000007",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Soil in__Flint ==,==Michigan in_ ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Polluted_element, State, City, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Redmond') OR (State = 'Michigan' AND City = 'Portland') OR (State = 'Oregon' AND City = 'Salem')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Soil')) GROUP BY Polluted_element, State, City",
+      "GTresult": "Polluted_element=Air, State=Michigan, City=Portland, sum_Value=32.120000000000005; Polluted_element=Air, State=Oregon, City=Redmond, sum_Value=72.44; Polluted_element=Air, State=Oregon, City=Salem, sum_Value=-52.509999999999984; Polluted_element=Soil, State=Michigan, City=Portland, sum_Value=163.0; Polluted_element=Soil, State=Oregon, City=Redmond, sum_Value=-28.03; Polluted_element=Soil, State=Oregon, City=Salem, sum_Value=78.1",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Soil in__Redmond or Portland or Salem ==,==Oregon or Michigan in_ ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Salem')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Soil')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=-67.82; Value=-53.23; Value=-52.9; Value=59.86; Value=68.54",
+      "NLquestions": [
+        "What are the top/bottom_ evolutions of_((pollution)) of_ of_Air or Soil in__Salem ==,==Oregon in_ ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Michigan' AND City = 'Portland')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Soil')) ORDER BY Value ASC",
+      "GTresult": "Value=-69.33; Value=45.67; Value=46.48; Value=55.78; Value=56.96; Value=59.56",
+      "NLquestions": [
+        "What are the evolutions /increasing_values of_((pollution)) of_ of_Air or Soil in__Portland ==,==Michigan in_ ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Oregon' AND City = 'Redmond')) AND Value < 7.91",
+      "GTresult": "Polluted_element=Soil, Type_of_pollution=Inorganic Fertilizers",
+      "NLquestions": [
+        "What is/are_the_ the evolution of_((pollution)) of_ of_ in__Redmond ==,==Oregon in_ is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Polluted_element, Type_of_pollution, Value FROM DBdata WHERE ((State = 'Michigan' AND City = 'Flint')) AND (Polluted_element, Type_of_pollution) IN (SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Oregon' AND City = 'Redmond')) AND Value < 7.91)",
+      "GTresult": "Polluted_element=Soil, Type_of_pollution=Inorganic Fertilizers, Value=-40.31",
+      "NLquestions": []
+    }
+  ]
+}

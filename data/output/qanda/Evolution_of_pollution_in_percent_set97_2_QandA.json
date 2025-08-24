@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Evolution_of_pollution_in_percent_set97_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Nevada' AND City = 'Reno' AND Year = '2016')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Industrial'))",
+      "GTresult": "Value=21.35",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air in__Reno ==,==Nevada in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Nevada' AND City = 'Salem' AND Year = '2016')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Light') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Thermal'))",
+      "GTresult": "Value=97.29; Value=-13.51",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water in__Salem ==,==Nevada in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Nevada' AND City = 'Reno' AND Year = '2016') OR (State = 'Nevada' AND City = 'Boulder City' AND Year = '2016') OR (State = 'Nevada' AND City = 'Salem' AND Year = '2016')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Light'))",
+      "GTresult": "Value=25.28; Value=-62.9; Value=-2.58",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil in__Reno or Boulder City or Salem ==,==Nevada in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((State = 'Nevada' AND City = 'Reno' AND Year = '2016') OR (State = 'Oregon' AND City = 'Las Vegas' AND Year = '2022') OR (State = 'Nevada' AND City = 'Boulder City' AND Year = '2016') OR (State = 'Oregon' AND City = 'Portland' AND Year = '2022') OR (State = 'Nevada' AND City = 'Salem' AND Year = '2016')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Light'))",
+      "GTresult": "sum_Value=144.66, min_Value=-69.36",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water in__Reno or Las Vegas or Boulder City or Portland or Salem ==,==Nevada or Oregon in_2016 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Nevada' AND City = 'Reno' AND Year = '2016') OR (State = 'Oregon' AND City = 'Las Vegas' AND Year = '2022')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Light') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Oxygen-depletion'))",
+      "GTresult": "Value=8.04; Value=32.35; Value=35.61; Value=53.14",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water or Air in__Reno or Las Vegas ==,==Nevada or Oregon in_2016 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT min(Value) AS min_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Nevada' AND City = 'Boulder City' AND Year = '2016')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Thermal') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Urban Activities') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Industrial') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Light') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Surface water'))",
+      "GTresult": "min_Value=-77.27, sum_Value=57.84000000000002",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Soil or Water in__Boulder City ==,==Nevada in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT State, City, Year, avg(Value) AS avg_Value, min(Value) AS min_Value FROM DBdata WHERE ((State = 'Nevada' AND City = 'Reno' AND Year = '2016') OR (State = 'Nevada' AND City = 'Boulder City' AND Year = '2016') OR (State = 'Oregon' AND City = 'Portland' AND Year = '2022') OR (State = 'Nevada' AND City = 'Salem' AND Year = '2016')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Urban Activities') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Solid Waste') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Thermal') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Surface water')) GROUP BY State, City, Year",
+      "GTresult": "State=Nevada, City=Boulder City, Year=2016, avg_Value=32.542500000000004, min_Value=-65.19; State=Nevada, City=Reno, Year=2016, avg_Value=-7.122499999999999, min_Value=-95.52; State=Nevada, City=Salem, Year=2016, avg_Value=-15.059999999999999, min_Value=-22.72; State=Oregon, City=Portland, Year=2022, avg_Value=24.8825, min_Value=-49.48",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Reno or Boulder City or Portland or Salem ==,==Nevada or Oregon in_2016 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Portland' AND Year = '2022')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Soil')) GROUP BY Polluted_element",
+      "GTresult": "min_Value=-49.48; min_Value=-38.88",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Soil in__Portland ==,==Oregon in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Polluted_element, avg(Value) AS avg_Value FROM DBdata WHERE ((State = 'Nevada' AND City = 'Salem' AND Year = '2016')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Soil')) GROUP BY Polluted_element",
+      "GTresult": "Polluted_element=Air, avg_Value=-16.3; Polluted_element=Soil, avg_Value=-15.229999999999999",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Soil in__Salem ==,==Nevada in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Polluted_element, State, City, Year, avg(Value) AS avg_Value FROM DBdata WHERE ((State = 'Nevada' AND City = 'Reno' AND Year = '2016') OR (State = 'Oregon' AND City = 'Las Vegas' AND Year = '2022') OR (State = 'Nevada' AND City = 'Salem' AND Year = '2016')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Water')) GROUP BY Polluted_element, State, City, Year",
+      "GTresult": "Polluted_element=Air, State=Nevada, City=Reno, Year=2016, avg_Value=7.228; Polluted_element=Air, State=Nevada, City=Salem, Year=2016, avg_Value=-16.3; Polluted_element=Air, State=Oregon, City=Las Vegas, Year=2022, avg_Value=20.406; Polluted_element=Water, State=Nevada, City=Reno, Year=2016, avg_Value=-4.5139999999999985; Polluted_element=Water, State=Nevada, City=Salem, Year=2016, avg_Value=6.912000000000002; Polluted_element=Water, State=Oregon, City=Las Vegas, Year=2022, avg_Value=-3.903999999999999",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Water in__Reno or Las Vegas or Salem ==,==Nevada or Oregon in_2016 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Nevada' AND City = 'Salem' AND Year = '2016')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Soil')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=-30.16; Value=-24.31; Value=-22.72; Value=-19.55; Value=-18.65",
+      "NLquestions": [
+        "What are the top/bottom_ evolutions of_((pollution)) of_ of_Water or Soil in__Salem ==,==Nevada in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Portland' AND Year = '2022')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Soil')) ORDER BY Value ASC",
+      "GTresult": "Value=-49.48; Value=-38.88; Value=-37.16; Value=-34.83; Value=73.08; Value=73.93; Value=77.42; Value=91.21; Value=94.96; Value=97.16",
+      "NLquestions": [
+        "What are the evolutions /increasing_values of_((pollution)) of_ of_Water or Soil in__Portland ==,==Oregon in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Nevada' AND City = 'Reno' AND Year = '2016')) AND Value < 11.91",
+      "GTresult": "Polluted_element=Air, Type_of_pollution=Thermal; Polluted_element=Water, Type_of_pollution=Light; Polluted_element=Air, Type_of_pollution=Inorganic Fertilizers; Polluted_element=Water, Type_of_pollution=Surface water; Polluted_element=Soil, Type_of_pollution=Chemical",
+      "NLquestions": [
+        "What is/are_the_ the evolution of_((pollution)) of_ of_ in__Reno ==,==Nevada in_2016 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Polluted_element, Type_of_pollution, Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Las Vegas' AND Year = '2022')) AND (Polluted_element, Type_of_pollution) IN (SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Nevada' AND City = 'Reno' AND Year = '2016')) AND Value < 11.91)",
+      "GTresult": "Polluted_element=Air, Type_of_pollution=Thermal, Value=35.68; Polluted_element=Water, Type_of_pollution=Light, Value=35.61; Polluted_element=Air, Type_of_pollution=Inorganic Fertilizers, Value=52.1; Polluted_element=Water, Type_of_pollution=Surface water, Value=-72.02; Polluted_element=Soil, Type_of_pollution=Chemical, Value=54.64",
+      "NLquestions": []
+    }
+  ]
+}

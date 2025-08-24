@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Evolution_of_pollution_in_percent_set134_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Boston' AND Year = '2018')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Urban Activities'))",
+      "GTresult": "Value=67.41",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil in__Boston ==,==Massachusetts in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Boston' AND Year = '2018')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Urban Activities') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Thermal') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Oxygen-depletion'))",
+      "GTresult": "Value=67.41; Value=-52.88; Value=85.51",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil or Water or Air in__Boston ==,==Massachusetts in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Cambridge' AND Year = '2017') OR (State = 'Nevada' AND City = 'Lenox' AND Year = '2016') OR (State = 'Massachusetts' AND City = 'Boston' AND Year = '2018') OR (State = 'Nevada' AND City = 'Boulder City' AND Year = '2020') OR (State = 'Massachusetts' AND City = 'Reno' AND Year = '2017')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Oxygen-depletion'))",
+      "GTresult": "Value=30.32; Value=62.84; Value=85.51; Value=-35.78; Value=-21.31",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air in__Cambridge or Lenox or Boston or Boulder City or Reno ==,==Massachusetts or Nevada in_2017 or 2016 or 2018 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT max(Value) AS max_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Cambridge' AND Year = '2017') OR (State = 'Massachusetts' AND City = 'Reno' AND Year = '2017')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Urban Activities'))",
+      "GTresult": "max_Value=95.89, sum_Value=99.98",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil in__Cambridge or Reno ==,==Massachusetts in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Cambridge' AND Year = '2017') OR (State = 'Nevada' AND City = 'Lenox' AND Year = '2016') OR (State = 'Nevada' AND City = 'Boulder City' AND Year = '2020') OR (State = 'Massachusetts' AND City = 'Reno' AND Year = '2017')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Inferior Irrigation') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Noise'))",
+      "GTresult": "Value=6.78; Value=24.91; Value=44.82; Value=53.91; Value=89.52; Value=-37.46; Value=-32.35; Value=-22.21",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air or Soil in__Cambridge or Lenox or Boulder City or Reno ==,==Massachusetts or Nevada in_2017 or 2016 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, max(Value) AS max_Value FROM DBdata WHERE ((State = 'Nevada' AND City = 'Boulder City' AND Year = '2020')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Thermal') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Oxygen-depletion'))",
+      "GTresult": "avg_Value=-36.565, max_Value=-35.78",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Air in__Boulder City ==,==Nevada in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT State, City, Year, min(Value) AS min_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Cambridge' AND Year = '2017') OR (State = 'Nevada' AND City = 'Lenox' AND Year = '2016') OR (State = 'Massachusetts' AND City = 'Boston' AND Year = '2018') OR (State = 'Massachusetts' AND City = 'Reno' AND Year = '2017')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Urban Activities') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Inferior Irrigation') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Noise') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Surface water')) GROUP BY State, City, Year",
+      "GTresult": "State=Massachusetts, City=Boston, Year=2018, min_Value=-54.44, avg_Value=-19.05; State=Massachusetts, City=Cambridge, Year=2017, min_Value=-95.4, avg_Value=-14.905000000000001; State=Massachusetts, City=Reno, Year=2017, min_Value=-32.35, avg_Value=7.2475; State=Nevada, City=Lenox, Year=2016, min_Value=-89.51, avg_Value=-13.022500000000003",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Air or Water in__Cambridge or Lenox or Boston or Reno ==,==Massachusetts or Nevada in_2017 or 2016 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((State = 'Nevada' AND City = 'Boulder City' AND Year = '2020')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) GROUP BY Polluted_element",
+      "GTresult": "min_Value=-40.25; min_Value=-37.35",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Boulder City ==,==Nevada in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Polluted_element, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Cambridge' AND Year = '2017')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Water')) GROUP BY Polluted_element",
+      "GTresult": "Polluted_element=Air, sum_Value=37.1; Polluted_element=Water, sum_Value=-80.54",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Water in__Cambridge ==,==Massachusetts in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Polluted_element, State, City, Year, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Nevada' AND City = 'Lenox' AND Year = '2016') OR (State = 'Nevada' AND City = 'Boulder City' AND Year = '2020')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) GROUP BY Polluted_element, State, City, Year",
+      "GTresult": "Polluted_element=Soil, State=Nevada, City=Boulder City, Year=2020, sum_Value=-77.71000000000001; Polluted_element=Soil, State=Nevada, City=Lenox, Year=2016, sum_Value=-35.60000000000001; Polluted_element=Water, State=Nevada, City=Boulder City, Year=2020, sum_Value=57.38999999999999; Polluted_element=Water, State=Nevada, City=Lenox, Year=2016, sum_Value=-10.850000000000001",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Lenox or Boulder City ==,==Nevada in_2016 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Nevada' AND City = 'Lenox' AND Year = '2016')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Air')) ORDER BY Value DESC LIMIT 3",
+      "GTresult": "Value=62.84; Value=53.91; Value=44.82",
+      "NLquestions": [
+        "What are the top/bottom_ evolutions of_((pollution)) of_ of_Soil or Air in__Lenox ==,==Nevada in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Cambridge' AND Year = '2017')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Air')) ORDER BY Value DESC",
+      "GTresult": "Value=30.32; Value=24.91; Value=6.78; Value=4.09",
+      "NLquestions": [
+        "What are the evolutions /increasing_values of_((pollution)) of_ of_Soil or Air in__Cambridge ==,==Massachusetts in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Nevada' AND City = 'Lenox' AND Year = '2016')) AND Value > 0.68",
+      "GTresult": "Polluted_element=Air, Type_of_pollution=Inferior Irrigation; Polluted_element=Water, Type_of_pollution=Thermal; Polluted_element=Soil, Type_of_pollution=Noise; Polluted_element=Air, Type_of_pollution=Oxygen-depletion",
+      "NLquestions": [
+        "What is/are_the_ the evolution of_((pollution)) of_ of_ in__Lenox ==,==Nevada in_2016 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Polluted_element, Type_of_pollution, Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Reno' AND Year = '2017')) AND (Polluted_element, Type_of_pollution) IN (SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Nevada' AND City = 'Lenox' AND Year = '2016')) AND Value > 0.68)",
+      "GTresult": "Polluted_element=Air, Type_of_pollution=Inferior Irrigation, Value=-32.35; Polluted_element=Water, Type_of_pollution=Thermal, Value=-23.95; Polluted_element=Soil, Type_of_pollution=Noise, Value=-22.21; Polluted_element=Air, Type_of_pollution=Oxygen-depletion, Value=-21.31",
+      "NLquestions": []
+    }
+  ]
+}

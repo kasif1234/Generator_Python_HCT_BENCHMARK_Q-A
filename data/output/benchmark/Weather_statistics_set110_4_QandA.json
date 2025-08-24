@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set110_4_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'California' AND City = 'Redmond')) AND ((Characteristic = 'Wind' AND Intensity = 'Storm'))",
+      "GTresult": "Value=7.16",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Redmond ==,==California in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2015' AND State = 'California' AND City = 'Las Vegas')) AND ((Characteristic = 'Wind' AND Intensity = 'Storm') OR (Characteristic = 'Humidity' AND Intensity = 'Breeze') OR (Characteristic = 'Temperature' AND Intensity = 'Calm') OR (Characteristic = 'Wind' AND Intensity = 'Low') OR (Characteristic = 'Temperature' AND Intensity = 'High') OR (Characteristic = 'Wind' AND Intensity = '21-30') OR (Characteristic = 'Humidity' AND Intensity = '0-10') OR (Characteristic = 'Temperature' AND Intensity = 'Storm'))",
+      "GTresult": "Value=9.39; Value=8.46; Value=11.43; Value=12.08; Value=10.88; Value=6.45; Value=16.69; Value=16.17",
+      "NLquestions": [
+        "How many days with__ Wind or Humidity or Temperature were there in__Las Vegas ==,==California in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Nevada' AND City = 'Reno') OR (Year = '2016' AND State = 'Oregon' AND City = 'Berkeley') OR (Year = '2015' AND State = 'Nevada' AND City = 'San Francisco') OR (Year = '2015' AND State = 'Oregon' AND City = 'Portland')) AND ((Characteristic = 'Humidity' AND Intensity = '0-10'))",
+      "GTresult": "Value=7.75; Value=25.14; Value=25.29; Value=3.32",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Reno or Berkeley or San Francisco or Portland ==,==Nevada or Oregon in_2016 or 2015 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Nevada' AND City = 'Reno') OR (Year = '2015' AND State = 'California' AND City = 'Las Vegas') OR (Year = '2016' AND State = 'Oregon' AND City = 'Berkeley') OR (Year = '2015' AND State = 'Nevada' AND City = 'San Francisco') OR (Year = '2016' AND State = 'California' AND City = 'Redmond') OR (Year = '2015' AND State = 'Oregon' AND City = 'Portland')) AND ((Characteristic = 'Wind' AND Intensity = 'Low'))",
+      "GTresult": "sum_Value=78.58, avg_Value=13.096666666666666",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind in__Reno or Las Vegas or Berkeley or San Francisco or Redmond or Portland ==,==Nevada or California or Oregon in_2016 or 2015 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Nevada' AND City = 'Reno') OR (Year = '2015' AND State = 'California' AND City = 'Las Vegas') OR (Year = '2016' AND State = 'Oregon' AND City = 'Berkeley') OR (Year = '2016' AND State = 'California' AND City = 'Redmond')) AND ((Characteristic = 'Humidity' AND Intensity = 'Breeze') OR (Characteristic = 'Temperature' AND Intensity = 'Calm'))",
+      "GTresult": "Value=0.77; Value=0.74; Value=8.46; Value=11.43; Value=19.71; Value=20.29; Value=8.79; Value=27.57",
+      "NLquestions": [
+        "How many days with__ Humidity or Temperature were there in__Reno or Las Vegas or Berkeley or Redmond ==,==Nevada or California or Oregon in_2016 or 2015 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Oregon' AND City = 'Berkeley')) AND ((Characteristic = 'Humidity' AND Intensity = 'Breeze') OR (Characteristic = 'Wind' AND Intensity = 'Low') OR (Characteristic = 'Temperature' AND Intensity = 'Storm'))",
+      "GTresult": "avg_Value=22.626666666666665, sum_Value=67.88",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind or Temperature in__Berkeley ==,==Oregon in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Nevada' AND City = 'Reno') OR (Year = '2015' AND State = 'Nevada' AND City = 'San Francisco') OR (Year = '2016' AND State = 'California' AND City = 'Redmond') OR (Year = '2015' AND State = 'Oregon' AND City = 'Portland')) AND ((Characteristic = 'Humidity' AND Intensity = 'Medium') OR (Characteristic = 'Temperature' AND Intensity = 'High') OR (Characteristic = 'Humidity' AND Intensity = '0-10')) GROUP BY Year, State, City",
+      "GTresult": "Year=2015, State=Nevada, City=San Francisco, sum_Value=76.3, avg_Value=25.433333333333334; Year=2015, State=Oregon, City=Portland, sum_Value=44.24, avg_Value=14.746666666666668; Year=2016, State=California, City=Redmond, sum_Value=57.07, avg_Value=19.023333333333333; Year=2016, State=Nevada, City=Reno, sum_Value=17.46, avg_Value=5.82",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Temperature in__Reno or San Francisco or Redmond or Portland ==,==Nevada or California or Oregon in_2016 or 2015 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Oregon' AND City = 'Portland')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) GROUP BY Characteristic",
+      "GTresult": "min_Value=3.32; min_Value=19.22",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Temperature in__Portland ==,==Oregon in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Nevada' AND City = 'San Francisco')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Humidity, max_Value=27.43; Characteristic=Temperature, max_Value=27.28",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Temperature in__San Francisco ==,==Nevada in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Oregon' AND City = 'Berkeley') OR (Year = '2016' AND State = 'California' AND City = 'Redmond') OR (Year = '2015' AND State = 'Oregon' AND City = 'Portland')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Humidity, Year=2015, State=Oregon, City=Portland, max_Value=20.17; Characteristic=Humidity, Year=2016, State=California, City=Redmond, max_Value=27.01; Characteristic=Humidity, Year=2016, State=Oregon, City=Berkeley, max_Value=25.14; Characteristic=Wind, Year=2015, State=Oregon, City=Portland, max_Value=20.5; Characteristic=Wind, Year=2016, State=California, City=Redmond, max_Value=14.14; Characteristic=Wind, Year=2016, State=Oregon, City=Berkeley, max_Value=24.24",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Berkeley or Redmond or Portland ==,==Oregon or California in_2016 or 2015 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2015' AND State = 'Nevada' AND City = 'San Francisco')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=23.17; Value=24.04; Value=24.22; Value=24.52; Value=25.29",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Wind or Humidity in__San Francisco ==,==Nevada in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2015' AND State = 'California' AND City = 'Las Vegas')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) ORDER BY Value ASC",
+      "GTresult": "Value=8.46; Value=10.88; Value=11.43; Value=12.72; Value=16.17; Value=16.69",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Humidity or Temperature in__Las Vegas ==,==California in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2015' AND State = 'California' AND City = 'Las Vegas')) AND Value > 15.63",
+      "GTresult": "Characteristic=Humidity, Intensity=0-10; Characteristic=Temperature, Intensity=Storm",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Las Vegas ==,==California in_2015 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2015' AND State = 'Oregon' AND City = 'Portland')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2015' AND State = 'California' AND City = 'Las Vegas')) AND Value > 15.63)",
+      "GTresult": "Characteristic=Humidity, Intensity=0-10, Value=3.32; Characteristic=Temperature, Intensity=Storm, Value=24.99",
+      "NLquestions": []
+    }
+  ]
+}

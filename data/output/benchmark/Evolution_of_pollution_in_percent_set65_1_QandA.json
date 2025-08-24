@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Evolution_of_pollution_in_percent_set65_1_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Michigan' AND City = 'Flint')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Urban Activities'))",
+      "GTresult": "Value=86.2",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water in__Flint ==,==Michigan in_ ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Michigan' AND City = 'Albany')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Inferior Irrigation') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Oxygen-depletion') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Thermal'))",
+      "GTresult": "Value=31.0; Value=-89.53; Value=-87.51",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water or Soil or Air in__Albany ==,==Michigan in_ ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Michigan' AND City = 'Albany') OR (State = 'Michigan' AND City = 'Flint')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Oxygen-depletion'))",
+      "GTresult": "Value=-89.53; Value=-52.76",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil in__Albany or Flint ==,==Michigan in_ ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, max(Value) AS max_Value FROM DBdata WHERE ((State = 'Michigan' AND City = 'Albany') OR (State = 'Michigan' AND City = 'Flint')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Noise'))",
+      "GTresult": "sum_Value=-8.969999999999999, max_Value=41.92",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water in__Albany or Flint ==,==Michigan in_ ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Georgia' AND City = 'Columbus') OR (State = 'Georgia' AND City = 'Port Huron')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Industrial') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Inorganic Fertilizers') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Surface water') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Thermal'))",
+      "GTresult": "Value=-79.44; Value=50.98; Value=-76.48; Value=-1.88; Value=-37.58; Value=-36.27; Value=-35.35; Value=96.26",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil or Water or Air in__Columbus or Port Huron ==,==Georgia in_ ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, max(Value) AS max_Value FROM DBdata WHERE ((State = 'Michigan' AND City = 'Albany')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Inorganic Fertilizers') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Surface water') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Noise') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Thermal') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Inferior Irrigation'))",
+      "GTresult": "avg_Value=-10.924000000000001, max_Value=43.69",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Air or Soil in__Albany ==,==Michigan in_ ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT State, City, min(Value) AS min_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((State = 'Georgia' AND City = 'Washington') OR (State = 'Michigan' AND City = 'Albany') OR (State = 'Georgia' AND City = 'Columbus') OR (State = 'Michigan' AND City = 'Flint')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Inorganic Fertilizers') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Surface water') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Inferior Irrigation')) GROUP BY State, City",
+      "GTresult": "State=Georgia, City=Columbus, min_Value=-76.48, avg_Value=12.409999999999997; State=Georgia, City=Washington, min_Value=11.05, avg_Value=16.993333333333336; State=Michigan, City=Albany, min_Value=-91.94, avg_Value=-3.0100000000000002; State=Michigan, City=Flint, min_Value=-35.85, avg_Value=34.43333333333334",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Air or Soil in__Washington or Albany or Columbus or Flint ==,==Georgia or Michigan in_ ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((State = 'Georgia' AND City = 'Port Huron')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Water')) GROUP BY Polluted_element",
+      "GTresult": "min_Value=-38.86; min_Value=-36.27",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Water in__Port Huron ==,==Georgia in_ ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Polluted_element, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Michigan' AND City = 'Flint')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) GROUP BY Polluted_element",
+      "GTresult": "Polluted_element=Soil, sum_Value=-84.75999999999999; Polluted_element=Water, sum_Value=170.26",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Flint ==,==Michigan in_ ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Polluted_element, State, City, avg(Value) AS avg_Value FROM DBdata WHERE ((State = 'Georgia' AND City = 'Columbus') OR (State = 'Georgia' AND City = 'Port Huron') OR (State = 'Michigan' AND City = 'Detroit')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) GROUP BY Polluted_element, State, City",
+      "GTresult": "Polluted_element=Soil, State=Georgia, City=Columbus, avg_Value=21.6625; Polluted_element=Soil, State=Georgia, City=Port Huron, avg_Value=60.14; Polluted_element=Soil, State=Michigan, City=Detroit, avg_Value=-21.41; Polluted_element=Water, State=Georgia, City=Columbus, avg_Value=-9.727500000000003; Polluted_element=Water, State=Georgia, City=Port Huron, avg_Value=29.625; Polluted_element=Water, State=Michigan, City=Detroit, avg_Value=-17.5775",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Columbus or Port Huron or Detroit ==,==Georgia or Michigan in_ ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Michigan' AND City = 'Flint')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=-61.16; Value=-52.76; Value=-50.89; Value=-35.85; Value=65.01",
+      "NLquestions": [
+        "What are the top/bottom_ evolutions of_((pollution)) of_ of_Soil or Water in__Flint ==,==Michigan in_ ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Michigan' AND City = 'Detroit')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Soil')) ORDER BY Value ASC",
+      "GTresult": "Value=-32.94; Value=-29.91; Value=-28.83; Value=-20.84; Value=-20.55; Value=-13.28; Value=-3.32; Value=99.62",
+      "NLquestions": [
+        "What are the evolutions /increasing_values of_((pollution)) of_ of_Air or Soil in__Detroit ==,==Michigan in_ ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Georgia' AND City = 'Columbus')) AND Value > 4.70",
+      "GTresult": "Polluted_element=Soil, Type_of_pollution=Thermal; Polluted_element=Water, Type_of_pollution=Inferior Irrigation; Polluted_element=Water, Type_of_pollution=Inorganic Fertilizers; Polluted_element=Soil, Type_of_pollution=Oxygen-depletion; Polluted_element=Soil, Type_of_pollution=Inferior Irrigation",
+      "NLquestions": [
+        "What is/are_the_ the evolution of_((pollution)) of_ of_ in__Columbus ==,==Georgia in_ is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Polluted_element, Type_of_pollution, Value FROM DBdata WHERE ((State = 'Georgia' AND City = 'Port Huron')) AND (Polluted_element, Type_of_pollution) IN (SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Georgia' AND City = 'Columbus')) AND Value > 4.70)",
+      "GTresult": "Polluted_element=Soil, Type_of_pollution=Thermal, Value=88.84; Polluted_element=Water, Type_of_pollution=Inferior Irrigation, Value=89.87; Polluted_element=Water, Type_of_pollution=Inorganic Fertilizers, Value=-36.27; Polluted_element=Soil, Type_of_pollution=Oxygen-depletion, Value=92.06; Polluted_element=Soil, Type_of_pollution=Inferior Irrigation, Value=97.24",
+      "NLquestions": []
+    }
+  ]
+}

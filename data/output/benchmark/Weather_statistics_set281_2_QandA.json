@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set281_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Lenox')) AND ((Characteristic = 'Temperature' AND Intensity = '21-30'))",
+      "GTresult": "Value=21.64",
+      "NLquestions": [
+        "How many days with__ Temperature were there in__Lenox ==,==Georgia in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2022' AND State = 'Georgia' AND City = 'Washington')) AND ((Characteristic = 'Wind' AND Intensity = 'Storm') OR (Characteristic = 'Temperature' AND Intensity = 'Breeze'))",
+      "GTresult": "Value=2.75; Value=4.0",
+      "NLquestions": [
+        "How many days with__ Wind or Temperature were there in__Washington ==,==Georgia in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2022' AND State = 'Illinois' AND City = 'Boston') OR (Year = '2021' AND State = 'Georgia' AND City = 'Lenox') OR (Year = '2022' AND State = 'Massachusetts' AND City = 'Springfield')) AND ((Characteristic = 'Temperature' AND Intensity = 'Breeze'))",
+      "GTresult": "Value=13.25; Value=18.72; Value=20.97",
+      "NLquestions": [
+        "How many days with__ Temperature were there in__Boston or Lenox or Springfield ==,==Illinois or Georgia or Massachusetts in_2022 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2022' AND State = 'Georgia' AND City = 'Washington') OR (Year = '2021' AND State = 'Massachusetts' AND City = 'Columbus') OR (Year = '2022' AND State = 'Illinois' AND City = 'Boston') OR (Year = '2021' AND State = 'Georgia' AND City = 'Lenox') OR (Year = '2022' AND State = 'Massachusetts' AND City = 'Springfield') OR (Year = '2021' AND State = 'Illinois' AND City = 'Chicago')) AND ((Characteristic = 'Temperature' AND Intensity = '21-30'))",
+      "GTresult": "sum_Value=101.41, min_Value=6.27",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature in__Washington or Columbus or Boston or Lenox or Springfield or Chicago ==,==Georgia or Massachusetts or Illinois in_2022 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Lenox') OR (Year = '2021' AND State = 'Illinois' AND City = 'Chicago')) AND ((Characteristic = 'Temperature' AND Intensity = 'Breeze') OR (Characteristic = 'Wind' AND Intensity = '31-40') OR (Characteristic = 'Temperature' AND Intensity = '21-30'))",
+      "GTresult": "Value=18.72; Value=19.07; Value=21.64; Value=20.49; Value=21.17; Value=18.96",
+      "NLquestions": [
+        "How many days with__ Temperature or Wind were there in__Lenox or Chicago ==,==Georgia or Illinois in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Massachusetts' AND City = 'Columbus')) AND ((Characteristic = 'Wind' AND Intensity = 'Storm') OR (Characteristic = 'Temperature' AND Intensity = 'Breeze') OR (Characteristic = 'Wind' AND Intensity = '31-40') OR (Characteristic = 'Temperature' AND Intensity = '21-30'))",
+      "GTresult": "avg_Value=8.8325, min_Value=6.32",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Columbus ==,==Massachusetts in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Lenox') OR (Year = '2021' AND State = 'Illinois' AND City = 'Chicago')) AND ((Characteristic = 'Wind' AND Intensity = '31-40') OR (Characteristic = 'Temperature' AND Intensity = '21-30')) GROUP BY Year, State, City",
+      "GTresult": "Year=2021, State=Georgia, City=Lenox, sum_Value=40.71, avg_Value=20.355; Year=2021, State=Illinois, City=Chicago, sum_Value=40.13, avg_Value=20.065",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Lenox or Chicago ==,==Georgia or Illinois in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2022' AND State = 'Massachusetts' AND City = 'Springfield')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) GROUP BY Characteristic",
+      "GTresult": "min_Value=20.97; min_Value=19.35",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Springfield ==,==Massachusetts in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Massachusetts' AND City = 'Columbus')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Temperature, sum_Value=20.759999999999998; Characteristic=Wind, sum_Value=14.57",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Columbus ==,==Massachusetts in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2022' AND State = 'Massachusetts' AND City = 'Springfield') OR (Year = '2021' AND State = 'Illinois' AND City = 'Chicago')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Temperature, Year=2021, State=Illinois, City=Chicago, min_Value=18.96; Characteristic=Temperature, Year=2022, State=Massachusetts, City=Springfield, min_Value=20.97; Characteristic=Wind, Year=2021, State=Illinois, City=Chicago, min_Value=21.17; Characteristic=Wind, Year=2022, State=Massachusetts, City=Springfield, min_Value=19.35",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Springfield or Chicago ==,==Massachusetts or Illinois in_2022 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Massachusetts' AND City = 'Columbus')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) ORDER BY Value ASC LIMIT 3",
+      "GTresult": "Value=6.32; Value=8.25; Value=9.57",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Wind or Temperature in__Columbus ==,==Massachusetts in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2022' AND State = 'Georgia' AND City = 'Washington')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) ORDER BY Value DESC",
+      "GTresult": "Value=6.27; Value=6.24; Value=4.0; Value=2.75",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Wind or Temperature in__Washington ==,==Georgia in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2022' AND State = 'Massachusetts' AND City = 'Springfield')) AND Value < 15.28",
+      "GTresult": "",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Springfield ==,==Massachusetts in_2022 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2021' AND State = 'Illinois' AND City = 'Chicago')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2022' AND State = 'Massachusetts' AND City = 'Springfield')) AND Value < 15.28)",
+      "GTresult": "",
+      "NLquestions": []
+    }
+  ]
+}

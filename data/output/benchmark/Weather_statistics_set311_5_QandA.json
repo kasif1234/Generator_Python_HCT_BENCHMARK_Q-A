@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set311_5_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'California' AND City = 'Berkeley')) AND ((Characteristic = 'Temperature' AND Intensity = 'High'))",
+      "GTresult": "Value=6.17",
+      "NLquestions": [
+        "How many days with__ Temperature were there in__Berkeley ==,==California in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Florida' AND City = 'Los-Angeles')) AND ((Characteristic = 'Wind' AND Intensity = 'Storm') OR (Characteristic = 'Temperature' AND Intensity = 'High') OR (Characteristic = 'Wind' AND Intensity = 'Low') OR (Characteristic = 'Humidity' AND Intensity = '0-10'))",
+      "GTresult": "Value=11.79; Value=12.25; Value=14.69; Value=6.47",
+      "NLquestions": [
+        "How many days with__ Wind or Temperature or Humidity were there in__Los-Angeles ==,==Florida in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Florida' AND City = 'Tampa') OR (Year = '2016' AND State = 'California' AND City = 'Fort Lauderdale') OR (Year = '2017' AND State = 'Florida' AND City = 'Malibu') OR (Year = '2021' AND State = 'California' AND City = 'Berkeley') OR (Year = '2016' AND State = 'Florida' AND City = 'Los-Angeles')) AND ((Characteristic = 'Humidity' AND Intensity = 'Medium'))",
+      "GTresult": "Value=6.88; Value=15.26; Value=18.82; Value=8.59; Value=14.34",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Tampa or Fort Lauderdale or Malibu or Berkeley or Los-Angeles ==,==Florida or California in_2021 or 2016 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2016' AND State = 'California' AND City = 'Fort Lauderdale') OR (Year = '2017' AND State = 'Florida' AND City = 'Malibu') OR (Year = '2021' AND State = 'California' AND City = 'Berkeley')) AND ((Characteristic = 'Temperature' AND Intensity = '11-20'))",
+      "GTresult": "sum_Value=50.23, min_Value=8.19",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature in__Fort Lauderdale or Malibu or Berkeley ==,==California or Florida in_2016 or 2017 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'California' AND City = 'Fort Lauderdale') OR (Year = '2017' AND State = 'Florida' AND City = 'Malibu') OR (Year = '2021' AND State = 'California' AND City = 'Berkeley') OR (Year = '2016' AND State = 'Florida' AND City = 'Los-Angeles')) AND ((Characteristic = 'Humidity' AND Intensity = 'Calm') OR (Characteristic = 'Wind' AND Intensity = '31-40') OR (Characteristic = 'Humidity' AND Intensity = '0-10') OR (Characteristic = 'Temperature' AND Intensity = 'Storm'))",
+      "GTresult": "Value=9.9; Value=10.8; Value=18.88; Value=19.32; Value=21.75; Value=26.11; Value=25.6; Value=26.15; Value=25.8; Value=9.78; Value=9.14; Value=9.8; Value=12.14; Value=5.11; Value=6.47; Value=20.82",
+      "NLquestions": [
+        "How many days with__ Humidity or Wind or Temperature were there in__Fort Lauderdale or Malibu or Berkeley or Los-Angeles ==,==California or Florida in_2016 or 2017 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT min(Value) AS min_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2017' AND State = 'Florida' AND City = 'Malibu')) AND ((Characteristic = 'Wind' AND Intensity = 'Storm') OR (Characteristic = 'Wind' AND Intensity = 'Low'))",
+      "GTresult": "min_Value=17.94, avg_Value=20.745",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind in__Malibu ==,==Florida in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, sum(Value) AS sum_Value, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2016' AND State = 'California' AND City = 'Fort Lauderdale') OR (Year = '2021' AND State = 'California' AND City = 'Berkeley') OR (Year = '2016' AND State = 'Florida' AND City = 'Los-Angeles')) AND ((Characteristic = 'Temperature' AND Intensity = 'High') OR (Characteristic = 'Wind' AND Intensity = 'Low') OR (Characteristic = 'Humidity' AND Intensity = 'Medium') OR (Characteristic = 'Wind' AND Intensity = '31-40') OR (Characteristic = 'Temperature' AND Intensity = 'Storm')) GROUP BY Year, State, City",
+      "GTresult": "Year=2016, State=California, City=Fort Lauderdale, sum_Value=69.0, max_Value=19.32; Year=2016, State=Florida, City=Los-Angeles, sum_Value=67.21, max_Value=20.82; Year=2021, State=California, City=Berkeley, sum_Value=58.07, max_Value=23.73",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind or Humidity in__Fort Lauderdale or Berkeley or Los-Angeles ==,==California or Florida in_2016 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2021' AND State = 'California' AND City = 'Berkeley')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) GROUP BY Characteristic",
+      "GTresult": "min_Value=8.59; min_Value=9.78",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Berkeley ==,==California in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2021' AND State = 'California' AND City = 'Berkeley')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Temperature, avg_Value=8.053333333333333; Characteristic=Wind, avg_Value=18.756666666666668",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Berkeley ==,==California in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2017' AND State = 'Florida' AND City = 'Malibu') OR (Year = '2016' AND State = 'Florida' AND City = 'Los-Angeles')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Temperature, Year=2016, State=Florida, City=Los-Angeles, min_Value=12.25; Characteristic=Temperature, Year=2017, State=Florida, City=Malibu, min_Value=22.57; Characteristic=Wind, Year=2016, State=Florida, City=Los-Angeles, min_Value=5.11; Characteristic=Wind, Year=2017, State=Florida, City=Malibu, min_Value=17.94",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Malibu or Los-Angeles ==,==Florida in_2017 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'California' AND City = 'Fort Lauderdale')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=18.88; Value=15.26; Value=14.01; Value=10.8; Value=9.9",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Wind or Humidity in__Fort Lauderdale ==,==California in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'California' AND City = 'Berkeley')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) ORDER BY Value ASC",
+      "GTresult": "Value=6.17; Value=8.19; Value=8.59; Value=9.14; Value=9.8; Value=25.8",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Humidity or Temperature in__Berkeley ==,==California in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2016' AND State = 'California' AND City = 'Fort Lauderdale')) AND Value > 13.68",
+      "GTresult": "Characteristic=Wind, Intensity=Low; Characteristic=Humidity, Intensity=Medium; Characteristic=Temperature, Intensity=11-20; Characteristic=Humidity, Intensity=0-10; Characteristic=Temperature, Intensity=Storm",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Fort Lauderdale ==,==California in_2016 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2021' AND State = 'Florida' AND City = 'Tampa')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2016' AND State = 'California' AND City = 'Fort Lauderdale')) AND Value > 13.68)",
+      "GTresult": "Characteristic=Wind, Intensity=Low, Value=4.96; Characteristic=Humidity, Intensity=Medium, Value=6.88; Characteristic=Temperature, Intensity=11-20, Value=6.2; Characteristic=Humidity, Intensity=0-10, Value=7.81; Characteristic=Temperature, Intensity=Storm, Value=7.33",
+      "NLquestions": []
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Evolution_of_pollution_in_percent_set308_3_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Minneapolis' AND Year = '2016')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Oxygen-depletion'))",
+      "GTresult": "Value=28.4",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil in__Minneapolis ==,==Illinois in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Rochester' AND Year = '2018')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Chemical') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Thermal') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Surface water') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Oxygen-depletion'))",
+      "GTresult": "Value=10.34; Value=22.12; Value=23.56; Value=27.23",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water or Soil or Air in__Rochester ==,==Minnesota in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Hastings' AND Year = '2020') OR (State = 'Illinois' AND City = 'Champaign' AND Year = '2020')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Noise'))",
+      "GTresult": "Value=59.72; Value=-28.09",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil in__Hastings or Champaign ==,==Minnesota or Illinois in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT min(Value) AS min_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Rochester' AND Year = '2018') OR (State = 'Illinois' AND City = 'Minneapolis' AND Year = '2016') OR (State = 'Minnesota' AND City = 'Hastings' AND Year = '2020') OR (State = 'Illinois' AND City = 'Chicago' AND Year = '2018') OR (State = 'Minnesota' AND City = 'Springfield' AND Year = '2016') OR (State = 'Illinois' AND City = 'Champaign' AND Year = '2020')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Urban Activities'))",
+      "GTresult": "min_Value=-56.74, sum_Value=225.01",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil in__Rochester or Minneapolis or Hastings or Chicago or Springfield or Champaign ==,==Minnesota or Illinois in_2018 or 2016 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Hastings' AND Year = '2020') OR (State = 'Illinois' AND City = 'Champaign' AND Year = '2020')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Surface water') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Chemical') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Noise') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Thermal'))",
+      "GTresult": "Value=-84.66; Value=87.5; Value=59.72; Value=-69.14; Value=-36.17; Value=92.57; Value=-28.09; Value=-16.1",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water or Soil in__Hastings or Champaign ==,==Minnesota or Illinois in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Minneapolis' AND Year = '2016')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Light') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Surface water'))",
+      "GTresult": "sum_Value=-171.01999999999998, avg_Value=-85.50999999999999",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Soil in__Minneapolis ==,==Illinois in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT State, City, Year, min(Value) AS min_Value, max(Value) AS max_Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Minneapolis' AND Year = '2016') OR (State = 'Illinois' AND City = 'Chicago' AND Year = '2018')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Urban Activities') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Light')) GROUP BY State, City, Year",
+      "GTresult": "State=Illinois, City=Chicago, Year=2018, min_Value=-56.74, max_Value=71.37; State=Illinois, City=Minneapolis, Year=2016, min_Value=-86.1, max_Value=36.9",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Air in__Minneapolis or Chicago ==,==Illinois in_2016 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Springfield' AND Year = '2016')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Soil')) GROUP BY Polluted_element",
+      "GTresult": "min_Value=-40.2; min_Value=-46.26",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Soil in__Springfield ==,==Minnesota in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Polluted_element, min(Value) AS min_Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Rochester' AND Year = '2018')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Soil')) GROUP BY Polluted_element",
+      "GTresult": "Polluted_element=Soil, min_Value=2.9; Polluted_element=Water, min_Value=1.83",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Soil in__Rochester ==,==Minnesota in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Polluted_element, State, City, Year, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Minneapolis' AND Year = '2016') OR (State = 'Illinois' AND City = 'Chicago' AND Year = '2018') OR (State = 'Illinois' AND City = 'Champaign' AND Year = '2020')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Soil')) GROUP BY Polluted_element, State, City, Year",
+      "GTresult": "Polluted_element=Soil, State=Illinois, City=Champaign, Year=2020, sum_Value=144.39; Polluted_element=Soil, State=Illinois, City=Chicago, Year=2018, sum_Value=-96.88; Polluted_element=Soil, State=Illinois, City=Minneapolis, Year=2016, sum_Value=-107.39; Polluted_element=Water, State=Illinois, City=Champaign, Year=2020, sum_Value=-17.640000000000008; Polluted_element=Water, State=Illinois, City=Chicago, Year=2018, sum_Value=38.01999999999999; Polluted_element=Water, State=Illinois, City=Minneapolis, Year=2016, sum_Value=-243.9",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Soil in__Minneapolis or Chicago or Champaign ==,==Illinois in_2016 or 2018 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Springfield' AND Year = '2016')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Soil')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=89.32; Value=88.29; Value=87.62; Value=84.9; Value=81.38",
+      "NLquestions": [
+        "What are the top/bottom_ evolutions of_((pollution)) of_ of_Water or Soil in__Springfield ==,==Minnesota in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Hastings' AND Year = '2020')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Air')) ORDER BY Value ASC",
+      "GTresult": "Value=-76.45; Value=-72.79; Value=-65.65; Value=50.37; Value=56.46; Value=59.72; Value=61.12; Value=67.04",
+      "NLquestions": [
+        "What are the evolutions /increasing_values of_((pollution)) of_ of_Soil or Air in__Hastings ==,==Minnesota in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Illinois' AND City = 'Chicago' AND Year = '2018')) AND Value < 0.21",
+      "GTresult": "Polluted_element=Water, Type_of_pollution=Surface water; Polluted_element=Air, Type_of_pollution=Groundwater; Polluted_element=Water, Type_of_pollution=Chemical; Polluted_element=Soil, Type_of_pollution=Urban Activities; Polluted_element=Air, Type_of_pollution=Inferior Irrigation; Polluted_element=Soil, Type_of_pollution=Noise; Polluted_element=Soil, Type_of_pollution=Surface water; Polluted_element=Air, Type_of_pollution=Oxygen-depletion",
+      "NLquestions": [
+        "What is/are_the_ the evolution of_((pollution)) of_ of_ in__Chicago ==,==Illinois in_2018 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Polluted_element, Type_of_pollution, Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Champaign' AND Year = '2020')) AND (Polluted_element, Type_of_pollution) IN (SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Illinois' AND City = 'Chicago' AND Year = '2018')) AND Value < 0.21)",
+      "GTresult": "Polluted_element=Water, Type_of_pollution=Surface water, Value=-36.17; Polluted_element=Air, Type_of_pollution=Groundwater, Value=-33.76; Polluted_element=Water, Type_of_pollution=Chemical, Value=92.57; Polluted_element=Soil, Type_of_pollution=Urban Activities, Value=92.78; Polluted_element=Air, Type_of_pollution=Inferior Irrigation, Value=-31.84; Polluted_element=Soil, Type_of_pollution=Noise, Value=-28.09; Polluted_element=Soil, Type_of_pollution=Surface water, Value=-15.15; Polluted_element=Air, Type_of_pollution=Oxygen-depletion, Value=-4.5",
+      "NLquestions": []
+    }
+  ]
+}

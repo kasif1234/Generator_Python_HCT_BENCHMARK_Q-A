@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set313_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2022' AND State = 'Minnesota' AND City = 'Columbus')) AND ((Characteristic = 'Wind' AND Intensity = 'Medium'))",
+      "GTresult": "Value=18.0",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Columbus ==,==Minnesota in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2022' AND State = 'Minnesota' AND City = 'Minneapolis')) AND ((Characteristic = 'Wind' AND Intensity = 'Storm') OR (Characteristic = 'Humidity' AND Intensity = 'Storm'))",
+      "GTresult": "Value=0.35; Value=7.56",
+      "NLquestions": [
+        "How many days with__ Wind or Humidity were there in__Minneapolis ==,==Minnesota in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2022' AND State = 'Minnesota' AND City = 'Minneapolis') OR (Year = '2022' AND State = 'Georgia' AND City = 'Fort Lauderdale') OR (Year = '2021' AND State = 'Georgia' AND City = 'Washington')) AND ((Characteristic = 'Wind' AND Intensity = 'Breeze'))",
+      "GTresult": "Value=3.78; Value=16.42; Value=12.88",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Minneapolis or Fort Lauderdale or Washington ==,==Minnesota or Georgia in_2022 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Florida' AND City = 'Rochester') OR (Year = '2022' AND State = 'Georgia' AND City = 'Fort Lauderdale') OR (Year = '2021' AND State = 'Minnesota' AND City = 'Tampa') OR (Year = '2022' AND State = 'Florida' AND City = 'Albany') OR (Year = '2021' AND State = 'Georgia' AND City = 'Washington') OR (Year = '2022' AND State = 'Minnesota' AND City = 'Columbus')) AND ((Characteristic = 'Wind' AND Intensity = 'Breeze'))",
+      "GTresult": "sum_Value=105.44, min_Value=9.2",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind in__Rochester or Fort Lauderdale or Tampa or Albany or Washington or Columbus ==,==Florida or Georgia or Minnesota in_2021 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2022' AND State = 'Minnesota' AND City = 'Minneapolis') OR (Year = '2021' AND State = 'Minnesota' AND City = 'Tampa') OR (Year = '2022' AND State = 'Florida' AND City = 'Albany') OR (Year = '2021' AND State = 'Georgia' AND City = 'Washington') OR (Year = '2022' AND State = 'Minnesota' AND City = 'Columbus')) AND ((Characteristic = 'Wind' AND Intensity = 'Storm') OR (Characteristic = 'Wind' AND Intensity = 'Medium'))",
+      "GTresult": "Value=0.35; Value=6.39; Value=20.19; Value=24.01; Value=17.64; Value=21.86; Value=27.3; Value=13.73; Value=14.31; Value=18.0",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Minneapolis or Tampa or Albany or Washington or Columbus ==,==Minnesota or Florida or Georgia in_2022 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT min(Value) AS min_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Washington')) AND ((Characteristic = 'Wind' AND Intensity = 'Storm') OR (Characteristic = 'Humidity' AND Intensity = 'Calm') OR (Characteristic = 'Wind' AND Intensity = 'Medium') OR (Characteristic = 'Humidity' AND Intensity = 'Storm'))",
+      "GTresult": "min_Value=8.95, avg_Value=15.780000000000001",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Washington ==,==Georgia in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, max(Value) AS max_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Florida' AND City = 'Rochester') OR (Year = '2022' AND State = 'Georgia' AND City = 'Fort Lauderdale') OR (Year = '2021' AND State = 'Minnesota' AND City = 'Tampa') OR (Year = '2021' AND State = 'Georgia' AND City = 'Washington') OR (Year = '2022' AND State = 'Minnesota' AND City = 'Columbus')) AND ((Characteristic = 'Humidity' AND Intensity = 'Calm') OR (Characteristic = 'Humidity' AND Intensity = 'Storm')) GROUP BY Year, State, City",
+      "GTresult": "Year=2021, State=Florida, City=Rochester, max_Value=13.13, sum_Value=22.23; Year=2021, State=Georgia, City=Washington, max_Value=13.14, sum_Value=22.09; Year=2021, State=Minnesota, City=Tampa, max_Value=23.77, sum_Value=45.3; Year=2022, State=Georgia, City=Fort Lauderdale, max_Value=17.12, sum_Value=33.07; Year=2022, State=Minnesota, City=Columbus, max_Value=19.58, sum_Value=35.9",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity in__Rochester or Fort Lauderdale or Tampa or Washington or Columbus ==,==Florida or Georgia or Minnesota in_2021 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2022' AND State = 'Florida' AND City = 'Albany')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) GROUP BY Characteristic",
+      "GTresult": "min_Value=6.35; min_Value=17.64",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Albany ==,==Florida in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2022' AND State = 'Florida' AND City = 'Albany')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Humidity, min_Value=6.35; Characteristic=Wind, min_Value=17.64",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Albany ==,==Florida in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Minnesota' AND City = 'Tampa') OR (Year = '2022' AND State = 'Minnesota' AND City = 'Columbus')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Humidity, Year=2021, State=Minnesota, City=Tampa, avg_Value=21.963333333333335; Characteristic=Humidity, Year=2022, State=Minnesota, City=Columbus, avg_Value=17.816666666666666; Characteristic=Wind, Year=2021, State=Minnesota, City=Tampa, avg_Value=22.26666666666667; Characteristic=Wind, Year=2022, State=Minnesota, City=Columbus, avg_Value=16.39",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Tampa or Columbus ==,==Minnesota in_2021 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2022' AND State = 'Minnesota' AND City = 'Columbus')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=19.58; Value=18.0; Value=17.55; Value=16.86; Value=16.32",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Wind or Humidity in__Columbus ==,==Minnesota in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2022' AND State = 'Minnesota' AND City = 'Columbus')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) ORDER BY Value DESC",
+      "GTresult": "Value=19.58; Value=18.0; Value=17.55; Value=16.86; Value=16.32; Value=14.31",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Wind or Humidity in__Columbus ==,==Minnesota in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2021' AND State = 'Minnesota' AND City = 'Tampa')) AND Value > 14.94",
+      "GTresult": "Characteristic=Wind, Intensity=Storm; Characteristic=Humidity, Intensity=Calm; Characteristic=Wind, Intensity=Breeze; Characteristic=Humidity, Intensity=High; Characteristic=Wind, Intensity=Medium; Characteristic=Humidity, Intensity=Storm",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Tampa ==,==Minnesota in_2021 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2022' AND State = 'Florida' AND City = 'Albany')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2021' AND State = 'Minnesota' AND City = 'Tampa')) AND Value > 14.94)",
+      "GTresult": "Characteristic=Wind, Intensity=Storm, Value=17.64; Characteristic=Humidity, Intensity=Calm, Value=27.44; Characteristic=Wind, Intensity=Breeze, Value=27.48; Characteristic=Humidity, Intensity=High, Value=21.13; Characteristic=Wind, Intensity=Medium, Value=21.86; Characteristic=Humidity, Intensity=Storm, Value=6.35",
+      "NLquestions": []
+    }
+  ]
+}

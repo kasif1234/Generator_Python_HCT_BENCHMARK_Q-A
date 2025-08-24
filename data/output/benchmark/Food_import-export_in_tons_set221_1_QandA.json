@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Food_import-export_in_tons_set221_1_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Meat' AND Item = 'Wheat'))",
+      "GTresult": "Value=969.43",
+      "NLquestions": [
+        "What is the amount of_Import of__ Meat in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Beverage' AND Item = 'Juice') OR (Category = 'Meat' AND Item = 'Wheat') OR (Category = 'Beverage' AND Item = 'Oats') OR (Category = 'Cereals' AND Item = 'Chicken') OR (Category = 'Meat' AND Item = 'Beef') OR (Category = 'Beverage' AND Item = 'Lamb') OR (Category = 'Cereals' AND Item = 'Juice'))",
+      "GTresult": "Value=130.84; Value=969.43; Value=907.44; Value=652.95; Value=593.89; Value=627.85; Value=182.56",
+      "NLquestions": [
+        "What is the amount of_Import of__ Beverage or Meat or Cereals in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Meat' AND Item = 'Coffee'))",
+      "GTresult": "Value=505.57",
+      "NLquestions": [
+        "What is the amount of_Import of__ Meat in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT min(Value) AS min_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Meat' AND Item = 'Beef'))",
+      "GTresult": "min_Value=593.89, sum_Value=593.89",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Meat in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Cereals' AND Item = 'Chicken') OR (Category = 'Meat' AND Item = 'Coffee'))",
+      "GTresult": "Value=652.95; Value=505.57",
+      "NLquestions": [
+        "What is the amount of_Import of__ Cereals or Meat in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT min(Value) AS min_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Beverage' AND Item = 'Juice') OR (Category = 'Meat' AND Item = 'Wheat'))",
+      "GTresult": "min_Value=130.84, sum_Value=1100.27",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Beverage or Meat in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Import_Export, min(Value) AS min_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Meat' AND Item = 'Wheat') OR (Category = 'Meat' AND Item = 'Beef') OR (Category = 'Cereals' AND Item = 'Juice')) GROUP BY Import_Export",
+      "GTresult": "Import_Export=Import, min_Value=182.56, sum_Value=1745.8799999999999",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Meat or Cereals in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Beverage') OR (Category = 'Cereals')) GROUP BY Category",
+      "GTresult": "min_Value=130.84; min_Value=182.56",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Beverage or Cereals in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Category, avg(Value) AS avg_Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Cereals') OR (Category = 'Meat')) GROUP BY Category",
+      "GTresult": "Category=Cereals, avg_Value=355.96000000000004; Category=Meat, avg_Value=689.63",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Cereals or Meat in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Category, Import_Export, avg(Value) AS avg_Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Beverage') OR (Category = 'Meat')) GROUP BY Category, Import_Export",
+      "GTresult": "Category=Beverage, Import_Export=Import, avg_Value=555.3766666666667; Category=Meat, Import_Export=Import, avg_Value=689.63",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Beverage or Meat in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Beverage') OR (Category = 'Meat')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=969.43; Value=907.44; Value=627.85; Value=593.89; Value=505.57",
+      "NLquestions": [
+        "What are the top/bottom_ amounts of_Import of__ Beverage or Meat in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import')) AND ((Category = 'Beverage') OR (Category = 'Cereals')) ORDER BY Value DESC",
+      "GTresult": "Value=907.44; Value=652.95; Value=627.85; Value=232.37; Value=182.56; Value=130.84",
+      "NLquestions": [
+        "What are the amounts /increasing_values of_Import of__ Beverage or Cereals in__ ==of== ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Import')) AND Value > 533.66",
+      "GTresult": "Category=Meat, Item=Wheat; Category=Beverage, Item=Oats; Category=Cereals, Item=Chicken; Category=Meat, Item=Beef; Category=Beverage, Item=Lamb",
+      "NLquestions": [
+        "What is/are_the_ the amount of_Import of__ in__ ==of== is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Category, Item, Value FROM DBdata WHERE ((Import_Export = 'Import')) AND (Category, Item) IN (SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Import')) AND Value > 533.66)",
+      "GTresult": "Category=Meat, Item=Wheat, Value=969.43; Category=Beverage, Item=Oats, Value=907.44; Category=Cereals, Item=Chicken, Value=652.95; Category=Meat, Item=Beef, Value=593.89; Category=Beverage, Item=Lamb, Value=627.85",
+      "NLquestions": []
+    }
+  ]
+}

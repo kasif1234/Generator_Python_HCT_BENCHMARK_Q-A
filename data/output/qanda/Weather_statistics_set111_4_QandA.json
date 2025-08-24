@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set111_4_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2022' AND State = 'Illinois' AND City = 'Berkeley')) AND ((Characteristic = 'Wind' AND Intensity = 'Low'))",
+      "GTresult": "Value=28.0",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Berkeley ==,==Illinois in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Michigan' AND City = 'Malibu')) AND ((Characteristic = 'Humidity' AND Intensity = 'Medium') OR (Characteristic = 'Temperature' AND Intensity = 'High') OR (Characteristic = 'Humidity' AND Intensity = '21-30') OR (Characteristic = 'Temperature' AND Intensity = '11-20') OR (Characteristic = 'Humidity' AND Intensity = 'Breeze') OR (Characteristic = 'Temperature' AND Intensity = 'Storm') OR (Characteristic = 'Wind' AND Intensity = 'Medium'))",
+      "GTresult": "Value=15.24; Value=19.81; Value=19.02; Value=20.69; Value=22.4; Value=25.8; Value=26.12",
+      "NLquestions": [
+        "How many days with__ Humidity or Temperature or Wind were there in__Malibu ==,==Michigan in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2022' AND State = 'Illinois' AND City = 'Chicago') OR (Year = '2021' AND State = 'Michigan' AND City = 'Flint')) AND ((Characteristic = 'Humidity' AND Intensity = 'Breeze'))",
+      "GTresult": "Value=1.4; Value=3.82",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Chicago or Flint ==,==Illinois or Michigan in_2022 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2022' AND State = 'Illinois' AND City = 'Chicago') OR (Year = '2020' AND State = 'California' AND City = 'Springfield') OR (Year = '2021' AND State = 'Michigan' AND City = 'Malibu') OR (Year = '2022' AND State = 'Illinois' AND City = 'Berkeley') OR (Year = '2020' AND State = 'California' AND City = 'Port Huron') OR (Year = '2021' AND State = 'Michigan' AND City = 'Flint')) AND ((Characteristic = 'Humidity' AND Intensity = 'Medium'))",
+      "GTresult": "sum_Value=55.480000000000004, min_Value=0.67",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity in__Chicago or Springfield or Malibu or Berkeley or Port Huron or Flint ==,==Illinois or California or Michigan in_2022 or 2020 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2022' AND State = 'Illinois' AND City = 'Chicago') OR (Year = '2020' AND State = 'California' AND City = 'Springfield') OR (Year = '2021' AND State = 'Michigan' AND City = 'Malibu') OR (Year = '2022' AND State = 'Illinois' AND City = 'Berkeley') OR (Year = '2020' AND State = 'California' AND City = 'Port Huron')) AND ((Characteristic = 'Humidity' AND Intensity = '21-30') OR (Characteristic = 'Temperature' AND Intensity = 'Storm'))",
+      "GTresult": "Value=3.07; Value=7.01; Value=4.08; Value=8.76; Value=19.02; Value=25.8; Value=26.91; Value=8.92; Value=10.37; Value=16.77",
+      "NLquestions": [
+        "How many days with__ Humidity or Temperature were there in__Chicago or Springfield or Malibu or Berkeley or Port Huron ==,==Illinois or California or Michigan in_2022 or 2020 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Michigan' AND City = 'Flint')) AND ((Characteristic = 'Humidity' AND Intensity = 'Breeze') OR (Characteristic = 'Wind' AND Intensity = 'Medium'))",
+      "GTresult": "sum_Value=4.6499999999999995, min_Value=0.83",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Flint ==,==Michigan in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, min(Value) AS min_Value, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2022' AND State = 'Illinois' AND City = 'Chicago') OR (Year = '2021' AND State = 'Michigan' AND City = 'Malibu')) AND ((Characteristic = 'Temperature' AND Intensity = '11-20') OR (Characteristic = 'Wind' AND Intensity = '31-40') OR (Characteristic = 'Wind' AND Intensity = 'Medium')) GROUP BY Year, State, City",
+      "GTresult": "Year=2021, State=Michigan, City=Malibu, min_Value=20.69, max_Value=26.12; Year=2022, State=Illinois, City=Chicago, min_Value=3.25, max_Value=7.18",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Chicago or Malibu ==,==Illinois or Michigan in_2022 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2020' AND State = 'California' AND City = 'Springfield')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) GROUP BY Characteristic",
+      "GTresult": "min_Value=1.89; min_Value=8.76",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Temperature in__Springfield ==,==California in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Michigan' AND City = 'Flint')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Humidity, sum_Value=29.0; Characteristic=Wind, sum_Value=44.32",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Flint ==,==Michigan in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2020' AND State = 'California' AND City = 'Springfield') OR (Year = '2021' AND State = 'Michigan' AND City = 'Malibu') OR (Year = '2022' AND State = 'Illinois' AND City = 'Berkeley')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Temperature, Year=2020, State=California, City=Springfield, max_Value=13.86; Characteristic=Temperature, Year=2021, State=Michigan, City=Malibu, max_Value=25.8; Characteristic=Temperature, Year=2022, State=Illinois, City=Berkeley, max_Value=27.25; Characteristic=Wind, Year=2020, State=California, City=Springfield, max_Value=11.37; Characteristic=Wind, Year=2021, State=Michigan, City=Malibu, max_Value=26.12; Characteristic=Wind, Year=2022, State=Illinois, City=Berkeley, max_Value=28.0",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Springfield or Malibu or Berkeley ==,==California or Michigan or Illinois in_2020 or 2021 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2022' AND State = 'Illinois' AND City = 'Berkeley')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=4.65; Value=8.36; Value=8.92; Value=25.33; Value=27.25",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Temperature or Wind in__Berkeley ==,==Illinois in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Michigan' AND City = 'Flint')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) ORDER BY Value DESC",
+      "GTresult": "Value=24.13; Value=22.73; Value=20.76; Value=3.82; Value=1.05; Value=0.83",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Humidity or Wind in__Flint ==,==Michigan in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2021' AND State = 'Michigan' AND City = 'Flint')) AND Value < 12.54",
+      "GTresult": "Characteristic=Humidity, Intensity=Medium; Characteristic=Temperature, Intensity=High; Characteristic=Humidity, Intensity=Breeze; Characteristic=Wind, Intensity=Medium",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Flint ==,==Michigan in_2021 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2022' AND State = 'Illinois' AND City = 'Berkeley')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2021' AND State = 'Michigan' AND City = 'Flint')) AND Value < 12.54)",
+      "GTresult": "Characteristic=Humidity, Intensity=Medium, Value=27.46; Characteristic=Temperature, Intensity=High, Value=27.25; Characteristic=Humidity, Intensity=Breeze, Value=25.93; Characteristic=Wind, Intensity=Medium, Value=8.36",
+      "NLquestions": []
+    }
+  ]
+}

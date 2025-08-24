@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Evolution_of_pollution_in_percent_set325_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Lenox' AND Year = '2021')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Inorganic Fertilizers'))",
+      "GTresult": "Value=-82.85",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil in__Lenox ==,==Maryland in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Aberdeen' AND Year = '2020')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Chemical') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Inferior Irrigation') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Urban Activities'))",
+      "GTresult": "Value=1.49; Value=4.61; Value=4.19; Value=14.73",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water in__Aberdeen ==,==Maryland in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Aberdeen' AND Year = '2020') OR (State = 'Maryland' AND City = 'Lenox' AND Year = '2021') OR (State = 'Massachusetts' AND City = 'Boston' AND Year = '2020') OR (State = 'Georgia' AND City = 'Cambridge' AND Year = '2021')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Chemical'))",
+      "GTresult": "Value=1.49; Value=14.73; Value=-81.58; Value=-75.06; Value=-70.82; Value=-59.67; Value=71.77; Value=-51.75",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water in__Aberdeen or Lenox or Boston or Cambridge ==,==Maryland or Massachusetts or Georgia in_2020 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Columbia' AND Year = '2021') OR (State = 'Maryland' AND City = 'Lenox' AND Year = '2021')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Chemical'))",
+      "GTresult": "sum_Value=-229.6, min_Value=-95.9",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water in__Columbia or Lenox ==,==Massachusetts or Maryland in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Georgia' AND City = 'Baltimore' AND Year = '2020') OR (State = 'Massachusetts' AND City = 'Boston' AND Year = '2020') OR (State = 'Maryland' AND City = 'Columbus' AND Year = '2020')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Chemical') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Oxygen-depletion') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Industrial'))",
+      "GTresult": "Value=-93.4; Value=-97.5; Value=-89.77; Value=-83.02; Value=46.39; Value=-70.82; Value=-68.73; Value=-62.57; Value=-59.67; Value=-59.88; Value=79.23; Value=80.9; Value=-50.77; Value=-37.25; Value=-36.49",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water or Soil in__Baltimore or Boston or Columbus ==,==Georgia or Massachusetts or Maryland in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, min(Value) AS min_Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Boston' AND Year = '2020')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Chemical') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Oxygen-depletion') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Industrial') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Urban Activities') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Inorganic Fertilizers'))",
+      "GTresult": "avg_Value=-45.16285714285714, min_Value=-70.82",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Soil in__Boston ==,==Massachusetts in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT State, City, Year, sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((State = 'Georgia' AND City = 'Cambridge' AND Year = '2021') OR (State = 'Massachusetts' AND City = 'Albany' AND Year = '2021')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Chemical') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Inferior Irrigation') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Inorganic Fertilizers')) GROUP BY State, City, Year",
+      "GTresult": "State=Georgia, City=Cambridge, Year=2021, sum_Value=-90.17, min_Value=-57.83; State=Massachusetts, City=Albany, Year=2021, sum_Value=124.71000000000001, min_Value=-37.87",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Soil in__Cambridge or Albany ==,==Georgia or Massachusetts in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((State = 'Georgia' AND City = 'Washington' AND Year = '2020')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Soil')) GROUP BY Polluted_element",
+      "GTresult": "min_Value=-22.97; min_Value=-26.28",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Soil in__Washington ==,==Georgia in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Polluted_element, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Lenox' AND Year = '2021')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Soil')) GROUP BY Polluted_element",
+      "GTresult": "Polluted_element=Soil, sum_Value=-56.57999999999999; Polluted_element=Water, sum_Value=-317.88",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Soil in__Lenox ==,==Maryland in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Polluted_element, State, City, Year, avg(Value) AS avg_Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Boston' AND Year = '2020') OR (State = 'Massachusetts' AND City = 'Albany' AND Year = '2021')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Soil')) GROUP BY Polluted_element, State, City, Year",
+      "GTresult": "Polluted_element=Soil, State=Massachusetts, City=Albany, Year=2021, avg_Value=32.4975; Polluted_element=Soil, State=Massachusetts, City=Boston, Year=2020, avg_Value=-30.970000000000002; Polluted_element=Water, State=Massachusetts, City=Albany, Year=2021, avg_Value=30.907500000000002; Polluted_element=Water, State=Massachusetts, City=Boston, Year=2020, avg_Value=-31.644999999999996",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Soil in__Boston or Albany ==,==Massachusetts in_2020 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Albany' AND Year = '2021')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Soil')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=99.48; Value=98.4; Value=94.92; Value=91.31; Value=-28.21",
+      "NLquestions": [
+        "What are the top/bottom_ evolutions of_((pollution)) of_ of_Water or Soil in__Albany ==,==Massachusetts in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Boston' AND Year = '2020')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Soil')) ORDER BY Value ASC",
+      "GTresult": "Value=-70.82; Value=-68.73; Value=-62.57; Value=-61.77; Value=-59.88; Value=-59.67; Value=65.68; Value=67.3",
+      "NLquestions": [
+        "What are the evolutions /increasing_values of_((pollution)) of_ of_Water or Soil in__Boston ==,==Massachusetts in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Maryland' AND City = 'Aberdeen' AND Year = '2020')) AND Value > -20.17",
+      "GTresult": "Polluted_element=Water, Type_of_pollution=Chemical; Polluted_element=Soil, Type_of_pollution=Oxygen-depletion; Polluted_element=Water, Type_of_pollution=Inferior Irrigation; Polluted_element=Soil, Type_of_pollution=Industrial; Polluted_element=Water, Type_of_pollution=Urban Activities; Polluted_element=Soil, Type_of_pollution=Inorganic Fertilizers; Polluted_element=Water, Type_of_pollution=Chemical; Polluted_element=Soil, Type_of_pollution=Oxygen-depletion",
+      "NLquestions": [
+        "What is/are_the_ the evolution of_((pollution)) of_ of_ in__Aberdeen ==,==Maryland in_2020 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Polluted_element, Type_of_pollution, Value FROM DBdata WHERE ((State = 'Georgia' AND City = 'Cambridge' AND Year = '2021')) AND (Polluted_element, Type_of_pollution) IN (SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Maryland' AND City = 'Aberdeen' AND Year = '2020')) AND Value > -20.17)",
+      "GTresult": "Polluted_element=Water, Type_of_pollution=Chemical, Value=71.77; Polluted_element=Soil, Type_of_pollution=Oxygen-depletion, Value=71.34; Polluted_element=Water, Type_of_pollution=Inferior Irrigation, Value=-57.83; Polluted_element=Soil, Type_of_pollution=Industrial, Value=-54.47; Polluted_element=Water, Type_of_pollution=Urban Activities, Value=-53.54; Polluted_element=Soil, Type_of_pollution=Inorganic Fertilizers, Value=-52.36; Polluted_element=Water, Type_of_pollution=Chemical, Value=-51.75; Polluted_element=Soil, Type_of_pollution=Oxygen-depletion, Value=-50.4",
+      "NLquestions": []
+    }
+  ]
+}

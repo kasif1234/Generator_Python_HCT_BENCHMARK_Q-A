@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Number_of_graduations_set270_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Male')) AND ((Year = '2015/2016'))",
+      "GTresult": "Value=298.04; Value=188.07",
+      "NLquestions": [
+        "What is the number of graduations of_ with_a_PhD in_ in_2015/2016 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Male')) AND ((Year = '2021/2022') OR (Year = '2015/2016') OR (Year = '2022/2023'))",
+      "GTresult": "Value=64.22; Value=298.04; Value=338.07; Value=467.54; Value=188.07; Value=350.41",
+      "NLquestions": [
+        "What is the number of graduations of_ with_a_PhD in_ in_2021/2022 or 2015/2016 or 2022/2023 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Male')) AND ((Year = '2021/2022'))",
+      "GTresult": "Value=64.22; Value=467.54",
+      "NLquestions": [
+        "What is the number of graduations of_ with_a_PhD in_ in_2021/2022 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT avg(Value) AS avg_Value, min(Value) AS min_Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Male')) AND ((Year = '2017/2018'))",
+      "GTresult": "avg_Value=143.385, min_Value=119.95",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_PhD in_ in_2017/2018 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Male')) AND ((Year = '2021/2022') OR (Year = '2017/2018') OR (Year = '2022/2023'))",
+      "GTresult": "Value=64.22; Value=166.82; Value=338.07; Value=467.54; Value=119.95; Value=350.41",
+      "NLquestions": [
+        "What is the number of graduations of_ with_a_PhD in_ in_2021/2022 or 2017/2018 or 2022/2023 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT min(Value) AS min_Value, max(Value) AS max_Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Male')) AND ((Year = '2021/2022') OR (Year = '2017/2018') OR (Year = '2022/2023'))",
+      "GTresult": "min_Value=64.22, max_Value=467.54",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_PhD in_ in_2021/2022 or 2017/2018 or 2022/2023 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Degree, Gender, max(Value) AS max_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Male')) AND ((Year = '2021/2022') OR (Year = '2017/2018') OR (Year = '2015/2016') OR (Year = '2022/2023')) GROUP BY Degree, Gender",
+      "GTresult": "Degree=PhD, Gender=Male, max_Value=467.54, avg_Value=249.14000000000001",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_PhD in_ in_2021/2022 or 2017/2018 or 2015/2016 or 2022/2023 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Male')) AND ((Year = '2017/2018') OR (Year = '2022/2023')) GROUP BY Year",
+      "GTresult": "min_Value=119.95; min_Value=338.07",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_PhD in_ in_2017/2018 or 2022/2023 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Year, avg(Value) AS avg_Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Male')) AND ((Year = '2017/2018') OR (Year = '2022/2023')) GROUP BY Year",
+      "GTresult": "Year=2017/2018, avg_Value=143.385; Year=2022/2023, avg_Value=344.24",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_PhD in_ in_2017/2018 or 2022/2023 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Year, Degree, Gender, max(Value) AS max_Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Male')) AND ((Year = '2015/2016') OR (Year = '2022/2023')) GROUP BY Year, Degree, Gender",
+      "GTresult": "Year=2015/2016, Degree=PhD, Gender=Male, max_Value=298.04; Year=2022/2023, Degree=PhD, Gender=Male, max_Value=350.41",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_PhD in_ in_2015/2016 or 2022/2023 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Male')) AND ((Year = '2017/2018') OR (Year = '2015/2016')) ORDER BY Value ASC LIMIT 3",
+      "GTresult": "Value=119.95; Value=166.82; Value=188.07",
+      "NLquestions": [
+        "What are the top/bottom_ numbers of graduations of_ with_a_PhD in_ in_2017/2018 or 2015/2016 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Male')) AND ((Year = '2015/2016') OR (Year = '2022/2023')) ORDER BY Value ASC",
+      "GTresult": "Value=188.07; Value=298.04; Value=338.07; Value=350.41",
+      "NLquestions": [
+        "What are the numbers of graduations /increasing_values of_ with_a_PhD in_ in_2015/2016 or 2022/2023 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Year FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Male')) AND Value < 249.14",
+      "GTresult": "Year=2021/2022; Year=2017/2018; Year=2017/2018; Year=2015/2016",
+      "NLquestions": [
+        "What is/are_the_ the number of graduations of_ with_a_PhD in_ in_ is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Year, Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Male')) AND (Year) IN (SELECT Year FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Male')) AND Value < 249.14)",
+      "GTresult": "Year=2021/2022, Value=64.22; Year=2017/2018, Value=166.82; Year=2015/2016, Value=298.04; Year=2021/2022, Value=467.54; Year=2017/2018, Value=119.95; Year=2015/2016, Value=188.07",
+      "NLquestions": []
+    }
+  ]
+}

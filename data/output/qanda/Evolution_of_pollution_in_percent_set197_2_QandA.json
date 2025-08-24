@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Evolution_of_pollution_in_percent_set197_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'California' AND City = 'Chicago')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Industrial'))",
+      "GTresult": "Value=-89.27",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil in__Chicago ==,==California in_ ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'California' AND City = 'Chicago')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Inorganic Fertilizers') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Urban Activities') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Industrial'))",
+      "GTresult": "Value=36.84; Value=-92.9; Value=-89.27; Value=45.59; Value=-90.41",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil or Water in__Chicago ==,==California in_ ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Springfield') OR (State = 'California' AND City = 'Chicago') OR (State = 'Illinois' AND City = 'Champaign') OR (State = 'California' AND City = 'Los-Angeles') OR (State = 'Illinois' AND City = 'Berkeley') OR (State = 'California' AND City = 'San Francisco')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Industrial'))",
+      "GTresult": "Value=11.69; Value=-89.27; Value=-76.06; Value=65.57; Value=78.55; Value=93.59",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil in__Springfield or Chicago or Champaign or Los-Angeles or Berkeley or San Francisco ==,==Illinois or California in_ ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT max(Value) AS max_Value, min(Value) AS min_Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Springfield') OR (State = 'California' AND City = 'Chicago') OR (State = 'California' AND City = 'Los-Angeles')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Noise'))",
+      "GTresult": "max_Value=43.0, min_Value=-56.78",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air in__Springfield or Chicago or Los-Angeles ==,==Illinois or California in_ ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Springfield') OR (State = 'California' AND City = 'Chicago') OR (State = 'Illinois' AND City = 'Champaign') OR (State = 'California' AND City = 'Los-Angeles') OR (State = 'Illinois' AND City = 'Berkeley')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Inorganic Fertilizers') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Industrial') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Surface water'))",
+      "GTresult": "Value=1.51; Value=11.69; Value=13.83; Value=-99.8; Value=36.84; Value=-89.27; Value=-93.77; Value=45.59; Value=43.66; Value=-76.06; Value=53.46; Value=60.31; Value=63.97; Value=65.57; Value=-60.9; Value=-61.87; Value=76.33; Value=78.55; Value=-48.46; Value=-43.31",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil or Water in__Springfield or Chicago or Champaign or Los-Angeles or Berkeley ==,==Illinois or California in_ ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Springfield')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Inorganic Fertilizers') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Solid Waste') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Oxygen-depletion'))",
+      "GTresult": "sum_Value=-166.44, min_Value=-99.8",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Air in__Springfield ==,==Illinois in_ ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT State, City, sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Springfield') OR (State = 'California' AND City = 'Chicago') OR (State = 'California' AND City = 'Los-Angeles') OR (State = 'Illinois' AND City = 'Berkeley') OR (State = 'California' AND City = 'San Francisco')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Solid Waste') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Industrial') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Oxygen-depletion') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Light') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Thermal')) GROUP BY State, City",
+      "GTresult": "State=California, City=Chicago, sum_Value=-8.019999999999989, min_Value=-89.27; State=California, City=Los-Angeles, sum_Value=16.900000000000006, min_Value=-64.71; State=California, City=San Francisco, sum_Value=105.78, min_Value=-35.06; State=Illinois, City=Berkeley, sum_Value=234.13, min_Value=-46.64; State=Illinois, City=Springfield, sum_Value=-7.380000000000003, min_Value=-93.73",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Soil or Water in__Springfield or Chicago or Los-Angeles or Berkeley or San Francisco ==,==Illinois or California in_ ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Berkeley')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Air')) GROUP BY Polluted_element",
+      "GTresult": "min_Value=-46.64; min_Value=-43.31",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Air in__Berkeley ==,==Illinois in_ ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Polluted_element, min(Value) AS min_Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Champaign')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Air')) GROUP BY Polluted_element",
+      "GTresult": "Polluted_element=Air, min_Value=-81.96; Polluted_element=Water, min_Value=-73.02",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Air in__Champaign ==,==Illinois in_ ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Polluted_element, State, City, min(Value) AS min_Value FROM DBdata WHERE ((State = 'California' AND City = 'Chicago') OR (State = 'Illinois' AND City = 'Berkeley') OR (State = 'California' AND City = 'San Francisco')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Air')) GROUP BY Polluted_element, State, City",
+      "GTresult": "Polluted_element=Air, State=California, City=Chicago, min_Value=-81.86; Polluted_element=Air, State=California, City=San Francisco, min_Value=-35.06; Polluted_element=Air, State=Illinois, City=Berkeley, min_Value=-46.64; Polluted_element=Soil, State=California, City=Chicago, min_Value=-89.27; Polluted_element=Soil, State=California, City=San Francisco, min_Value=-29.22; Polluted_element=Soil, State=Illinois, City=Berkeley, min_Value=-43.31",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Air in__Chicago or Berkeley or San Francisco ==,==California or Illinois in_ ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Berkeley')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=-48.46; Value=-43.31; Value=76.33; Value=78.5; Value=78.55",
+      "NLquestions": [
+        "What are the top/bottom_ evolutions of_((pollution)) of_ of_Soil or Water in__Berkeley ==,==Illinois in_ ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'California' AND City = 'Los-Angeles')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Air')) ORDER BY Value ASC",
+      "GTresult": "Value=-64.71; Value=-62.89; Value=-61.87; Value=-56.78; Value=63.97; Value=65.57; Value=67.43; Value=75.19",
+      "NLquestions": [
+        "What are the evolutions /increasing_values of_((pollution)) of_ of_Soil or Air in__Los-Angeles ==,==California in_ ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Illinois' AND City = 'Berkeley')) AND Value < 4.01",
+      "GTresult": "Polluted_element=Water, Type_of_pollution=Surface water; Polluted_element=Air, Type_of_pollution=Oxygen-depletion; Polluted_element=Air, Type_of_pollution=Noise; Polluted_element=Soil, Type_of_pollution=Inorganic Fertilizers; Polluted_element=Air, Type_of_pollution=Solid Waste",
+      "NLquestions": [
+        "What is/are_the_ the evolution of_((pollution)) of_ of_ in__Berkeley ==,==Illinois in_ is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Polluted_element, Type_of_pollution, Value FROM DBdata WHERE ((State = 'California' AND City = 'San Francisco')) AND (Polluted_element, Type_of_pollution) IN (SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Illinois' AND City = 'Berkeley')) AND Value < 4.01)",
+      "GTresult": "Polluted_element=Soil, Type_of_pollution=Inorganic Fertilizers, Value=87.54; Polluted_element=Air, Type_of_pollution=Solid Waste, Value=-35.06; Polluted_element=Water, Type_of_pollution=Surface water, Value=92.07; Polluted_element=Air, Type_of_pollution=Oxygen-depletion, Value=94.1; Polluted_element=Air, Type_of_pollution=Noise, Value=-12.08; Polluted_element=Soil, Type_of_pollution=Inorganic Fertilizers, Value=-10.29; Polluted_element=Air, Type_of_pollution=Solid Waste, Value=-2.34",
+      "NLquestions": []
+    }
+  ]
+}

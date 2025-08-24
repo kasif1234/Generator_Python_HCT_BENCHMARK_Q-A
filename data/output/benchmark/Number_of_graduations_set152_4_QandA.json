@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Number_of_graduations_set152_4_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'MSc' AND Gender = 'Female' AND Nationality = 'Qatari')) AND ((Year = '2016/2017' AND Language = 'French'))",
+      "GTresult": "Value=292.67; Value=170.83; Value=150.3",
+      "NLquestions": [
+        "What is the number of graduations of_ with_a_MSc in_French in_2016/2017 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'MSc' AND Gender = 'Female' AND Nationality = 'Qatari')) AND ((Year = '2017/2018' AND Language = 'French') OR (Year = '2022/2023' AND Language = 'Other') OR (Year = '2019/2020' AND Language = 'Other'))",
+      "GTresult": "Value=129.85; Value=451.97; Value=454.38; Value=200.51; Value=72.99; Value=204.41; Value=272.5; Value=401.3; Value=351.79",
+      "NLquestions": [
+        "What is the number of graduations of_ with_a_MSc in_French or Other in_2017/2018 or 2022/2023 or 2019/2020 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'MSc' AND Gender = 'Female' AND Nationality = 'Qatari')) AND ((Year = '2022/2023' AND Language = 'Other'))",
+      "GTresult": "Value=451.97; Value=72.99; Value=401.3",
+      "NLquestions": [
+        "What is the number of graduations of_ with_a_MSc in_Other in_2022/2023 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT min(Value) AS min_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Degree = 'MSc' AND Gender = 'Female' AND Nationality = 'Qatari')) AND ((Year = '2016/2017' AND Language = 'French'))",
+      "GTresult": "min_Value=150.3, avg_Value=204.60000000000002",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_MSc in_French in_2016/2017 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'MSc' AND Gender = 'Female' AND Nationality = 'Qatari')) AND ((Year = '2016/2017' AND Language = 'French') OR (Year = '2019/2020' AND Language = 'Other'))",
+      "GTresult": "Value=292.67; Value=454.38; Value=170.83; Value=204.41; Value=150.3; Value=351.79",
+      "NLquestions": [
+        "What is the number of graduations of_ with_a_MSc in_French or Other in_2016/2017 or 2019/2020 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT min(Value) AS min_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Degree = 'MSc' AND Gender = 'Female' AND Nationality = 'Qatari')) AND ((Year = '2017/2018' AND Language = 'French') OR (Year = '2016/2017' AND Language = 'French') OR (Year = '2019/2020' AND Language = 'Other'))",
+      "GTresult": "min_Value=129.85, avg_Value=247.47111111111113",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_MSc in_French or Other in_2017/2018 or 2016/2017 or 2019/2020 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Degree, Gender, Nationality, min(Value) AS min_Value, max(Value) AS max_Value FROM DBdata WHERE ((Degree = 'MSc' AND Gender = 'Female' AND Nationality = 'Qatari')) AND ((Year = '2022/2023' AND Language = 'Other') OR (Year = '2016/2017' AND Language = 'French')) GROUP BY Degree, Gender, Nationality",
+      "GTresult": "Degree=MSc, Gender=Female, Nationality=Qatari, min_Value=72.99, max_Value=451.97",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_MSc in_Other or French in_2022/2023 or 2016/2017 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Degree = 'MSc' AND Gender = 'Female' AND Nationality = 'Qatari')) AND ((Year = '2017/2018') OR (Year = '2019/2020')) GROUP BY Year",
+      "GTresult": "min_Value=129.85; min_Value=204.41",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_MSc in_ in_2017/2018 or 2019/2020 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Year, sum(Value) AS sum_Value FROM DBdata WHERE ((Degree = 'MSc' AND Gender = 'Female' AND Nationality = 'Qatari')) AND ((Year = '2017/2018') OR (Year = '2016/2017')) GROUP BY Year",
+      "GTresult": "Year=2016/2017, sum_Value=613.8000000000001; Year=2017/2018, sum_Value=602.86",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_MSc in_ in_2017/2018 or 2016/2017 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Year, Degree, Gender, Nationality, sum(Value) AS sum_Value FROM DBdata WHERE ((Degree = 'MSc' AND Gender = 'Female' AND Nationality = 'Qatari')) AND ((Year = '2017/2018') OR (Year = '2022/2023')) GROUP BY Year, Degree, Gender, Nationality",
+      "GTresult": "Year=2017/2018, Degree=MSc, Gender=Female, Nationality=Qatari, sum_Value=602.86; Year=2022/2023, Degree=MSc, Gender=Female, Nationality=Qatari, sum_Value=926.26",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_MSc in_ in_2017/2018 or 2022/2023 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'MSc' AND Gender = 'Female' AND Nationality = 'Qatari')) AND ((Year = '2017/2018') OR (Year = '2019/2020')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=454.38; Value=351.79; Value=272.5; Value=204.41; Value=200.51",
+      "NLquestions": [
+        "What are the top/bottom_ numbers of graduations of_ with_a_MSc in_ in_2017/2018 or 2019/2020 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'MSc' AND Gender = 'Female' AND Nationality = 'Qatari')) AND ((Year = '2017/2018') OR (Year = '2019/2020')) ORDER BY Value ASC",
+      "GTresult": "Value=129.85; Value=200.51; Value=204.41; Value=272.5; Value=351.79; Value=454.38",
+      "NLquestions": [
+        "What are the numbers of graduations /increasing_values of_ with_a_MSc in_ in_2017/2018 or 2019/2020 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Year, Language FROM DBdata WHERE ((Degree = 'MSc' AND Gender = 'Female' AND Nationality = 'Qatari')) AND Value > 262.79",
+      "GTresult": "Year=2022/2023, Language=Other; Year=2016/2017, Language=French; Year=2019/2020, Language=Other; Year=2017/2018, Language=French; Year=2022/2023, Language=Other; Year=2019/2020, Language=Other",
+      "NLquestions": [
+        "What is/are_the_ the number of graduations of_ with_a_MSc in_ in_ is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Year, Language, Value FROM DBdata WHERE ((Degree = 'MSc' AND Gender = 'Female' AND Nationality = 'Qatari')) AND (Year, Language) IN (SELECT Year, Language FROM DBdata WHERE ((Degree = 'MSc' AND Gender = 'Female' AND Nationality = 'Qatari')) AND Value > 262.79)",
+      "GTresult": "Year=2017/2018, Language=French, Value=129.85; Year=2022/2023, Language=Other, Value=451.97; Year=2016/2017, Language=French, Value=292.67; Year=2019/2020, Language=Other, Value=454.38; Year=2017/2018, Language=French, Value=200.51; Year=2022/2023, Language=Other, Value=72.99; Year=2016/2017, Language=French, Value=170.83; Year=2019/2020, Language=Other, Value=204.41; Year=2017/2018, Language=French, Value=272.5; Year=2022/2023, Language=Other, Value=401.3; Year=2016/2017, Language=French, Value=150.3; Year=2019/2020, Language=Other, Value=351.79",
+      "NLquestions": []
+    }
+  ]
+}

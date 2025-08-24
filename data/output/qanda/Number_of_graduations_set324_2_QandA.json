@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Number_of_graduations_set324_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Male')) AND ((Year = '2022/2023' AND Language = 'Arabic'))",
+      "GTresult": "Value=262.38; Value=245.1",
+      "NLquestions": [
+        "What is the number of graduations of_ with_a_PhD in_Arabic in_2022/2023 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Male')) AND ((Year = '2019/2020' AND Language = 'French') OR (Year = '2017/2018' AND Language = 'German') OR (Year = '2021/2022' AND Language = 'Other'))",
+      "GTresult": "Value=458.21; Value=178.99; Value=468.61; Value=248.18; Value=89.22; Value=255.25",
+      "NLquestions": [
+        "What is the number of graduations of_ with_a_PhD in_French or German or Other in_2019/2020 or 2017/2018 or 2021/2022 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Male')) AND ((Year = '2021/2022' AND Language = 'Other'))",
+      "GTresult": "Value=468.61; Value=255.25",
+      "NLquestions": [
+        "What is the number of graduations of_ with_a_PhD in_Other in_2021/2022 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT max(Value) AS max_Value, min(Value) AS min_Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Male')) AND ((Year = '2021/2022' AND Language = 'Other'))",
+      "GTresult": "max_Value=468.61, min_Value=255.25",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_PhD in_Other in_2021/2022 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Male')) AND ((Year = '2017/2018' AND Language = 'German') OR (Year = '2021/2022' AND Language = 'Other'))",
+      "GTresult": "Value=178.99; Value=468.61; Value=89.22; Value=255.25",
+      "NLquestions": [
+        "What is the number of graduations of_ with_a_PhD in_German or Other in_2017/2018 or 2021/2022 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT max(Value) AS max_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Male')) AND ((Year = '2019/2020' AND Language = 'French') OR (Year = '2021/2022' AND Language = 'Other'))",
+      "GTresult": "max_Value=468.61, avg_Value=357.5625",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_PhD in_French or Other in_2019/2020 or 2021/2022 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Degree, Gender, min(Value) AS min_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Male')) AND ((Year = '2019/2020' AND Language = 'French') OR (Year = '2017/2018' AND Language = 'German')) GROUP BY Degree, Gender",
+      "GTresult": "Degree=PhD, Gender=Male, min_Value=89.22, sum_Value=974.6",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_PhD in_French or German in_2019/2020 or 2017/2018 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Male')) AND ((Year = '2022/2023') OR (Year = '2017/2018')) GROUP BY Year",
+      "GTresult": "min_Value=89.22; min_Value=245.1",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_PhD in_ in_2022/2023 or 2017/2018 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Year, max(Value) AS max_Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Male')) AND ((Year = '2019/2020') OR (Year = '2021/2022')) GROUP BY Year",
+      "GTresult": "Year=2019/2020, max_Value=458.21; Year=2021/2022, max_Value=468.61",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_PhD in_ in_2019/2020 or 2021/2022 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Year, Degree, Gender, avg(Value) AS avg_Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Male')) AND ((Year = '2019/2020') OR (Year = '2017/2018')) GROUP BY Year, Degree, Gender",
+      "GTresult": "Year=2017/2018, Degree=PhD, Gender=Male, avg_Value=134.10500000000002; Year=2019/2020, Degree=PhD, Gender=Male, avg_Value=353.195",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_PhD in_ in_2019/2020 or 2017/2018 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Male')) AND ((Year = '2017/2018') OR (Year = '2021/2022')) ORDER BY Value DESC LIMIT 3",
+      "GTresult": "Value=468.61; Value=255.25; Value=178.99",
+      "NLquestions": [
+        "What are the top/bottom_ numbers of graduations of_ with_a_PhD in_ in_2017/2018 or 2021/2022 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Male')) AND ((Year = '2022/2023') OR (Year = '2017/2018')) ORDER BY Value ASC",
+      "GTresult": "Value=89.22; Value=178.99; Value=245.1; Value=262.38",
+      "NLquestions": [
+        "What are the numbers of graduations /increasing_values of_ with_a_PhD in_ in_2022/2023 or 2017/2018 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Year, Language FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Male')) AND Value > 275.74",
+      "GTresult": "Year=2019/2020, Language=French; Year=2021/2022, Language=Other",
+      "NLquestions": [
+        "What is/are_the_ the number of graduations of_ with_a_PhD in_ in_ is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Year, Language, Value FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Male')) AND (Year, Language) IN (SELECT Year, Language FROM DBdata WHERE ((Degree = 'PhD' AND Gender = 'Male')) AND Value > 275.74)",
+      "GTresult": "Year=2019/2020, Language=French, Value=458.21; Year=2021/2022, Language=Other, Value=468.61; Year=2019/2020, Language=French, Value=248.18; Year=2021/2022, Language=Other, Value=255.25",
+      "NLquestions": []
+    }
+  ]
+}

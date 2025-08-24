@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Food_import-export_in_tons_set332_4_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2022' AND Quarter = 'Q4')) AND ((Category = 'Meat' AND Item = 'Juice'))",
+      "GTresult": "Value=814.83; Value=100.91",
+      "NLquestions": [
+        "What is the amount of_Export of__ Meat in__Q4 ==of==2022 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2022' AND Quarter = 'Q4')) AND ((Category = 'Beverage' AND Item = 'Tea') OR (Category = 'Meat' AND Item = 'Juice') OR (Category = 'Beverage' AND Item = 'Lamb') OR (Category = 'Meat' AND Item = 'Pork') OR (Category = 'Beverage' AND Item = 'Beef') OR (Category = 'Meat' AND Item = 'Tea'))",
+      "GTresult": "Value=555.79; Value=814.83; Value=307.29; Value=951.05; Value=199.7; Value=72.57; Value=479.94; Value=100.91; Value=748.76; Value=113.12; Value=504.08; Value=381.1",
+      "NLquestions": [
+        "What is the amount of_Export of__ Beverage or Meat in__Q4 ==of==2022 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2019' AND Quarter = 'Q4') OR (Import_Export = 'Export' AND Year = '2022' AND Quarter = 'Q4')) AND ((Category = 'Meat' AND Item = 'Tea'))",
+      "GTresult": "Value=159.15; Value=72.57; Value=219.52; Value=381.1",
+      "NLquestions": [
+        "What is the amount of_Export of__ Meat in__Q4 ==of==2019 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, max(Value) AS max_Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2019' AND Quarter = 'Q4') OR (Import_Export = 'Export' AND Year = '2022' AND Quarter = 'Q4')) AND ((Category = 'Beverage' AND Item = 'Tea'))",
+      "GTresult": "sum_Value=1878.99, max_Value=555.79",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Beverage in__Q4 ==of==2019 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2019' AND Quarter = 'Q4') OR (Import_Export = 'Export' AND Year = '2022' AND Quarter = 'Q4')) AND ((Category = 'Beverage' AND Item = 'Lamb') OR (Category = 'Beverage' AND Item = 'Beef'))",
+      "GTresult": "Value=784.59; Value=158.26; Value=307.29; Value=199.7; Value=839.38; Value=88.45; Value=748.76; Value=504.08",
+      "NLquestions": [
+        "What is the amount of_Export of__ Beverage in__Q4 ==of==2019 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT min(Value) AS min_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2019' AND Quarter = 'Q4')) AND ((Category = 'Meat' AND Item = 'Juice') OR (Category = 'Beverage' AND Item = 'Lamb') OR (Category = 'Meat' AND Item = 'Pork') OR (Category = 'Beverage' AND Item = 'Beef') OR (Category = 'Meat' AND Item = 'Tea'))",
+      "GTresult": "min_Value=88.45, avg_Value=435.526",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Meat or Beverage in__Q4 ==of==2019 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Import_Export, Year, Quarter, avg(Value) AS avg_Value, max(Value) AS max_Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2019' AND Quarter = 'Q4') OR (Import_Export = 'Export' AND Year = '2022' AND Quarter = 'Q4')) AND ((Category = 'Meat' AND Item = 'Juice') OR (Category = 'Beverage' AND Item = 'Lamb') OR (Category = 'Meat' AND Item = 'Pork') OR (Category = 'Beverage' AND Item = 'Beef')) GROUP BY Import_Export, Year, Quarter",
+      "GTresult": "Import_Export=Export, Year=2019, Quarter=Q4, avg_Value=497.07375, max_Value=925.35; Import_Export=Export, Year=2022, Quarter=Q4, avg_Value=467.4675, max_Value=951.05",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Meat or Beverage in__Q4 ==of==2019 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2019' AND Quarter = 'Q4')) AND ((Category = 'Beverage') OR (Category = 'Meat')) GROUP BY Category",
+      "GTresult": "min_Value=88.45; min_Value=159.15",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Beverage or Meat in__Q4 ==of==2019 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Category, max(Value) AS max_Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2022' AND Quarter = 'Q4')) AND ((Category = 'Beverage') OR (Category = 'Meat')) GROUP BY Category",
+      "GTresult": "Category=Beverage, max_Value=748.76; Category=Meat, max_Value=951.05",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Beverage or Meat in__Q4 ==of==2022 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Category, Import_Export, Year, Quarter, sum(Value) AS sum_Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2019' AND Quarter = 'Q4') OR (Import_Export = 'Export' AND Year = '2022' AND Quarter = 'Q4')) AND ((Category = 'Beverage') OR (Category = 'Meat')) GROUP BY Category, Import_Export, Year, Quarter",
+      "GTresult": "Category=Beverage, Import_Export=Export, Year=2019, Quarter=Q4, sum_Value=2713.94; Category=Beverage, Import_Export=Export, Year=2022, Quarter=Q4, sum_Value=2795.56; Category=Meat, Import_Export=Export, Year=2019, Quarter=Q4, sum_Value=2484.58; Category=Meat, Import_Export=Export, Year=2022, Quarter=Q4, sum_Value=2433.58",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Beverage or Meat in__Q4 ==of==2019 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2022' AND Quarter = 'Q4')) AND ((Category = 'Beverage') OR (Category = 'Meat')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=72.57; Value=100.91; Value=113.12; Value=199.7; Value=307.29",
+      "NLquestions": [
+        "What are the top/bottom_ amounts of_Export of__ Beverage or Meat in__Q4 ==of==2022 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2022' AND Quarter = 'Q4')) AND ((Category = 'Beverage') OR (Category = 'Meat')) ORDER BY Value DESC",
+      "GTresult": "Value=951.05; Value=814.83; Value=748.76; Value=555.79; Value=504.08; Value=479.94; Value=381.1; Value=307.29; Value=199.7; Value=113.12; Value=100.91; Value=72.57",
+      "NLquestions": [
+        "What are the amounts /increasing_values of_Export of__ Beverage or Meat in__Q4 ==of==2022 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2022' AND Quarter = 'Q4')) AND Value < 434.49",
+      "GTresult": "Category=Beverage, Item=Lamb; Category=Beverage, Item=Beef; Category=Meat, Item=Tea; Category=Meat, Item=Juice; Category=Meat, Item=Pork; Category=Meat, Item=Tea",
+      "NLquestions": [
+        "What is/are_the_ the amount of_Export of__ in__Q4 ==of==2022 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Category, Item, Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2019' AND Quarter = 'Q4')) AND (Category, Item) IN (SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2022' AND Quarter = 'Q4')) AND Value < 434.49)",
+      "GTresult": "Category=Meat, Item=Juice, Value=262.59; Category=Beverage, Item=Lamb, Value=784.59; Category=Meat, Item=Pork, Value=925.35; Category=Beverage, Item=Beef, Value=158.26; Category=Meat, Item=Tea, Value=159.15; Category=Meat, Item=Juice, Value=586.66; Category=Beverage, Item=Lamb, Value=839.38; Category=Meat, Item=Pork, Value=331.31; Category=Beverage, Item=Beef, Value=88.45; Category=Meat, Item=Tea, Value=219.52",
+      "NLquestions": []
+    }
+  ]
+}

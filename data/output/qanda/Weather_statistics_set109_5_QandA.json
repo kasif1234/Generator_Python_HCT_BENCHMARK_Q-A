@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set109_5_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2015' AND State = 'Oregon' AND City = 'Los-Angeles')) AND ((Characteristic = 'Wind' AND Intensity = '11-20'))",
+      "GTresult": "Value=9.84",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Los-Angeles ==,==Oregon in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2015' AND State = 'Michigan' AND City = 'Port Huron')) AND ((Characteristic = 'Temperature' AND Intensity = '21-30') OR (Characteristic = 'Temperature' AND Intensity = 'Storm'))",
+      "GTresult": "Value=18.88; Value=20.71",
+      "NLquestions": [
+        "How many days with__ Temperature were there in__Port Huron ==,==Michigan in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2015' AND State = 'Oregon' AND City = 'Los-Angeles') OR (Year = '2022' AND State = 'California' AND City = 'Flint')) AND ((Characteristic = 'Temperature' AND Intensity = 'Storm'))",
+      "GTresult": "Value=10.48; Value=16.1",
+      "NLquestions": [
+        "How many days with__ Temperature were there in__Los-Angeles or Flint ==,==Oregon or California in_2015 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2015' AND State = 'California' AND City = 'Malibu') OR (Year = '2022' AND State = 'Michigan' AND City = 'Berkeley') OR (Year = '2015' AND State = 'Oregon' AND City = 'Los-Angeles') OR (Year = '2022' AND State = 'California' AND City = 'Flint') OR (Year = '2015' AND State = 'Michigan' AND City = 'Port Huron') OR (Year = '2022' AND State = 'Oregon' AND City = 'Portland') OR (Year = '2015' AND State = 'California' AND City = 'Redmond')) AND ((Characteristic = 'Temperature' AND Intensity = '21-30'))",
+      "GTresult": "avg_Value=12.744285714285713, sum_Value=89.21",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature in__Malibu or Berkeley or Los-Angeles or Flint or Port Huron or Portland or Redmond ==,==California or Michigan or Oregon in_2015 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2022' AND State = 'Michigan' AND City = 'Berkeley') OR (Year = '2022' AND State = 'California' AND City = 'Flint') OR (Year = '2015' AND State = 'Michigan' AND City = 'Port Huron') OR (Year = '2022' AND State = 'Oregon' AND City = 'Portland') OR (Year = '2015' AND State = 'California' AND City = 'Redmond')) AND ((Characteristic = 'Wind' AND Intensity = '11-20') OR (Characteristic = 'Wind' AND Intensity = 'Breeze'))",
+      "GTresult": "Value=5.39; Value=5.7; Value=14.46; Value=16.47; Value=18.83; Value=14.78; Value=18.29; Value=25.34; Value=19.96; Value=15.97",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Berkeley or Flint or Port Huron or Portland or Redmond ==,==Michigan or California or Oregon in_2022 or 2015 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2022' AND State = 'Oregon' AND City = 'Portland')) AND ((Characteristic = 'Wind' AND Intensity = '11-20') OR (Characteristic = 'Wind' AND Intensity = 'Breeze'))",
+      "GTresult": "avg_Value=21.814999999999998, sum_Value=43.629999999999995",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind in__Portland ==,==Oregon in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, max(Value) AS max_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2015' AND State = 'California' AND City = 'Malibu') OR (Year = '2022' AND State = 'California' AND City = 'Flint') OR (Year = '2022' AND State = 'Oregon' AND City = 'Portland')) AND ((Characteristic = 'Temperature' AND Intensity = '21-30') OR (Characteristic = 'Wind' AND Intensity = '11-20') OR (Characteristic = 'Temperature' AND Intensity = 'Storm') OR (Characteristic = 'Wind' AND Intensity = 'Breeze')) GROUP BY Year, State, City",
+      "GTresult": "Year=2015, State=California, City=Malibu, max_Value=2.65, min_Value=0.52; Year=2022, State=California, City=Flint, max_Value=16.47, min_Value=14.46; Year=2022, State=Oregon, City=Portland, max_Value=25.34, min_Value=18.29",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Malibu or Flint or Portland ==,==California or Oregon in_2015 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Oregon' AND City = 'Los-Angeles')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "min_Value=8.24; min_Value=9.84",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Los-Angeles ==,==Oregon in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2015' AND State = 'California' AND City = 'Malibu')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Temperature, min_Value=0.52; Characteristic=Wind, min_Value=1.05",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Malibu ==,==California in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2022' AND State = 'Michigan' AND City = 'Berkeley') OR (Year = '2022' AND State = 'California' AND City = 'Flint') OR (Year = '2015' AND State = 'Michigan' AND City = 'Port Huron')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Temperature, Year=2015, State=Michigan, City=Port Huron, sum_Value=39.59; Characteristic=Temperature, Year=2022, State=California, City=Flint, sum_Value=30.97; Characteristic=Temperature, Year=2022, State=Michigan, City=Berkeley, sum_Value=6.24; Characteristic=Wind, Year=2015, State=Michigan, City=Port Huron, sum_Value=33.61; Characteristic=Wind, Year=2022, State=California, City=Flint, sum_Value=30.93; Characteristic=Wind, Year=2022, State=Michigan, City=Berkeley, sum_Value=11.09",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Berkeley or Flint or Port Huron ==,==Michigan or California in_2022 or 2015 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2022' AND State = 'California' AND City = 'Flint')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) ORDER BY Value ASC LIMIT 3",
+      "GTresult": "Value=14.46; Value=14.87; Value=16.1",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Temperature or Wind in__Flint ==,==California in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2022' AND State = 'Michigan' AND City = 'Berkeley')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) ORDER BY Value ASC",
+      "GTresult": "Value=1.21; Value=5.03; Value=5.39; Value=5.7",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Temperature or Wind in__Berkeley ==,==Michigan in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2022' AND State = 'Michigan' AND City = 'Berkeley')) AND Value > 13.25",
+      "GTresult": "",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Berkeley ==,==Michigan in_2022 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2022' AND State = 'Oregon' AND City = 'Portland')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2022' AND State = 'Michigan' AND City = 'Berkeley')) AND Value > 13.25)",
+      "GTresult": "",
+      "NLquestions": []
+    }
+  ]
+}

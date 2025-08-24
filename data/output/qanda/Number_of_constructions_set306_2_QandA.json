@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Number_of_constructions_set306_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Hospital')) AND ((Quarter = 'Q1' AND Month = 'December' AND State = 'Florida' AND City = 'Tampa'))",
+      "GTresult": "Value=7.96",
+      "NLquestions": [
+        "What is the number of__ in__Tampa ==,==Florida in__December ==,==Q1 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'School')) AND ((Quarter = 'Q4' AND Month = 'March' AND State = 'Florida' AND City = 'Tampa') OR (Quarter = 'Q3' AND Month = 'February' AND State = 'Florida' AND City = 'Tampa') OR (Quarter = 'Q1' AND Month = 'December' AND State = 'Florida' AND City = 'Tampa') OR (Quarter = 'Q1' AND Month = 'July' AND State = 'Florida' AND City = 'Tampa') OR (Quarter = 'Q4' AND Month = 'January' AND State = 'Florida' AND City = 'Tampa'))",
+      "GTresult": "Value=38.52; Value=44.02; Value=45.65; Value=44.66; Value=48.83",
+      "NLquestions": [
+        "What is the number of__ in__Tampa ==,==Florida in__March or February or December or July or January ==,==Q4 or Q3 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Hospital') OR (Type_of_building = 'Production' AND Usage = 'Administration') OR (Type_of_building = 'Service' AND Usage = 'School') OR (Type_of_building = 'Production' AND Usage = 'Workshop')) AND ((Quarter = 'Q4' AND Month = 'October' AND State = 'Florida' AND City = 'Tampa'))",
+      "GTresult": "Value=8.23; Value=23.77; Value=44.77; Value=67.22",
+      "NLquestions": [
+        "What is the number of__ in__Tampa ==,==Florida in__October ==,==Q4 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Hospital') OR (Type_of_building = 'Production' AND Usage = 'Administration') OR (Type_of_building = 'Service' AND Usage = 'School') OR (Type_of_building = 'Production' AND Usage = 'Workshop') OR (Type_of_building = 'Service' AND Usage = 'Factory')) AND ((Quarter = 'Q4' AND Month = 'March' AND State = 'Florida' AND City = 'Tampa'))",
+      "GTresult": "avg_Value=38.736000000000004, sum_Value=193.68",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__Tampa ==,==Florida in__March ==,==Q4 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Hospital') OR (Type_of_building = 'Production' AND Usage = 'Administration') OR (Type_of_building = 'Production' AND Usage = 'Workshop') OR (Type_of_building = 'Service' AND Usage = 'Factory')) AND ((Quarter = 'Q1' AND Month = 'December' AND State = 'Florida' AND City = 'Tampa') OR (Quarter = 'Q4' AND Month = 'October' AND State = 'Florida' AND City = 'Tampa') OR (Quarter = 'Q4' AND Month = 'January' AND State = 'Florida' AND City = 'Tampa') OR (Quarter = 'Q3' AND Month = 'March' AND State = 'Florida' AND City = 'Tampa'))",
+      "GTresult": "Value=7.96; Value=8.23; Value=12.09; Value=14.86; Value=18.92; Value=23.77; Value=35.04; Value=37.28; Value=66.71; Value=67.22; Value=75.2; Value=78.61; Value=87.11; Value=94.69; Value=99.38; Value=99.44",
+      "NLquestions": [
+        "What is the number of__ in__Tampa ==,==Florida in__December or October or January or March ==,==Q1 or Q4 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Administration')) AND ((Quarter = 'Q4' AND Month = 'March' AND State = 'Florida' AND City = 'Tampa') OR (Quarter = 'Q3' AND Month = 'September' AND State = 'Florida' AND City = 'Tampa') OR (Quarter = 'Q4' AND Month = 'January' AND State = 'Florida' AND City = 'Tampa') OR (Quarter = 'Q3' AND Month = 'March' AND State = 'Florida' AND City = 'Tampa'))",
+      "GTresult": "avg_Value=28.3475, sum_Value=113.39",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__Tampa ==,==Florida in__March or September or January ==,==Q4 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Type_of_building, Usage, min(Value) AS min_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Hospital') OR (Type_of_building = 'Production' AND Usage = 'Workshop')) AND ((Quarter = 'Q3' AND Month = 'February' AND State = 'Florida' AND City = 'Tampa') OR (Quarter = 'Q4' AND Month = 'January' AND State = 'Florida' AND City = 'Tampa')) GROUP BY Type_of_building, Usage",
+      "GTresult": "Type_of_building=Production, Usage=Workshop, min_Value=55.13, sum_Value=130.33; Type_of_building=Service, Usage=Hospital, min_Value=6.73, sum_Value=18.82",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__Tampa ==,==Florida in__February or January ==,==Q3 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Administration')) AND ((Quarter = 'Q1') OR (Quarter = 'Q4')) GROUP BY Quarter",
+      "GTresult": "min_Value=16.46; min_Value=17.49",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q1 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Quarter, sum(Value) AS sum_Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Hospital')) AND ((Quarter = 'Q1') OR (Quarter = 'Q3')) GROUP BY Quarter",
+      "GTresult": "Quarter=Q1, sum_Value=20.82; Quarter=Q3, sum_Value=30.42",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q1 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Quarter, Type_of_building, Usage, min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Administration') OR (Type_of_building = 'Production' AND Usage = 'Workshop')) AND ((Quarter = 'Q1') OR (Quarter = 'Q4')) GROUP BY Quarter, Type_of_building, Usage",
+      "GTresult": "Quarter=Q1, Type_of_building=Production, Usage=Administration, min_Value=16.46; Quarter=Q1, Type_of_building=Production, Usage=Workshop, min_Value=51.49; Quarter=Q4, Type_of_building=Production, Usage=Administration, min_Value=17.49; Quarter=Q4, Type_of_building=Production, Usage=Workshop, min_Value=54.02",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q1 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Administration')) AND ((Quarter = 'Q4') OR (Quarter = 'Q3')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=37.28; Value=35.04; Value=23.77; Value=23.58; Value=17.49",
+      "NLquestions": [
+        "What are the top/bottom_ numbers of__ in__ ==,== in__ ==,==Q4 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Hospital')) AND ((Quarter = 'Q1') OR (Quarter = 'Q4')) ORDER BY Value DESC",
+      "GTresult": "Value=12.09; Value=11.84; Value=8.23; Value=7.96; Value=3.76; Value=1.02",
+      "NLquestions": [
+        "What are the numbers /ascending_values of__ in__ ==,== in__ ==,==Q1 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Quarter, Month, State, City FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'School')) AND Value > 46.78",
+      "GTresult": "Quarter=Q3, Month=September, State=Florida, City=Tampa; Quarter=Q4, Month=January, State=Florida, City=Tampa; Quarter=Q3, Month=March, State=Florida, City=Tampa",
+      "NLquestions": [
+        "What is/are_the_ the number of__ in__ ==,== in__ ==,== is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Quarter, Month, State, City, Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Workshop')) AND (Quarter, Month, State, City) IN (SELECT Quarter, Month, State, City FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'School')) AND Value > 46.78)",
+      "GTresult": "Quarter=Q3, Month=September, State=Florida, City=Tampa, Value=72.59; Quarter=Q4, Month=January, State=Florida, City=Tampa, Value=75.2; Quarter=Q3, Month=March, State=Florida, City=Tampa, Value=78.61",
+      "NLquestions": []
+    }
+  ]
+}

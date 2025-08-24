@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set345_1_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Illinois' AND City = 'Springfield')) AND ((Characteristic = 'Wind' AND Intensity = 'Medium'))",
+      "GTresult": "Value=24.77",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Springfield ==,==Illinois in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Illinois' AND City = 'Springfield')) AND ((Characteristic = 'Wind' AND Intensity = 'Calm') OR (Characteristic = 'Humidity' AND Intensity = 'Storm') OR (Characteristic = 'Wind' AND Intensity = 'Medium') OR (Characteristic = 'Humidity' AND Intensity = 'High') OR (Characteristic = 'Wind' AND Intensity = 'Low') OR (Characteristic = 'Humidity' AND Intensity = 'Calm'))",
+      "GTresult": "Value=22.56; Value=20.4; Value=24.77; Value=25.15; Value=25.49; Value=27.63",
+      "NLquestions": [
+        "How many days with__ Wind or Humidity were there in__Springfield ==,==Illinois in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Georgia' AND City = 'Columbus') OR (Year = '2019' AND State = 'Illinois' AND City = 'Albany')) AND ((Characteristic = 'Humidity' AND Intensity = 'Storm'))",
+      "GTresult": "Value=2.26; Value=10.84",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Columbus or Albany ==,==Georgia or Illinois in_2020 or 2019 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT min(Value) AS min_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Illinois' AND City = 'Albany') OR (Year = '2020' AND State = 'Georgia' AND City = 'Washington') OR (Year = '2019' AND State = 'Illinois' AND City = 'Springfield')) AND ((Characteristic = 'Wind' AND Intensity = 'Calm'))",
+      "GTresult": "min_Value=6.56, avg_Value=15.246666666666668",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind in__Albany or Washington or Springfield ==,==Illinois or Georgia in_2019 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Georgia' AND City = 'Washington') OR (Year = '2020' AND State = 'Georgia' AND City = 'Champaign')) AND ((Characteristic = 'Wind' AND Intensity = 'Medium') OR (Characteristic = 'Humidity' AND Intensity = 'High'))",
+      "GTresult": "Value=18.75; Value=18.91; Value=25.17; Value=22.31",
+      "NLquestions": [
+        "How many days with__ Wind or Humidity were there in__Washington or Champaign ==,==Georgia in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Illinois' AND City = 'Albany')) AND ((Characteristic = 'Wind' AND Intensity = 'Calm') OR (Characteristic = 'Wind' AND Intensity = 'Medium') OR (Characteristic = 'Humidity' AND Intensity = 'High') OR (Characteristic = 'Wind' AND Intensity = 'Low') OR (Characteristic = 'Humidity' AND Intensity = 'Calm'))",
+      "GTresult": "avg_Value=11.922, max_Value=15.24",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Albany ==,==Illinois in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Illinois' AND City = 'Albany') OR (Year = '2020' AND State = 'Georgia' AND City = 'Washington') OR (Year = '2019' AND State = 'Illinois' AND City = 'Springfield') OR (Year = '2020' AND State = 'Georgia' AND City = 'Champaign')) AND ((Characteristic = 'Wind' AND Intensity = 'Calm') OR (Characteristic = 'Humidity' AND Intensity = 'Calm')) GROUP BY Year, State, City",
+      "GTresult": "Year=2019, State=Illinois, City=Albany, sum_Value=21.8, min_Value=6.56; Year=2019, State=Illinois, City=Springfield, sum_Value=50.19, min_Value=22.56; Year=2020, State=Georgia, City=Champaign, sum_Value=46.94, min_Value=19.19; Year=2020, State=Georgia, City=Washington, sum_Value=37.68, min_Value=16.62",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Albany or Washington or Springfield or Champaign ==,==Illinois or Georgia in_2019 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2020' AND State = 'Georgia' AND City = 'Washington')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) GROUP BY Characteristic",
+      "GTresult": "min_Value=16.76; min_Value=16.62",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Washington ==,==Georgia in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2020' AND State = 'Georgia' AND City = 'Champaign')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Humidity, avg_Value=23.05333333333333; Characteristic=Wind, avg_Value=17.69333333333333",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Champaign ==,==Georgia in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2020' AND State = 'Georgia' AND City = 'Columbus') OR (Year = '2020' AND State = 'Georgia' AND City = 'Washington') OR (Year = '2020' AND State = 'Georgia' AND City = 'Champaign')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Humidity, Year=2020, State=Georgia, City=Champaign, avg_Value=23.05333333333333; Characteristic=Humidity, Year=2020, State=Georgia, City=Columbus, avg_Value=3.9933333333333336; Characteristic=Humidity, Year=2020, State=Georgia, City=Washington, avg_Value=18.91; Characteristic=Wind, Year=2020, State=Georgia, City=Champaign, avg_Value=17.69333333333333; Characteristic=Wind, Year=2020, State=Georgia, City=Columbus, avg_Value=4.243333333333333; Characteristic=Wind, Year=2020, State=Georgia, City=Washington, avg_Value=18.703333333333333",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Columbus or Washington or Champaign ==,==Georgia in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Illinois' AND City = 'Springfield')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=20.4; Value=22.56; Value=24.77; Value=25.15; Value=25.49",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Wind or Humidity in__Springfield ==,==Illinois in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Illinois' AND City = 'Albany')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) ORDER BY Value ASC",
+      "GTresult": "Value=6.56; Value=10.84; Value=11.63; Value=12.91; Value=13.27; Value=15.24",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Wind or Humidity in__Albany ==,==Illinois in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2019' AND State = 'Illinois' AND City = 'Albany')) AND Value > 15.87",
+      "GTresult": "",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Albany ==,==Illinois in_2019 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2020' AND State = 'Georgia' AND City = 'Columbus')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2019' AND State = 'Illinois' AND City = 'Albany')) AND Value > 15.87)",
+      "GTresult": "",
+      "NLquestions": []
+    }
+  ]
+}

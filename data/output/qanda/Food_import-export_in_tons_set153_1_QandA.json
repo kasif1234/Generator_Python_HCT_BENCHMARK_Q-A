@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Food_import-export_in_tons_set153_1_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2019' AND Quarter = 'Q4')) AND ((Category = 'Meat' AND Item = 'Seeds'))",
+      "GTresult": "Value=394.74; Value=83.8",
+      "NLquestions": [
+        "What is the amount of_Import of__ Meat in__Q4 ==of==2019 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2016' AND Quarter = 'Q4')) AND ((Category = 'Meat' AND Item = 'Lamb') OR (Category = 'Meat' AND Item = 'Seeds') OR (Category = 'Cereals' AND Item = 'Corn') OR (Category = 'Meat' AND Item = 'Rice') OR (Category = 'Cereals' AND Item = 'Lamb'))",
+      "GTresult": "Value=409.48; Value=47.75; Value=690.39; Value=436.31; Value=446.24; Value=735.44; Value=488.59; Value=875.04; Value=620.3; Value=892.74",
+      "NLquestions": [
+        "What is the amount of_Import of__ Meat or Cereals in__Q4 ==of==2016 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2019' AND Quarter = 'Q4') OR (Import_Export = 'Import' AND Year = '2016' AND Quarter = 'Q4')) AND ((Category = 'Cereals' AND Item = 'Corn'))",
+      "GTresult": "Value=652.32; Value=690.39; Value=475.17; Value=875.04",
+      "NLquestions": [
+        "What is the amount of_Import of__ Cereals in__Q4 ==of==2019 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT min(Value) AS min_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2019' AND Quarter = 'Q4') OR (Import_Export = 'Import' AND Year = '2016' AND Quarter = 'Q4')) AND ((Category = 'Cereals' AND Item = 'Pork'))",
+      "GTresult": "min_Value=224.87, sum_Value=1736.85",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Cereals in__Q4 ==of==2019 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2019' AND Quarter = 'Q4') OR (Import_Export = 'Import' AND Year = '2016' AND Quarter = 'Q4')) AND ((Category = 'Meat' AND Item = 'Lamb') OR (Category = 'Cereals' AND Item = 'Lamb'))",
+      "GTresult": "Value=130.06; Value=529.14; Value=409.48; Value=446.24; Value=320.2; Value=92.85; Value=735.44; Value=892.74",
+      "NLquestions": [
+        "What is the amount of_Import of__ Meat or Cereals in__Q4 ==of==2019 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT min(Value) AS min_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2019' AND Quarter = 'Q4')) AND ((Category = 'Meat' AND Item = 'Rice') OR (Category = 'Cereals' AND Item = 'Lamb'))",
+      "GTresult": "min_Value=92.85, avg_Value=565.465",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Meat or Cereals in__Q4 ==of==2019 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Import_Export, Year, Quarter, max(Value) AS max_Value, min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2019' AND Quarter = 'Q4') OR (Import_Export = 'Import' AND Year = '2016' AND Quarter = 'Q4')) AND ((Category = 'Meat' AND Item = 'Lamb') OR (Category = 'Cereals' AND Item = 'Pork') OR (Category = 'Meat' AND Item = 'Seeds') OR (Category = 'Cereals' AND Item = 'Lamb')) GROUP BY Import_Export, Year, Quarter",
+      "GTresult": "Import_Export=Import, Year=2016, Quarter=Q4, max_Value=892.74, min_Value=47.75; Import_Export=Import, Year=2019, Quarter=Q4, max_Value=906.6, min_Value=83.8",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Meat or Cereals in__Q4 ==of==2019 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2016' AND Quarter = 'Q4')) AND ((Category = 'Meat') OR (Category = 'Cereals')) GROUP BY Category",
+      "GTresult": "min_Value=224.87; min_Value=47.75",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Meat or Cereals in__Q4 ==of==2016 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Category, max(Value) AS max_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2019' AND Quarter = 'Q4')) AND ((Category = 'Meat') OR (Category = 'Cereals')) GROUP BY Category",
+      "GTresult": "Category=Cereals, max_Value=906.6; Category=Meat, max_Value=987.74",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Meat or Cereals in__Q4 ==of==2019 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Category, Import_Export, Year, Quarter, sum(Value) AS sum_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2019' AND Quarter = 'Q4') OR (Import_Export = 'Import' AND Year = '2016' AND Quarter = 'Q4')) AND ((Category = 'Meat') OR (Category = 'Cereals')) GROUP BY Category, Import_Export, Year, Quarter",
+      "GTresult": "Category=Cereals, Import_Export=Import, Year=2016, Quarter=Q4, sum_Value=3413.39; Category=Cereals, Import_Export=Import, Year=2019, Quarter=Q4, sum_Value=2977.35; Category=Meat, Import_Export=Import, Year=2016, Quarter=Q4, sum_Value=2737.87; Category=Meat, Import_Export=Import, Year=2019, Quarter=Q4, sum_Value=2568.67",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Meat or Cereals in__Q4 ==of==2019 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2016' AND Quarter = 'Q4')) AND ((Category = 'Meat') OR (Category = 'Cereals')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=47.75; Value=224.87; Value=284.11; Value=409.48; Value=436.31",
+      "NLquestions": [
+        "What are the top/bottom_ amounts of_Import of__ Meat or Cereals in__Q4 ==of==2016 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2019' AND Quarter = 'Q4')) AND ((Category = 'Meat') OR (Category = 'Cereals')) ORDER BY Value DESC",
+      "GTresult": "Value=987.74; Value=906.6; Value=652.32; Value=652.13; Value=529.14; Value=475.17; Value=394.74; Value=321.27; Value=320.2; Value=130.06; Value=92.85; Value=83.8",
+      "NLquestions": [
+        "What are the amounts /increasing_values of_Import of__ Meat or Cereals in__Q4 ==of==2019 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2019' AND Quarter = 'Q4')) AND Value < 487.39",
+      "GTresult": "Category=Meat, Item=Lamb; Category=Meat, Item=Seeds; Category=Meat, Item=Lamb; Category=Cereals, Item=Pork; Category=Meat, Item=Seeds; Category=Cereals, Item=Corn; Category=Cereals, Item=Lamb",
+      "NLquestions": [
+        "What is/are_the_ the amount of_Import of__ in__Q4 ==of==2019 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Category, Item, Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2016' AND Quarter = 'Q4')) AND (Category, Item) IN (SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2019' AND Quarter = 'Q4')) AND Value < 487.39)",
+      "GTresult": "Category=Meat, Item=Lamb, Value=409.48; Category=Cereals, Item=Pork, Value=284.11; Category=Meat, Item=Seeds, Value=47.75; Category=Cereals, Item=Corn, Value=690.39; Category=Cereals, Item=Lamb, Value=446.24; Category=Meat, Item=Lamb, Value=735.44; Category=Cereals, Item=Pork, Value=224.87; Category=Meat, Item=Seeds, Value=488.59; Category=Cereals, Item=Corn, Value=875.04; Category=Cereals, Item=Lamb, Value=892.74",
+      "NLquestions": []
+    }
+  ]
+}

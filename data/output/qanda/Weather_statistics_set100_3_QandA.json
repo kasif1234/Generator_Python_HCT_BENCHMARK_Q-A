@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set100_3_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Georgia' AND City = 'Columbia')) AND ((Characteristic = 'Wind' AND Intensity = '11-20'))",
+      "GTresult": "Value=25.96",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Columbia ==,==Georgia in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Georgia' AND City = 'Columbus')) AND ((Characteristic = 'Temperature' AND Intensity = '21-30') OR (Characteristic = 'Wind' AND Intensity = '11-20'))",
+      "GTresult": "Value=0.62; Value=1.43",
+      "NLquestions": [
+        "How many days with__ Temperature or Wind were there in__Columbus ==,==Georgia in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Georgia' AND City = 'Columbus') OR (Year = '2016' AND State = 'Maryland' AND City = 'San Francisco') OR (Year = '2018' AND State = 'Georgia' AND City = 'Malibu') OR (Year = '2016' AND State = 'California' AND City = 'Los-Angeles') OR (Year = '2018' AND State = 'Maryland' AND City = 'Baltimore') OR (Year = '2016' AND State = 'Georgia' AND City = 'Columbia') OR (Year = '2018' AND State = 'California' AND City = 'Aberdeen')) AND ((Characteristic = 'Wind' AND Intensity = '11-20'))",
+      "GTresult": "Value=1.43; Value=10.91; Value=14.18; Value=17.1; Value=22.49; Value=25.96; Value=27.0",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Columbus or San Francisco or Malibu or Los-Angeles or Baltimore or Columbia or Aberdeen ==,==Georgia or Maryland or California in_2016 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Georgia' AND City = 'Columbus') OR (Year = '2018' AND State = 'Georgia' AND City = 'Malibu') OR (Year = '2018' AND State = 'California' AND City = 'Aberdeen')) AND ((Characteristic = 'Temperature' AND Intensity = '21-30'))",
+      "GTresult": "avg_Value=13.233333333333334, sum_Value=39.7",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature in__Columbus or Malibu or Aberdeen ==,==Georgia or California in_2016 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2018' AND State = 'California' AND City = 'Washington') OR (Year = '2016' AND State = 'California' AND City = 'Los-Angeles') OR (Year = '2018' AND State = 'California' AND City = 'Aberdeen')) AND ((Characteristic = 'Temperature' AND Intensity = '21-30') OR (Characteristic = 'Wind' AND Intensity = '11-20') OR (Characteristic = 'Temperature' AND Intensity = 'Calm') OR (Characteristic = 'Wind' AND Intensity = 'Storm'))",
+      "GTresult": "Value=4.22; Value=4.86; Value=6.82; Value=7.65; Value=16.85; Value=17.1; Value=19.03; Value=19.21; Value=25.27; Value=27.0; Value=15.35; Value=17.14",
+      "NLquestions": [
+        "How many days with__ Temperature or Wind were there in__Washington or Los-Angeles or Aberdeen ==,==California in_2018 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Georgia' AND City = 'Columbus')) AND ((Characteristic = 'Temperature' AND Intensity = '21-30') OR (Characteristic = 'Wind' AND Intensity = '11-20') OR (Characteristic = 'Temperature' AND Intensity = 'Calm') OR (Characteristic = 'Wind' AND Intensity = 'Storm'))",
+      "GTresult": "avg_Value=1.8675, sum_Value=7.47",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Columbus ==,==Georgia in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, min(Value) AS min_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2018' AND State = 'California' AND City = 'Washington') OR (Year = '2016' AND State = 'Georgia' AND City = 'Columbia')) AND ((Characteristic = 'Temperature' AND Intensity = 'Calm') OR (Characteristic = 'Wind' AND Intensity = 'Storm')) GROUP BY Year, State, City",
+      "GTresult": "Year=2016, State=Georgia, City=Columbia, min_Value=27.63, avg_Value=27.729999999999997; Year=2018, State=California, City=Washington, min_Value=6.82, avg_Value=7.235",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Washington or Columbia ==,==California or Georgia in_2018 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Georgia' AND City = 'Columbia')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "min_Value=25.03; min_Value=25.96",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Columbia ==,==Georgia in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Georgia' AND City = 'Columbus')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Temperature, avg_Value=1.72; Characteristic=Wind, avg_Value=2.015",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Columbus ==,==Georgia in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Maryland' AND City = 'San Francisco') OR (Year = '2016' AND State = 'Georgia' AND City = 'Columbia') OR (Year = '2018' AND State = 'California' AND City = 'Aberdeen')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Temperature, Year=2016, State=Georgia, City=Columbia, min_Value=25.03; Characteristic=Temperature, Year=2016, State=Maryland, City=San Francisco, min_Value=9.0; Characteristic=Temperature, Year=2018, State=California, City=Aberdeen, min_Value=15.35; Characteristic=Wind, Year=2016, State=Georgia, City=Columbia, min_Value=25.96; Characteristic=Wind, Year=2016, State=Maryland, City=San Francisco, min_Value=9.19; Characteristic=Wind, Year=2018, State=California, City=Aberdeen, min_Value=17.14",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__San Francisco or Columbia or Aberdeen ==,==Maryland or Georgia or California in_2016 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2018' AND State = 'California' AND City = 'Washington')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) ORDER BY Value ASC LIMIT 3",
+      "GTresult": "Value=4.22; Value=4.86; Value=6.82",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Temperature or Wind in__Washington ==,==California in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Georgia' AND City = 'Columbus')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) ORDER BY Value DESC",
+      "GTresult": "Value=2.82; Value=2.6; Value=1.43; Value=0.62",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Temperature or Wind in__Columbus ==,==Georgia in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2016' AND State = 'Georgia' AND City = 'Columbia')) AND Value < 14.91",
+      "GTresult": "",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Columbia ==,==Georgia in_2016 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2018' AND State = 'Maryland' AND City = 'Baltimore')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2016' AND State = 'Georgia' AND City = 'Columbia')) AND Value < 14.91)",
+      "GTresult": "",
+      "NLquestions": []
+    }
+  ]
+}

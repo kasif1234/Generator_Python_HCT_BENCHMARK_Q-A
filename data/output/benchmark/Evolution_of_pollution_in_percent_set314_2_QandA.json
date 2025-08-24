@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Evolution_of_pollution_in_percent_set314_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Nevada' AND City = 'Columbia' AND Year = '2019')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Oxygen-depletion'))",
+      "GTresult": "Value=-47.15",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water in__Columbia ==,==Nevada in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Nevada' AND City = 'Columbia' AND Year = '2019')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Industrial') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Solid Waste') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Groundwater'))",
+      "GTresult": "Value=61.57; Value=62.21; Value=89.08",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil or Water in__Columbia ==,==Nevada in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Nevada' AND City = 'Las Vegas' AND Year = '2019') OR (State = 'Maryland' AND City = 'Reno' AND Year = '2021')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Industrial'))",
+      "GTresult": "Value=5.89; Value=-91.78",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil in__Las Vegas or Reno ==,==Nevada or Maryland in_2019 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT max(Value) AS max_Value, min(Value) AS min_Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Reno' AND Year = '2021') OR (State = 'Nevada' AND City = 'Columbia' AND Year = '2019')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Chemical'))",
+      "GTresult": "max_Value=67.91, min_Value=41.21",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil in__Reno or Columbia ==,==Maryland or Nevada in_2021 or 2019 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Nevada' AND City = 'Las Vegas' AND Year = '2019') OR (State = 'Maryland' AND City = 'Reno' AND Year = '2021')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Solid Waste') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Chemical'))",
+      "GTresult": "Value=13.6; Value=23.07; Value=37.98; Value=41.21",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water or Soil in__Las Vegas or Reno ==,==Nevada or Maryland in_2019 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT min(Value) AS min_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((State = 'Nevada' AND City = 'Las Vegas' AND Year = '2019')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Industrial') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Solid Waste') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Chemical') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Oxygen-depletion') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Groundwater'))",
+      "GTresult": "min_Value=-95.27, avg_Value=-4.4399999999999995",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Las Vegas ==,==Nevada in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT State, City, Year, avg(Value) AS avg_Value, max(Value) AS max_Value FROM DBdata WHERE ((State = 'Nevada' AND City = 'Las Vegas' AND Year = '2019') OR (State = 'Maryland' AND City = 'Reno' AND Year = '2021') OR (State = 'Nevada' AND City = 'Columbia' AND Year = '2019') OR (State = 'Maryland' AND City = 'Aberdeen' AND Year = '2021')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Oxygen-depletion') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Industrial')) GROUP BY State, City, Year",
+      "GTresult": "State=Maryland, City=Aberdeen, Year=2021, avg_Value=-14.445, max_Value=-4.24; State=Maryland, City=Reno, Year=2021, avg_Value=-10.310000000000002, max_Value=60.89; State=Nevada, City=Columbia, Year=2019, avg_Value=-43.515, max_Value=-39.88; State=Nevada, City=Las Vegas, Year=2019, avg_Value=33.160000000000004, max_Value=35.81",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water in__Las Vegas or Reno or Columbia or Aberdeen ==,==Nevada or Maryland in_2019 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((State = 'Nevada' AND City = 'Columbia' AND Year = '2019')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) GROUP BY Polluted_element",
+      "GTresult": "min_Value=61.57; min_Value=-47.15",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Columbia ==,==Nevada in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Polluted_element, min(Value) AS min_Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Reno' AND Year = '2021')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) GROUP BY Polluted_element",
+      "GTresult": "Polluted_element=Soil, min_Value=-91.78; Polluted_element=Water, min_Value=-81.51",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Reno ==,==Maryland in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Polluted_element, State, City, Year, avg(Value) AS avg_Value FROM DBdata WHERE ((State = 'Nevada' AND City = 'Las Vegas' AND Year = '2019') OR (State = 'Maryland' AND City = 'Reno' AND Year = '2021')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) GROUP BY Polluted_element, State, City, Year",
+      "GTresult": "Polluted_element=Soil, State=Maryland, City=Reno, Year=2021, avg_Value=2.6400000000000006; Polluted_element=Soil, State=Nevada, City=Las Vegas, Year=2019, avg_Value=-22.103333333333335; Polluted_element=Water, State=Maryland, City=Reno, Year=2021, avg_Value=5.786666666666664; Polluted_element=Water, State=Nevada, City=Las Vegas, Year=2019, avg_Value=26.64",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Las Vegas or Reno ==,==Nevada or Maryland in_2019 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Reno' AND Year = '2021')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=-91.78; Value=-81.51; Value=37.98; Value=41.21; Value=58.49",
+      "NLquestions": [
+        "What are the top/bottom_ evolutions of_((pollution)) of_ of_Soil or Water in__Reno ==,==Maryland in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Aberdeen' AND Year = '2021')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) ORDER BY Value DESC",
+      "GTresult": "Value=97.91; Value=93.83; Value=-4.24; Value=-5.84; Value=-24.65; Value=-31.77",
+      "NLquestions": [
+        "What are the evolutions /increasing_values of_((pollution)) of_ of_Soil or Water in__Aberdeen ==,==Maryland in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Nevada' AND City = 'Columbia' AND Year = '2019')) AND Value > 14.91",
+      "GTresult": "Polluted_element=Soil, Type_of_pollution=Industrial; Polluted_element=Water, Type_of_pollution=Solid Waste; Polluted_element=Soil, Type_of_pollution=Chemical; Polluted_element=Soil, Type_of_pollution=Groundwater",
+      "NLquestions": [
+        "What is/are_the_ the evolution of_((pollution)) of_ of_ in__Columbia ==,==Nevada in_2019 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Polluted_element, Type_of_pollution, Value FROM DBdata WHERE ((State = 'Nevada' AND City = 'Las Vegas' AND Year = '2019')) AND (Polluted_element, Type_of_pollution) IN (SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Nevada' AND City = 'Columbia' AND Year = '2019')) AND Value > 14.91)",
+      "GTresult": "Polluted_element=Soil, Type_of_pollution=Industrial, Value=5.89; Polluted_element=Water, Type_of_pollution=Solid Waste, Value=13.6; Polluted_element=Soil, Type_of_pollution=Chemical, Value=23.07; Polluted_element=Soil, Type_of_pollution=Groundwater, Value=-95.27",
+      "NLquestions": []
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set129_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'Georgia' AND City = 'Flint')) AND ((Characteristic = 'Humidity' AND Intensity = '31-40'))",
+      "GTresult": "Value=14.32",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Flint ==,==Georgia in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Washington')) AND ((Characteristic = 'Humidity' AND Intensity = 'Medium') OR (Characteristic = 'Wind' AND Intensity = 'High') OR (Characteristic = 'Temperature' AND Intensity = '0-10'))",
+      "GTresult": "Value=25.98; Value=25.37; Value=6.91",
+      "NLquestions": [
+        "How many days with__ Humidity or Wind or Temperature were there in__Washington ==,==Georgia in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Michigan' AND City = 'Detroit') OR (Year = '2021' AND State = 'Georgia' AND City = 'Washington') OR (Year = '2017' AND State = 'Michigan' AND City = 'Columbus')) AND ((Characteristic = 'Temperature' AND Intensity = 'Calm'))",
+      "GTresult": "Value=6.65; Value=10.58; Value=22.95",
+      "NLquestions": [
+        "How many days with__ Temperature were there in__Detroit or Washington or Columbus ==,==Michigan or Georgia in_2021 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Michigan' AND City = 'Detroit') OR (Year = '2017' AND State = 'Georgia' AND City = 'Flint') OR (Year = '2021' AND State = 'Georgia' AND City = 'Washington')) AND ((Characteristic = 'Humidity' AND Intensity = 'Breeze'))",
+      "GTresult": "avg_Value=10.406666666666666, sum_Value=31.22",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity in__Detroit or Flint or Washington ==,==Michigan or Georgia in_2021 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Michigan' AND City = 'Detroit') OR (Year = '2018' AND State = 'Michigan' AND City = 'Albany') OR (Year = '2021' AND State = 'Georgia' AND City = 'Washington') OR (Year = '2017' AND State = 'Michigan' AND City = 'Columbus')) AND ((Characteristic = 'Temperature' AND Intensity = '0-10') OR (Characteristic = 'Humidity' AND Intensity = 'Breeze'))",
+      "GTresult": "Value=6.76; Value=4.73; Value=21.15; Value=26.15; Value=6.91; Value=9.49; Value=21.96; Value=22.33",
+      "NLquestions": [
+        "How many days with__ Temperature or Humidity were there in__Detroit or Albany or Washington or Columbus ==,==Michigan or Georgia in_2021 or 2018 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2018' AND State = 'Michigan' AND City = 'Albany')) AND ((Characteristic = 'Temperature' AND Intensity = 'Low') OR (Characteristic = 'Wind' AND Intensity = '21-30'))",
+      "GTresult": "avg_Value=23.310000000000002, min_Value=21.39",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Albany ==,==Michigan in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, max(Value) AS max_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2017' AND State = 'Georgia' AND City = 'Flint') OR (Year = '2018' AND State = 'Michigan' AND City = 'Albany') OR (Year = '2021' AND State = 'Georgia' AND City = 'Washington') OR (Year = '2017' AND State = 'Michigan' AND City = 'Columbus')) AND ((Characteristic = 'Humidity' AND Intensity = 'Medium') OR (Characteristic = 'Temperature' AND Intensity = 'Low') OR (Characteristic = 'Wind' AND Intensity = 'High') OR (Characteristic = 'Temperature' AND Intensity = 'Calm')) GROUP BY Year, State, City",
+      "GTresult": "Year=2017, State=Georgia, City=Flint, max_Value=17.3, sum_Value=53.45; Year=2017, State=Michigan, City=Columbus, max_Value=22.95, sum_Value=65.77; Year=2018, State=Michigan, City=Albany, max_Value=26.38, sum_Value=85.49; Year=2021, State=Georgia, City=Washington, max_Value=26.02, sum_Value=87.95",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Temperature or Wind in__Flint or Albany or Washington or Columbus ==,==Georgia or Michigan in_2017 or 2018 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Michigan' AND City = 'Detroit')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "min_Value=1.58; min_Value=4.31",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Detroit ==,==Michigan in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Georgia' AND City = 'Washington')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Temperature, avg_Value=14.503333333333332; Characteristic=Wind, avg_Value=14.75",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Washington ==,==Georgia in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Michigan' AND City = 'Detroit') OR (Year = '2018' AND State = 'Michigan' AND City = 'Albany') OR (Year = '2021' AND State = 'Georgia' AND City = 'Washington')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Temperature, Year=2018, State=Michigan, City=Albany, min_Value=21.15; Characteristic=Temperature, Year=2021, State=Georgia, City=Washington, min_Value=6.91; Characteristic=Temperature, Year=2021, State=Michigan, City=Detroit, min_Value=3.45; Characteristic=Wind, Year=2018, State=Michigan, City=Albany, min_Value=21.2; Characteristic=Wind, Year=2021, State=Georgia, City=Washington, min_Value=7.6; Characteristic=Wind, Year=2021, State=Michigan, City=Detroit, min_Value=4.31",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Detroit or Albany or Washington ==,==Michigan or Georgia in_2021 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'Georgia' AND City = 'Flint')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=17.3; Value=17.0; Value=14.32; Value=12.59; Value=11.95",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Humidity or Temperature in__Flint ==,==Georgia in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'Michigan' AND City = 'Columbus')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) ORDER BY Value DESC",
+      "GTresult": "Value=23.56; Value=22.33; Value=21.18; Value=19.48; Value=18.15; Value=11.27",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Humidity or Wind in__Columbus ==,==Michigan in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2017' AND State = 'Michigan' AND City = 'Columbus')) AND Value < 15.69",
+      "GTresult": "Characteristic=Humidity, Intensity=Medium; Characteristic=Temperature, Intensity=Low",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Columbus ==,==Michigan in_2017 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2021' AND State = 'Michigan' AND City = 'Detroit')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2017' AND State = 'Michigan' AND City = 'Columbus')) AND Value < 15.69)",
+      "GTresult": "Characteristic=Humidity, Intensity=Medium, Value=1.58; Characteristic=Temperature, Intensity=Low, Value=3.45",
+      "NLquestions": []
+    }
+  ]
+}

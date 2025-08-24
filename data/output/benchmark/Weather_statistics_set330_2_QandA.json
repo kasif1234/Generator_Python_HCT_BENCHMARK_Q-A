@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set330_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Oregon' AND City = 'Boulder City')) AND ((Characteristic = 'Wind' AND Intensity = 'Medium'))",
+      "GTresult": "Value=8.28",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Boulder City ==,==Oregon in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Oregon' AND City = 'Cambridge')) AND ((Characteristic = 'Wind' AND Intensity = 'Medium') OR (Characteristic = 'Wind' AND Intensity = 'Breeze'))",
+      "GTresult": "Value=7.19; Value=8.29",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Cambridge ==,==Oregon in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Massachusetts' AND City = 'Lenox') OR (Year = '2020' AND State = 'Oregon' AND City = 'Cambridge') OR (Year = '2019' AND State = 'Massachusetts' AND City = 'Portland') OR (Year = '2020' AND State = 'Oregon' AND City = 'Salem') OR (Year = '2022' AND State = 'Nevada' AND City = 'Las Vegas') OR (Year = '2019' AND State = 'Massachusetts' AND City = 'Reno') OR (Year = '2020' AND State = 'Oregon' AND City = 'Boulder City')) AND ((Characteristic = 'Wind' AND Intensity = 'Breeze'))",
+      "GTresult": "Value=5.71; Value=8.29; Value=17.07; Value=21.21; Value=25.49; Value=25.16; Value=11.58",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Lenox or Cambridge or Portland or Salem or Las Vegas or Reno or Boulder City ==,==Massachusetts or Oregon or Nevada in_2019 or 2020 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Massachusetts' AND City = 'Lenox') OR (Year = '2022' AND State = 'Nevada' AND City = 'Las Vegas')) AND ((Characteristic = 'Wind' AND Intensity = 'Medium'))",
+      "GTresult": "sum_Value=26.68, min_Value=2.39",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind in__Lenox or Las Vegas ==,==Massachusetts or Nevada in_2019 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Oregon' AND City = 'Cambridge') OR (Year = '2022' AND State = 'Nevada' AND City = 'Las Vegas')) AND ((Characteristic = 'Humidity' AND Intensity = 'Low') OR (Characteristic = 'Humidity' AND Intensity = 'Storm') OR (Characteristic = 'Wind' AND Intensity = 'Breeze'))",
+      "GTresult": "Value=6.99; Value=7.91; Value=8.29; Value=22.65; Value=24.71; Value=25.49",
+      "NLquestions": [
+        "How many days with__ Humidity or Wind were there in__Cambridge or Las Vegas ==,==Oregon or Nevada in_2020 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT min(Value) AS min_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Massachusetts' AND City = 'Lenox')) AND ((Characteristic = 'Humidity' AND Intensity = 'Low') OR (Characteristic = 'Humidity' AND Intensity = 'Storm'))",
+      "GTresult": "min_Value=0.32, sum_Value=2.79",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity in__Lenox ==,==Massachusetts in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Massachusetts' AND City = 'Lenox') OR (Year = '2022' AND State = 'Nevada' AND City = 'Redmond') OR (Year = '2020' AND State = 'Oregon' AND City = 'Salem') OR (Year = '2019' AND State = 'Massachusetts' AND City = 'Reno') OR (Year = '2020' AND State = 'Oregon' AND City = 'Boulder City')) AND ((Characteristic = 'Humidity' AND Intensity = 'Low') OR (Characteristic = 'Wind' AND Intensity = 'Medium') OR (Characteristic = 'Humidity' AND Intensity = 'Storm') OR (Characteristic = 'Wind' AND Intensity = 'Breeze')) GROUP BY Year, State, City",
+      "GTresult": "Year=2019, State=Massachusetts, City=Lenox, sum_Value=10.89, avg_Value=2.7225; Year=2019, State=Massachusetts, City=Reno, sum_Value=104.18, avg_Value=26.045; Year=2020, State=Oregon, City=Boulder City, sum_Value=37.65, avg_Value=9.4125; Year=2020, State=Oregon, City=Salem, sum_Value=77.65, avg_Value=19.4125; Year=2022, State=Nevada, City=Redmond, sum_Value=43.18, avg_Value=10.795",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Lenox or Redmond or Salem or Reno or Boulder City ==,==Massachusetts or Nevada or Oregon in_2019 or 2022 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Massachusetts' AND City = 'Lenox')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "min_Value=0.32; min_Value=2.39",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Lenox ==,==Massachusetts in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Massachusetts' AND City = 'Reno')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Humidity, min_Value=24.93; Characteristic=Wind, min_Value=25.16",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Reno ==,==Massachusetts in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2020' AND State = 'Oregon' AND City = 'Cambridge') OR (Year = '2020' AND State = 'Oregon' AND City = 'Salem')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Humidity, Year=2020, State=Oregon, City=Cambridge, avg_Value=7.45; Characteristic=Humidity, Year=2020, State=Oregon, City=Salem, avg_Value=18.335; Characteristic=Wind, Year=2020, State=Oregon, City=Cambridge, avg_Value=7.74; Characteristic=Wind, Year=2020, State=Oregon, City=Salem, avg_Value=20.490000000000002",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Cambridge or Salem ==,==Oregon in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Oregon' AND City = 'Boulder City')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) ORDER BY Value DESC LIMIT 3",
+      "GTresult": "Value=11.58; Value=9.23; Value=8.56",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Humidity or Wind in__Boulder City ==,==Oregon in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Oregon' AND City = 'Boulder City')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) ORDER BY Value ASC",
+      "GTresult": "Value=8.28; Value=8.56; Value=9.23; Value=11.58",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Humidity or Wind in__Boulder City ==,==Oregon in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2019' AND State = 'Massachusetts' AND City = 'Reno')) AND Value > 13.96",
+      "GTresult": "Characteristic=Humidity, Intensity=Low; Characteristic=Wind, Intensity=Medium; Characteristic=Humidity, Intensity=Storm; Characteristic=Wind, Intensity=Breeze",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Reno ==,==Massachusetts in_2019 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2020' AND State = 'Oregon' AND City = 'Cambridge')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2019' AND State = 'Massachusetts' AND City = 'Reno')) AND Value > 13.96)",
+      "GTresult": "Characteristic=Humidity, Intensity=Low, Value=6.99; Characteristic=Wind, Intensity=Medium, Value=7.19; Characteristic=Humidity, Intensity=Storm, Value=7.91; Characteristic=Wind, Intensity=Breeze, Value=8.29",
+      "NLquestions": []
+    }
+  ]
+}

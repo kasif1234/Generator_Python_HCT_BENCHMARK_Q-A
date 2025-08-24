@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Number_of_accidents_set281_3_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Gender = 'Male' AND Year = '2015')) AND ((Event = 'Fire'))",
+      "GTresult": "Value=33.43; Value=27.61",
+      "NLquestions": [
+        "What is the number of_((accidents)) of__ involving_ in__ ==of==2015 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Gender = 'Male' AND Year = '2017')) AND ((Event = 'Drowning') OR (Event = 'Traffic'))",
+      "GTresult": "Value=47.61; Value=50.5",
+      "NLquestions": [
+        "What is the number of_((accidents)) of__ involving_ in__ ==of==2017 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Gender = 'Male' AND Year = '2015') OR (Gender = 'Male' AND Year = '2018')) AND ((Event = 'Fire'))",
+      "GTresult": "Value=33.43; Value=84.4; Value=27.61",
+      "NLquestions": [
+        "What is the number of_((accidents)) of__ involving_ in__ ==of==2015 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((Gender = 'Male' AND Year = '2015') OR (Gender = 'Male' AND Year = '2017')) AND ((Event = 'Fire'))",
+      "GTresult": "sum_Value=100.08, min_Value=27.61",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((accidents)) of__ involving_ in__ ==of==2015 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Gender = 'Male' AND Year = '2015') OR (Gender = 'Male' AND Year = '2018')) AND ((Event = 'Drowning') OR (Event = 'Traffic'))",
+      "GTresult": "Value=66.74; Value=69.46; Value=22.06; Value=55.93; Value=62.7; Value=31.75",
+      "NLquestions": [
+        "What is the number of_((accidents)) of__ involving_ in__ ==of==2015 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((Gender = 'Male' AND Year = '2018')) AND ((Event = 'Fire') OR (Event = 'Drowning') OR (Event = 'Traffic'))",
+      "GTresult": "sum_Value=162.39000000000001, min_Value=22.06",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((accidents)) of__ involving_ in__ ==of==2018 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Gender, Year, sum(Value) AS sum_Value, max(Value) AS max_Value FROM DBdata WHERE ((Gender = 'Male' AND Year = '2015') OR (Gender = 'Male' AND Year = '2017') OR (Gender = 'Male' AND Year = '2018')) AND ((Event = 'Fire') OR (Event = 'Drowning')) GROUP BY Gender, Year",
+      "GTresult": "Gender=Male, Year=2015, sum_Value=190.48, max_Value=66.74; Gender=Male, Year=2017, sum_Value=86.65, max_Value=47.61; Gender=Male, Year=2018, sum_Value=106.46000000000001, max_Value=84.4",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((accidents)) of__ involving_ in__ ==of==2015 or 2017 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Gender = 'Male' AND Year = '2017')) AND ((Event = 'Fire') OR (Event = 'Traffic')) GROUP BY Event",
+      "GTresult": "min_Value=39.04; min_Value=50.5",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((accidents)) of__ involving_ in__ ==of==2017 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Event, sum(Value) AS sum_Value FROM DBdata WHERE ((Gender = 'Male' AND Year = '2018')) AND ((Event = 'Fire') OR (Event = 'Traffic')) GROUP BY Event",
+      "GTresult": "Event=Fire, sum_Value=84.4; Event=Traffic, sum_Value=55.93",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((accidents)) of__ involving_ in__ ==of==2018 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Event, Gender, Year, avg(Value) AS avg_Value FROM DBdata WHERE ((Gender = 'Male' AND Year = '2017') OR (Gender = 'Male' AND Year = '2018')) AND ((Event = 'Fire') OR (Event = 'Drowning')) GROUP BY Event, Gender, Year",
+      "GTresult": "Event=Drowning, Gender=Male, Year=2017, avg_Value=47.61; Event=Drowning, Gender=Male, Year=2018, avg_Value=22.06; Event=Fire, Gender=Male, Year=2017, avg_Value=39.04; Event=Fire, Gender=Male, Year=2018, avg_Value=84.4",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((accidents)) of__ involving_ in__ ==of==2017 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Gender = 'Male' AND Year = '2017')) AND ((Event = 'Drowning') OR (Event = 'Traffic')) ORDER BY Value DESC LIMIT 2",
+      "GTresult": "Value=50.5; Value=47.61",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers of_((accidents)) of__ involving_ in__ ==of==2017 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Gender = 'Male' AND Year = '2018')) AND ((Event = 'Fire') OR (Event = 'Traffic')) ORDER BY Value DESC",
+      "GTresult": "Value=84.4; Value=55.93",
+      "NLquestions": [
+        "What are the numbers /increasing_values of_((accidents)) of__ involving_ in__ ==of==2018 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Event FROM DBdata WHERE ((Gender = 'Male' AND Year = '2017')) AND Value > 49.27",
+      "GTresult": "Event=Traffic",
+      "NLquestions": [
+        "What is/are_the_ the number of_((accidents)) of__ involving_ in__ ==of==2017 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Event, Value FROM DBdata WHERE ((Gender = 'Male' AND Year = '2018')) AND (Event) IN (SELECT Event FROM DBdata WHERE ((Gender = 'Male' AND Year = '2017')) AND Value > 49.27)",
+      "GTresult": "Event=Traffic, Value=55.93",
+      "NLquestions": []
+    }
+  ]
+}

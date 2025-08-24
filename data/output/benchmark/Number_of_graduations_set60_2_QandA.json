@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Number_of_graduations_set60_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'PhD')) AND ((Year = '2020/2021' AND Language = 'Other'))",
+      "GTresult": "Value=311.29",
+      "NLquestions": [
+        "What is the number of graduations of_ with_a_PhD in_Other in_2020/2021 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'PhD')) AND ((Year = '2021/2022' AND Language = 'Arabic') OR (Year = '2022/2023' AND Language = 'French') OR (Year = '2017/2018' AND Language = 'Arabic'))",
+      "GTresult": "Value=377.71; Value=382.79; Value=375.91",
+      "NLquestions": [
+        "What is the number of graduations of_ with_a_PhD in_Arabic or French in_2021/2022 or 2022/2023 or 2017/2018 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'PhD')) AND ((Year = '2021/2022' AND Language = 'Arabic'))",
+      "GTresult": "Value=377.71",
+      "NLquestions": [
+        "What is the number of graduations of_ with_a_PhD in_Arabic in_2021/2022 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT min(Value) AS min_Value, max(Value) AS max_Value FROM DBdata WHERE ((Degree = 'PhD')) AND ((Year = '2017/2018' AND Language = 'Arabic'))",
+      "GTresult": "min_Value=375.91, max_Value=375.91",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_PhD in_Arabic in_2017/2018 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'PhD')) AND ((Year = '2021/2022' AND Language = 'Arabic') OR (Year = '2017/2018' AND Language = 'Arabic'))",
+      "GTresult": "Value=377.71; Value=375.91",
+      "NLquestions": [
+        "What is the number of graduations of_ with_a_PhD in_Arabic in_2021/2022 or 2017/2018 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, min(Value) AS min_Value FROM DBdata WHERE ((Degree = 'PhD')) AND ((Year = '2021/2022' AND Language = 'Arabic') OR (Year = '2020/2021' AND Language = 'Other') OR (Year = '2022/2023' AND Language = 'French') OR (Year = '2017/2018' AND Language = 'Arabic'))",
+      "GTresult": "avg_Value=361.925, min_Value=311.29",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_PhD in_Arabic or Other or French in_2021/2022 or 2020/2021 or 2022/2023 or 2017/2018 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Degree, max(Value) AS max_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Degree = 'PhD')) AND ((Year = '2021/2022' AND Language = 'Arabic') OR (Year = '2020/2021' AND Language = 'Other') OR (Year = '2022/2023' AND Language = 'French')) GROUP BY Degree",
+      "GTresult": "Degree=PhD, max_Value=382.79, avg_Value=357.2633333333333",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_PhD in_Arabic or Other or French in_2021/2022 or 2020/2021 or 2022/2023 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Degree = 'PhD')) AND ((Year = '2021/2022') OR (Year = '2020/2021')) GROUP BY Year",
+      "GTresult": "min_Value=311.29; min_Value=377.71",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_PhD in_ in_2021/2022 or 2020/2021 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Year, min(Value) AS min_Value FROM DBdata WHERE ((Degree = 'PhD')) AND ((Year = '2020/2021') OR (Year = '2022/2023')) GROUP BY Year",
+      "GTresult": "Year=2020/2021, min_Value=311.29; Year=2022/2023, min_Value=382.79",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_PhD in_ in_2020/2021 or 2022/2023 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Year, Degree, min(Value) AS min_Value FROM DBdata WHERE ((Degree = 'PhD')) AND ((Year = '2020/2021') OR (Year = '2022/2023')) GROUP BY Year, Degree",
+      "GTresult": "Year=2020/2021, Degree=PhD, min_Value=311.29; Year=2022/2023, Degree=PhD, min_Value=382.79",
+      "NLquestions": [
+        "What is/are_the_ /numbers of graduations of_ with_a_PhD in_ in_2020/2021 or 2022/2023 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'PhD')) AND ((Year = '2021/2022') OR (Year = '2022/2023')) ORDER BY Value ASC LIMIT 2",
+      "GTresult": "Value=377.71; Value=382.79",
+      "NLquestions": [
+        "What are the top/bottom_ numbers of graduations of_ with_a_PhD in_ in_2021/2022 or 2022/2023 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Degree = 'PhD')) AND ((Year = '2021/2022') OR (Year = '2017/2018')) ORDER BY Value ASC",
+      "GTresult": "Value=375.91; Value=377.71",
+      "NLquestions": [
+        "What are the numbers of graduations /increasing_values of_ with_a_PhD in_ in_2021/2022 or 2017/2018 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Year, Language FROM DBdata WHERE ((Degree = 'PhD')) AND Value < 361.93",
+      "GTresult": "Year=2020/2021, Language=Other",
+      "NLquestions": [
+        "What is/are_the_ the number of graduations of_ with_a_PhD in_ in_ is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Year, Language, Value FROM DBdata WHERE ((Degree = 'PhD')) AND (Year, Language) IN (SELECT Year, Language FROM DBdata WHERE ((Degree = 'PhD')) AND Value < 361.93)",
+      "GTresult": "Year=2020/2021, Language=Other, Value=311.29",
+      "NLquestions": []
+    }
+  ]
+}

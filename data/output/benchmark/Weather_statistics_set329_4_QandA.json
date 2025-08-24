@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set329_4_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Michigan' AND City = 'Lenox')) AND ((Characteristic = 'Humidity' AND Intensity = 'Medium'))",
+      "GTresult": "Value=19.25",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Lenox ==,==Michigan in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Massachusetts' AND City = 'Detroit')) AND ((Characteristic = 'Temperature' AND Intensity = '0-10') OR (Characteristic = 'Wind' AND Intensity = '21-30') OR (Characteristic = 'Temperature' AND Intensity = 'Calm') OR (Characteristic = 'Wind' AND Intensity = 'Low') OR (Characteristic = 'Humidity' AND Intensity = 'Medium') OR (Characteristic = 'Temperature' AND Intensity = 'High') OR (Characteristic = 'Wind' AND Intensity = '0-10'))",
+      "GTresult": "Value=14.44; Value=19.57; Value=21.91; Value=22.98; Value=23.02; Value=23.0; Value=20.69",
+      "NLquestions": [
+        "How many days with__ Temperature or Wind or Humidity were there in__Detroit ==,==Massachusetts in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Michigan' AND City = 'Port Huron') OR (Year = '2020' AND State = 'Massachusetts' AND City = 'Detroit') OR (Year = '2022' AND State = 'California' AND City = 'San Francisco') OR (Year = '2020' AND State = 'Massachusetts' AND City = 'Los-Angeles') OR (Year = '2022' AND State = 'California' AND City = 'Cambridge')) AND ((Characteristic = 'Wind' AND Intensity = 'Low'))",
+      "GTresult": "Value=2.11; Value=22.98; Value=9.17; Value=14.53; Value=25.87",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Port Huron or Detroit or San Francisco or Los-Angeles or Cambridge ==,==Michigan or Massachusetts or California in_2016 or 2020 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Michigan' AND City = 'Port Huron') OR (Year = '2016' AND State = 'Michigan' AND City = 'Malibu')) AND ((Characteristic = 'Humidity' AND Intensity = 'Breeze'))",
+      "GTresult": "sum_Value=25.97, min_Value=2.82",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity in__Port Huron or Malibu ==,==Michigan in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2022' AND State = 'California' AND City = 'Flint') OR (Year = '2020' AND State = 'Massachusetts' AND City = 'Detroit') OR (Year = '2016' AND State = 'Michigan' AND City = 'Malibu') OR (Year = '2016' AND State = 'Michigan' AND City = 'Lenox') OR (Year = '2022' AND State = 'California' AND City = 'Cambridge')) AND ((Characteristic = 'Temperature' AND Intensity = '0-10') OR (Characteristic = 'Wind' AND Intensity = '21-30') OR (Characteristic = 'Temperature' AND Intensity = 'High'))",
+      "GTresult": "Value=9.84; Value=6.79; Value=14.92; Value=14.44; Value=19.57; Value=23.0; Value=27.47; Value=27.01; Value=24.82; Value=17.29; Value=5.55; Value=7.06; Value=2.4; Value=22.48; Value=23.93",
+      "NLquestions": [
+        "How many days with__ Temperature or Wind were there in__Flint or Detroit or Malibu or Lenox or Cambridge ==,==California or Massachusetts or Michigan in_2022 or 2020 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT max(Value) AS max_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2020' AND State = 'Massachusetts' AND City = 'Detroit')) AND ((Characteristic = 'Temperature' AND Intensity = '0-10') OR (Characteristic = 'Wind' AND Intensity = '21-30') OR (Characteristic = 'Humidity' AND Intensity = 'Medium') OR (Characteristic = 'Wind' AND Intensity = '0-10') OR (Characteristic = 'Humidity' AND Intensity = '21-30'))",
+      "GTresult": "max_Value=23.02, min_Value=5.6",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind or Humidity in__Detroit ==,==Massachusetts in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, max(Value) AS max_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2022' AND State = 'California' AND City = 'Flint') OR (Year = '2020' AND State = 'Massachusetts' AND City = 'Detroit') OR (Year = '2020' AND State = 'Massachusetts' AND City = 'Los-Angeles') OR (Year = '2016' AND State = 'Michigan' AND City = 'Lenox') OR (Year = '2022' AND State = 'California' AND City = 'Cambridge')) AND ((Characteristic = 'Humidity' AND Intensity = 'Breeze') OR (Characteristic = 'Temperature' AND Intensity = 'Calm') OR (Characteristic = 'Wind' AND Intensity = 'Low')) GROUP BY Year, State, City",
+      "GTresult": "Year=2016, State=Michigan, City=Lenox, max_Value=19.27, min_Value=6.12; Year=2020, State=Massachusetts, City=Detroit, max_Value=22.98, min_Value=20.43; Year=2020, State=Massachusetts, City=Los-Angeles, max_Value=14.53, min_Value=13.72; Year=2022, State=California, City=Cambridge, max_Value=26.11, min_Value=3.9; Year=2022, State=California, City=Flint, max_Value=12.78, min_Value=7.12",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Temperature or Wind in__Flint or Detroit or Los-Angeles or Lenox or Cambridge ==,==California or Massachusetts or Michigan in_2022 or 2020 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2020' AND State = 'Massachusetts' AND City = 'Detroit')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) GROUP BY Characteristic",
+      "GTresult": "min_Value=5.6; min_Value=19.57",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Detroit ==,==Massachusetts in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2022' AND State = 'California' AND City = 'San Francisco')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Humidity, max_Value=10.64; Characteristic=Temperature, max_Value=9.51",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity in__San Francisco ==,==California in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2022' AND State = 'California' AND City = 'Flint') OR (Year = '2022' AND State = 'California' AND City = 'San Francisco') OR (Year = '2016' AND State = 'Michigan' AND City = 'Lenox')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Temperature, Year=2016, State=Michigan, City=Lenox, min_Value=6.12; Characteristic=Temperature, Year=2022, State=California, City=Flint, min_Value=9.84; Characteristic=Temperature, Year=2022, State=California, City=San Francisco, min_Value=7.15; Characteristic=Wind, Year=2016, State=Michigan, City=Lenox, min_Value=5.55; Characteristic=Wind, Year=2022, State=California, City=Flint, min_Value=6.79; Characteristic=Wind, Year=2022, State=California, City=San Francisco, min_Value=7.4",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Flint or San Francisco or Lenox ==,==California or Michigan in_2022 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Massachusetts' AND City = 'Detroit')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=23.0; Value=22.98; Value=21.91; Value=20.69; Value=19.57",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Temperature or Wind in__Detroit ==,==Massachusetts in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Massachusetts' AND City = 'Detroit')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) ORDER BY Value DESC",
+      "GTresult": "Value=23.0; Value=22.98; Value=21.91; Value=20.69; Value=19.57; Value=14.44",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Temperature or Wind in__Detroit ==,==Massachusetts in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2016' AND State = 'Michigan' AND City = 'Malibu')) AND Value > 14.38",
+      "GTresult": "Characteristic=Temperature, Intensity=0-10; Characteristic=Wind, Intensity=21-30; Characteristic=Humidity, Intensity=Breeze; Characteristic=Temperature, Intensity=Calm; Characteristic=Wind, Intensity=Low; Characteristic=Humidity, Intensity=Medium; Characteristic=Temperature, Intensity=High; Characteristic=Wind, Intensity=0-10; Characteristic=Humidity, Intensity=21-30",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Malibu ==,==Michigan in_2016 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2020' AND State = 'Massachusetts' AND City = 'Los-Angeles')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2016' AND State = 'Michigan' AND City = 'Malibu')) AND Value > 14.38)",
+      "GTresult": "Characteristic=Temperature, Intensity=0-10, Value=12.84; Characteristic=Wind, Intensity=21-30, Value=13.45; Characteristic=Humidity, Intensity=Breeze, Value=13.72; Characteristic=Temperature, Intensity=Calm, Value=14.35; Characteristic=Wind, Intensity=Low, Value=14.53; Characteristic=Humidity, Intensity=Medium, Value=2.8; Characteristic=Temperature, Intensity=High, Value=15.54; Characteristic=Wind, Intensity=0-10, Value=15.79; Characteristic=Humidity, Intensity=21-30, Value=17.61",
+      "NLquestions": []
+    }
+  ]
+}

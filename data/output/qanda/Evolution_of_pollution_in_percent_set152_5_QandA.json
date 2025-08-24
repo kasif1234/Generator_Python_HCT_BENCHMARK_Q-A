@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Evolution_of_pollution_in_percent_set152_5_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Michigan' AND City = 'San Francisco' AND Year = '2019')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Inorganic Fertilizers'))",
+      "GTresult": "Value=36.85",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil in__San Francisco ==,==Michigan in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'California' AND City = 'Port Huron' AND Year = '2019')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Solid Waste') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Light') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Thermal'))",
+      "GTresult": "Value=84.96; Value=88.76; Value=91.95",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air or Soil in__Port Huron ==,==California in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'California' AND City = 'Los-Angeles' AND Year = '2017') OR (State = 'Michigan' AND City = 'San Francisco' AND Year = '2019') OR (State = 'California' AND City = 'Malibu' AND Year = '2018') OR (State = 'Michigan' AND City = 'Detroit' AND Year = '2017') OR (State = 'California' AND City = 'Port Huron' AND Year = '2019')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Light'))",
+      "GTresult": "Value=28.53; Value=49.73; Value=55.8; Value=-65.35; Value=88.76",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air in__Los-Angeles or San Francisco or Malibu or Detroit or Port Huron ==,==California or Michigan in_2017 or 2019 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT min(Value) AS min_Value, max(Value) AS max_Value FROM DBdata WHERE ((State = 'California' AND City = 'Los-Angeles' AND Year = '2017') OR (State = 'Michigan' AND City = 'San Francisco' AND Year = '2019') OR (State = 'California' AND City = 'Malibu' AND Year = '2018') OR (State = 'Michigan' AND City = 'Detroit' AND Year = '2017') OR (State = 'Michigan' AND City = 'Flint' AND Year = '2018')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Solid Waste'))",
+      "GTresult": "min_Value=-77.96, max_Value=96.03",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air in__Los-Angeles or San Francisco or Malibu or Detroit or Flint ==,==California or Michigan in_2017 or 2019 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'California' AND City = 'Los-Angeles' AND Year = '2017') OR (State = 'Michigan' AND City = 'San Francisco' AND Year = '2019') OR (State = 'California' AND City = 'Malibu' AND Year = '2018')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Solid Waste') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Thermal') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Noise'))",
+      "GTresult": "Value=19.2; Value=33.75; Value=35.32; Value=38.6; Value=49.26; Value=-77.39; Value=-77.96; Value=-72.0; Value=-73.81",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air or Soil in__Los-Angeles or San Francisco or Malibu ==,==California or Michigan in_2017 or 2019 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((State = 'California' AND City = 'Malibu' AND Year = '2018')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Inorganic Fertilizers') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Light') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Thermal'))",
+      "GTresult": "sum_Value=-94.84, min_Value=-78.64",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Air in__Malibu ==,==California in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT State, City, Year, sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((State = 'California' AND City = 'Los-Angeles' AND Year = '2017') OR (State = 'Michigan' AND City = 'San Francisco' AND Year = '2019') OR (State = 'Michigan' AND City = 'Flint' AND Year = '2018')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Urban Activities') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Thermal')) GROUP BY State, City, Year",
+      "GTresult": "State=California, City=Los-Angeles, Year=2017, sum_Value=60.71, min_Value=26.96; State=Michigan, City=Flint, Year=2018, sum_Value=-43.18, min_Value=-29.98; State=Michigan, City=San Francisco, Year=2019, sum_Value=88.41999999999999, min_Value=39.16",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil in__Los-Angeles or San Francisco or Flint ==,==California or Michigan in_2017 or 2019 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((State = 'Michigan' AND City = 'Detroit' AND Year = '2017')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Air')) GROUP BY Polluted_element",
+      "GTresult": "min_Value=-68.04; min_Value=53.97",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Air in__Detroit ==,==Michigan in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Polluted_element, max(Value) AS max_Value FROM DBdata WHERE ((State = 'Michigan' AND City = 'Detroit' AND Year = '2017')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Air')) GROUP BY Polluted_element",
+      "GTresult": "Polluted_element=Air, max_Value=70.53; Polluted_element=Soil, max_Value=67.8",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Air in__Detroit ==,==Michigan in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Polluted_element, State, City, Year, min(Value) AS min_Value FROM DBdata WHERE ((State = 'Michigan' AND City = 'San Francisco' AND Year = '2019') OR (State = 'California' AND City = 'Port Huron' AND Year = '2019')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Air')) GROUP BY Polluted_element, State, City, Year",
+      "GTresult": "Polluted_element=Air, State=California, City=Port Huron, Year=2019, min_Value=84.96; Polluted_element=Air, State=Michigan, City=San Francisco, Year=2019, min_Value=-77.39; Polluted_element=Soil, State=California, City=Port Huron, Year=2019, min_Value=-47.96; Polluted_element=Soil, State=Michigan, City=San Francisco, Year=2019, min_Value=36.85",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Air in__San Francisco or Port Huron ==,==Michigan or California in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'California' AND City = 'Los-Angeles' AND Year = '2017')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Air')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=35.32; Value=33.75; Value=28.53; Value=26.96; Value=19.2",
+      "NLquestions": [
+        "What are the top/bottom_ evolutions of_((pollution)) of_ of_Soil or Air in__Los-Angeles ==,==California in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'California' AND City = 'Los-Angeles' AND Year = '2017')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Air')) ORDER BY Value ASC",
+      "GTresult": "Value=6.03; Value=19.2; Value=26.96; Value=28.53; Value=33.75; Value=35.32",
+      "NLquestions": [
+        "What are the evolutions /increasing_values of_((pollution)) of_ of_Soil or Air in__Los-Angeles ==,==California in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'California' AND City = 'Los-Angeles' AND Year = '2017')) AND Value < 17.06",
+      "GTresult": "Polluted_element=Soil, Type_of_pollution=Inorganic Fertilizers",
+      "NLquestions": [
+        "What is/are_the_ the evolution of_((pollution)) of_ of_ in__Los-Angeles ==,==California in_2017 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Polluted_element, Type_of_pollution, Value FROM DBdata WHERE ((State = 'California' AND City = 'Malibu' AND Year = '2018')) AND (Polluted_element, Type_of_pollution) IN (SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'California' AND City = 'Los-Angeles' AND Year = '2017')) AND Value < 17.06)",
+      "GTresult": "Polluted_element=Soil, Type_of_pollution=Inorganic Fertilizers, Value=-78.64",
+      "NLquestions": []
+    }
+  ]
+}

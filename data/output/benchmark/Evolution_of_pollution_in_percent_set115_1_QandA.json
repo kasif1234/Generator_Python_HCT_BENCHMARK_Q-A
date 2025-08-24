@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Evolution_of_pollution_in_percent_set115_1_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Springfield' AND Year = '2018')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Noise'))",
+      "GTresult": "Value=-81.52",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil in__Springfield ==,==Oregon in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Chicago' AND Year = '2018')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Inorganic Fertilizers') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Noise'))",
+      "GTresult": "Value=-53.28; Value=-49.18",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air or Soil in__Chicago ==,==Illinois in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Georgia' AND City = 'Columbus' AND Year = '2018') OR (State = 'Illinois' AND City = 'Albany' AND Year = '2020') OR (State = 'Oregon' AND City = 'Springfield' AND Year = '2018') OR (State = 'Georgia' AND City = 'Champaign' AND Year = '2020') OR (State = 'Illinois' AND City = 'Chicago' AND Year = '2018') OR (State = 'Oregon' AND City = 'Redmond' AND Year = '2020') OR (State = 'Georgia' AND City = 'Salem' AND Year = '2018')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Inferior Irrigation'))",
+      "GTresult": "Value=0.18; Value=14.51; Value=37.18; Value=49.44; Value=-58.77; Value=-40.17; Value=-24.84",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil in__Columbus or Albany or Springfield or Champaign or Chicago or Redmond or Salem ==,==Georgia or Illinois or Oregon in_2018 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Springfield' AND Year = '2018') OR (State = 'Illinois' AND City = 'Chicago' AND Year = '2018') OR (State = 'Oregon' AND City = 'Redmond' AND Year = '2020') OR (State = 'Georgia' AND City = 'Salem' AND Year = '2018')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Inferior Irrigation'))",
+      "GTresult": "sum_Value=-86.60000000000001, min_Value=-58.77",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil in__Springfield or Chicago or Redmond or Salem ==,==Oregon or Illinois or Georgia in_2018 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Georgia' AND City = 'Columbus' AND Year = '2018') OR (State = 'Illinois' AND City = 'Chicago' AND Year = '2018') OR (State = 'Georgia' AND City = 'Salem' AND Year = '2018')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Inferior Irrigation') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Solid Waste'))",
+      "GTresult": "Value=0.18; Value=3.62; Value=-58.77; Value=74.35; Value=-24.84; Value=-24.22",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil in__Columbus or Chicago or Salem ==,==Georgia or Illinois in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT max(Value) AS max_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Albany' AND Year = '2020')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Inferior Irrigation') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Urban Activities') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Solid Waste') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Noise'))",
+      "GTresult": "max_Value=19.88, avg_Value=-11.242500000000001",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Air in__Albany ==,==Illinois in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT State, City, Year, min(Value) AS min_Value, max(Value) AS max_Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Albany' AND Year = '2020') OR (State = 'Oregon' AND City = 'Redmond' AND Year = '2020')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Inferior Irrigation') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Urban Activities') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Solid Waste') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Noise') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Inferior Irrigation')) GROUP BY State, City, Year",
+      "GTresult": "State=Illinois, City=Albany, Year=2020, min_Value=-96.76, max_Value=19.88; State=Oregon, City=Redmond, Year=2020, min_Value=-40.17, max_Value=97.92",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Air in__Albany or Redmond ==,==Illinois or Oregon in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((State = 'Georgia' AND City = 'Columbus' AND Year = '2018')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Air')) GROUP BY Polluted_element",
+      "GTresult": "min_Value=2.81; min_Value=0.18",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Air in__Columbus ==,==Georgia in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Polluted_element, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Georgia' AND City = 'Salem' AND Year = '2018')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Air')) GROUP BY Polluted_element",
+      "GTresult": "Polluted_element=Air, sum_Value=-58.27; Polluted_element=Soil, sum_Value=-79.00999999999999",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Air in__Salem ==,==Georgia in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Polluted_element, State, City, Year, min(Value) AS min_Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Springfield' AND Year = '2018') OR (State = 'Illinois' AND City = 'Chicago' AND Year = '2018') OR (State = 'Georgia' AND City = 'Salem' AND Year = '2018')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Air')) GROUP BY Polluted_element, State, City, Year",
+      "GTresult": "Polluted_element=Air, State=Georgia, City=Salem, Year=2018, min_Value=-23.37; Polluted_element=Air, State=Illinois, City=Chicago, Year=2018, min_Value=-56.99; Polluted_element=Air, State=Oregon, City=Springfield, Year=2018, min_Value=-89.63; Polluted_element=Soil, State=Georgia, City=Salem, Year=2018, min_Value=-24.84; Polluted_element=Soil, State=Illinois, City=Chicago, Year=2018, min_Value=-58.77; Polluted_element=Soil, State=Oregon, City=Springfield, Year=2018, min_Value=-81.52",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Air in__Springfield or Chicago or Salem ==,==Oregon or Illinois or Georgia in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Springfield' AND Year = '2018')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Air')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=-89.63; Value=-86.75; Value=-81.52; Value=-79.87; Value=37.18",
+      "NLquestions": [
+        "What are the top/bottom_ evolutions of_((pollution)) of_ of_Soil or Air in__Springfield ==,==Oregon in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Georgia' AND City = 'Columbus' AND Year = '2018')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Air')) ORDER BY Value DESC",
+      "GTresult": "Value=13.99; Value=11.34; Value=10.08; Value=8.64; Value=5.79; Value=3.62; Value=2.81; Value=0.18",
+      "NLquestions": [
+        "What are the evolutions /increasing_values of_((pollution)) of_ of_Soil or Air in__Columbus ==,==Georgia in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Oregon' AND City = 'Redmond' AND Year = '2020')) AND Value > -0.08",
+      "GTresult": "Polluted_element=Air, Type_of_pollution=Urban Activities; Polluted_element=Soil, Type_of_pollution=Light; Polluted_element=Air, Type_of_pollution=Thermal; Polluted_element=Soil, Type_of_pollution=Noise; Polluted_element=Air, Type_of_pollution=Inferior Irrigation",
+      "NLquestions": [
+        "What is/are_the_ the evolution of_((pollution)) of_ of_ in__Redmond ==,==Oregon in_2020 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Polluted_element, Type_of_pollution, Value FROM DBdata WHERE ((State = 'Georgia' AND City = 'Champaign' AND Year = '2020')) AND (Polluted_element, Type_of_pollution) IN (SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Oregon' AND City = 'Redmond' AND Year = '2020')) AND Value > -0.08)",
+      "GTresult": "Polluted_element=Air, Type_of_pollution=Urban Activities, Value=54.78; Polluted_element=Soil, Type_of_pollution=Light, Value=64.83; Polluted_element=Air, Type_of_pollution=Thermal, Value=67.7; Polluted_element=Soil, Type_of_pollution=Noise, Value=70.98; Polluted_element=Air, Type_of_pollution=Inferior Irrigation, Value=-58.47",
+      "NLquestions": []
+    }
+  ]
+}

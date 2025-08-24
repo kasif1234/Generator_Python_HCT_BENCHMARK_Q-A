@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set116_4_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2015' AND State = 'Florida' AND City = 'Fort Lauderdale')) AND ((Characteristic = 'Wind' AND Intensity = 'Breeze'))",
+      "GTresult": "Value=24.76",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Fort Lauderdale ==,==Florida in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2018' AND State = 'Georgia' AND City = 'Tampa')) AND ((Characteristic = 'Wind' AND Intensity = '11-20') OR (Characteristic = 'Wind' AND Intensity = 'Breeze'))",
+      "GTresult": "Value=8.25; Value=18.69",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Tampa ==,==Georgia in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2015' AND State = 'Georgia' AND City = 'Washington') OR (Year = '2016' AND State = 'Florida' AND City = 'Columbus') OR (Year = '2018' AND State = 'Georgia' AND City = 'Tampa') OR (Year = '2015' AND State = 'Florida' AND City = 'Fort Lauderdale')) AND ((Characteristic = 'Temperature' AND Intensity = '21-30'))",
+      "GTresult": "Value=1.08; Value=8.89; Value=11.99; Value=22.63",
+      "NLquestions": [
+        "How many days with__ Temperature were there in__Washington or Columbus or Tampa or Fort Lauderdale ==,==Georgia or Florida in_2015 or 2016 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT min(Value) AS min_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Georgia' AND City = 'Washington') OR (Year = '2016' AND State = 'Florida' AND City = 'Columbus') OR (Year = '2018' AND State = 'Georgia' AND City = 'Tampa')) AND ((Characteristic = 'Temperature' AND Intensity = '0-10'))",
+      "GTresult": "min_Value=4.78, avg_Value=9.913333333333334",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature in__Washington or Columbus or Tampa ==,==Georgia or Florida in_2015 or 2016 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2015' AND State = 'Georgia' AND City = 'Washington') OR (Year = '2016' AND State = 'Florida' AND City = 'Columbus') OR (Year = '2018' AND State = 'Georgia' AND City = 'Tampa') OR (Year = '2015' AND State = 'Florida' AND City = 'Fort Lauderdale')) AND ((Characteristic = 'Temperature' AND Intensity = '21-30') OR (Characteristic = 'Wind' AND Intensity = '11-20') OR (Characteristic = 'Wind' AND Intensity = 'Breeze') OR (Characteristic = 'Wind' AND Intensity = '21-30'))",
+      "GTresult": "Value=1.08; Value=3.33; Value=3.0; Value=7.75; Value=8.89; Value=7.93; Value=11.04; Value=8.8; Value=11.99; Value=8.25; Value=18.69; Value=21.47; Value=22.63; Value=23.27; Value=24.76; Value=26.92",
+      "NLquestions": [
+        "How many days with__ Temperature or Wind were there in__Washington or Columbus or Tampa or Fort Lauderdale ==,==Georgia or Florida in_2015 or 2016 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT max(Value) AS max_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Florida' AND City = 'Columbus')) AND ((Characteristic = 'Temperature' AND Intensity = '0-10') OR (Characteristic = 'Wind' AND Intensity = '21-30'))",
+      "GTresult": "max_Value=8.8, avg_Value=8.64",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Columbus ==,==Florida in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, max(Value) AS max_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Georgia' AND City = 'Washington') OR (Year = '2016' AND State = 'Florida' AND City = 'Columbus') OR (Year = '2018' AND State = 'Georgia' AND City = 'Tampa') OR (Year = '2015' AND State = 'Florida' AND City = 'Fort Lauderdale')) AND ((Characteristic = 'Temperature' AND Intensity = '21-30') OR (Characteristic = 'Wind' AND Intensity = 'Breeze') OR (Characteristic = 'Temperature' AND Intensity = 'Storm') OR (Characteristic = 'Wind' AND Intensity = '21-30')) GROUP BY Year, State, City",
+      "GTresult": "Year=2015, State=Florida, City=Fort Lauderdale, max_Value=26.92, sum_Value=100.45; Year=2015, State=Georgia, City=Washington, max_Value=7.75, sum_Value=18.09; Year=2016, State=Florida, City=Columbus, max_Value=11.04, sum_Value=39.730000000000004; Year=2018, State=Georgia, City=Tampa, max_Value=21.47, sum_Value=73.06",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Washington or Columbus or Tampa or Fort Lauderdale ==,==Georgia or Florida in_2015 or 2016 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2018' AND State = 'Georgia' AND City = 'Tampa')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "min_Value=11.99; min_Value=8.25",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Tampa ==,==Georgia in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Florida' AND City = 'Columbus')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Temperature, max_Value=11.0; Characteristic=Wind, max_Value=11.04",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Columbus ==,==Florida in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Georgia' AND City = 'Washington') OR (Year = '2016' AND State = 'Florida' AND City = 'Columbus') OR (Year = '2015' AND State = 'Florida' AND City = 'Fort Lauderdale')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Temperature, Year=2015, State=Florida, City=Fort Lauderdale, max_Value=26.14; Characteristic=Temperature, Year=2015, State=Georgia, City=Washington, max_Value=6.26; Characteristic=Temperature, Year=2016, State=Florida, City=Columbus, max_Value=11.0; Characteristic=Wind, Year=2015, State=Florida, City=Fort Lauderdale, max_Value=26.92; Characteristic=Wind, Year=2015, State=Georgia, City=Washington, max_Value=7.75; Characteristic=Wind, Year=2016, State=Florida, City=Columbus, max_Value=11.04",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Washington or Columbus or Fort Lauderdale ==,==Georgia or Florida in_2015 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2015' AND State = 'Georgia' AND City = 'Washington')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=7.75; Value=6.26; Value=4.78; Value=3.33; Value=3.0",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Temperature or Wind in__Washington ==,==Georgia in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2015' AND State = 'Georgia' AND City = 'Washington')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) ORDER BY Value DESC",
+      "GTresult": "Value=7.75; Value=6.26; Value=4.78; Value=3.33; Value=3.0; Value=1.08",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Temperature or Wind in__Washington ==,==Georgia in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2015' AND State = 'Georgia' AND City = 'Washington')) AND Value < 13.60",
+      "GTresult": "Characteristic=Temperature, Intensity=21-30; Characteristic=Wind, Intensity=11-20; Characteristic=Temperature, Intensity=0-10; Characteristic=Wind, Intensity=Breeze; Characteristic=Temperature, Intensity=Storm; Characteristic=Wind, Intensity=21-30",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Washington ==,==Georgia in_2015 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2018' AND State = 'Georgia' AND City = 'Tampa')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2015' AND State = 'Georgia' AND City = 'Washington')) AND Value < 13.60)",
+      "GTresult": "Characteristic=Temperature, Intensity=21-30, Value=11.99; Characteristic=Wind, Intensity=11-20, Value=8.25; Characteristic=Temperature, Intensity=0-10, Value=16.48; Characteristic=Wind, Intensity=Breeze, Value=18.69; Characteristic=Temperature, Intensity=Storm, Value=20.91; Characteristic=Wind, Intensity=21-30, Value=21.47",
+      "NLquestions": []
+    }
+  ]
+}

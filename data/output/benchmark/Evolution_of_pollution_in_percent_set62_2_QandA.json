@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Evolution_of_pollution_in_percent_set62_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Columbus')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Oxygen-depletion'))",
+      "GTresult": "Value=-72.66",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil in__Columbus ==,==Maryland in_ ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Aberdeen')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Urban Activities') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Inferior Irrigation') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Oxygen-depletion') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Groundwater'))",
+      "GTresult": "Value=93.13; Value=98.49; Value=-23.8; Value=-21.97",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil or Water in__Aberdeen ==,==Maryland in_ ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Champaign') OR (State = 'Georgia' AND City = 'Chicago') OR (State = 'Maryland' AND City = 'Columbus') OR (State = 'Illinois' AND City = 'Washington') OR (State = 'Georgia' AND City = 'Columbia') OR (State = 'Illinois' AND City = 'Baltimore')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Urban Activities'))",
+      "GTresult": "Value=9.18; Value=-99.47; Value=40.57; Value=60.91; Value=76.48; Value=-4.9",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil in__Champaign or Chicago or Columbus or Washington or Columbia or Baltimore ==,==Illinois or Georgia or Maryland in_ ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Champaign') OR (State = 'Maryland' AND City = 'Columbus') OR (State = 'Illinois' AND City = 'Washington') OR (State = 'Georgia' AND City = 'Columbia') OR (State = 'Maryland' AND City = 'Aberdeen') OR (State = 'Illinois' AND City = 'Baltimore')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Urban Activities'))",
+      "GTresult": "sum_Value=275.37, min_Value=-4.9",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil in__Champaign or Columbus or Washington or Columbia or Aberdeen or Baltimore ==,==Illinois or Maryland or Georgia in_ ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Washington') OR (State = 'Georgia' AND City = 'Columbia')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Urban Activities') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Inferior Irrigation') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Groundwater'))",
+      "GTresult": "Value=60.91; Value=-67.43; Value=74.23; Value=76.48; Value=-43.13; Value=-36.96",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil or Water in__Washington or Columbia ==,==Illinois or Georgia in_ ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT min(Value) AS min_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Columbus')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Urban Activities') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Groundwater'))",
+      "GTresult": "min_Value=40.57, sum_Value=97.66",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Columbus ==,==Maryland in_ ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT State, City, sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Champaign') OR (State = 'Georgia' AND City = 'Chicago') OR (State = 'Maryland' AND City = 'Columbus') OR (State = 'Georgia' AND City = 'Columbia') OR (State = 'Illinois' AND City = 'Baltimore')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Inferior Irrigation') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Groundwater')) GROUP BY State, City",
+      "GTresult": "State=Georgia, City=Chicago, sum_Value=-60.459999999999994, min_Value=-93.63; State=Georgia, City=Columbia, sum_Value=-80.09, min_Value=-43.13; State=Illinois, City=Baltimore, sum_Value=-21.53, min_Value=-18.09; State=Illinois, City=Champaign, sum_Value=37.21, min_Value=15.25; State=Maryland, City=Columbus, sum_Value=107.43, min_Value=50.34",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water in__Champaign or Chicago or Columbus or Columbia or Baltimore ==,==Illinois or Georgia or Maryland in_ ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((State = 'Georgia' AND City = 'Columbia')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) GROUP BY Polluted_element",
+      "GTresult": "min_Value=-42.06; min_Value=-43.13",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Columbia ==,==Georgia in_ ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Polluted_element, min(Value) AS min_Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Baltimore')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) GROUP BY Polluted_element",
+      "GTresult": "Polluted_element=Soil, min_Value=-4.9; Polluted_element=Water, min_Value=-18.09",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Baltimore ==,==Illinois in_ ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Polluted_element, State, City, avg(Value) AS avg_Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Columbus') OR (State = 'Illinois' AND City = 'Baltimore')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) GROUP BY Polluted_element, State, City",
+      "GTresult": "Polluted_element=Soil, State=Illinois, City=Baltimore, avg_Value=-4.45; Polluted_element=Soil, State=Maryland, City=Columbus, avg_Value=-16.044999999999998; Polluted_element=Water, State=Illinois, City=Baltimore, avg_Value=-10.765; Polluted_element=Water, State=Maryland, City=Columbus, avg_Value=53.715",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Columbus or Baltimore ==,==Maryland or Illinois in_ ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Aberdeen')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) ORDER BY Value DESC LIMIT 3",
+      "GTresult": "Value=98.49; Value=93.13; Value=-21.97",
+      "NLquestions": [
+        "What are the top/bottom_ evolutions of_((pollution)) of_ of_Soil or Water in__Aberdeen ==,==Maryland in_ ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Champaign')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) ORDER BY Value DESC",
+      "GTresult": "Value=21.96; Value=19.45; Value=15.25; Value=9.18",
+      "NLquestions": [
+        "What are the evolutions /increasing_values of_((pollution)) of_ of_Soil or Water in__Champaign ==,==Illinois in_ ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Illinois' AND City = 'Champaign')) AND Value > 8.01",
+      "GTresult": "Polluted_element=Soil, Type_of_pollution=Urban Activities; Polluted_element=Water, Type_of_pollution=Inferior Irrigation; Polluted_element=Soil, Type_of_pollution=Oxygen-depletion; Polluted_element=Water, Type_of_pollution=Groundwater",
+      "NLquestions": [
+        "What is/are_the_ the evolution of_((pollution)) of_ of_ in__Champaign ==,==Illinois in_ is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Polluted_element, Type_of_pollution, Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Washington')) AND (Polluted_element, Type_of_pollution) IN (SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Illinois' AND City = 'Champaign')) AND Value > 8.01)",
+      "GTresult": "Polluted_element=Soil, Type_of_pollution=Urban Activities, Value=60.91; Polluted_element=Water, Type_of_pollution=Inferior Irrigation, Value=-67.43; Polluted_element=Soil, Type_of_pollution=Oxygen-depletion, Value=70.68; Polluted_element=Water, Type_of_pollution=Groundwater, Value=74.23",
+      "NLquestions": []
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Evolution_of_pollution_in_percent_set251_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'San Francisco')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Solid Waste'))",
+      "GTresult": "Value=-77.96",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil in__San Francisco ==,==Minnesota in_ ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'California' AND City = 'Rochester')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Chemical') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Inorganic Fertilizers') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Industrial') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Urban Activities') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Noise'))",
+      "GTresult": "Value=78.73; Value=79.9; Value=-44.48; Value=-41.34; Value=90.04; Value=87.35; Value=-34.4",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil or Air or Water in__Rochester ==,==California in_ ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'California' AND City = 'Berkeley') OR (State = 'Minnesota' AND City = 'Hastings')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Inorganic Fertilizers'))",
+      "GTresult": "Value=25.09; Value=-85.71; Value=-28.65; Value=-5.01",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air in__Berkeley or Hastings ==,==California or Minnesota in_ ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT max(Value) AS max_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'California' AND City = 'Berkeley') OR (State = 'Minnesota' AND City = 'San Francisco') OR (State = 'Minnesota' AND City = 'Hastings')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Chemical'))",
+      "GTresult": "max_Value=38.42, sum_Value=-131.73",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil in__Berkeley or San Francisco or Hastings ==,==California or Minnesota in_ ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'California' AND City = 'Rochester') OR (State = 'Minnesota' AND City = 'Hastings')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Oxygen-depletion') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Industrial') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Light') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Noise'))",
+      "GTresult": "Value=-58.29; Value=-44.48; Value=88.2; Value=90.04; Value=-39.06; Value=-33.1; Value=-27.22; Value=-20.43; Value=-17.62; Value=-13.6",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water or Air in__Rochester or Hastings ==,==California or Minnesota in_ ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT sum(Value) AS sum_Value, max(Value) AS max_Value FROM DBdata WHERE ((State = 'California' AND City = 'Rochester')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Inorganic Fertilizers') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Industrial') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Light') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Thermal') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Noise'))",
+      "GTresult": "sum_Value=139.69000000000003, max_Value=90.04",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Water or Soil in__Rochester ==,==California in_ ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT State, City, avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'California' AND City = 'Berkeley') OR (State = 'Minnesota' AND City = 'San Francisco') OR (State = 'Minnesota' AND City = 'Hastings')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Oxygen-depletion') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Chemical') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Urban Activities')) GROUP BY State, City",
+      "GTresult": "State=California, City=Berkeley, avg_Value=26.014, sum_Value=130.07; State=Minnesota, City=Hastings, avg_Value=-22.062, sum_Value=-110.31; State=Minnesota, City=San Francisco, avg_Value=-22.607999999999997, sum_Value=-113.03999999999999",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Soil or Air in__Berkeley or San Francisco or Hastings ==,==California or Minnesota in_ ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'San Francisco')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Soil')) GROUP BY Polluted_element",
+      "GTresult": "min_Value=-81.99; min_Value=-78.8",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Soil in__San Francisco ==,==Minnesota in_ ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Polluted_element, avg(Value) AS avg_Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Hastings')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Soil')) GROUP BY Polluted_element",
+      "GTresult": "Polluted_element=Soil, avg_Value=-21.7775; Polluted_element=Water, avg_Value=-23.5875",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Soil in__Hastings ==,==Minnesota in_ ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Polluted_element, State, City, min(Value) AS min_Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'San Francisco') OR (State = 'Minnesota' AND City = 'Hastings')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Air')) GROUP BY Polluted_element, State, City",
+      "GTresult": "Polluted_element=Air, State=Minnesota, City=Hastings, min_Value=-28.65; Polluted_element=Air, State=Minnesota, City=San Francisco, min_Value=-79.45; Polluted_element=Soil, State=Minnesota, City=Hastings, min_Value=-31.07; Polluted_element=Soil, State=Minnesota, City=San Francisco, min_Value=-81.99",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Air in__San Francisco or Hastings ==,==Minnesota in_ ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Hastings')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Soil')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=-33.1; Value=-31.07; Value=-27.22; Value=-25.91; Value=-20.43",
+      "NLquestions": [
+        "What are the top/bottom_ evolutions of_((pollution)) of_ of_Water or Soil in__Hastings ==,==Minnesota in_ ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'California' AND City = 'Rochester')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Soil')) ORDER BY Value DESC",
+      "GTresult": "Value=88.2; Value=87.35; Value=84.05; Value=78.73; Value=-39.06; Value=-39.57; Value=-44.48; Value=-58.29",
+      "NLquestions": [
+        "What are the evolutions /increasing_values of_((pollution)) of_ of_Water or Soil in__Rochester ==,==California in_ ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Minnesota' AND City = 'San Francisco')) AND Value > -8.05",
+      "GTresult": "Polluted_element=Water, Type_of_pollution=Oxygen-depletion; Polluted_element=Air, Type_of_pollution=Urban Activities; Polluted_element=Air, Type_of_pollution=Noise; Polluted_element=Air, Type_of_pollution=Inorganic Fertilizers",
+      "NLquestions": [
+        "What is/are_the_ the evolution of_((pollution)) of_ of_ in__San Francisco ==,==Minnesota in_ is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Polluted_element, Type_of_pollution, Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Hastings')) AND (Polluted_element, Type_of_pollution) IN (SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Minnesota' AND City = 'San Francisco')) AND Value > -8.05)",
+      "GTresult": "Polluted_element=Water, Type_of_pollution=Oxygen-depletion, Value=-33.1; Polluted_element=Air, Type_of_pollution=Inorganic Fertilizers, Value=-28.65; Polluted_element=Air, Type_of_pollution=Urban Activities, Value=-22.09; Polluted_element=Air, Type_of_pollution=Noise, Value=-17.62; Polluted_element=Water, Type_of_pollution=Oxygen-depletion, Value=-13.6; Polluted_element=Air, Type_of_pollution=Inorganic Fertilizers, Value=-5.01",
+      "NLquestions": []
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Number_of_constructions_set42_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Hotel')) AND ((Quarter = 'Q3' AND Month = 'January' AND State = 'Georgia' AND City = 'Columbus'))",
+      "GTresult": "Value=89.44",
+      "NLquestions": [
+        "What is the number of__ in__Columbus ==,==Georgia in__January ==,==Q3 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Hospital')) AND ((Quarter = 'Q3' AND Month = 'August' AND State = 'Georgia' AND City = 'Washington') OR (Quarter = 'Q1' AND Month = 'July' AND State = 'Georgia' AND City = 'Columbus') OR (Quarter = 'Q2' AND Month = 'March' AND State = 'Georgia' AND City = 'Washington') OR (Quarter = 'Q1' AND Month = 'June' AND State = 'Georgia' AND City = 'Washington') OR (Quarter = 'Q2' AND Month = 'May' AND State = 'Georgia' AND City = 'Columbus') OR (Quarter = 'Q1' AND Month = 'August' AND State = 'Georgia' AND City = 'Columbus'))",
+      "GTresult": "Value=44.85; Value=44.26; Value=43.63; Value=50.86; Value=52.08; Value=60.38",
+      "NLquestions": [
+        "What is the number of__ in__Washington or Columbus ==,==Georgia in__August or July or March or June or May ==,==Q3 or Q1 or Q2 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Library') OR (Type_of_building = 'Residential' AND Usage = 'Administration') OR (Type_of_building = 'Service' AND Usage = 'Hospital') OR (Type_of_building = 'Residential' AND Usage = 'House') OR (Type_of_building = 'Service' AND Usage = 'Hotel')) AND ((Quarter = 'Q1' AND Month = 'July' AND State = 'Georgia' AND City = 'Columbus'))",
+      "GTresult": "Value=5.33; Value=25.08; Value=44.26; Value=66.01; Value=82.95",
+      "NLquestions": [
+        "What is the number of__ in__Columbus ==,==Georgia in__July ==,==Q1 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, max(Value) AS max_Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Hospital') OR (Type_of_building = 'Residential' AND Usage = 'House')) AND ((Quarter = 'Q1' AND Month = 'July' AND State = 'Georgia' AND City = 'Columbus'))",
+      "GTresult": "sum_Value=110.27000000000001, max_Value=66.01",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__Columbus ==,==Georgia in__July ==,==Q1 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Library') OR (Type_of_building = 'Residential' AND Usage = 'Administration') OR (Type_of_building = 'Residential' AND Usage = 'House') OR (Type_of_building = 'Service' AND Usage = 'Hotel')) AND ((Quarter = 'Q3' AND Month = 'August' AND State = 'Georgia' AND City = 'Washington') OR (Quarter = 'Q3' AND Month = 'January' AND State = 'Georgia' AND City = 'Columbus'))",
+      "GTresult": "Value=2.81; Value=8.59; Value=22.77; Value=32.94; Value=66.67; Value=70.03; Value=77.39; Value=89.44",
+      "NLquestions": [
+        "What is the number of__ in__Washington or Columbus ==,==Georgia in__August or January ==,==Q3 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Administration')) AND ((Quarter = 'Q3' AND Month = 'August' AND State = 'Georgia' AND City = 'Washington') OR (Quarter = 'Q3' AND Month = 'January' AND State = 'Georgia' AND City = 'Columbus') OR (Quarter = 'Q1' AND Month = 'June' AND State = 'Georgia' AND City = 'Washington'))",
+      "GTresult": "sum_Value=90.78999999999999, avg_Value=30.263333333333332",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__Washington or Columbus ==,==Georgia in__August or January or June ==,==Q3 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Type_of_building, Usage, min(Value) AS min_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Library') OR (Type_of_building = 'Residential' AND Usage = 'Administration') OR (Type_of_building = 'Service' AND Usage = 'Hospital') OR (Type_of_building = 'Residential' AND Usage = 'House') OR (Type_of_building = 'Service' AND Usage = 'Hotel')) AND ((Quarter = 'Q2' AND Month = 'March' AND State = 'Georgia' AND City = 'Washington') OR (Quarter = 'Q1' AND Month = 'June' AND State = 'Georgia' AND City = 'Washington') OR (Quarter = 'Q3' AND Month = 'April' AND State = 'Georgia' AND City = 'Washington') OR (Quarter = 'Q2' AND Month = 'July' AND State = 'Georgia' AND City = 'Washington')) GROUP BY Type_of_building, Usage",
+      "GTresult": "Type_of_building=Residential, Usage=Administration, min_Value=27.41, sum_Value=145.15; Type_of_building=Residential, Usage=House, min_Value=69.77, sum_Value=302.38; Type_of_building=Service, Usage=Hospital, min_Value=43.63, sum_Value=216.81; Type_of_building=Service, Usage=Hotel, min_Value=88.29, sum_Value=375.14; Type_of_building=Service, Usage=Library, min_Value=6.9, sum_Value=47.83",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__Washington ==,==Georgia in__March or June or April or July ==,==Q2 or Q1 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Administration')) AND ((Quarter = 'Q3') OR (Quarter = 'Q1')) GROUP BY Quarter",
+      "GTresult": "min_Value=25.08; min_Value=22.77",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q3 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Quarter, max(Value) AS max_Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Hotel')) AND ((Quarter = 'Q1') OR (Quarter = 'Q2')) GROUP BY Quarter",
+      "GTresult": "Quarter=Q1, max_Value=97.0; Quarter=Q2, max_Value=99.61",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q1 or Q2 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Quarter, Type_of_building, Usage, min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Library') OR (Type_of_building = 'Service' AND Usage = 'Hospital') OR (Type_of_building = 'Residential' AND Usage = 'House')) AND ((Quarter = 'Q3') OR (Quarter = 'Q2')) GROUP BY Quarter, Type_of_building, Usage",
+      "GTresult": "Quarter=Q2, Type_of_building=Residential, Usage=House, min_Value=69.77; Quarter=Q2, Type_of_building=Service, Usage=Hospital, min_Value=43.63; Quarter=Q2, Type_of_building=Service, Usage=Library, min_Value=6.9; Quarter=Q3, Type_of_building=Residential, Usage=House, min_Value=66.67; Quarter=Q3, Type_of_building=Service, Usage=Hospital, min_Value=44.85; Quarter=Q3, Type_of_building=Service, Usage=Library, min_Value=2.81",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q3 or Q2 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Hospital')) AND ((Quarter = 'Q3') OR (Quarter = 'Q2')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=63.07; Value=59.25; Value=52.08; Value=48.5; Value=44.85",
+      "NLquestions": [
+        "What are the top/bottom_ numbers of__ in__ ==,== in__ ==,==Q3 or Q2 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'House')) AND ((Quarter = 'Q3') OR (Quarter = 'Q1')) ORDER BY Value DESC",
+      "GTresult": "Value=79.18; Value=77.8; Value=74.18; Value=70.03; Value=66.67; Value=66.01",
+      "NLquestions": [
+        "What are the numbers /ascending_values of__ in__ ==,== in__ ==,==Q3 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Quarter, Month, State, City FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Hotel')) AND Value > 52.05",
+      "GTresult": "Quarter=Q3, Month=August, State=Georgia, City=Washington; Quarter=Q1, Month=July, State=Georgia, City=Columbus; Quarter=Q2, Month=March, State=Georgia, City=Washington; Quarter=Q3, Month=January, State=Georgia, City=Columbus; Quarter=Q1, Month=June, State=Georgia, City=Washington; Quarter=Q2, Month=May, State=Georgia, City=Columbus; Quarter=Q3, Month=April, State=Georgia, City=Washington; Quarter=Q1, Month=August, State=Georgia, City=Columbus; Quarter=Q2, Month=July, State=Georgia, City=Washington",
+      "NLquestions": [
+        "What is/are_the_ the number of__ in__ ==,== in__ ==,== is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Quarter, Month, State, City, Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Hospital')) AND (Quarter, Month, State, City) IN (SELECT Quarter, Month, State, City FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Hotel')) AND Value > 52.05)",
+      "GTresult": "Quarter=Q3, Month=August, State=Georgia, City=Washington, Value=44.85; Quarter=Q1, Month=July, State=Georgia, City=Columbus, Value=44.26; Quarter=Q2, Month=March, State=Georgia, City=Washington, Value=43.63; Quarter=Q3, Month=January, State=Georgia, City=Columbus, Value=48.5; Quarter=Q1, Month=June, State=Georgia, City=Washington, Value=50.86; Quarter=Q2, Month=May, State=Georgia, City=Columbus, Value=52.08; Quarter=Q3, Month=April, State=Georgia, City=Washington, Value=59.25; Quarter=Q1, Month=August, State=Georgia, City=Columbus, Value=60.38; Quarter=Q2, Month=July, State=Georgia, City=Washington, Value=63.07",
+      "NLquestions": []
+    }
+  ]
+}

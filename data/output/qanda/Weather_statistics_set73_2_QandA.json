@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set73_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Florida' AND City = 'Reno')) AND ((Characteristic = 'Humidity' AND Intensity = '31-40'))",
+      "GTresult": "Value=11.4",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Reno ==,==Florida in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2018' AND State = 'Nevada' AND City = 'Tampa')) AND ((Characteristic = 'Temperature' AND Intensity = '0-10') OR (Characteristic = 'Wind' AND Intensity = '11-20') OR (Characteristic = 'Temperature' AND Intensity = 'Low') OR (Characteristic = 'Humidity' AND Intensity = 'Medium') OR (Characteristic = 'Temperature' AND Intensity = 'Calm') OR (Characteristic = 'Wind' AND Intensity = 'Breeze'))",
+      "GTresult": "Value=8.14; Value=11.06; Value=12.31; Value=13.55; Value=12.79; Value=14.73",
+      "NLquestions": [
+        "How many days with__ Temperature or Wind or Humidity were there in__Tampa ==,==Nevada in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Florida' AND City = 'Fort Lauderdale') OR (Year = '2018' AND State = 'Nevada' AND City = 'Tampa') OR (Year = '2020' AND State = 'Florida' AND City = 'Las Vegas') OR (Year = '2020' AND State = 'Florida' AND City = 'Reno')) AND ((Characteristic = 'Humidity' AND Intensity = 'Storm'))",
+      "GTresult": "Value=6.36; Value=16.24; Value=25.1; Value=2.81",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Fort Lauderdale or Tampa or Las Vegas or Reno ==,==Florida or Nevada in_2020 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2020' AND State = 'Florida' AND City = 'Las Vegas') OR (Year = '2020' AND State = 'Florida' AND City = 'Reno')) AND ((Characteristic = 'Humidity' AND Intensity = 'Storm'))",
+      "GTresult": "sum_Value=27.91, avg_Value=13.955",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity in__Las Vegas or Reno ==,==Florida in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2018' AND State = 'Nevada' AND City = 'Tampa') OR (Year = '2020' AND State = 'Florida' AND City = 'Las Vegas')) AND ((Characteristic = 'Humidity' AND Intensity = '31-40') OR (Characteristic = 'Wind' AND Intensity = '11-20') OR (Characteristic = 'Humidity' AND Intensity = 'Medium') OR (Characteristic = 'Temperature' AND Intensity = 'Calm'))",
+      "GTresult": "Value=8.9; Value=11.06; Value=13.55; Value=12.79; Value=13.13; Value=16.21; Value=22.71; Value=23.07",
+      "NLquestions": [
+        "How many days with__ Humidity or Wind or Temperature were there in__Tampa or Las Vegas ==,==Nevada or Florida in_2018 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT min(Value) AS min_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2018' AND State = 'Nevada' AND City = 'Tampa')) AND ((Characteristic = 'Temperature' AND Intensity = '0-10') OR (Characteristic = 'Humidity' AND Intensity = '31-40') OR (Characteristic = 'Wind' AND Intensity = '11-20') OR (Characteristic = 'Temperature' AND Intensity = 'Low') OR (Characteristic = 'Humidity' AND Intensity = 'Medium'))",
+      "GTresult": "min_Value=8.14, sum_Value=53.96",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity or Wind in__Tampa ==,==Nevada in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2020' AND State = 'Florida' AND City = 'Fort Lauderdale') OR (Year = '2018' AND State = 'Nevada' AND City = 'Tampa') OR (Year = '2020' AND State = 'Florida' AND City = 'Las Vegas') OR (Year = '2018' AND State = 'Nevada' AND City = 'Boulder City') OR (Year = '2020' AND State = 'Florida' AND City = 'Reno')) AND ((Characteristic = 'Humidity' AND Intensity = 'Medium') OR (Characteristic = 'Wind' AND Intensity = 'High') OR (Characteristic = 'Temperature' AND Intensity = 'Calm') OR (Characteristic = 'Humidity' AND Intensity = 'Storm')) GROUP BY Year, State, City",
+      "GTresult": "Year=2018, State=Nevada, City=Boulder City, avg_Value=17.0725, sum_Value=68.29; Year=2018, State=Nevada, City=Tampa, avg_Value=14.385, sum_Value=57.54; Year=2020, State=Florida, City=Fort Lauderdale, avg_Value=5.73, sum_Value=22.92; Year=2020, State=Florida, City=Las Vegas, avg_Value=23.55, sum_Value=94.2; Year=2020, State=Florida, City=Reno, avg_Value=12.4625, sum_Value=49.85",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind or Temperature in__Fort Lauderdale or Tampa or Las Vegas or Boulder City or Reno ==,==Florida or Nevada in_2020 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2018' AND State = 'Nevada' AND City = 'Tampa')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) GROUP BY Characteristic",
+      "GTresult": "min_Value=8.9; min_Value=8.14",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity in__Tampa ==,==Nevada in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2020' AND State = 'Florida' AND City = 'Fort Lauderdale')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Temperature, min_Value=0.65; Characteristic=Wind, min_Value=2.82",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Fort Lauderdale ==,==Florida in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2020' AND State = 'Florida' AND City = 'Fort Lauderdale') OR (Year = '2020' AND State = 'Florida' AND City = 'Reno')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Humidity, Year=2020, State=Florida, City=Fort Lauderdale, sum_Value=12.040000000000001; Characteristic=Humidity, Year=2020, State=Florida, City=Reno, sum_Value=19.85; Characteristic=Wind, Year=2020, State=Florida, City=Fort Lauderdale, sum_Value=17.4; Characteristic=Wind, Year=2020, State=Florida, City=Reno, sum_Value=57.07",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Fort Lauderdale or Reno ==,==Florida in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Florida' AND City = 'Fort Lauderdale')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=0.65; Value=1.35; Value=2.65; Value=4.33; Value=6.36",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Temperature or Humidity in__Fort Lauderdale ==,==Florida in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Florida' AND City = 'Reno')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) ORDER BY Value DESC",
+      "GTresult": "Value=22.93; Value=20.93; Value=13.21; Value=11.4; Value=5.64; Value=2.81",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Humidity or Wind in__Reno ==,==Florida in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2020' AND State = 'Florida' AND City = 'Las Vegas')) AND Value < 14.20",
+      "GTresult": "Characteristic=Humidity, Intensity=31-40",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Las Vegas ==,==Florida in_2020 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2020' AND State = 'Florida' AND City = 'Reno')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2020' AND State = 'Florida' AND City = 'Las Vegas')) AND Value < 14.20)",
+      "GTresult": "Characteristic=Humidity, Intensity=31-40, Value=11.4",
+      "NLquestions": []
+    }
+  ]
+}

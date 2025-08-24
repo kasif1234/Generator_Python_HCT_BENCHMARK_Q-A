@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Evolution_of_pollution_in_percent_set6_1_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Michigan' AND City = 'Chicago')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Urban Activities'))",
+      "GTresult": "Value=42.82",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil in__Chicago ==,==Michigan in_ ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Port Huron')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Chemical') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Noise') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Thermal') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Light') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Groundwater'))",
+      "GTresult": "Value=56.75; Value=-59.85; Value=76.18; Value=-49.89; Value=87.95",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil or Air or Water in__Port Huron ==,==Illinois in_ ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Champaign') OR (State = 'Michigan' AND City = 'Detroit')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Noise'))",
+      "GTresult": "Value=16.31; Value=-23.14",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air in__Champaign or Detroit ==,==Illinois or Michigan in_ ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT max(Value) AS max_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Champaign') OR (State = 'Michigan' AND City = 'Chicago') OR (State = 'Illinois' AND City = 'Port Huron') OR (State = 'Michigan' AND City = 'Detroit')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Light'))",
+      "GTresult": "max_Value=-15.31, sum_Value=-242.82",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil in__Champaign or Chicago or Port Huron or Detroit ==,==Illinois or Michigan in_ ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Port Huron') OR (State = 'Michigan' AND City = 'Detroit')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Groundwater') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Urban Activities') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Noise') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Groundwater'))",
+      "GTresult": "Value=56.23; Value=70.23; Value=-59.85; Value=87.95; Value=-41.31; Value=-26.01; Value=-23.14; Value=-14.39",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water or Soil or Air in__Port Huron or Detroit ==,==Illinois or Michigan in_ ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Michigan' AND City = 'Chicago')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Industrial') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Light') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Groundwater'))",
+      "GTresult": "avg_Value=-80.83666666666666, sum_Value=-242.51",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Soil in__Chicago ==,==Michigan in_ ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT State, City, min(Value) AS min_Value, max(Value) AS max_Value FROM DBdata WHERE ((State = 'Michigan' AND City = 'Chicago') OR (State = 'Michigan' AND City = 'Detroit')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Chemical') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Solid Waste') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Urban Activities') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Thermal')) GROUP BY State, City",
+      "GTresult": "State=Michigan, City=Chicago, min_Value=-91.9, max_Value=42.82; State=Michigan, City=Detroit, min_Value=-26.01, max_Value=98.09",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Chicago or Detroit ==,==Michigan in_ ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Port Huron')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Air')) GROUP BY Polluted_element",
+      "GTresult": "min_Value=-59.85; min_Value=-49.89",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Air in__Port Huron ==,==Illinois in_ ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Polluted_element, min(Value) AS min_Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Port Huron')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Soil')) GROUP BY Polluted_element",
+      "GTresult": "Polluted_element=Soil, min_Value=-49.89; Polluted_element=Water, min_Value=56.23",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Soil in__Port Huron ==,==Illinois in_ ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Polluted_element, State, City, min(Value) AS min_Value FROM DBdata WHERE ((State = 'Michigan' AND City = 'Chicago') OR (State = 'Illinois' AND City = 'Port Huron') OR (State = 'Michigan' AND City = 'Detroit')) AND ((Polluted_element = 'Water') OR (Polluted_element = 'Air')) GROUP BY Polluted_element, State, City",
+      "GTresult": "Polluted_element=Air, State=Illinois, City=Port Huron, min_Value=-59.85; Polluted_element=Air, State=Michigan, City=Chicago, min_Value=-88.22; Polluted_element=Air, State=Michigan, City=Detroit, min_Value=-23.14; Polluted_element=Water, State=Illinois, City=Port Huron, min_Value=56.23; Polluted_element=Water, State=Michigan, City=Chicago, min_Value=-91.05; Polluted_element=Water, State=Michigan, City=Detroit, min_Value=-41.31",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Air in__Chicago or Port Huron or Detroit ==,==Michigan or Illinois in_ ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Champaign')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Air')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=-98.46; Value=-91.23; Value=8.7; Value=8.99; Value=12.22",
+      "NLquestions": [
+        "What are the top/bottom_ evolutions of_((pollution)) of_ of_Soil or Air in__Champaign ==,==Illinois in_ ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Champaign')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Air')) ORDER BY Value DESC",
+      "GTresult": "Value=16.31; Value=12.22; Value=8.99; Value=8.7; Value=-91.23; Value=-98.46",
+      "NLquestions": [
+        "What are the evolutions /increasing_values of_((pollution)) of_ of_Soil or Air in__Champaign ==,==Illinois in_ ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Illinois' AND City = 'Port Huron')) AND Value < -2.99",
+      "GTresult": "Polluted_element=Air, Type_of_pollution=Noise; Polluted_element=Soil, Type_of_pollution=Light",
+      "NLquestions": [
+        "What is/are_the_ the evolution of_((pollution)) of_ of_ in__Port Huron ==,==Illinois in_ is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Polluted_element, Type_of_pollution, Value FROM DBdata WHERE ((State = 'Illinois' AND City = 'Champaign')) AND (Polluted_element, Type_of_pollution) IN (SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Illinois' AND City = 'Port Huron')) AND Value < -2.99)",
+      "GTresult": "Polluted_element=Air, Type_of_pollution=Noise, Value=16.31; Polluted_element=Soil, Type_of_pollution=Light, Value=-98.46",
+      "NLquestions": []
+    }
+  ]
+}

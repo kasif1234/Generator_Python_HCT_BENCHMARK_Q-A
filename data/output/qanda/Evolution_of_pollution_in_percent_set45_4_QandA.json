@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Evolution_of_pollution_in_percent_set45_4_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Columbia')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Light'))",
+      "GTresult": "Value=48.06",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water in__Columbia ==,==Oregon in_ ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Salem')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Noise') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Surface water'))",
+      "GTresult": "Value=-24.12; Value=-12.41",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air or Water in__Salem ==,==Maryland in_ ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Baltimore') OR (State = 'Oregon' AND City = 'Columbia') OR (State = 'Maryland' AND City = 'Aberdeen') OR (State = 'Oregon' AND City = 'Redmond') OR (State = 'Maryland' AND City = 'Salem')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Light'))",
+      "GTresult": "Value=38.9; Value=48.06; Value=66.68; Value=-33.22; Value=-9.28",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water in__Baltimore or Columbia or Aberdeen or Redmond or Salem ==,==Maryland or Oregon in_ ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, max(Value) AS max_Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Baltimore') OR (State = 'Oregon' AND City = 'Columbia') OR (State = 'Oregon' AND City = 'Redmond') OR (State = 'Maryland' AND City = 'Salem')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Light'))",
+      "GTresult": "sum_Value=44.46, max_Value=48.06",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water in__Baltimore or Columbia or Redmond or Salem ==,==Maryland or Oregon in_ ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Baltimore') OR (State = 'Oregon' AND City = 'Columbia') OR (State = 'Oregon' AND City = 'Redmond') OR (State = 'Maryland' AND City = 'Salem')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Noise') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Chemical') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Groundwater'))",
+      "GTresult": "Value=30.5; Value=31.24; Value=35.29; Value=-87.55; Value=43.9; Value=-81.45; Value=76.91; Value=77.23; Value=-37.16; Value=-24.12; Value=-21.11; Value=-10.43",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air or Water in__Baltimore or Columbia or Redmond or Salem ==,==Maryland or Oregon in_ ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Redmond')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Oxygen-depletion') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Light'))",
+      "GTresult": "sum_Value=51.230000000000004, avg_Value=25.615000000000002",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Water in__Redmond ==,==Oregon in_ ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT State, City, avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Baltimore') OR (State = 'Oregon' AND City = 'Columbia') OR (State = 'Maryland' AND City = 'Aberdeen') OR (State = 'Maryland' AND City = 'Salem')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Thermal') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Chemical') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Oxygen-depletion') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Groundwater') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Light')) GROUP BY State, City",
+      "GTresult": "State=Maryland, City=Aberdeen, avg_Value=35.178, sum_Value=175.89; State=Maryland, City=Baltimore, avg_Value=32.086, sum_Value=160.43; State=Maryland, City=Salem, avg_Value=6.694, sum_Value=33.47; State=Oregon, City=Columbia, avg_Value=-6.6739999999999995, sum_Value=-33.37",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Air in__Baltimore or Columbia or Aberdeen or Salem ==,==Maryland or Oregon in_ ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Salem')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Water')) GROUP BY Polluted_element",
+      "GTresult": "min_Value=-32.8; min_Value=-21.11",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Water in__Salem ==,==Maryland in_ ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Polluted_element, avg(Value) AS avg_Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Baltimore')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Water')) GROUP BY Polluted_element",
+      "GTresult": "Polluted_element=Air, avg_Value=26.625; Polluted_element=Water, avg_Value=-0.6875000000000018",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Water in__Baltimore ==,==Maryland in_ ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Polluted_element, State, City, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Baltimore') OR (State = 'Maryland' AND City = 'Salem')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Water')) GROUP BY Polluted_element, State, City",
+      "GTresult": "Polluted_element=Air, State=Maryland, City=Baltimore, sum_Value=106.5; Polluted_element=Air, State=Maryland, City=Salem, sum_Value=-89.33; Polluted_element=Water, State=Maryland, City=Baltimore, sum_Value=-2.750000000000007; Polluted_element=Water, State=Maryland, City=Salem, sum_Value=53.47",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Water in__Baltimore or Salem ==,==Maryland in_ ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Redmond')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Water')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=84.45; Value=77.23; Value=76.91; Value=-33.22; Value=-37.16",
+      "NLquestions": [
+        "What are the top/bottom_ evolutions of_((pollution)) of_ of_Air or Water in__Redmond ==,==Oregon in_ ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Salem')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Water')) ORDER BY Value DESC",
+      "GTresult": "Value=96.27; Value=-9.28; Value=-10.43; Value=-12.41; Value=-21.11; Value=-21.98; Value=-24.12; Value=-32.8",
+      "NLquestions": [
+        "What are the evolutions /increasing_values of_((pollution)) of_ of_Air or Water in__Salem ==,==Maryland in_ ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Maryland' AND City = 'Aberdeen')) AND Value > 3.17",
+      "GTresult": "Polluted_element=Air, Type_of_pollution=Light; Polluted_element=Water, Type_of_pollution=Thermal; Polluted_element=Water, Type_of_pollution=Chemical; Polluted_element=Air, Type_of_pollution=Oxygen-depletion; Polluted_element=Water, Type_of_pollution=Surface water; Polluted_element=Water, Type_of_pollution=Light",
+      "NLquestions": [
+        "What is/are_the_ the evolution of_((pollution)) of_ of_ in__Aberdeen ==,==Maryland in_ is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Polluted_element, Type_of_pollution, Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Redmond')) AND (Polluted_element, Type_of_pollution) IN (SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Maryland' AND City = 'Aberdeen')) AND Value > 3.17)",
+      "GTresult": "Polluted_element=Air, Type_of_pollution=Light, Value=-61.11; Polluted_element=Water, Type_of_pollution=Thermal, Value=-60.86; Polluted_element=Water, Type_of_pollution=Chemical, Value=77.23; Polluted_element=Air, Type_of_pollution=Oxygen-depletion, Value=84.45; Polluted_element=Water, Type_of_pollution=Surface water, Value=-39.15; Polluted_element=Water, Type_of_pollution=Light, Value=-33.22",
+      "NLquestions": []
+    }
+  ]
+}

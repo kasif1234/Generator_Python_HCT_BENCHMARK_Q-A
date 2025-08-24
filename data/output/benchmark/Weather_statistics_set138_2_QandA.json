@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set138_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2015' AND State = 'Illinois' AND City = 'Springfield')) AND ((Characteristic = 'Temperature' AND Intensity = 'Low'))",
+      "GTresult": "Value=9.74",
+      "NLquestions": [
+        "How many days with__ Temperature were there in__Springfield ==,==Illinois in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'California' AND City = 'Los-Angeles')) AND ((Characteristic = 'Humidity' AND Intensity = 'Low') OR (Characteristic = 'Temperature' AND Intensity = 'High') OR (Characteristic = 'Temperature' AND Intensity = '31-40') OR (Characteristic = 'Temperature' AND Intensity = 'Low'))",
+      "GTresult": "Value=23.38; Value=25.88; Value=27.86; Value=26.58",
+      "NLquestions": [
+        "How many days with__ Humidity or Temperature were there in__Los-Angeles ==,==California in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Nevada' AND City = 'Boulder City') OR (Year = '2016' AND State = 'California' AND City = 'Las Vegas') OR (Year = '2015' AND State = 'Illinois' AND City = 'Reno') OR (Year = '2021' AND State = 'Nevada' AND City = 'Berkeley') OR (Year = '2016' AND State = 'California' AND City = 'Los-Angeles') OR (Year = '2015' AND State = 'Illinois' AND City = 'Springfield') OR (Year = '2021' AND State = 'Nevada' AND City = 'Chicago')) AND ((Characteristic = 'Temperature' AND Intensity = 'Low'))",
+      "GTresult": "Value=4.71; Value=11.76; Value=10.71; Value=23.56; Value=26.58; Value=9.74; Value=22.39",
+      "NLquestions": [
+        "How many days with__ Temperature were there in__Boulder City or Las Vegas or Reno or Berkeley or Los-Angeles or Springfield or Chicago ==,==Nevada or California or Illinois in_2021 or 2016 or 2015 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT min(Value) AS min_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2016' AND State = 'California' AND City = 'Las Vegas') OR (Year = '2021' AND State = 'Nevada' AND City = 'Berkeley') OR (Year = '2021' AND State = 'Nevada' AND City = 'Chicago')) AND ((Characteristic = 'Temperature' AND Intensity = 'Low'))",
+      "GTresult": "min_Value=11.76, sum_Value=57.71",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature in__Las Vegas or Berkeley or Chicago ==,==California or Nevada in_2016 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Nevada' AND City = 'Boulder City') OR (Year = '2016' AND State = 'California' AND City = 'Las Vegas') OR (Year = '2015' AND State = 'Illinois' AND City = 'Reno') OR (Year = '2016' AND State = 'California' AND City = 'Los-Angeles')) AND ((Characteristic = 'Temperature' AND Intensity = 'High') OR (Characteristic = 'Humidity' AND Intensity = '11-20') OR (Characteristic = 'Temperature' AND Intensity = 'Low'))",
+      "GTresult": "Value=1.93; Value=2.72; Value=4.71; Value=7.74; Value=8.24; Value=11.76; Value=13.1; Value=14.37; Value=10.71; Value=25.88; Value=26.51; Value=26.58",
+      "NLquestions": [
+        "How many days with__ Temperature or Humidity were there in__Boulder City or Las Vegas or Reno or Los-Angeles ==,==Nevada or California or Illinois in_2021 or 2016 or 2015 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT max(Value) AS max_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2016' AND State = 'California' AND City = 'Las Vegas')) AND ((Characteristic = 'Temperature' AND Intensity = 'High') OR (Characteristic = 'Humidity' AND Intensity = '11-20') OR (Characteristic = 'Humidity' AND Intensity = '21-30') OR (Characteristic = 'Temperature' AND Intensity = 'Low'))",
+      "GTresult": "max_Value=11.76, sum_Value=38.59",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity in__Las Vegas ==,==California in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, max(Value) AS max_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Nevada' AND City = 'Boulder City') OR (Year = '2016' AND State = 'California' AND City = 'Las Vegas') OR (Year = '2015' AND State = 'Illinois' AND City = 'Reno') OR (Year = '2015' AND State = 'Illinois' AND City = 'Springfield') OR (Year = '2021' AND State = 'Nevada' AND City = 'Chicago')) AND ((Characteristic = 'Temperature' AND Intensity = 'High') OR (Characteristic = 'Humidity' AND Intensity = '11-20') OR (Characteristic = 'Humidity' AND Intensity = '21-30')) GROUP BY Year, State, City",
+      "GTresult": "Year=2015, State=Illinois, City=Reno, max_Value=14.37, avg_Value=11.586666666666666; Year=2015, State=Illinois, City=Springfield, max_Value=8.45, avg_Value=7.390000000000001; Year=2016, State=California, City=Las Vegas, max_Value=10.85, avg_Value=8.943333333333333; Year=2021, State=Nevada, City=Boulder City, max_Value=4.06, avg_Value=2.903333333333333; Year=2021, State=Nevada, City=Chicago, max_Value=20.67, avg_Value=18.09",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity in__Boulder City or Las Vegas or Reno or Springfield or Chicago ==,==Nevada or California or Illinois in_2021 or 2016 or 2015 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Illinois' AND City = 'Reno')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) GROUP BY Characteristic",
+      "GTresult": "min_Value=7.29; min_Value=10.71",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Temperature in__Reno ==,==Illinois in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2016' AND State = 'California' AND City = 'Los-Angeles')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Humidity, min_Value=23.38; Characteristic=Temperature, min_Value=25.88",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Temperature in__Los-Angeles ==,==California in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Nevada' AND City = 'Boulder City') OR (Year = '2016' AND State = 'California' AND City = 'Las Vegas') OR (Year = '2021' AND State = 'Nevada' AND City = 'Berkeley')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Humidity, Year=2016, State=California, City=Las Vegas, avg_Value=8.366666666666667; Characteristic=Humidity, Year=2021, State=Nevada, City=Berkeley, avg_Value=18.953333333333333; Characteristic=Humidity, Year=2021, State=Nevada, City=Boulder City, avg_Value=2.3233333333333333; Characteristic=Temperature, Year=2016, State=California, City=Las Vegas, avg_Value=9.523333333333333; Characteristic=Temperature, Year=2021, State=Nevada, City=Berkeley, avg_Value=21.49333333333333; Characteristic=Temperature, Year=2021, State=Nevada, City=Boulder City, avg_Value=3.3633333333333333",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Temperature in__Boulder City or Las Vegas or Berkeley ==,==Nevada or California in_2021 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Nevada' AND City = 'Berkeley')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=23.56; Value=21.59; Value=21.02; Value=19.33; Value=18.79",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Humidity or Temperature in__Berkeley ==,==Nevada in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'California' AND City = 'Las Vegas')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) ORDER BY Value DESC",
+      "GTresult": "Value=11.76; Value=10.85; Value=9.07; Value=8.24; Value=7.74; Value=6.01",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Humidity or Temperature in__Las Vegas ==,==California in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2016' AND State = 'California' AND City = 'Los-Angeles')) AND Value > 13.64",
+      "GTresult": "Characteristic=Humidity, Intensity=Low; Characteristic=Temperature, Intensity=High; Characteristic=Humidity, Intensity=11-20; Characteristic=Temperature, Intensity=31-40; Characteristic=Humidity, Intensity=21-30; Characteristic=Temperature, Intensity=Low",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Los-Angeles ==,==California in_2016 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2021' AND State = 'Nevada' AND City = 'Berkeley')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2016' AND State = 'California' AND City = 'Los-Angeles')) AND Value > 13.64)",
+      "GTresult": "Characteristic=Humidity, Intensity=Low, Value=18.79; Characteristic=Temperature, Intensity=High, Value=19.33; Characteristic=Humidity, Intensity=11-20, Value=17.05; Characteristic=Temperature, Intensity=31-40, Value=21.59; Characteristic=Humidity, Intensity=21-30, Value=21.02; Characteristic=Temperature, Intensity=Low, Value=23.56",
+      "NLquestions": []
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Number_of_accidents_set91_1_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Gender = 'Female' AND Year = '2016')) AND ((Event = 'Traffic'))",
+      "GTresult": "Value=47.91",
+      "NLquestions": [
+        "What is the number of_((accidents)) of__ involving_ in__ ==of==2016 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Gender = 'Female' AND Year = '2016')) AND ((Event = 'Traffic') OR (Event = 'Drowning'))",
+      "GTresult": "Value=47.91; Value=84.9",
+      "NLquestions": [
+        "What is the number of_((accidents)) of__ involving_ in__ ==of==2016 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Gender = 'Female' AND Year = '2017') OR (Gender = 'Female' AND Year = '2022') OR (Gender = 'Female' AND Year = '2016')) AND ((Event = 'Traffic'))",
+      "GTresult": "Value=36.79; Value=72.39; Value=47.91; Value=27.06",
+      "NLquestions": [
+        "What is the number of_((accidents)) of__ involving_ in__ ==of==2017 or 2022 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, max(Value) AS max_Value FROM DBdata WHERE ((Gender = 'Female' AND Year = '2017') OR (Gender = 'Female' AND Year = '2022') OR (Gender = 'Female' AND Year = '2016')) AND ((Event = 'Traffic'))",
+      "GTresult": "sum_Value=184.15, max_Value=72.39",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((accidents)) of__ involving_ in__ ==of==2017 or 2022 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Gender = 'Female' AND Year = '2017') OR (Gender = 'Female' AND Year = '2022')) AND ((Event = 'Traffic') OR (Event = 'Drowning'))",
+      "GTresult": "Value=36.79; Value=69.69; Value=72.39; Value=42.44; Value=27.06; Value=29.6",
+      "NLquestions": [
+        "What is the number of_((accidents)) of__ involving_ in__ ==of==2017 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, max(Value) AS max_Value FROM DBdata WHERE ((Gender = 'Female' AND Year = '2022')) AND ((Event = 'Traffic') OR (Event = 'Drowning'))",
+      "GTresult": "avg_Value=57.415, max_Value=72.39",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((accidents)) of__ involving_ in__ ==of==2022 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Gender, Year, min(Value) AS min_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Gender = 'Female' AND Year = '2022') OR (Gender = 'Female' AND Year = '2016')) AND ((Event = 'Traffic') OR (Event = 'Drowning')) GROUP BY Gender, Year",
+      "GTresult": "Gender=Female, Year=2016, min_Value=47.91, avg_Value=66.405; Gender=Female, Year=2022, min_Value=42.44, avg_Value=57.415",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((accidents)) of__ involving_ in__ ==of==2022 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Gender = 'Female' AND Year = '2022')) AND ((Event = 'Traffic') OR (Event = 'Drowning')) GROUP BY Event",
+      "GTresult": "min_Value=42.44; min_Value=72.39",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((accidents)) of__ involving_ in__ ==of==2022 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Event, max(Value) AS max_Value FROM DBdata WHERE ((Gender = 'Female' AND Year = '2017')) AND ((Event = 'Traffic') OR (Event = 'Drowning')) GROUP BY Event",
+      "GTresult": "Event=Drowning, max_Value=69.69; Event=Traffic, max_Value=36.79",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((accidents)) of__ involving_ in__ ==of==2017 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Event, Gender, Year, max(Value) AS max_Value FROM DBdata WHERE ((Gender = 'Female' AND Year = '2017') OR (Gender = 'Female' AND Year = '2022') OR (Gender = 'Female' AND Year = '2016')) AND ((Event = 'Traffic') OR (Event = 'Drowning')) GROUP BY Event, Gender, Year",
+      "GTresult": "Event=Drowning, Gender=Female, Year=2016, max_Value=84.9; Event=Drowning, Gender=Female, Year=2017, max_Value=69.69; Event=Drowning, Gender=Female, Year=2022, max_Value=42.44; Event=Traffic, Gender=Female, Year=2016, max_Value=47.91; Event=Traffic, Gender=Female, Year=2017, max_Value=36.79; Event=Traffic, Gender=Female, Year=2022, max_Value=72.39",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((accidents)) of__ involving_ in__ ==of==2017 or 2022 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Gender = 'Female' AND Year = '2022')) AND ((Event = 'Traffic') OR (Event = 'Drowning')) ORDER BY Value ASC LIMIT 2",
+      "GTresult": "Value=42.44; Value=72.39",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers of_((accidents)) of__ involving_ in__ ==of==2022 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Gender = 'Female' AND Year = '2022')) AND ((Event = 'Traffic') OR (Event = 'Drowning')) ORDER BY Value DESC",
+      "GTresult": "Value=72.39; Value=42.44",
+      "NLquestions": [
+        "What are the numbers /increasing_values of_((accidents)) of__ involving_ in__ ==of==2022 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Event FROM DBdata WHERE ((Gender = 'Female' AND Year = '2016')) AND Value > 51.35",
+      "GTresult": "Event=Drowning",
+      "NLquestions": [
+        "What is/are_the_ the number of_((accidents)) of__ involving_ in__ ==of==2016 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Event, Value FROM DBdata WHERE ((Gender = 'Female' AND Year = '2022')) AND (Event) IN (SELECT Event FROM DBdata WHERE ((Gender = 'Female' AND Year = '2016')) AND Value > 51.35)",
+      "GTresult": "Event=Drowning, Value=42.44",
+      "NLquestions": []
+    }
+  ]
+}

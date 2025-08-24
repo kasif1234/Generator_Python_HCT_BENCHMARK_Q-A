@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set100_4_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'California' AND City = 'Berkeley')) AND ((Characteristic = 'Humidity' AND Intensity = 'High'))",
+      "GTresult": "Value=25.86",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Berkeley ==,==California in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2018' AND State = 'Florida' AND City = 'San Francisco')) AND ((Characteristic = 'Humidity' AND Intensity = '21-30') OR (Characteristic = 'Temperature' AND Intensity = '11-20') OR (Characteristic = 'Temperature' AND Intensity = 'Low') OR (Characteristic = 'Humidity' AND Intensity = 'Medium'))",
+      "GTresult": "Value=18.18; Value=19.63; Value=20.68; Value=22.81",
+      "NLquestions": [
+        "How many days with__ Humidity or Temperature were there in__San Francisco ==,==Florida in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'California' AND City = 'Fort Lauderdale') OR (Year = '2020' AND State = 'California' AND City = 'Berkeley')) AND ((Characteristic = 'Temperature' AND Intensity = '11-20'))",
+      "GTresult": "Value=4.15; Value=25.43",
+      "NLquestions": [
+        "How many days with__ Temperature were there in__Fort Lauderdale or Berkeley ==,==California in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2018' AND State = 'Florida' AND City = 'Tampa') OR (Year = '2020' AND State = 'California' AND City = 'Fort Lauderdale') OR (Year = '2018' AND State = 'Florida' AND City = 'San Francisco') OR (Year = '2020' AND State = 'California' AND City = 'Berkeley')) AND ((Characteristic = 'Temperature' AND Intensity = '11-20'))",
+      "GTresult": "sum_Value=52.18, avg_Value=13.045",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature in__Tampa or Fort Lauderdale or San Francisco or Berkeley ==,==Florida or California in_2018 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2018' AND State = 'Florida' AND City = 'Tampa') OR (Year = '2020' AND State = 'California' AND City = 'Fort Lauderdale') OR (Year = '2018' AND State = 'Florida' AND City = 'San Francisco') OR (Year = '2020' AND State = 'California' AND City = 'Berkeley')) AND ((Characteristic = 'Temperature' AND Intensity = '0-10') OR (Characteristic = 'Humidity' AND Intensity = '21-30') OR (Characteristic = 'Temperature' AND Intensity = '11-20') OR (Characteristic = 'Temperature' AND Intensity = 'Low'))",
+      "GTresult": "Value=1.36; Value=2.5; Value=2.97; Value=4.45; Value=6.04; Value=8.64; Value=4.15; Value=11.63; Value=16.23; Value=18.18; Value=19.63; Value=20.68; Value=23.2; Value=21.51; Value=25.43; Value=27.57",
+      "NLquestions": [
+        "How many days with__ Temperature or Humidity were there in__Tampa or Fort Lauderdale or San Francisco or Berkeley ==,==Florida or California in_2018 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT max(Value) AS max_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2020' AND State = 'California' AND City = 'Fort Lauderdale')) AND ((Characteristic = 'Temperature' AND Intensity = '0-10') OR (Characteristic = 'Humidity' AND Intensity = '21-30') OR (Characteristic = 'Temperature' AND Intensity = '11-20') OR (Characteristic = 'Humidity' AND Intensity = 'Medium'))",
+      "GTresult": "max_Value=10.14, avg_Value=7.242500000000001",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity in__Fort Lauderdale ==,==California in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, max(Value) AS max_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2018' AND State = 'Florida' AND City = 'San Francisco') OR (Year = '2020' AND State = 'California' AND City = 'Berkeley')) AND ((Characteristic = 'Temperature' AND Intensity = '0-10') OR (Characteristic = 'Humidity' AND Intensity = '21-30') OR (Characteristic = 'Temperature' AND Intensity = '11-20') OR (Characteristic = 'Temperature' AND Intensity = 'Low')) GROUP BY Year, State, City",
+      "GTresult": "Year=2018, State=Florida, City=San Francisco, max_Value=20.68, sum_Value=74.72; Year=2020, State=California, City=Berkeley, max_Value=27.57, sum_Value=97.71000000000001",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity in__San Francisco or Berkeley ==,==Florida or California in_2018 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2018' AND State = 'Florida' AND City = 'Tampa')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) GROUP BY Characteristic",
+      "GTresult": "min_Value=2.5; min_Value=1.36",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity in__Tampa ==,==Florida in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2020' AND State = 'California' AND City = 'Berkeley')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Humidity, min_Value=21.51; Characteristic=Temperature, min_Value=23.2",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity in__Berkeley ==,==California in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2018' AND State = 'Florida' AND City = 'Tampa') OR (Year = '2020' AND State = 'California' AND City = 'Fort Lauderdale')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Humidity, Year=2018, State=Florida, City=Tampa, sum_Value=10.1; Characteristic=Humidity, Year=2020, State=California, City=Fort Lauderdale, sum_Value=29.37; Characteristic=Temperature, Year=2018, State=Florida, City=Tampa, sum_Value=8.780000000000001; Characteristic=Temperature, Year=2020, State=California, City=Fort Lauderdale, sum_Value=21.82",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity in__Tampa or Fort Lauderdale ==,==Florida or California in_2018 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'California' AND City = 'Fort Lauderdale')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=4.15; Value=6.04; Value=8.64; Value=10.14; Value=10.59",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Temperature or Humidity in__Fort Lauderdale ==,==California in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'California' AND City = 'Fort Lauderdale')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) ORDER BY Value ASC",
+      "GTresult": "Value=4.15; Value=6.04; Value=8.64; Value=10.14; Value=10.59; Value=11.63",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Temperature or Humidity in__Fort Lauderdale ==,==California in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2018' AND State = 'Florida' AND City = 'Tampa')) AND Value > 13.93",
+      "GTresult": "",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Tampa ==,==Florida in_2018 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2018' AND State = 'Florida' AND City = 'San Francisco')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2018' AND State = 'Florida' AND City = 'Tampa')) AND Value > 13.93)",
+      "GTresult": "",
+      "NLquestions": []
+    }
+  ]
+}

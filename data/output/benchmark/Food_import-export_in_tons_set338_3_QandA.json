@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Food_import-export_in_tons_set338_3_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2017' AND Quarter = 'Q1')) AND ((Category = 'Dairy' AND Item = 'Yoghurt'))",
+      "GTresult": "Value=578.53; Value=871.71",
+      "NLquestions": [
+        "What is the amount of_Import of__ Dairy in__Q1 ==of==2017 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2020' AND Quarter = 'Q1')) AND ((Category = 'Dairy' AND Item = 'Cheese') OR (Category = 'Meat' AND Item = 'Milk') OR (Category = 'Dairy' AND Item = 'Yoghurt') OR (Category = 'Meat' AND Item = 'Duck') OR (Category = 'Dairy' AND Item = 'Chicken') OR (Category = 'Meat' AND Item = 'Pork'))",
+      "GTresult": "Value=641.21; Value=517.69; Value=261.4; Value=399.51; Value=531.67; Value=161.52; Value=473.33; Value=347.34; Value=96.88; Value=996.09; Value=101.29; Value=613.14",
+      "NLquestions": [
+        "What is the amount of_Import of__ Dairy or Meat in__Q1 ==of==2020 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2020' AND Quarter = 'Q1') OR (Import_Export = 'Import' AND Year = '2017' AND Quarter = 'Q1')) AND ((Category = 'Meat' AND Item = 'Duck'))",
+      "GTresult": "Value=399.51; Value=202.0; Value=996.09; Value=619.53",
+      "NLquestions": [
+        "What is the amount of_Import of__ Meat in__Q1 ==of==2020 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2020' AND Quarter = 'Q1') OR (Import_Export = 'Import' AND Year = '2017' AND Quarter = 'Q1')) AND ((Category = 'Dairy' AND Item = 'Yoghurt'))",
+      "GTresult": "sum_Value=1808.52, min_Value=96.88",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Dairy in__Q1 ==of==2020 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2020' AND Quarter = 'Q1') OR (Import_Export = 'Import' AND Year = '2017' AND Quarter = 'Q1')) AND ((Category = 'Dairy' AND Item = 'Cheese') OR (Category = 'Meat' AND Item = 'Milk') OR (Category = 'Meat' AND Item = 'Pork'))",
+      "GTresult": "Value=641.21; Value=517.69; Value=161.52; Value=169.99; Value=960.22; Value=343.46; Value=473.33; Value=347.34; Value=613.14; Value=356.74; Value=743.29; Value=888.65",
+      "NLquestions": [
+        "What is the amount of_Import of__ Dairy or Meat in__Q1 ==of==2020 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, max(Value) AS max_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2020' AND Quarter = 'Q1')) AND ((Category = 'Dairy' AND Item = 'Cheese') OR (Category = 'Meat' AND Item = 'Milk') OR (Category = 'Dairy' AND Item = 'Yoghurt') OR (Category = 'Meat' AND Item = 'Duck') OR (Category = 'Meat' AND Item = 'Pork'))",
+      "GTresult": "avg_Value=450.811, max_Value=996.09",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Dairy or Meat in__Q1 ==of==2020 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Import_Export, Year, Quarter, min(Value) AS min_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2020' AND Quarter = 'Q1') OR (Import_Export = 'Import' AND Year = '2017' AND Quarter = 'Q1')) AND ((Category = 'Dairy' AND Item = 'Yoghurt') OR (Category = 'Meat' AND Item = 'Pork')) GROUP BY Import_Export, Year, Quarter",
+      "GTresult": "Import_Export=Import, Year=2017, Quarter=Q1, min_Value=343.46, avg_Value=670.5875; Import_Export=Import, Year=2020, Quarter=Q1, min_Value=96.88, avg_Value=283.235",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Dairy or Meat in__Q1 ==of==2020 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2017' AND Quarter = 'Q1')) AND ((Category = 'Dairy') OR (Category = 'Meat')) GROUP BY Category",
+      "GTresult": "min_Value=169.99; min_Value=202.0",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Dairy or Meat in__Q1 ==of==2017 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Category, sum(Value) AS sum_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2020' AND Quarter = 'Q1')) AND ((Category = 'Dairy') OR (Category = 'Meat')) GROUP BY Category",
+      "GTresult": "Category=Dairy, sum_Value=2105.7799999999997; Category=Meat, sum_Value=3035.29",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Dairy or Meat in__Q1 ==of==2020 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Category, Import_Export, Year, Quarter, min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2020' AND Quarter = 'Q1') OR (Import_Export = 'Import' AND Year = '2017' AND Quarter = 'Q1')) AND ((Category = 'Dairy') OR (Category = 'Meat')) GROUP BY Category, Import_Export, Year, Quarter",
+      "GTresult": "Category=Dairy, Import_Export=Import, Year=2017, Quarter=Q1, min_Value=169.99; Category=Dairy, Import_Export=Import, Year=2020, Quarter=Q1, min_Value=96.88; Category=Meat, Import_Export=Import, Year=2017, Quarter=Q1, min_Value=202.0; Category=Meat, Import_Export=Import, Year=2020, Quarter=Q1, min_Value=161.52",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Dairy or Meat in__Q1 ==of==2020 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2017' AND Quarter = 'Q1')) AND ((Category = 'Dairy') OR (Category = 'Meat')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=960.22; Value=888.65; Value=871.71; Value=853.1; Value=743.29",
+      "NLquestions": [
+        "What are the top/bottom_ amounts of_Import of__ Dairy or Meat in__Q1 ==of==2017 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2017' AND Quarter = 'Q1')) AND ((Category = 'Dairy') OR (Category = 'Meat')) ORDER BY Value DESC",
+      "GTresult": "Value=960.22; Value=888.65; Value=871.71; Value=853.1; Value=743.29; Value=619.53; Value=578.53; Value=356.74; Value=343.46; Value=243.46; Value=202.0; Value=169.99",
+      "NLquestions": [
+        "What are the amounts /increasing_values of_Import of__ Dairy or Meat in__Q1 ==of==2017 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2017' AND Quarter = 'Q1')) AND Value > 498.82",
+      "GTresult": "Category=Meat, Item=Milk; Category=Dairy, Item=Yoghurt; Category=Dairy, Item=Chicken; Category=Meat, Item=Milk; Category=Dairy, Item=Yoghurt; Category=Meat, Item=Duck; Category=Meat, Item=Pork",
+      "NLquestions": [
+        "What is/are_the_ the amount of_Import of__ in__Q1 ==of==2017 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Category, Item, Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2020' AND Quarter = 'Q1')) AND (Category, Item) IN (SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2017' AND Quarter = 'Q1')) AND Value > 498.82)",
+      "GTresult": "Category=Meat, Item=Milk, Value=517.69; Category=Dairy, Item=Yoghurt, Value=261.4; Category=Meat, Item=Duck, Value=399.51; Category=Dairy, Item=Chicken, Value=531.67; Category=Meat, Item=Pork, Value=161.52; Category=Meat, Item=Milk, Value=347.34; Category=Dairy, Item=Yoghurt, Value=96.88; Category=Meat, Item=Duck, Value=996.09; Category=Dairy, Item=Chicken, Value=101.29; Category=Meat, Item=Pork, Value=613.14",
+      "NLquestions": []
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Food_import-export_in_tons_set281_1_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2015')) AND ((Category = 'Dairy' AND Item = 'Seeds'))",
+      "GTresult": "Value=438.9",
+      "NLquestions": [
+        "What is the amount of_Export of__ Dairy in__ ==of==2015 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2016')) AND ((Category = 'Cereals' AND Item = 'Oats') OR (Category = 'Dairy' AND Item = 'Seeds') OR (Category = 'Beverage' AND Item = 'Soybeans') OR (Category = 'Cereals' AND Item = 'Milk') OR (Category = 'Dairy' AND Item = 'Cheese') OR (Category = 'Beverage' AND Item = 'Tea') OR (Category = 'Cereals' AND Item = 'Coffee') OR (Category = 'Dairy' AND Item = 'Soda') OR (Category = 'Beverage' AND Item = 'Oats'))",
+      "GTresult": "Value=11.73; Value=396.72; Value=273.71; Value=662.7; Value=791.12; Value=156.25; Value=288.77; Value=932.94; Value=689.14; Value=619.03; Value=501.91; Value=374.45; Value=632.85; Value=249.48; Value=506.13; Value=635.12; Value=508.89; Value=253.37",
+      "NLquestions": [
+        "What is the amount of_Export of__ Cereals or Dairy or Beverage in__ ==of==2016 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2016') OR (Import_Export = 'Export' AND Year = '2021')) AND ((Category = 'Dairy' AND Item = 'Cheese'))",
+      "GTresult": "Value=791.12; Value=729.23; Value=249.48",
+      "NLquestions": [
+        "What is the amount of_Export of__ Dairy in__ ==of==2016 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, max(Value) AS max_Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2016') OR (Import_Export = 'Export' AND Year = '2015')) AND ((Category = 'Cereals' AND Item = 'Milk'))",
+      "GTresult": "sum_Value=1732.65, max_Value=662.7",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Cereals in__ ==of==2016 or 2015 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2016') OR (Import_Export = 'Export' AND Year = '2015') OR (Import_Export = 'Export' AND Year = '2021')) AND ((Category = 'Dairy' AND Item = 'Seeds') OR (Category = 'Cereals' AND Item = 'Coffee') OR (Category = 'Dairy' AND Item = 'Soda') OR (Category = 'Beverage' AND Item = 'Oats'))",
+      "GTresult": "Value=396.72; Value=288.77; Value=932.94; Value=689.14; Value=438.9; Value=840.54; Value=336.0; Value=81.12; Value=340.46; Value=350.13; Value=610.63; Value=996.29; Value=501.91; Value=635.12; Value=508.89; Value=253.37",
+      "NLquestions": [
+        "What is the amount of_Export of__ Dairy or Cereals or Beverage in__ ==of==2016 or 2015 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT min(Value) AS min_Value, max(Value) AS max_Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2015')) AND ((Category = 'Cereals' AND Item = 'Oats') OR (Category = 'Beverage' AND Item = 'Tea') OR (Category = 'Cereals' AND Item = 'Coffee') OR (Category = 'Dairy' AND Item = 'Soda') OR (Category = 'Beverage' AND Item = 'Oats'))",
+      "GTresult": "min_Value=81.12, max_Value=949.32",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Cereals or Beverage or Dairy in__ ==of==2015 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Import_Export, Year, sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2016') OR (Import_Export = 'Export' AND Year = '2015') OR (Import_Export = 'Export' AND Year = '2021')) AND ((Category = 'Cereals' AND Item = 'Oats') OR (Category = 'Dairy' AND Item = 'Seeds') OR (Category = 'Cereals' AND Item = 'Milk') OR (Category = 'Dairy' AND Item = 'Soda')) GROUP BY Import_Export, Year",
+      "GTresult": "Import_Export=Export, Year=2015, sum_Value=2161.32, avg_Value=540.33; Import_Export=Export, Year=2016, sum_Value=4266.77, avg_Value=533.34625; Import_Export=Export, Year=2021, sum_Value=1891.81, avg_Value=472.9525",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Cereals or Dairy in__ ==of==2016 or 2015 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2015')) AND ((Category = 'Cereals') OR (Category = 'Dairy')) GROUP BY Category",
+      "GTresult": "min_Value=437.1; min_Value=194.3",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Cereals or Dairy in__ ==of==2015 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Category, max(Value) AS max_Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2016')) AND ((Category = 'Dairy') OR (Category = 'Beverage')) GROUP BY Category",
+      "GTresult": "Category=Beverage, max_Value=689.14; Category=Dairy, max_Value=932.94",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Dairy or Beverage in__ ==of==2016 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Category, Import_Export, Year, max(Value) AS max_Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2016') OR (Import_Export = 'Export' AND Year = '2015') OR (Import_Export = 'Export' AND Year = '2021')) AND ((Category = 'Cereals') OR (Category = 'Dairy')) GROUP BY Category, Import_Export, Year",
+      "GTresult": "Category=Cereals, Import_Export=Export, Year=2015, max_Value=949.32; Category=Cereals, Import_Export=Export, Year=2016, max_Value=662.7; Category=Cereals, Import_Export=Export, Year=2021, max_Value=724.46; Category=Dairy, Import_Export=Export, Year=2015, max_Value=438.9; Category=Dairy, Import_Export=Export, Year=2016, max_Value=932.94; Category=Dairy, Import_Export=Export, Year=2021, max_Value=729.23",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Export of__ Cereals or Dairy in__ ==of==2016 or 2015 or 2021 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2016')) AND ((Category = 'Dairy') OR (Category = 'Beverage')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=932.94; Value=791.12; Value=689.14; Value=508.89; Value=506.13",
+      "NLquestions": [
+        "What are the top/bottom_ amounts of_Export of__ Dairy or Beverage in__ ==of==2016 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2015')) AND ((Category = 'Cereals') OR (Category = 'Beverage')) ORDER BY Value DESC",
+      "GTresult": "Value=949.32; Value=840.54; Value=834.94; Value=439.12; Value=437.1; Value=81.12",
+      "NLquestions": [
+        "What are the amounts /increasing_values of_Export of__ Cereals or Beverage in__ ==of==2015 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2015')) AND Value > 516.43",
+      "GTresult": "Category=Cereals, Item=Oats; Category=Beverage, Item=Tea; Category=Cereals, Item=Coffee",
+      "NLquestions": [
+        "What is/are_the_ the amount of_Export of__ in__ ==of==2015 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Category, Item, Value FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2016')) AND (Category, Item) IN (SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Export' AND Year = '2015')) AND Value > 516.43)",
+      "GTresult": "Category=Cereals, Item=Oats, Value=11.73; Category=Beverage, Item=Tea, Value=156.25; Category=Cereals, Item=Coffee, Value=288.77; Category=Cereals, Item=Oats, Value=619.03; Category=Beverage, Item=Tea, Value=506.13; Category=Cereals, Item=Coffee, Value=635.12",
+      "NLquestions": []
+    }
+  ]
+}

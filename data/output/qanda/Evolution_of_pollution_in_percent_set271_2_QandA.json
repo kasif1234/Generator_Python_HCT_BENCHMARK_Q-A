@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Evolution_of_pollution_in_percent_set271_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Boston' AND Year = '2017')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Solid Waste'))",
+      "GTresult": "Value=99.7",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air in__Boston ==,==Massachusetts in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Fort Lauderdale' AND Year = '2018')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Industrial') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Inferior Irrigation') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Urban Activities') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Inorganic Fertilizers') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Thermal') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Light') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Inferior Irrigation') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Urban Activities') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Solid Waste'))",
+      "GTresult": "Value=46.79; Value=51.26; Value=-74.63; Value=54.74; Value=-68.02; Value=-62.59; Value=-37.49; Value=73.6; Value=78.17",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil or Air or Water in__Fort Lauderdale ==,==Massachusetts in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Fort Lauderdale' AND Year = '2018') OR (State = 'Florida' AND City = 'Cambridge' AND Year = '2022')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Industrial'))",
+      "GTresult": "Value=46.79; Value=-48.63",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil in__Fort Lauderdale or Cambridge ==,==Massachusetts or Florida in_2018 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT max(Value) AS max_Value, min(Value) AS min_Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Tampa' AND Year = '2017') OR (State = 'Massachusetts' AND City = 'Fort Lauderdale' AND Year = '2018') OR (State = 'Florida' AND City = 'Cambridge' AND Year = '2022')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Industrial'))",
+      "GTresult": "max_Value=46.79, min_Value=-48.63",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil in__Tampa or Fort Lauderdale or Cambridge ==,==Florida or Massachusetts in_2017 or 2018 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Cambridge' AND Year = '2022') OR (State = 'Massachusetts' AND City = 'Boston' AND Year = '2017')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Inferior Irrigation') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Noise') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Light') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Urban Activities'))",
+      "GTresult": "Value=-48.41; Value=-41.7; Value=-41.54; Value=-39.25; Value=97.56; Value=-23.15; Value=-20.82; Value=-14.74",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air or Soil in__Cambridge or Boston ==,==Florida or Massachusetts in_2022 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, min(Value) AS min_Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Boston' AND Year = '2017')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Inferior Irrigation') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Urban Activities'))",
+      "GTresult": "avg_Value=33.78, min_Value=-30.0",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Water in__Boston ==,==Massachusetts in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT State, City, Year, sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Tampa' AND Year = '2017') OR (State = 'Florida' AND City = 'Cambridge' AND Year = '2022') OR (State = 'Massachusetts' AND City = 'Boston' AND Year = '2017')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Industrial') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Urban Activities') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Surface water') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Chemical') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Industrial')) GROUP BY State, City, Year",
+      "GTresult": "State=Florida, City=Cambridge, Year=2022, sum_Value=-211.14, min_Value=-48.63; State=Florida, City=Tampa, Year=2017, sum_Value=-17.889999999999993, min_Value=-93.91; State=Massachusetts, City=Boston, Year=2017, sum_Value=-118.14, min_Value=-36.75",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water or Air in__Tampa or Cambridge or Boston ==,==Florida or Massachusetts in_2017 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Cambridge' AND Year = '2022')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Air')) GROUP BY Polluted_element",
+      "GTresult": "min_Value=-48.41; min_Value=-48.63",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Air in__Cambridge ==,==Florida in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Polluted_element, max(Value) AS max_Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Tampa' AND Year = '2017')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) GROUP BY Polluted_element",
+      "GTresult": "Polluted_element=Soil, max_Value=32.5; Polluted_element=Water, max_Value=41.58",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Tampa ==,==Florida in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Polluted_element, State, City, Year, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Florida' AND City = 'Tampa' AND Year = '2017') OR (State = 'Florida' AND City = 'Cambridge' AND Year = '2022') OR (State = 'Massachusetts' AND City = 'Boston' AND Year = '2017')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Air')) GROUP BY Polluted_element, State, City, Year",
+      "GTresult": "Polluted_element=Air, State=Florida, City=Cambridge, Year=2022, sum_Value=-77.19; Polluted_element=Air, State=Florida, City=Tampa, Year=2017, sum_Value=2.4500000000000064; Polluted_element=Air, State=Massachusetts, City=Boston, Year=2017, sum_Value=152.87; Polluted_element=Soil, State=Florida, City=Cambridge, Year=2022, sum_Value=-83.54; Polluted_element=Soil, State=Florida, City=Tampa, Year=2017, sum_Value=-134.28; Polluted_element=Soil, State=Massachusetts, City=Boston, Year=2017, sum_Value=6.070000000000006",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Air in__Tampa or Cambridge or Boston ==,==Florida or Massachusetts in_2017 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Fort Lauderdale' AND Year = '2018')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Air')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=73.6; Value=61.21; Value=58.0; Value=54.74; Value=51.26",
+      "NLquestions": [
+        "What are the top/bottom_ evolutions of_((pollution)) of_ of_Soil or Air in__Fort Lauderdale ==,==Massachusetts in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Boston' AND Year = '2017')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Air')) ORDER BY Value DESC",
+      "GTresult": "Value=99.7; Value=98.2; Value=97.56; Value=-8.03; Value=-14.74; Value=-15.54; Value=-17.49; Value=-20.82; Value=-23.15; Value=-36.75",
+      "NLquestions": [
+        "What are the evolutions /increasing_values of_((pollution)) of_ of_Soil or Air in__Boston ==,==Massachusetts in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Boston' AND Year = '2017')) AND Value > 3.02",
+      "GTresult": "Polluted_element=Air, Type_of_pollution=Inferior Irrigation; Polluted_element=Soil, Type_of_pollution=Inorganic Fertilizers; Polluted_element=Air, Type_of_pollution=Solid Waste; Polluted_element=Water, Type_of_pollution=Thermal",
+      "NLquestions": [
+        "What is/are_the_ the evolution of_((pollution)) of_ of_ in__Boston ==,==Massachusetts in_2017 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Polluted_element, Type_of_pollution, Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Fort Lauderdale' AND Year = '2018')) AND (Polluted_element, Type_of_pollution) IN (SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Boston' AND Year = '2017')) AND Value > 3.02)",
+      "GTresult": "Polluted_element=Air, Type_of_pollution=Inferior Irrigation, Value=51.26; Polluted_element=Soil, Type_of_pollution=Inorganic Fertilizers, Value=54.74; Polluted_element=Air, Type_of_pollution=Solid Waste, Value=58.0; Polluted_element=Water, Type_of_pollution=Thermal, Value=-68.02",
+      "NLquestions": []
+    }
+  ]
+}

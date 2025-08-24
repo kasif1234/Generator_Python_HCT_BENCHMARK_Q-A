@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Number_of_constructions_set66_5_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Concert')) AND ((Quarter = 'Q3' AND Month = 'November' AND State = 'California' AND City = 'San Francisco'))",
+      "GTresult": "Value=34.82",
+      "NLquestions": [
+        "What is the number of__ in__San Francisco ==,==California in__November ==,==Q3 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Factory')) AND ((Quarter = 'Q2' AND Month = 'June' AND State = 'California' AND City = 'San Francisco') OR (Quarter = 'Q4' AND Month = 'May' AND State = 'California' AND City = 'Los-Angeles') OR (Quarter = 'Q3' AND Month = 'November' AND State = 'California' AND City = 'San Francisco') OR (Quarter = 'Q2' AND Month = 'October' AND State = 'California' AND City = 'Los-Angeles') OR (Quarter = 'Q4' AND Month = 'August' AND State = 'California' AND City = 'San Francisco') OR (Quarter = 'Q3' AND Month = 'September' AND State = 'California' AND City = 'Los-Angeles') OR (Quarter = 'Q2' AND Month = 'July' AND State = 'California' AND City = 'San Francisco') OR (Quarter = 'Q3' AND Month = 'May' AND State = 'California' AND City = 'San Francisco'))",
+      "GTresult": "Value=16.13; Value=22.85; Value=24.16; Value=24.8; Value=26.6; Value=26.59; Value=29.72; Value=31.33",
+      "NLquestions": [
+        "What is the number of__ in__San Francisco or Los-Angeles ==,==California in__June or May or November or October or August or September or July ==,==Q2 or Q4 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Workshop') OR (Type_of_building = 'Production' AND Usage = 'Museum')) AND ((Quarter = 'Q4' AND Month = 'May' AND State = 'California' AND City = 'Los-Angeles'))",
+      "GTresult": "Value=2.05; Value=84.03",
+      "NLquestions": [
+        "What is the number of__ in__Los-Angeles ==,==California in__May ==,==Q4 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT max(Value) AS max_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Workshop') OR (Type_of_building = 'Culture' AND Usage = 'Factory') OR (Type_of_building = 'Production' AND Usage = 'Concert') OR (Type_of_building = 'Production' AND Usage = 'Museum')) AND ((Quarter = 'Q4' AND Month = 'May' AND State = 'California' AND City = 'Los-Angeles'))",
+      "GTresult": "max_Value=84.03, sum_Value=142.70000000000002",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__Los-Angeles ==,==California in__May ==,==Q4 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Workshop') OR (Type_of_building = 'Culture' AND Usage = 'Factory') OR (Type_of_building = 'Production' AND Usage = 'Concert') OR (Type_of_building = 'Culture' AND Usage = 'Theatre') OR (Type_of_building = 'Production' AND Usage = 'Museum')) AND ((Quarter = 'Q4' AND Month = 'August' AND State = 'California' AND City = 'San Francisco') OR (Quarter = 'Q3' AND Month = 'May' AND State = 'California' AND City = 'San Francisco'))",
+      "GTresult": "Value=6.23; Value=14.93; Value=26.6; Value=31.33; Value=37.83; Value=46.37; Value=59.77; Value=80.0; Value=89.69; Value=97.74",
+      "NLquestions": [
+        "What is the number of__ in__San Francisco ==,==California in__August or May ==,==Q4 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, max(Value) AS max_Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Theatre')) AND ((Quarter = 'Q3' AND Month = 'November' AND State = 'California' AND City = 'San Francisco') OR (Quarter = 'Q4' AND Month = 'June' AND State = 'California' AND City = 'Los-Angeles'))",
+      "GTresult": "avg_Value=60.81, max_Value=74.34",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__San Francisco or Los-Angeles ==,==California in__November or June ==,==Q3 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Type_of_building, Usage, avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Workshop') OR (Type_of_building = 'Culture' AND Usage = 'Factory') OR (Type_of_building = 'Culture' AND Usage = 'Theatre')) AND ((Quarter = 'Q2' AND Month = 'October' AND State = 'California' AND City = 'Los-Angeles') OR (Quarter = 'Q4' AND Month = 'August' AND State = 'California' AND City = 'San Francisco') OR (Quarter = 'Q3' AND Month = 'May' AND State = 'California' AND City = 'San Francisco')) GROUP BY Type_of_building, Usage",
+      "GTresult": "Type_of_building=Culture, Usage=Factory, avg_Value=27.576666666666668, sum_Value=82.73; Type_of_building=Culture, Usage=Theatre, avg_Value=65.01666666666667, sum_Value=195.05; Type_of_building=Production, Usage=Workshop, avg_Value=7.996666666666667, sum_Value=23.990000000000002",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__Los-Angeles or San Francisco ==,==California in__October or August or May ==,==Q2 or Q4 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Factory')) AND ((Quarter = 'Q2') OR (Quarter = 'Q3')) GROUP BY Quarter",
+      "GTresult": "min_Value=16.13; min_Value=24.16",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q2 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Quarter, sum(Value) AS sum_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Concert')) AND ((Quarter = 'Q4') OR (Quarter = 'Q3')) GROUP BY Quarter",
+      "GTresult": "Quarter=Q3, sum_Value=120.27; Quarter=Q4, sum_Value=114.74000000000001",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q4 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Quarter, Type_of_building, Usage, sum(Value) AS sum_Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Theatre') OR (Type_of_building = 'Production' AND Usage = 'Museum')) AND ((Quarter = 'Q2') OR (Quarter = 'Q4')) GROUP BY Quarter, Type_of_building, Usage",
+      "GTresult": "Quarter=Q2, Type_of_building=Culture, Usage=Theatre, sum_Value=175.51999999999998; Quarter=Q2, Type_of_building=Production, Usage=Museum, sum_Value=262.87; Quarter=Q4, Type_of_building=Culture, Usage=Theatre, sum_Value=181.66; Quarter=Q4, Type_of_building=Production, Usage=Museum, sum_Value=269.73",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q2 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Concert')) AND ((Quarter = 'Q4') OR (Quarter = 'Q3')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=33.77; Value=34.82; Value=37.83; Value=39.08; Value=43.14",
+      "NLquestions": [
+        "What are the top/bottom_ numbers of__ in__ ==,== in__ ==,==Q4 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Workshop')) AND ((Quarter = 'Q2') OR (Quarter = 'Q3')) ORDER BY Value DESC",
+      "GTresult": "Value=14.93; Value=11.68; Value=7.15; Value=3.84; Value=2.83; Value=1.38",
+      "NLquestions": [
+        "What are the numbers /ascending_values of__ in__ ==,== in__ ==,==Q2 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Quarter, Month, State, City FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Concert')) AND Value < 44.39",
+      "GTresult": "Quarter=Q2, Month=June, State=California, City=San Francisco; Quarter=Q4, Month=May, State=California, City=Los-Angeles; Quarter=Q3, Month=November, State=California, City=San Francisco; Quarter=Q2, Month=October, State=California, City=Los-Angeles; Quarter=Q4, Month=August, State=California, City=San Francisco; Quarter=Q3, Month=September, State=California, City=Los-Angeles; Quarter=Q2, Month=July, State=California, City=San Francisco; Quarter=Q4, Month=June, State=California, City=Los-Angeles",
+      "NLquestions": [
+        "What is/are_the_ the number of__ in__ ==,== in__ ==,== is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Quarter, Month, State, City, Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Museum')) AND (Quarter, Month, State, City) IN (SELECT Quarter, Month, State, City FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Concert')) AND Value < 44.39)",
+      "GTresult": "Quarter=Q2, Month=June, State=California, City=San Francisco, Value=82.35; Quarter=Q4, Month=May, State=California, City=Los-Angeles, Value=84.03; Quarter=Q3, Month=November, State=California, City=San Francisco, Value=86.86; Quarter=Q2, Month=October, State=California, City=Los-Angeles, Value=87.63; Quarter=Q4, Month=August, State=California, City=San Francisco, Value=89.69; Quarter=Q3, Month=September, State=California, City=Los-Angeles, Value=90.98; Quarter=Q2, Month=July, State=California, City=San Francisco, Value=92.89; Quarter=Q4, Month=June, State=California, City=Los-Angeles, Value=96.01",
+      "NLquestions": []
+    }
+  ]
+}

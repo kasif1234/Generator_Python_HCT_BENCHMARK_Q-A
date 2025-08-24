@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Number_of_constructions_set230_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Museum')) AND ((Quarter = 'Q2' AND Month = 'June' AND State = 'Minnesota' AND City = 'Hastings'))",
+      "GTresult": "Value=28.21",
+      "NLquestions": [
+        "What is the number of__ in__Hastings ==,==Minnesota in__June ==,==Q2 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Factory')) AND ((Quarter = 'Q2' AND Month = 'April' AND State = 'Minnesota' AND City = 'Hastings') OR (Quarter = 'Q2' AND Month = 'January' AND State = 'Minnesota' AND City = 'Hastings'))",
+      "GTresult": "Value=58.32; Value=72.47",
+      "NLquestions": [
+        "What is the number of__ in__Hastings ==,==Minnesota in__April or January ==,==Q2 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Theatre') OR (Type_of_building = 'Culture' AND Usage = 'Concert') OR (Type_of_building = 'Culture' AND Usage = 'Workshop')) AND ((Quarter = 'Q1' AND Month = 'May' AND State = 'Illinois' AND City = 'Champaign'))",
+      "GTresult": "Value=4.38; Value=43.78; Value=84.3",
+      "NLquestions": [
+        "What is the number of__ in__Champaign ==,==Illinois in__May ==,==Q1 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Museum') OR (Type_of_building = 'Culture' AND Usage = 'Concert') OR (Type_of_building = 'Production' AND Usage = 'Factory') OR (Type_of_building = 'Culture' AND Usage = 'Workshop')) AND ((Quarter = 'Q1' AND Month = 'February' AND State = 'Illinois' AND City = 'Champaign'))",
+      "GTresult": "sum_Value=241.89, avg_Value=60.4725",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__Champaign ==,==Illinois in__February ==,==Q1 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Concert') OR (Type_of_building = 'Culture' AND Usage = 'Workshop')) AND ((Quarter = 'Q2' AND Month = 'January' AND State = 'Minnesota' AND City = 'Hastings') OR (Quarter = 'Q1' AND Month = 'April' AND State = 'Illinois' AND City = 'Champaign'))",
+      "GTresult": "Value=52.34; Value=56.32; Value=94.21; Value=96.08",
+      "NLquestions": [
+        "What is the number of__ in__Hastings or Champaign ==,==Minnesota or Illinois in__January or April ==,==Q2 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Workshop')) AND ((Quarter = 'Q1' AND Month = 'May' AND State = 'Illinois' AND City = 'Champaign') OR (Quarter = 'Q2' AND Month = 'June' AND State = 'Minnesota' AND City = 'Hastings') OR (Quarter = 'Q2' AND Month = 'January' AND State = 'Minnesota' AND City = 'Hastings'))",
+      "GTresult": "avg_Value=88.60333333333334, sum_Value=265.81",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__Champaign or Hastings ==,==Illinois or Minnesota in__May or June or January ==,==Q1 or Q2 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Type_of_building, Usage, sum(Value) AS sum_Value, max(Value) AS max_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Museum') OR (Type_of_building = 'Production' AND Usage = 'Factory') OR (Type_of_building = 'Culture' AND Usage = 'Workshop')) AND ((Quarter = 'Q2' AND Month = 'April' AND State = 'Minnesota' AND City = 'Hastings') OR (Quarter = 'Q2' AND Month = 'June' AND State = 'Minnesota' AND City = 'Hastings') OR (Quarter = 'Q1' AND Month = 'February' AND State = 'Illinois' AND City = 'Champaign') OR (Quarter = 'Q2' AND Month = 'January' AND State = 'Minnesota' AND City = 'Hastings') OR (Quarter = 'Q1' AND Month = 'April' AND State = 'Illinois' AND City = 'Champaign')) GROUP BY Type_of_building, Usage",
+      "GTresult": "Type_of_building=Culture, Usage=Workshop, sum_Value=444.21999999999997, max_Value=96.08; Type_of_building=Production, Usage=Factory, sum_Value=341.4, max_Value=73.85; Type_of_building=Production, Usage=Museum, sum_Value=148.10999999999999, max_Value=36.55",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__Hastings or Champaign ==,==Minnesota or Illinois in__April or June or February or January ==,==Q2 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Concert')) AND ((Quarter = 'Q2') OR (Quarter = 'Q1')) GROUP BY Quarter",
+      "GTresult": "min_Value=43.78; min_Value=41.2",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q2 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Quarter, max(Value) AS max_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Factory')) AND ((Quarter = 'Q2') OR (Quarter = 'Q1')) GROUP BY Quarter",
+      "GTresult": "Quarter=Q1, max_Value=73.85; Quarter=Q2, max_Value=72.47",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q2 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Quarter, Type_of_building, Usage, avg(Value) AS avg_Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Theatre') OR (Type_of_building = 'Culture' AND Usage = 'Workshop')) AND ((Quarter = 'Q2') OR (Quarter = 'Q1')) GROUP BY Quarter, Type_of_building, Usage",
+      "GTresult": "Quarter=Q1, Type_of_building=Culture, Usage=Theatre, avg_Value=9.513333333333334; Quarter=Q1, Type_of_building=Culture, Usage=Workshop, avg_Value=91.14999999999999; Quarter=Q2, Type_of_building=Culture, Usage=Theatre, avg_Value=6.6433333333333335; Quarter=Q2, Type_of_building=Culture, Usage=Workshop, avg_Value=85.02333333333333",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q2 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Workshop')) AND ((Quarter = 'Q2') OR (Quarter = 'Q1')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=96.08; Value=94.21; Value=93.07; Value=87.3; Value=84.3",
+      "NLquestions": [
+        "What are the top/bottom_ numbers of__ in__ ==,== in__ ==,==Q2 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Museum')) AND ((Quarter = 'Q2') OR (Quarter = 'Q1')) ORDER BY Value ASC",
+      "GTresult": "Value=24.02; Value=26.83; Value=28.21; Value=29.63; Value=29.7; Value=36.55",
+      "NLquestions": [
+        "What are the numbers /ascending_values of__ in__ ==,== in__ ==,==Q2 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Quarter, Month, State, City FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Concert')) AND Value > 48.16",
+      "GTresult": "Quarter=Q1, Month=February, State=Illinois, City=Champaign; Quarter=Q2, Month=January, State=Minnesota, City=Hastings; Quarter=Q1, Month=April, State=Illinois, City=Champaign",
+      "NLquestions": [
+        "What is/are_the_ the number of__ in__ ==,== in__ ==,== is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Quarter, Month, State, City, Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Museum')) AND (Quarter, Month, State, City) IN (SELECT Quarter, Month, State, City FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Concert')) AND Value > 48.16)",
+      "GTresult": "Quarter=Q1, Month=February, State=Illinois, City=Champaign, Value=29.7; Quarter=Q2, Month=January, State=Minnesota, City=Hastings, Value=29.63; Quarter=Q1, Month=April, State=Illinois, City=Champaign, Value=36.55",
+      "NLquestions": []
+    }
+  ]
+}

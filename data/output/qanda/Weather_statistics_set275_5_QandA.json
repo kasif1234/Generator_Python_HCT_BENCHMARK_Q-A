@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set275_5_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2022' AND State = 'Massachusetts' AND City = 'Cambridge')) AND ((Characteristic = 'Humidity' AND Intensity = 'Calm'))",
+      "GTresult": "Value=17.52",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Cambridge ==,==Massachusetts in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Maryland' AND City = 'Baltimore')) AND ((Characteristic = 'Humidity' AND Intensity = 'High') OR (Characteristic = 'Wind' AND Intensity = 'Medium') OR (Characteristic = 'Temperature' AND Intensity = 'Storm') OR (Characteristic = 'Wind' AND Intensity = '0-10') OR (Characteristic = 'Temperature' AND Intensity = '21-30') OR (Characteristic = 'Wind' AND Intensity = 'High'))",
+      "GTresult": "Value=0.19; Value=0.24; Value=1.1; Value=4.62; Value=5.34; Value=6.01",
+      "NLquestions": [
+        "How many days with__ Humidity or Wind or Temperature were there in__Baltimore ==,==Maryland in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'Florida' AND City = 'Columbia') OR (Year = '2022' AND State = 'Massachusetts' AND City = 'Tampa')) AND ((Characteristic = 'Humidity' AND Intensity = '31-40'))",
+      "GTresult": "Value=15.72; Value=24.45",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Columbia or Tampa ==,==Florida or Massachusetts in_2017 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Maryland' AND City = 'Baltimore') OR (Year = '2017' AND State = 'Florida' AND City = 'Columbia') OR (Year = '2022' AND State = 'Massachusetts' AND City = 'Tampa') OR (Year = '2017' AND State = 'Florida' AND City = 'Lenox') OR (Year = '2022' AND State = 'Massachusetts' AND City = 'Cambridge') OR (Year = '2021' AND State = 'Maryland' AND City = 'Boston')) AND ((Characteristic = 'Wind' AND Intensity = '0-10'))",
+      "GTresult": "avg_Value=11.416666666666666, sum_Value=68.5",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind in__Baltimore or Columbia or Tampa or Lenox or Cambridge or Boston ==,==Maryland or Florida or Massachusetts in_2021 or 2017 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2021' AND State = 'Maryland' AND City = 'Baltimore') OR (Year = '2017' AND State = 'Florida' AND City = 'Columbia') OR (Year = '2022' AND State = 'Massachusetts' AND City = 'Tampa') OR (Year = '2021' AND State = 'Maryland' AND City = 'Fort Lauderdale') OR (Year = '2017' AND State = 'Florida' AND City = 'Lenox')) AND ((Characteristic = 'Humidity' AND Intensity = 'High') OR (Characteristic = 'Humidity' AND Intensity = 'Calm') OR (Characteristic = 'Humidity' AND Intensity = '31-40'))",
+      "GTresult": "Value=0.19; Value=3.09; Value=2.68; Value=9.53; Value=7.1; Value=15.72; Value=16.83; Value=15.04; Value=24.45; Value=27.17; Value=21.53; Value=27.52; Value=27.08; Value=13.53; Value=15.86",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Baltimore or Columbia or Tampa or Fort Lauderdale or Lenox ==,==Maryland or Florida or Massachusetts in_2021 or 2017 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT sum(Value) AS sum_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2017' AND State = 'Florida' AND City = 'Columbia')) AND ((Characteristic = 'Humidity' AND Intensity = 'Calm') OR (Characteristic = 'Wind' AND Intensity = '0-10') OR (Characteristic = 'Temperature' AND Intensity = '21-30') OR (Characteristic = 'Humidity' AND Intensity = '31-40') OR (Characteristic = 'Wind' AND Intensity = 'High'))",
+      "GTresult": "sum_Value=60.339999999999996, avg_Value=12.068",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind or Temperature in__Columbia ==,==Florida in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, min(Value) AS min_Value, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2021' AND State = 'Maryland' AND City = 'Baltimore') OR (Year = '2017' AND State = 'Florida' AND City = 'Columbia') OR (Year = '2021' AND State = 'Maryland' AND City = 'Fort Lauderdale') OR (Year = '2017' AND State = 'Florida' AND City = 'Lenox') OR (Year = '2022' AND State = 'Massachusetts' AND City = 'Cambridge')) AND ((Characteristic = 'Humidity' AND Intensity = 'High') OR (Characteristic = 'Wind' AND Intensity = 'High')) GROUP BY Year, State, City",
+      "GTresult": "Year=2017, State=Florida, City=Columbia, min_Value=9.53, max_Value=16.58; Year=2017, State=Florida, City=Lenox, min_Value=15.3, max_Value=27.08; Year=2021, State=Maryland, City=Baltimore, min_Value=0.19, max_Value=6.01; Year=2021, State=Maryland, City=Fort Lauderdale, min_Value=25.23, max_Value=27.17; Year=2022, State=Massachusetts, City=Cambridge, min_Value=16.63, max_Value=19.75",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Baltimore or Columbia or Fort Lauderdale or Lenox or Cambridge ==,==Maryland or Florida or Massachusetts in_2021 or 2017 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2017' AND State = 'Florida' AND City = 'Lenox')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) GROUP BY Characteristic",
+      "GTresult": "min_Value=13.53; min_Value=9.61",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Temperature in__Lenox ==,==Florida in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2017' AND State = 'Florida' AND City = 'Columbia')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Temperature, max_Value=17.3; Characteristic=Wind, max_Value=16.58",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Columbia ==,==Florida in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2017' AND State = 'Florida' AND City = 'Columbia') OR (Year = '2021' AND State = 'Maryland' AND City = 'Fort Lauderdale') OR (Year = '2022' AND State = 'Massachusetts' AND City = 'Cambridge')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Humidity, Year=2017, State=Florida, City=Columbia, avg_Value=10.783333333333333; Characteristic=Humidity, Year=2021, State=Maryland, City=Fort Lauderdale, avg_Value=25.406666666666666; Characteristic=Humidity, Year=2022, State=Massachusetts, City=Cambridge, avg_Value=13.563333333333333; Characteristic=Temperature, Year=2017, State=Florida, City=Columbia, avg_Value=11.186666666666667; Characteristic=Temperature, Year=2021, State=Maryland, City=Fort Lauderdale, avg_Value=23.873333333333335; Characteristic=Temperature, Year=2022, State=Massachusetts, City=Cambridge, avg_Value=18.673333333333336",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Temperature in__Columbia or Fort Lauderdale or Cambridge ==,==Florida or Maryland or Massachusetts in_2017 or 2021 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'Florida' AND City = 'Lenox')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=2.6; Value=13.21; Value=13.53; Value=15.3; Value=15.86",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Humidity or Wind in__Lenox ==,==Florida in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'Florida' AND City = 'Columbia')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) ORDER BY Value DESC",
+      "GTresult": "Value=16.58; Value=15.72; Value=9.53; Value=7.1; Value=6.51; Value=5.27",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Humidity or Wind in__Columbia ==,==Florida in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2017' AND State = 'Florida' AND City = 'Columbia')) AND Value < 15.89",
+      "GTresult": "Characteristic=Humidity, Intensity=High; Characteristic=Wind, Intensity=Medium; Characteristic=Temperature, Intensity=Storm; Characteristic=Humidity, Intensity=Calm; Characteristic=Wind, Intensity=0-10; Characteristic=Temperature, Intensity=21-30; Characteristic=Humidity, Intensity=31-40",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Columbia ==,==Florida in_2017 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2022' AND State = 'Massachusetts' AND City = 'Tampa')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2017' AND State = 'Florida' AND City = 'Columbia')) AND Value < 15.89)",
+      "GTresult": "Characteristic=Humidity, Intensity=High, Value=16.83; Characteristic=Wind, Intensity=Medium, Value=17.0; Characteristic=Temperature, Intensity=Storm, Value=19.33; Characteristic=Humidity, Intensity=Calm, Value=15.04; Characteristic=Wind, Intensity=0-10, Value=16.33; Characteristic=Temperature, Intensity=21-30, Value=23.48; Characteristic=Humidity, Intensity=31-40, Value=24.45",
+      "NLquestions": []
+    }
+  ]
+}

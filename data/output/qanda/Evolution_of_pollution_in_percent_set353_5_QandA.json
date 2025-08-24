@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Evolution_of_pollution_in_percent_set353_5_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Georgia' AND City = 'Boulder City' AND Year = '2021')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Thermal'))",
+      "GTresult": "Value=-15.73",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water in__Boulder City ==,==Georgia in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Nevada' AND City = 'Washington' AND Year = '2021')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Light') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Thermal') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Noise') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Groundwater') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Surface water') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Chemical'))",
+      "GTresult": "Value=-79.14; Value=-77.88; Value=-77.97; Value=-76.2; Value=-69.06; Value=-65.34",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air or Water in__Washington ==,==Nevada in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Georgia' AND City = 'Columbus' AND Year = '2022') OR (State = 'Georgia' AND City = 'Albany' AND Year = '2020')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Thermal'))",
+      "GTresult": "Value=20.88; Value=75.95",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water in__Columbus or Albany ==,==Georgia in_2022 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT max(Value) AS max_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Nevada' AND City = 'Washington' AND Year = '2021') OR (State = 'Nevada' AND City = 'Reno' AND Year = '2022') OR (State = 'Georgia' AND City = 'Boulder City' AND Year = '2021')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Surface water'))",
+      "GTresult": "max_Value=97.56, sum_Value=21.41",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air in__Washington or Reno or Boulder City ==,==Nevada or Georgia in_2021 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Georgia' AND City = 'Columbus' AND Year = '2022') OR (State = 'Nevada' AND City = 'Washington' AND Year = '2021') OR (State = 'Georgia' AND City = 'Albany' AND Year = '2020') OR (State = 'Nevada' AND City = 'Reno' AND Year = '2022') OR (State = 'Georgia' AND City = 'Boulder City' AND Year = '2021')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Thermal') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Surface water'))",
+      "GTresult": "Value=20.88; Value=39.07; Value=-77.88; Value=-69.06; Value=75.95; Value=82.4; Value=87.26; Value=97.56; Value=-15.73; Value=-7.09",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water or Air in__Columbus or Washington or Albany or Reno or Boulder City ==,==Georgia or Nevada in_2022 or 2021 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, max(Value) AS max_Value FROM DBdata WHERE ((State = 'Nevada' AND City = 'Washington' AND Year = '2021')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Light') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Thermal') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Noise') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Surface water') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Chemical'))",
+      "GTresult": "avg_Value=-73.878, max_Value=-65.34",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Water in__Washington ==,==Nevada in_2021 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT State, City, Year, avg(Value) AS avg_Value, min(Value) AS min_Value FROM DBdata WHERE ((State = 'Georgia' AND City = 'Columbus' AND Year = '2022') OR (State = 'Georgia' AND City = 'Albany' AND Year = '2020') OR (State = 'Nevada' AND City = 'Reno' AND Year = '2022')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Light') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Thermal') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Noise') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Surface water')) GROUP BY State, City, Year",
+      "GTresult": "State=Georgia, City=Albany, Year=2020, avg_Value=45.245000000000005, min_Value=-50.5; State=Georgia, City=Columbus, Year=2022, avg_Value=21.3275, min_Value=0.91; State=Nevada, City=Reno, Year=2022, avg_Value=58.4625, min_Value=-42.6",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Water in__Columbus or Albany or Reno ==,==Georgia or Nevada in_2022 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((State = 'Nevada' AND City = 'Reno' AND Year = '2022')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Water')) GROUP BY Polluted_element",
+      "GTresult": "min_Value=-42.6; min_Value=-34.98",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Water in__Reno ==,==Nevada in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Polluted_element, max(Value) AS max_Value FROM DBdata WHERE ((State = 'Georgia' AND City = 'Albany' AND Year = '2020')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Water')) GROUP BY Polluted_element",
+      "GTresult": "Polluted_element=Air, max_Value=82.4; Polluted_element=Water, max_Value=86.89",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Water in__Albany ==,==Georgia in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Polluted_element, State, City, Year, avg(Value) AS avg_Value FROM DBdata WHERE ((State = 'Georgia' AND City = 'Columbus' AND Year = '2022') OR (State = 'Nevada' AND City = 'Washington' AND Year = '2021') OR (State = 'Georgia' AND City = 'Albany' AND Year = '2020')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Water')) GROUP BY Polluted_element, State, City, Year",
+      "GTresult": "Polluted_element=Air, State=Georgia, City=Albany, Year=2020, avg_Value=35.01; Polluted_element=Air, State=Georgia, City=Columbus, Year=2022, avg_Value=21.476666666666663; Polluted_element=Air, State=Nevada, City=Washington, Year=2021, avg_Value=-75.39; Polluted_element=Water, State=Georgia, City=Albany, Year=2020, avg_Value=37.46; Polluted_element=Water, State=Georgia, City=Columbus, Year=2022, avg_Value=35.20333333333333; Polluted_element=Water, State=Nevada, City=Washington, Year=2021, avg_Value=-73.14",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Water in__Columbus or Washington or Albany ==,==Georgia or Nevada in_2022 or 2021 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Georgia' AND City = 'Columbus' AND Year = '2022')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Water')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=0.91; Value=20.88; Value=24.45; Value=36.92; Value=39.07",
+      "NLquestions": [
+        "What are the top/bottom_ evolutions of_((pollution)) of_ of_Air or Water in__Columbus ==,==Georgia in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Georgia' AND City = 'Columbus' AND Year = '2022')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Water')) ORDER BY Value DESC",
+      "GTresult": "Value=47.81; Value=39.07; Value=36.92; Value=24.45; Value=20.88; Value=0.91",
+      "NLquestions": [
+        "What are the evolutions /increasing_values of_((pollution)) of_ of_Air or Water in__Columbus ==,==Georgia in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Georgia' AND City = 'Boulder City' AND Year = '2021')) AND Value > 6.11",
+      "GTresult": "",
+      "NLquestions": [
+        "What is/are_the_ the evolution of_((pollution)) of_ of_ in__Boulder City ==,==Georgia in_2021 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Polluted_element, Type_of_pollution, Value FROM DBdata WHERE ((State = 'Georgia' AND City = 'Columbus' AND Year = '2022')) AND (Polluted_element, Type_of_pollution) IN (SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Georgia' AND City = 'Boulder City' AND Year = '2021')) AND Value > 6.11)",
+      "GTresult": "",
+      "NLquestions": []
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set297_5_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Florida' AND City = 'Minneapolis')) AND ((Characteristic = 'Wind' AND Intensity = '11-20'))",
+      "GTresult": "Value=3.57",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Minneapolis ==,==Florida in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Florida' AND City = 'Rochester')) AND ((Characteristic = 'Temperature' AND Intensity = '11-20') OR (Characteristic = 'Humidity' AND Intensity = '21-30') OR (Characteristic = 'Wind' AND Intensity = '31-40') OR (Characteristic = 'Temperature' AND Intensity = 'Medium') OR (Characteristic = 'Humidity' AND Intensity = 'Low') OR (Characteristic = 'Wind' AND Intensity = 'High') OR (Characteristic = 'Humidity' AND Intensity = 'Calm') OR (Characteristic = 'Wind' AND Intensity = '11-20'))",
+      "GTresult": "Value=14.09; Value=21.36; Value=21.27; Value=23.74; Value=24.68; Value=24.76; Value=24.12; Value=24.65",
+      "NLquestions": [
+        "How many days with__ Temperature or Humidity or Wind were there in__Rochester ==,==Florida in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Florida' AND City = 'Tampa') OR (Year = '2020' AND State = 'Minnesota' AND City = 'Hastings') OR (Year = '2019' AND State = 'Florida' AND City = 'Minneapolis')) AND ((Characteristic = 'Humidity' AND Intensity = 'Calm'))",
+      "GTresult": "Value=8.43; Value=11.46; Value=19.61",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Tampa or Hastings or Minneapolis ==,==Florida or Minnesota in_2019 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT min(Value) AS min_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Florida' AND City = 'Tampa') OR (Year = '2020' AND State = 'Minnesota' AND City = 'Fort Lauderdale') OR (Year = '2020' AND State = 'Minnesota' AND City = 'Hastings')) AND ((Characteristic = 'Temperature' AND Intensity = '11-20'))",
+      "GTresult": "min_Value=2.3, sum_Value=38.67",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature in__Tampa or Fort Lauderdale or Hastings ==,==Florida or Minnesota in_2019 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Florida' AND City = 'Tampa') OR (Year = '2020' AND State = 'Minnesota' AND City = 'Fort Lauderdale') OR (Year = '2020' AND State = 'Minnesota' AND City = 'Hastings') OR (Year = '2019' AND State = 'Florida' AND City = 'Minneapolis')) AND ((Characteristic = 'Humidity' AND Intensity = '21-30') OR (Characteristic = 'Temperature' AND Intensity = 'Medium') OR (Characteristic = 'Wind' AND Intensity = '11-20'))",
+      "GTresult": "Value=2.02; Value=5.82; Value=10.32; Value=12.09; Value=14.47; Value=18.64; Value=5.27; Value=23.95; Value=11.58; Value=14.51; Value=16.1; Value=3.57",
+      "NLquestions": [
+        "How many days with__ Humidity or Temperature or Wind were there in__Tampa or Fort Lauderdale or Hastings or Minneapolis ==,==Florida or Minnesota in_2019 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT min(Value) AS min_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Florida' AND City = 'Tampa')) AND ((Characteristic = 'Humidity' AND Intensity = '21-30') OR (Characteristic = 'Humidity' AND Intensity = 'Low') OR (Characteristic = 'Wind' AND Intensity = 'High') OR (Characteristic = 'Temperature' AND Intensity = 'Breeze') OR (Characteristic = 'Humidity' AND Intensity = 'Calm'))",
+      "GTresult": "min_Value=2.02, sum_Value=31.26",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind or Temperature in__Tampa ==,==Florida in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, min(Value) AS min_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Florida' AND City = 'Tampa') OR (Year = '2020' AND State = 'Minnesota' AND City = 'Fort Lauderdale') OR (Year = '2019' AND State = 'Florida' AND City = 'Rochester') OR (Year = '2020' AND State = 'Minnesota' AND City = 'Hastings') OR (Year = '2019' AND State = 'Florida' AND City = 'Minneapolis')) AND ((Characteristic = 'Temperature' AND Intensity = '11-20') OR (Characteristic = 'Humidity' AND Intensity = 'Low') OR (Characteristic = 'Wind' AND Intensity = 'High') OR (Characteristic = 'Humidity' AND Intensity = 'Calm') OR (Characteristic = 'Wind' AND Intensity = '11-20')) GROUP BY Year, State, City",
+      "GTresult": "Year=2019, State=Florida, City=Minneapolis, min_Value=3.57, sum_Value=57.62; Year=2019, State=Florida, City=Rochester, min_Value=14.09, sum_Value=112.3; Year=2019, State=Florida, City=Tampa, min_Value=2.3, sum_Value=33.56; Year=2020, State=Minnesota, City=Fort Lauderdale, min_Value=6.75, sum_Value=66.63; Year=2020, State=Minnesota, City=Hastings, min_Value=2.61, sum_Value=62.79",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity or Wind in__Tampa or Fort Lauderdale or Rochester or Hastings or Minneapolis ==,==Florida or Minnesota in_2019 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2020' AND State = 'Minnesota' AND City = 'Fort Lauderdale')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "min_Value=6.75; min_Value=13.21",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Fort Lauderdale ==,==Minnesota in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2020' AND State = 'Minnesota' AND City = 'Hastings')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Temperature, min_Value=2.25; Characteristic=Wind, min_Value=6.52",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Hastings ==,==Minnesota in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2020' AND State = 'Minnesota' AND City = 'Fort Lauderdale') OR (Year = '2020' AND State = 'Minnesota' AND City = 'Hastings') OR (Year = '2019' AND State = 'Florida' AND City = 'Minneapolis')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Humidity, Year=2019, State=Florida, City=Minneapolis, avg_Value=16.856666666666666; Characteristic=Humidity, Year=2020, State=Minnesota, City=Fort Lauderdale, avg_Value=12.290000000000001; Characteristic=Humidity, Year=2020, State=Minnesota, City=Hastings, avg_Value=6.446666666666666; Characteristic=Temperature, Year=2019, State=Florida, City=Minneapolis, avg_Value=16.283333333333335; Characteristic=Temperature, Year=2020, State=Minnesota, City=Fort Lauderdale, avg_Value=11.020000000000001; Characteristic=Temperature, Year=2020, State=Minnesota, City=Hastings, avg_Value=17.523333333333333",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity in__Fort Lauderdale or Hastings or Minneapolis ==,==Minnesota or Florida in_2020 or 2019 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Minnesota' AND City = 'Hastings')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=2.25; Value=2.61; Value=5.27; Value=11.46; Value=23.95",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Temperature or Humidity in__Hastings ==,==Minnesota in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Florida' AND City = 'Tampa')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) ORDER BY Value ASC",
+      "GTresult": "Value=2.02; Value=2.3; Value=5.0; Value=5.82; Value=8.3; Value=8.43",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Temperature or Humidity in__Tampa ==,==Florida in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2020' AND State = 'Minnesota' AND City = 'Hastings')) AND Value < 13.27",
+      "GTresult": "Characteristic=Humidity, Intensity=21-30; Characteristic=Wind, Intensity=31-40; Characteristic=Humidity, Intensity=Low; Characteristic=Wind, Intensity=High; Characteristic=Temperature, Intensity=Breeze; Characteristic=Humidity, Intensity=Calm; Characteristic=Wind, Intensity=11-20",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Hastings ==,==Minnesota in_2020 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2019' AND State = 'Florida' AND City = 'Rochester')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2020' AND State = 'Minnesota' AND City = 'Hastings')) AND Value < 13.27)",
+      "GTresult": "Characteristic=Humidity, Intensity=21-30, Value=21.36; Characteristic=Wind, Intensity=31-40, Value=21.27; Characteristic=Humidity, Intensity=Low, Value=24.68; Characteristic=Wind, Intensity=High, Value=24.76; Characteristic=Temperature, Intensity=Breeze, Value=25.81; Characteristic=Humidity, Intensity=Calm, Value=24.12; Characteristic=Wind, Intensity=11-20, Value=24.65",
+      "NLquestions": []
+    }
+  ]
+}

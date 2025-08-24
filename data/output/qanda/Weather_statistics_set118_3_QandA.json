@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set118_3_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2022' AND State = 'Massachusetts' AND City = 'Boston')) AND ((Characteristic = 'Temperature' AND Intensity = '31-40'))",
+      "GTresult": "Value=3.84",
+      "NLquestions": [
+        "How many days with__ Temperature were there in__Boston ==,==Massachusetts in_2022 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Georgia' AND City = 'Lenox')) AND ((Characteristic = 'Temperature' AND Intensity = '0-10') OR (Characteristic = 'Wind' AND Intensity = '11-20') OR (Characteristic = 'Temperature' AND Intensity = '31-40'))",
+      "GTresult": "Value=7.58; Value=8.11; Value=4.94",
+      "NLquestions": [
+        "How many days with__ Temperature or Wind were there in__Lenox ==,==Georgia in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Massachusetts' AND City = 'Cambridge') OR (Year = '2020' AND State = 'Massachusetts' AND City = 'Columbus')) AND ((Characteristic = 'Wind' AND Intensity = 'Breeze'))",
+      "GTresult": "Value=16.32; Value=8.94",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Cambridge or Columbus ==,==Massachusetts in_2016 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Massachusetts' AND City = 'Cambridge') OR (Year = '2022' AND State = 'Georgia' AND City = 'Albany')) AND ((Characteristic = 'Wind' AND Intensity = '11-20'))",
+      "GTresult": "avg_Value=14.42, sum_Value=28.84",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind in__Cambridge or Albany ==,==Massachusetts or Georgia in_2016 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Georgia' AND City = 'Lenox') OR (Year = '2016' AND State = 'Massachusetts' AND City = 'Cambridge') OR (Year = '2022' AND State = 'Georgia' AND City = 'Albany') OR (Year = '2020' AND State = 'Massachusetts' AND City = 'Columbus') OR (Year = '2016' AND State = 'Georgia' AND City = 'Washington')) AND ((Characteristic = 'Temperature' AND Intensity = '0-10') OR (Characteristic = 'Wind' AND Intensity = '11-20') OR (Characteristic = 'Temperature' AND Intensity = '31-40') OR (Characteristic = 'Temperature' AND Intensity = 'Calm'))",
+      "GTresult": "Value=7.58; Value=8.11; Value=4.94; Value=11.63; Value=13.59; Value=13.28; Value=15.15; Value=14.98; Value=17.8; Value=15.56; Value=18.81; Value=23.55; Value=25.62; Value=23.8; Value=18.96; Value=8.48; Value=10.8; Value=12.15; Value=12.54; Value=3.96",
+      "NLquestions": [
+        "How many days with__ Temperature or Wind were there in__Lenox or Cambridge or Albany or Columbus or Washington ==,==Georgia or Massachusetts in_2020 or 2016 or 2022 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2020' AND State = 'Georgia' AND City = 'Lenox')) AND ((Characteristic = 'Temperature' AND Intensity = '0-10') OR (Characteristic = 'Wind' AND Intensity = '11-20'))",
+      "GTresult": "avg_Value=7.845, sum_Value=15.69",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Lenox ==,==Georgia in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, avg(Value) AS avg_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2022' AND State = 'Massachusetts' AND City = 'Boston') OR (Year = '2016' AND State = 'Massachusetts' AND City = 'Cambridge') OR (Year = '2022' AND State = 'Georgia' AND City = 'Albany') OR (Year = '2020' AND State = 'Massachusetts' AND City = 'Columbus')) AND ((Characteristic = 'Temperature' AND Intensity = '0-10') OR (Characteristic = 'Wind' AND Intensity = '11-20') OR (Characteristic = 'Temperature' AND Intensity = '31-40') OR (Characteristic = 'Wind' AND Intensity = 'Breeze')) GROUP BY Year, State, City",
+      "GTresult": "Year=2016, State=Massachusetts, City=Cambridge, avg_Value=14.585, min_Value=13.28; Year=2020, State=Massachusetts, City=Columbus, avg_Value=19.330000000000002, min_Value=8.94; Year=2022, State=Georgia, City=Albany, avg_Value=18.1325, min_Value=15.56; Year=2022, State=Massachusetts, City=Boston, avg_Value=2.6575, min_Value=1.53",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Boston or Cambridge or Albany or Columbus ==,==Massachusetts or Georgia in_2022 or 2016 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2020' AND State = 'Massachusetts' AND City = 'Columbus')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "min_Value=8.48; min_Value=8.94",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Columbus ==,==Massachusetts in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Massachusetts' AND City = 'Cambridge')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Temperature, min_Value=13.59; Characteristic=Wind, min_Value=13.28",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Cambridge ==,==Massachusetts in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2022' AND State = 'Massachusetts' AND City = 'Boston') OR (Year = '2020' AND State = 'Georgia' AND City = 'Lenox') OR (Year = '2020' AND State = 'Massachusetts' AND City = 'Columbus')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Temperature, Year=2020, State=Georgia, City=Lenox, sum_Value=24.150000000000002; Characteristic=Temperature, Year=2020, State=Massachusetts, City=Columbus, sum_Value=53.06; Characteristic=Temperature, Year=2022, State=Massachusetts, City=Boston, sum_Value=8.53; Characteristic=Wind, Year=2020, State=Georgia, City=Lenox, sum_Value=27.59; Characteristic=Wind, Year=2020, State=Massachusetts, City=Columbus, sum_Value=43.120000000000005; Characteristic=Wind, Year=2022, State=Massachusetts, City=Boston, sum_Value=10.69",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Boston or Lenox or Columbus ==,==Massachusetts or Georgia in_2022 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Massachusetts' AND City = 'Cambridge')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=13.28; Value=13.59; Value=14.98; Value=15.15; Value=16.32",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Temperature or Wind in__Cambridge ==,==Massachusetts in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Massachusetts' AND City = 'Columbus')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) ORDER BY Value DESC",
+      "GTresult": "Value=25.62; Value=23.8; Value=18.96; Value=10.38; Value=8.94; Value=8.48",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Temperature or Wind in__Columbus ==,==Massachusetts in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2022' AND State = 'Georgia' AND City = 'Albany')) AND Value > 11.83",
+      "GTresult": "Characteristic=Temperature, Intensity=0-10; Characteristic=Wind, Intensity=11-20; Characteristic=Temperature, Intensity=31-40; Characteristic=Wind, Intensity=Breeze; Characteristic=Temperature, Intensity=Calm; Characteristic=Wind, Intensity=0-10",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Albany ==,==Georgia in_2022 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2020' AND State = 'Georgia' AND City = 'Lenox')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2022' AND State = 'Georgia' AND City = 'Albany')) AND Value > 11.83)",
+      "GTresult": "Characteristic=Temperature, Intensity=0-10, Value=7.58; Characteristic=Wind, Intensity=11-20, Value=8.11; Characteristic=Temperature, Intensity=31-40, Value=4.94; Characteristic=Wind, Intensity=Breeze, Value=7.18; Characteristic=Temperature, Intensity=Calm, Value=11.63; Characteristic=Wind, Intensity=0-10, Value=12.3",
+      "NLquestions": []
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Number_of_constructions_set66_2_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Administration')) AND ((Quarter = 'Q3' AND Month = 'September' AND State = 'Massachusetts' AND City = 'Boston'))",
+      "GTresult": "Value=78.11",
+      "NLquestions": [
+        "What is the number of__ in__Boston ==,==Massachusetts in__September ==,==Q3 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Factory')) AND ((Quarter = 'Q1' AND Month = 'March' AND State = 'Massachusetts' AND City = 'Cambridge') OR (Quarter = 'Q3' AND Month = 'January' AND State = 'Massachusetts' AND City = 'Boston') OR (Quarter = 'Q1' AND Month = 'August' AND State = 'Massachusetts' AND City = 'Cambridge') OR (Quarter = 'Q3' AND Month = 'September' AND State = 'Massachusetts' AND City = 'Boston'))",
+      "GTresult": "Value=33.44; Value=38.83; Value=50.89; Value=51.49",
+      "NLquestions": [
+        "What is the number of__ in__Cambridge or Boston ==,==Massachusetts in__March or January or August or September ==,==Q1 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Workshop') OR (Type_of_building = 'Production' AND Usage = 'Hospital') OR (Type_of_building = 'Service' AND Usage = 'Administration')) AND ((Quarter = 'Q3' AND Month = 'January' AND State = 'Massachusetts' AND City = 'Boston'))",
+      "GTresult": "Value=17.75; Value=57.46; Value=73.41",
+      "NLquestions": [
+        "What is the number of__ in__Boston ==,==Massachusetts in__January ==,==Q3 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Workshop') OR (Type_of_building = 'Production' AND Usage = 'Hospital') OR (Type_of_building = 'Production' AND Usage = 'Library')) AND ((Quarter = 'Q1' AND Month = 'August' AND State = 'Massachusetts' AND City = 'Cambridge'))",
+      "GTresult": "avg_Value=57.38333333333333, sum_Value=172.15",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__Cambridge ==,==Massachusetts in__August ==,==Q1 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Workshop') OR (Type_of_building = 'Service' AND Usage = 'Factory') OR (Type_of_building = 'Production' AND Usage = 'Hospital') OR (Type_of_building = 'Service' AND Usage = 'Administration') OR (Type_of_building = 'Production' AND Usage = 'Library')) AND ((Quarter = 'Q3' AND Month = 'January' AND State = 'Massachusetts' AND City = 'Boston') OR (Quarter = 'Q1' AND Month = 'August' AND State = 'Massachusetts' AND City = 'Cambridge'))",
+      "GTresult": "Value=17.75; Value=18.04; Value=38.83; Value=50.89; Value=57.46; Value=64.47; Value=73.41; Value=75.23; Value=88.44; Value=89.64",
+      "NLquestions": [
+        "What is the number of__ in__Boston or Cambridge ==,==Massachusetts in__January or August ==,==Q3 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT max(Value) AS max_Value, min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Administration')) AND ((Quarter = 'Q1' AND Month = 'March' AND State = 'Massachusetts' AND City = 'Cambridge') OR (Quarter = 'Q3' AND Month = 'January' AND State = 'Massachusetts' AND City = 'Boston') OR (Quarter = 'Q1' AND Month = 'August' AND State = 'Massachusetts' AND City = 'Cambridge') OR (Quarter = 'Q3' AND Month = 'September' AND State = 'Massachusetts' AND City = 'Boston'))",
+      "GTresult": "max_Value=78.11, min_Value=73.06",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__Cambridge or Boston ==,==Massachusetts in__March or January or August or September ==,==Q1 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Type_of_building, Usage, avg(Value) AS avg_Value, min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Workshop') OR (Type_of_building = 'Service' AND Usage = 'Factory') OR (Type_of_building = 'Service' AND Usage = 'Administration') OR (Type_of_building = 'Production' AND Usage = 'Library')) AND ((Quarter = 'Q3' AND Month = 'January' AND State = 'Massachusetts' AND City = 'Boston') OR (Quarter = 'Q1' AND Month = 'August' AND State = 'Massachusetts' AND City = 'Cambridge') OR (Quarter = 'Q3' AND Month = 'September' AND State = 'Massachusetts' AND City = 'Boston')) GROUP BY Type_of_building, Usage",
+      "GTresult": "Type_of_building=Production, Usage=Library, avg_Value=91.42333333333333, min_Value=88.44; Type_of_building=Production, Usage=Workshop, avg_Value=18.653333333333332, min_Value=17.75; Type_of_building=Service, Usage=Administration, avg_Value=75.58333333333333, min_Value=73.41; Type_of_building=Service, Usage=Factory, avg_Value=47.07, min_Value=38.83",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__Boston or Cambridge ==,==Massachusetts in__January or August or September ==,==Q3 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Library')) AND ((Quarter = 'Q1') OR (Quarter = 'Q3')) GROUP BY Quarter",
+      "GTresult": "min_Value=86.91; min_Value=88.44",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q1 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Quarter, avg(Value) AS avg_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Workshop')) AND ((Quarter = 'Q1') OR (Quarter = 'Q3')) GROUP BY Quarter",
+      "GTresult": "Quarter=Q1, avg_Value=14.735; Quarter=Q3, avg_Value=18.96",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q1 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Quarter, Type_of_building, Usage, sum(Value) AS sum_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Workshop') OR (Type_of_building = 'Service' AND Usage = 'Administration')) AND ((Quarter = 'Q1') OR (Quarter = 'Q3')) GROUP BY Quarter, Type_of_building, Usage",
+      "GTresult": "Quarter=Q1, Type_of_building=Production, Usage=Workshop, sum_Value=29.47; Quarter=Q1, Type_of_building=Service, Usage=Administration, sum_Value=148.29000000000002; Quarter=Q3, Type_of_building=Production, Usage=Workshop, sum_Value=37.92; Quarter=Q3, Type_of_building=Service, Usage=Administration, sum_Value=151.51999999999998",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q1 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Hospital')) AND ((Quarter = 'Q1') OR (Quarter = 'Q3')) ORDER BY Value DESC LIMIT 3",
+      "GTresult": "Value=66.93; Value=64.47; Value=57.46",
+      "NLquestions": [
+        "What are the top/bottom_ numbers of__ in__ ==,== in__ ==,==Q1 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Administration')) AND ((Quarter = 'Q1') OR (Quarter = 'Q3')) ORDER BY Value ASC",
+      "GTresult": "Value=73.06; Value=73.41; Value=75.23; Value=78.11",
+      "NLquestions": [
+        "What are the numbers /ascending_values of__ in__ ==,== in__ ==,==Q1 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Quarter, Month, State, City FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Workshop')) AND Value > 57.20",
+      "GTresult": "",
+      "NLquestions": [
+        "What is/are_the_ the number of__ in__ ==,== in__ ==,== is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Quarter, Month, State, City, Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Factory')) AND (Quarter, Month, State, City) IN (SELECT Quarter, Month, State, City FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Workshop')) AND Value > 57.20)",
+      "GTresult": "",
+      "NLquestions": []
+    }
+  ]
+}

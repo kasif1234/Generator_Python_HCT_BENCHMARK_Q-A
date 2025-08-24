@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Food_import-export_in_tons_set173_3_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2021' AND Quarter = 'Q2')) AND ((Category = 'Dairy' AND Item = 'Cream'))",
+      "GTresult": "Value=265.2; Value=941.06",
+      "NLquestions": [
+        "What is the amount of_Import of__ Dairy in__Q2 ==of==2021 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2018' AND Quarter = 'Q2')) AND ((Category = 'Beverage' AND Item = 'Milk') OR (Category = 'Dairy' AND Item = 'Yoghurt') OR (Category = 'Beverage' AND Item = 'Soda') OR (Category = 'Dairy' AND Item = 'Coffee') OR (Category = 'Beverage' AND Item = 'Cream'))",
+      "GTresult": "Value=160.23; Value=678.29; Value=38.12; Value=551.43; Value=44.33; Value=982.88; Value=858.88; Value=367.14; Value=501.62; Value=762.39",
+      "NLquestions": [
+        "What is the amount of_Import of__ Beverage or Dairy in__Q2 ==of==2018 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2021' AND Quarter = 'Q2') OR (Import_Export = 'Import' AND Year = '2018' AND Quarter = 'Q2')) AND ((Category = 'Dairy' AND Item = 'Coffee'))",
+      "GTresult": "Value=25.11; Value=551.43; Value=960.95; Value=501.62",
+      "NLquestions": [
+        "What is the amount of_Import of__ Dairy in__Q2 ==of==2021 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT max(Value) AS max_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2021' AND Quarter = 'Q2') OR (Import_Export = 'Import' AND Year = '2018' AND Quarter = 'Q2')) AND ((Category = 'Beverage' AND Item = 'Soda'))",
+      "GTresult": "max_Value=367.14, sum_Value=748.05",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Beverage in__Q2 ==of==2021 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2021' AND Quarter = 'Q2') OR (Import_Export = 'Import' AND Year = '2018' AND Quarter = 'Q2')) AND ((Category = 'Dairy' AND Item = 'Cream') OR (Category = 'Dairy' AND Item = 'Yoghurt'))",
+      "GTresult": "Value=265.2; Value=530.55; Value=801.46; Value=678.29; Value=941.06; Value=828.71; Value=332.07; Value=858.88",
+      "NLquestions": [
+        "What is the amount of_Import of__ Dairy in__Q2 ==of==2021 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2021' AND Quarter = 'Q2')) AND ((Category = 'Dairy' AND Item = 'Cream') OR (Category = 'Beverage' AND Item = 'Milk') OR (Category = 'Dairy' AND Item = 'Yoghurt') OR (Category = 'Beverage' AND Item = 'Soda'))",
+      "GTresult": "avg_Value=563.20875, sum_Value=4505.67",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Dairy or Beverage in__Q2 ==of==2021 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Import_Export, Year, Quarter, max(Value) AS max_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2021' AND Quarter = 'Q2') OR (Import_Export = 'Import' AND Year = '2018' AND Quarter = 'Q2')) AND ((Category = 'Beverage' AND Item = 'Milk') OR (Category = 'Dairy' AND Item = 'Yoghurt') OR (Category = 'Beverage' AND Item = 'Soda') OR (Category = 'Dairy' AND Item = 'Coffee') OR (Category = 'Beverage' AND Item = 'Cream')) GROUP BY Import_Export, Year, Quarter",
+      "GTresult": "Import_Export=Import, Year=2018, Quarter=Q2, max_Value=982.88, avg_Value=494.53099999999995; Import_Export=Import, Year=2021, Quarter=Q2, max_Value=960.95, avg_Value=541.529",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Beverage or Dairy in__Q2 ==of==2021 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2018' AND Quarter = 'Q2')) AND ((Category = 'Dairy') OR (Category = 'Beverage')) GROUP BY Category",
+      "GTresult": "min_Value=38.12; min_Value=332.07",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Dairy or Beverage in__Q2 ==of==2018 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Category, avg(Value) AS avg_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2018' AND Quarter = 'Q2')) AND ((Category = 'Dairy') OR (Category = 'Beverage')) GROUP BY Category",
+      "GTresult": "Category=Beverage, avg_Value=392.51500000000004; Category=Dairy, avg_Value=620.625",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Dairy or Beverage in__Q2 ==of==2018 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Category, Import_Export, Year, Quarter, max(Value) AS max_Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2021' AND Quarter = 'Q2') OR (Import_Export = 'Import' AND Year = '2018' AND Quarter = 'Q2')) AND ((Category = 'Dairy') OR (Category = 'Beverage')) GROUP BY Category, Import_Export, Year, Quarter",
+      "GTresult": "Category=Beverage, Import_Export=Import, Year=2018, Quarter=Q2, max_Value=982.88; Category=Beverage, Import_Export=Import, Year=2021, Quarter=Q2, max_Value=819.1; Category=Dairy, Import_Export=Import, Year=2018, Quarter=Q2, max_Value=858.88; Category=Dairy, Import_Export=Import, Year=2021, Quarter=Q2, max_Value=960.95",
+      "NLquestions": [
+        "What is/are_the_ /amounts of_Import of__ Dairy or Beverage in__Q2 ==of==2021 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2018' AND Quarter = 'Q2')) AND ((Category = 'Dairy') OR (Category = 'Beverage')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=982.88; Value=858.88; Value=801.46; Value=762.39; Value=678.29",
+      "NLquestions": [
+        "What are the top/bottom_ amounts of_Import of__ Dairy or Beverage in__Q2 ==of==2018 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2018' AND Quarter = 'Q2')) AND ((Category = 'Dairy') OR (Category = 'Beverage')) ORDER BY Value DESC",
+      "GTresult": "Value=982.88; Value=858.88; Value=801.46; Value=762.39; Value=678.29; Value=551.43; Value=501.62; Value=367.14; Value=332.07; Value=160.23; Value=44.33; Value=38.12",
+      "NLquestions": [
+        "What are the amounts /increasing_values of_Import of__ Dairy or Beverage in__Q2 ==of==2018 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2021' AND Quarter = 'Q2')) AND Value > 529.18",
+      "GTresult": "Category=Beverage, Item=Milk; Category=Dairy, Item=Yoghurt; Category=Dairy, Item=Cream; Category=Beverage, Item=Milk; Category=Dairy, Item=Yoghurt; Category=Dairy, Item=Coffee; Category=Beverage, Item=Cream",
+      "NLquestions": [
+        "What is/are_the_ the amount of_Import of__ in__Q2 ==of==2021 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Category, Item, Value FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2018' AND Quarter = 'Q2')) AND (Category, Item) IN (SELECT Category, Item FROM DBdata WHERE ((Import_Export = 'Import' AND Year = '2021' AND Quarter = 'Q2')) AND Value > 529.18)",
+      "GTresult": "Category=Dairy, Item=Cream, Value=801.46; Category=Beverage, Item=Milk, Value=160.23; Category=Dairy, Item=Yoghurt, Value=678.29; Category=Dairy, Item=Coffee, Value=551.43; Category=Beverage, Item=Cream, Value=44.33; Category=Dairy, Item=Cream, Value=332.07; Category=Beverage, Item=Milk, Value=982.88; Category=Dairy, Item=Yoghurt, Value=858.88; Category=Dairy, Item=Coffee, Value=501.62; Category=Beverage, Item=Cream, Value=762.39",
+      "NLquestions": []
+    }
+  ]
+}

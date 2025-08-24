@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Number_of_constructions_set168_3_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Hospital')) AND ((Quarter = 'Q4' AND Month = 'May' AND State = 'California' AND City = 'Berkeley'))",
+      "GTresult": "Value=69.98",
+      "NLquestions": [
+        "What is the number of__ in__Berkeley ==,==California in__May ==,==Q4 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Museum')) AND ((Quarter = 'Q4' AND Month = 'November' AND State = 'California' AND City = 'Berkeley') OR (Quarter = 'Q2' AND Month = 'October' AND State = 'California' AND City = 'Berkeley') OR (Quarter = 'Q3' AND Month = 'December' AND State = 'California' AND City = 'Berkeley') OR (Quarter = 'Q4' AND Month = 'May' AND State = 'California' AND City = 'Berkeley') OR (Quarter = 'Q2' AND Month = 'April' AND State = 'California' AND City = 'Berkeley') OR (Quarter = 'Q3' AND Month = 'June' AND State = 'California' AND City = 'Berkeley') OR (Quarter = 'Q4' AND Month = 'September' AND State = 'California' AND City = 'Berkeley') OR (Quarter = 'Q3' AND Month = 'November' AND State = 'California' AND City = 'Berkeley'))",
+      "GTresult": "Value=28.29; Value=30.89; Value=31.41; Value=31.83; Value=33.23; Value=33.72; Value=35.88; Value=41.55",
+      "NLquestions": [
+        "What is the number of__ in__Berkeley ==,==California in__November or October or December or May or April or June or September ==,==Q4 or Q2 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Workshop') OR (Type_of_building = 'Production' AND Usage = 'Library')) AND ((Quarter = 'Q4' AND Month = 'September' AND State = 'California' AND City = 'Berkeley'))",
+      "GTresult": "Value=24.55; Value=94.45",
+      "NLquestions": [
+        "What is the number of__ in__Berkeley ==,==California in__September ==,==Q4 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT avg(Value) AS avg_Value, max(Value) AS max_Value FROM DBdata WHERE ((Type_of_building = 'Culture' AND Usage = 'Workshop') OR (Type_of_building = 'Service' AND Usage = 'Hospital')) AND ((Quarter = 'Q2' AND Month = 'April' AND State = 'California' AND City = 'Berkeley'))",
+      "GTresult": "avg_Value=41.69, max_Value=67.66",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__Berkeley ==,==California in__April ==,==Q2 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Museum') OR (Type_of_building = 'Production' AND Usage = 'Library')) AND ((Quarter = 'Q3' AND Month = 'December' AND State = 'California' AND City = 'Berkeley') OR (Quarter = 'Q3' AND Month = 'November' AND State = 'California' AND City = 'Berkeley'))",
+      "GTresult": "Value=31.41; Value=41.55; Value=87.76; Value=97.09",
+      "NLquestions": [
+        "What is the number of__ in__Berkeley ==,==California in__December or November ==,==Q3 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT max(Value) AS max_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Hospital')) AND ((Quarter = 'Q2' AND Month = 'October' AND State = 'California' AND City = 'Berkeley') OR (Quarter = 'Q2' AND Month = 'August' AND State = 'California' AND City = 'Berkeley') OR (Quarter = 'Q3' AND Month = 'November' AND State = 'California' AND City = 'Berkeley'))",
+      "GTresult": "max_Value=77.66, avg_Value=73.94333333333333",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__Berkeley ==,==California in__October or August or November ==,==Q2 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Type_of_building, Usage, max(Value) AS max_Value, min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Museum') OR (Type_of_building = 'Production' AND Usage = 'Concert') OR (Type_of_building = 'Service' AND Usage = 'Hospital') OR (Type_of_building = 'Production' AND Usage = 'Library')) AND ((Quarter = 'Q3' AND Month = 'December' AND State = 'California' AND City = 'Berkeley') OR (Quarter = 'Q3' AND Month = 'June' AND State = 'California' AND City = 'Berkeley') OR (Quarter = 'Q4' AND Month = 'September' AND State = 'California' AND City = 'Berkeley') OR (Quarter = 'Q2' AND Month = 'August' AND State = 'California' AND City = 'Berkeley')) GROUP BY Type_of_building, Usage",
+      "GTresult": "Type_of_building=Production, Usage=Concert, max_Value=52.16, min_Value=46.94; Type_of_building=Production, Usage=Library, max_Value=97.62, min_Value=87.76; Type_of_building=Service, Usage=Hospital, max_Value=76.53, min_Value=66.01; Type_of_building=Service, Usage=Museum, max_Value=36.3, min_Value=31.41",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__Berkeley ==,==California in__December or June or September or August ==,==Q3 or Q4 or Q2 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Factory')) AND ((Quarter = 'Q4') OR (Quarter = 'Q2')) GROUP BY Quarter",
+      "GTresult": "min_Value=5.59; min_Value=4.86",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q4 or Q2 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Quarter, avg(Value) AS avg_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Concert')) AND ((Quarter = 'Q4') OR (Quarter = 'Q2')) GROUP BY Quarter",
+      "GTresult": "Quarter=Q2, avg_Value=49.173333333333325; Quarter=Q4, avg_Value=48.25333333333333",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q4 or Q2 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Quarter, Type_of_building, Usage, sum(Value) AS sum_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Factory') OR (Type_of_building = 'Culture' AND Usage = 'Theatre')) AND ((Quarter = 'Q2') OR (Quarter = 'Q3')) GROUP BY Quarter, Type_of_building, Usage",
+      "GTresult": "Quarter=Q2, Type_of_building=Culture, Usage=Theatre, sum_Value=173.42; Quarter=Q2, Type_of_building=Production, Usage=Factory, sum_Value=34.72; Quarter=Q3, Type_of_building=Culture, Usage=Theatre, sum_Value=173.82999999999998; Quarter=Q3, Type_of_building=Production, Usage=Factory, sum_Value=33.38",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q2 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Library')) AND ((Quarter = 'Q4') OR (Quarter = 'Q2')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=80.19; Value=86.12; Value=91.29; Value=93.58; Value=94.45",
+      "NLquestions": [
+        "What are the top/bottom_ numbers of__ in__ ==,== in__ ==,==Q4 or Q2 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Hospital')) AND ((Quarter = 'Q2') OR (Quarter = 'Q3')) ORDER BY Value DESC",
+      "GTresult": "Value=77.66; Value=76.53; Value=73.6; Value=67.66; Value=67.64; Value=66.01",
+      "NLquestions": [
+        "What are the numbers /ascending_values of__ in__ ==,== in__ ==,==Q2 or Q3 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Quarter, Month, State, City FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Hospital')) AND Value > 47.54",
+      "GTresult": "Quarter=Q4, Month=November, State=California, City=Berkeley; Quarter=Q2, Month=October, State=California, City=Berkeley; Quarter=Q3, Month=December, State=California, City=Berkeley; Quarter=Q4, Month=May, State=California, City=Berkeley; Quarter=Q2, Month=April, State=California, City=Berkeley; Quarter=Q3, Month=June, State=California, City=Berkeley; Quarter=Q4, Month=September, State=California, City=Berkeley; Quarter=Q2, Month=August, State=California, City=Berkeley; Quarter=Q3, Month=November, State=California, City=Berkeley",
+      "NLquestions": [
+        "What is/are_the_ the number of__ in__ ==,== in__ ==,== is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Quarter, Month, State, City, Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Library')) AND (Quarter, Month, State, City) IN (SELECT Quarter, Month, State, City FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Hospital')) AND Value > 47.54)",
+      "GTresult": "Quarter=Q4, Month=November, State=California, City=Berkeley, Value=80.19; Quarter=Q2, Month=October, State=California, City=Berkeley, Value=86.12; Quarter=Q3, Month=December, State=California, City=Berkeley, Value=87.76; Quarter=Q4, Month=May, State=California, City=Berkeley, Value=91.29; Quarter=Q2, Month=April, State=California, City=Berkeley, Value=93.58; Quarter=Q3, Month=June, State=California, City=Berkeley, Value=94.27; Quarter=Q4, Month=September, State=California, City=Berkeley, Value=94.45; Quarter=Q2, Month=August, State=California, City=Berkeley, Value=97.62; Quarter=Q3, Month=November, State=California, City=Berkeley, Value=97.09",
+      "NLquestions": []
+    }
+  ]
+}

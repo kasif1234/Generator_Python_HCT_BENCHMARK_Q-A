@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set344_5_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Georgia' AND City = 'Washington')) AND ((Characteristic = 'Humidity' AND Intensity = 'High'))",
+      "GTresult": "Value=1.52",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Washington ==,==Georgia in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'Nevada' AND City = 'Columbus')) AND ((Characteristic = 'Humidity' AND Intensity = 'Medium') OR (Characteristic = 'Temperature' AND Intensity = 'Low') OR (Characteristic = 'Humidity' AND Intensity = 'High') OR (Characteristic = 'Temperature' AND Intensity = '0-10') OR (Characteristic = 'Humidity' AND Intensity = '31-40') OR (Characteristic = 'Temperature' AND Intensity = 'Medium'))",
+      "GTresult": "Value=7.2; Value=3.99; Value=9.35; Value=10.15; Value=9.06; Value=10.85",
+      "NLquestions": [
+        "How many days with__ Humidity or Temperature were there in__Columbus ==,==Nevada in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'Nevada' AND City = 'Columbus') OR (Year = '2018' AND State = 'California' AND City = 'Albany') OR (Year = '2017' AND State = 'Nevada' AND City = 'Boulder City')) AND ((Characteristic = 'Temperature' AND Intensity = '0-10'))",
+      "GTresult": "Value=10.15; Value=16.89; Value=27.79",
+      "NLquestions": [
+        "How many days with__ Temperature were there in__Columbus or Albany or Boulder City ==,==Nevada or California in_2017 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT avg(Value) AS avg_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Georgia' AND City = 'Washington') OR (Year = '2017' AND State = 'Nevada' AND City = 'Columbus') OR (Year = '2018' AND State = 'California' AND City = 'Albany') OR (Year = '2016' AND State = 'Georgia' AND City = 'Las Vegas') OR (Year = '2017' AND State = 'Nevada' AND City = 'Boulder City') OR (Year = '2018' AND State = 'California' AND City = 'Reno') OR (Year = '2016' AND State = 'Georgia' AND City = 'San Francisco') OR (Year = '2017' AND State = 'Nevada' AND City = 'Los-Angeles') OR (Year = '2018' AND State = 'California' AND City = 'Berkeley')) AND ((Characteristic = 'Humidity' AND Intensity = '31-40'))",
+      "GTresult": "avg_Value=16.112222222222222, min_Value=4.74",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity in__Washington or Columbus or Albany or Las Vegas or Boulder City or Reno or San Francisco or Los-Angeles or Berkeley ==,==Georgia or Nevada or California in_2016 or 2017 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Georgia' AND City = 'Washington') OR (Year = '2017' AND State = 'Nevada' AND City = 'Columbus') OR (Year = '2018' AND State = 'California' AND City = 'Albany') OR (Year = '2018' AND State = 'California' AND City = 'Reno') OR (Year = '2016' AND State = 'Georgia' AND City = 'San Francisco')) AND ((Characteristic = 'Temperature' AND Intensity = 'Low') OR (Characteristic = 'Humidity' AND Intensity = 'High') OR (Characteristic = 'Temperature' AND Intensity = 'Medium'))",
+      "GTresult": "Value=2.33; Value=1.52; Value=1.38; Value=3.99; Value=9.35; Value=10.85; Value=11.41; Value=11.55; Value=18.56; Value=23.7; Value=25.2; Value=9.02; Value=9.63; Value=10.78; Value=2.05",
+      "NLquestions": [
+        "How many days with__ Temperature or Humidity were there in__Washington or Columbus or Albany or Reno or San Francisco ==,==Georgia or Nevada or California in_2016 or 2017 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2018' AND State = 'California' AND City = 'Reno')) AND ((Characteristic = 'Humidity' AND Intensity = 'Medium') OR (Characteristic = 'Temperature' AND Intensity = 'Medium'))",
+      "GTresult": "avg_Value=16.58, min_Value=9.02",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Temperature in__Reno ==,==California in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, min(Value) AS min_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2017' AND State = 'Nevada' AND City = 'Columbus') OR (Year = '2016' AND State = 'Georgia' AND City = 'Las Vegas') OR (Year = '2017' AND State = 'Nevada' AND City = 'Los-Angeles') OR (Year = '2018' AND State = 'California' AND City = 'Berkeley')) AND ((Characteristic = 'Temperature' AND Intensity = 'Low') OR (Characteristic = 'Humidity' AND Intensity = 'High')) GROUP BY Year, State, City",
+      "GTresult": "Year=2016, State=Georgia, City=Las Vegas, min_Value=20.09, sum_Value=41.379999999999995; Year=2017, State=Nevada, City=Columbus, min_Value=3.99, sum_Value=13.34; Year=2017, State=Nevada, City=Los-Angeles, min_Value=15.08, sum_Value=32.05; Year=2018, State=California, City=Berkeley, min_Value=21.17, sum_Value=42.42",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity in__Columbus or Las Vegas or Los-Angeles or Berkeley ==,==Nevada or Georgia or California in_2017 or 2016 or 2018 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Georgia' AND City = 'Washington')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) GROUP BY Characteristic",
+      "GTresult": "min_Value=1.52; min_Value=1.38",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Temperature in__Washington ==,==Georgia in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Georgia' AND City = 'San Francisco')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Humidity, max_Value=12.27; Characteristic=Temperature, max_Value=12.99",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Temperature in__San Francisco ==,==Georgia in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2017' AND State = 'Nevada' AND City = 'Boulder City') OR (Year = '2016' AND State = 'Georgia' AND City = 'San Francisco')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Humidity, Year=2016, State=Georgia, City=San Francisco, avg_Value=10.963333333333333; Characteristic=Humidity, Year=2017, State=Nevada, City=Boulder City, avg_Value=26.646666666666665; Characteristic=Temperature, Year=2016, State=Georgia, City=San Francisco, avg_Value=8.223333333333334; Characteristic=Temperature, Year=2017, State=Nevada, City=Boulder City, avg_Value=27.116666666666664",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Temperature in__Boulder City or San Francisco ==,==Nevada or Georgia in_2017 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'Nevada' AND City = 'Columbus')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=10.85; Value=10.15; Value=9.35; Value=9.06; Value=7.2",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Humidity or Temperature in__Columbus ==,==Nevada in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'Nevada' AND City = 'Boulder City')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Temperature')) ORDER BY Value DESC",
+      "GTresult": "Value=27.94; Value=27.79; Value=26.94; Value=26.62; Value=26.04; Value=25.96",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Humidity or Temperature in__Boulder City ==,==Nevada in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2017' AND State = 'Nevada' AND City = 'Columbus')) AND Value < 14.68",
+      "GTresult": "Characteristic=Humidity, Intensity=Medium; Characteristic=Temperature, Intensity=Low; Characteristic=Humidity, Intensity=High; Characteristic=Temperature, Intensity=0-10; Characteristic=Humidity, Intensity=31-40; Characteristic=Temperature, Intensity=Medium",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Columbus ==,==Nevada in_2017 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2016' AND State = 'Georgia' AND City = 'San Francisco')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2017' AND State = 'Nevada' AND City = 'Columbus')) AND Value < 14.68)",
+      "GTresult": "Characteristic=Humidity, Intensity=Medium, Value=9.84; Characteristic=Temperature, Intensity=Low, Value=9.63; Characteristic=Humidity, Intensity=High, Value=10.78; Characteristic=Temperature, Intensity=0-10, Value=12.99; Characteristic=Humidity, Intensity=31-40, Value=12.27; Characteristic=Temperature, Intensity=Medium, Value=2.05",
+      "NLquestions": []
+    }
+  ]
+}

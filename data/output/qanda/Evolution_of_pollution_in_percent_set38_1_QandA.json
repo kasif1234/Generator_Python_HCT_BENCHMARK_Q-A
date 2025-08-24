@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Evolution_of_pollution_in_percent_set38_1_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Rochester')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Oxygen-depletion'))",
+      "GTresult": "Value=-15.95",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water in__Rochester ==,==Oregon in_ ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Rochester')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Solid Waste') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Surface water') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Groundwater'))",
+      "GTresult": "Value=-21.07; Value=-18.48; Value=-15.61",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air or Soil in__Rochester ==,==Oregon in_ ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Minneapolis') OR (State = 'Minnesota' AND City = 'Hastings')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Thermal'))",
+      "GTresult": "Value=-81.84; Value=71.5",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air in__Minneapolis or Hastings ==,==Oregon or Minnesota in_ ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT max(Value) AS max_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Portland') OR (State = 'Oregon' AND City = 'Minneapolis') OR (State = 'Minnesota' AND City = 'Hastings') OR (State = 'Oregon' AND City = 'Rochester')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Solid Waste'))",
+      "GTresult": "max_Value=54.5, sum_Value=-113.28999999999999",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air in__Portland or Minneapolis or Hastings or Rochester ==,==Minnesota or Oregon in_ ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Salem') OR (State = 'Minnesota' AND City = 'Portland') OR (State = 'Minnesota' AND City = 'Hastings') OR (State = 'Oregon' AND City = 'Rochester')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Noise') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Light') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Groundwater') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Noise'))",
+      "GTresult": "Value=3.18; Value=4.25; Value=19.38; Value=27.9; Value=-98.61; Value=31.03; Value=41.78; Value=46.12; Value=75.13; Value=76.77; Value=89.87; Value=94.21; Value=-26.47; Value=-24.6; Value=-15.61; Value=-1.99",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Soil or Water in__Salem or Portland or Hastings or Rochester ==,==Oregon or Minnesota in_ ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT max(Value) AS max_Value, min(Value) AS min_Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Rochester')) AND ((Polluted_element = 'Soil' AND Type_of_pollution = 'Noise') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Urban Activities') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Groundwater') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Oxygen-depletion') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Noise'))",
+      "GTresult": "max_Value=-1.99, min_Value=-26.47",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Soil or Water in__Rochester ==,==Oregon in_ ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT State, City, min(Value) AS min_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Portland') OR (State = 'Minnesota' AND City = 'Hastings') OR (State = 'Oregon' AND City = 'Rochester')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Thermal') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Noise') OR (Polluted_element = 'Soil' AND Type_of_pollution = 'Urban Activities')) GROUP BY State, City",
+      "GTresult": "State=Minnesota, City=Hastings, min_Value=-50.02, avg_Value=32.203333333333326; State=Minnesota, City=Portland, min_Value=-99.65, avg_Value=-97.39666666666666; State=Oregon, City=Rochester, min_Value=-28.55, avg_Value=-25.00333333333333",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Soil in__Portland or Hastings or Rochester ==,==Minnesota or Oregon in_ ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Rochester')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Soil')) GROUP BY Polluted_element",
+      "GTresult": "min_Value=-28.55; min_Value=-26.47",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Soil in__Rochester ==,==Oregon in_ ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Polluted_element, avg(Value) AS avg_Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Hastings')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Soil')) GROUP BY Polluted_element",
+      "GTresult": "Polluted_element=Air, avg_Value=18.349999999999998; Polluted_element=Soil, avg_Value=19.945",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Soil in__Hastings ==,==Minnesota in_ ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Polluted_element, State, City, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Salem') OR (State = 'Minnesota' AND City = 'Portland') OR (State = 'Oregon' AND City = 'Rochester')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Soil')) GROUP BY Polluted_element, State, City",
+      "GTresult": "Polluted_element=Air, State=Minnesota, City=Portland, sum_Value=-112.78; Polluted_element=Air, State=Oregon, City=Rochester, sum_Value=-77.99000000000001; Polluted_element=Air, State=Oregon, City=Salem, sum_Value=56.989999999999995; Polluted_element=Soil, State=Minnesota, City=Portland, sum_Value=-106.74000000000001; Polluted_element=Soil, State=Oregon, City=Rochester, sum_Value=-64.72; Polluted_element=Soil, State=Oregon, City=Salem, sum_Value=64.55",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Soil in__Salem or Portland or Rochester ==,==Oregon or Minnesota in_ ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Rochester')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Soil')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=-28.55; Value=-26.47; Value=-21.07; Value=-19.99; Value=-18.48",
+      "NLquestions": [
+        "What are the top/bottom_ evolutions of_((pollution)) of_ of_Air or Soil in__Rochester ==,==Oregon in_ ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Hastings')) AND ((Polluted_element = 'Soil') OR (Polluted_element = 'Water')) ORDER BY Value ASC",
+      "GTresult": "Value=-50.02; Value=-35.2; Value=75.13; Value=76.77; Value=84.27; Value=89.87; Value=89.91; Value=94.21",
+      "NLquestions": [
+        "What are the evolutions /increasing_values of_((pollution)) of_ of_Soil or Water in__Hastings ==,==Minnesota in_ ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Portland')) AND Value > 5.94",
+      "GTresult": "Polluted_element=Water, Type_of_pollution=Light; Polluted_element=Water, Type_of_pollution=Inorganic Fertilizers; Polluted_element=Air, Type_of_pollution=Surface water; Polluted_element=Soil, Type_of_pollution=Groundwater; Polluted_element=Water, Type_of_pollution=Oxygen-depletion; Polluted_element=Air, Type_of_pollution=Chemical; Polluted_element=Soil, Type_of_pollution=Thermal; Polluted_element=Water, Type_of_pollution=Noise",
+      "NLquestions": [
+        "What is/are_the_ the evolution of_((pollution)) of_ of_ in__Portland ==,==Minnesota in_ is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Polluted_element, Type_of_pollution, Value FROM DBdata WHERE ((State = 'Oregon' AND City = 'Salem')) AND (Polluted_element, Type_of_pollution) IN (SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Minnesota' AND City = 'Portland')) AND Value > 5.94)",
+      "GTresult": "Polluted_element=Water, Type_of_pollution=Light, Value=4.25; Polluted_element=Water, Type_of_pollution=Inorganic Fertilizers, Value=16.41; Polluted_element=Air, Type_of_pollution=Surface water, Value=17.9; Polluted_element=Soil, Type_of_pollution=Groundwater, Value=19.38; Polluted_element=Water, Type_of_pollution=Oxygen-depletion, Value=25.81; Polluted_element=Air, Type_of_pollution=Chemical, Value=26.54; Polluted_element=Soil, Type_of_pollution=Thermal, Value=27.54; Polluted_element=Water, Type_of_pollution=Noise, Value=27.9",
+      "NLquestions": []
+    }
+  ]
+}

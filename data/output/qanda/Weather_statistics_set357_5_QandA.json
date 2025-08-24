@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set357_5_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Georgia' AND City = 'Albany')) AND ((Characteristic = 'Temperature' AND Intensity = 'Breeze'))",
+      "GTresult": "Value=1.16",
+      "NLquestions": [
+        "How many days with__ Temperature were there in__Albany ==,==Georgia in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'Illinois' AND City = 'Lenox')) AND ((Characteristic = 'Wind' AND Intensity = '31-40') OR (Characteristic = 'Temperature' AND Intensity = '0-10') OR (Characteristic = 'Humidity' AND Intensity = '21-30') OR (Characteristic = 'Wind' AND Intensity = 'High') OR (Characteristic = 'Humidity' AND Intensity = 'Medium'))",
+      "GTresult": "Value=22.54; Value=23.89; Value=8.47; Value=11.94; Value=15.26",
+      "NLquestions": [
+        "How many days with__ Wind or Temperature or Humidity were there in__Lenox ==,==Illinois in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'Massachusetts' AND City = 'Washington') OR (Year = '2017' AND State = 'Massachusetts' AND City = 'Springfield') OR (Year = '2016' AND State = 'Illinois' AND City = 'Champaign')) AND ((Characteristic = 'Temperature' AND Intensity = '0-10'))",
+      "GTresult": "Value=6.73; Value=6.95; Value=10.63",
+      "NLquestions": [
+        "How many days with__ Temperature were there in__Washington or Springfield or Champaign ==,==Massachusetts or Illinois in_2017 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT avg(Value) AS avg_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Georgia' AND City = 'Albany') OR (Year = '2016' AND State = 'Illinois' AND City = 'Columbus') OR (Year = '2016' AND State = 'Illinois' AND City = 'Champaign')) AND ((Characteristic = 'Temperature' AND Intensity = '0-10'))",
+      "GTresult": "avg_Value=10.986666666666666, min_Value=1.01",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature in__Albany or Columbus or Champaign ==,==Georgia or Illinois in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'Massachusetts' AND City = 'Washington') OR (Year = '2016' AND State = 'Massachusetts' AND City = 'Cambridge') OR (Year = '2017' AND State = 'Illinois' AND City = 'Lenox') OR (Year = '2016' AND State = 'Georgia' AND City = 'Chicago') OR (Year = '2016' AND State = 'Illinois' AND City = 'Champaign')) AND ((Characteristic = 'Humidity' AND Intensity = '21-30') OR (Characteristic = 'Humidity' AND Intensity = 'Medium'))",
+      "GTresult": "Value=9.43; Value=17.43; Value=18.22; Value=19.85; Value=8.47; Value=15.26; Value=8.45; Value=4.06; Value=13.67; Value=3.39",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Washington or Cambridge or Lenox or Chicago or Champaign ==,==Massachusetts or Illinois or Georgia in_2017 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT min(Value) AS min_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Massachusetts' AND City = 'Cambridge')) AND ((Characteristic = 'Wind' AND Intensity = 'Calm') OR (Characteristic = 'Temperature' AND Intensity = 'Low') OR (Characteristic = 'Humidity' AND Intensity = 'Medium'))",
+      "GTresult": "min_Value=14.64, avg_Value=17.69",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature or Humidity in__Cambridge ==,==Massachusetts in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, max(Value) AS max_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Georgia' AND City = 'Albany') OR (Year = '2016' AND State = 'Illinois' AND City = 'Champaign')) AND ((Characteristic = 'Wind' AND Intensity = 'Calm') OR (Characteristic = 'Temperature' AND Intensity = '0-10')) GROUP BY Year, State, City",
+      "GTresult": "Year=2016, State=Georgia, City=Albany, max_Value=1.11, min_Value=1.01; Year=2016, State=Illinois, City=Champaign, max_Value=24.66, min_Value=10.63",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Albany or Champaign ==,==Georgia or Illinois in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2017' AND State = 'Georgia' AND City = 'Boston')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) GROUP BY Characteristic",
+      "GTresult": "min_Value=4.18; min_Value=21.29",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Boston ==,==Georgia in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Illinois' AND City = 'Champaign')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Humidity, max_Value=13.67; Characteristic=Temperature, max_Value=10.63",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity in__Champaign ==,==Illinois in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Illinois' AND City = 'Columbus') OR (Year = '2016' AND State = 'Massachusetts' AND City = 'Cambridge') OR (Year = '2016' AND State = 'Illinois' AND City = 'Champaign')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Temperature, Year=2016, State=Illinois, City=Champaign, avg_Value=4.3566666666666665; Characteristic=Temperature, Year=2016, State=Illinois, City=Columbus, avg_Value=23.060000000000002; Characteristic=Temperature, Year=2016, State=Massachusetts, City=Cambridge, avg_Value=17.41; Characteristic=Wind, Year=2016, State=Illinois, City=Champaign, avg_Value=12.24; Characteristic=Wind, Year=2016, State=Illinois, City=Columbus, avg_Value=19.536666666666665; Characteristic=Wind, Year=2016, State=Massachusetts, City=Cambridge, avg_Value=16.453333333333333",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Columbus or Cambridge or Champaign ==,==Illinois or Massachusetts in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Georgia' AND City = 'Albany')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=9.81; Value=8.85; Value=6.96; Value=3.02; Value=1.16",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Temperature or Humidity in__Albany ==,==Georgia in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'Massachusetts' AND City = 'Washington')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) ORDER BY Value DESC",
+      "GTresult": "Value=17.43; Value=15.53; Value=13.95; Value=12.59; Value=10.43; Value=9.43",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Wind or Humidity in__Washington ==,==Massachusetts in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2016' AND State = 'Illinois' AND City = 'Columbus')) AND Value < 14.22",
+      "GTresult": "",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Columbus ==,==Illinois in_2016 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2017' AND State = 'Illinois' AND City = 'Lenox')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2016' AND State = 'Illinois' AND City = 'Columbus')) AND Value < 14.22)",
+      "GTresult": "",
+      "NLquestions": []
+    }
+  ]
+}

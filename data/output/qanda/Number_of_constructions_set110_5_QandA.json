@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Number_of_constructions_set110_5_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Administration')) AND ((Quarter = 'Q1' AND Month = 'December' AND State = 'Illinois' AND City = 'Springfield'))",
+      "GTresult": "Value=11.68",
+      "NLquestions": [
+        "What is the number of__ in__Springfield ==,==Illinois in__December ==,==Q1 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Workshop')) AND ((Quarter = 'Q3' AND Month = 'July' AND State = 'Illinois' AND City = 'Springfield') OR (Quarter = 'Q4' AND Month = 'September' AND State = 'Illinois' AND City = 'Champaign') OR (Quarter = 'Q1' AND Month = 'December' AND State = 'Illinois' AND City = 'Springfield') OR (Quarter = 'Q3' AND Month = 'November' AND State = 'Illinois' AND City = 'Champaign') OR (Quarter = 'Q4' AND Month = 'February' AND State = 'Illinois' AND City = 'Springfield') OR (Quarter = 'Q1' AND Month = 'March' AND State = 'Illinois' AND City = 'Champaign'))",
+      "GTresult": "Value=84.09; Value=88.6; Value=90.35; Value=95.11; Value=98.91; Value=98.63",
+      "NLquestions": [
+        "What is the number of__ in__Springfield or Champaign ==,==Illinois in__July or September or December or November or February or March ==,==Q3 or Q4 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'School') OR (Type_of_building = 'Service' AND Usage = 'House') OR (Type_of_building = 'Service' AND Usage = 'Workshop')) AND ((Quarter = 'Q1' AND Month = 'December' AND State = 'Illinois' AND City = 'Springfield'))",
+      "GTresult": "Value=23.47; Value=42.37; Value=90.35",
+      "NLquestions": [
+        "What is the number of__ in__Springfield ==,==Illinois in__December ==,==Q1 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Administration') OR (Type_of_building = 'Residential' AND Usage = 'School') OR (Type_of_building = 'Production' AND Usage = 'Apartment') OR (Type_of_building = 'Service' AND Usage = 'House') OR (Type_of_building = 'Residential' AND Usage = 'Hotel') OR (Type_of_building = 'Service' AND Usage = 'Workshop')) AND ((Quarter = 'Q3' AND Month = 'November' AND State = 'Illinois' AND City = 'Champaign'))",
+      "GTresult": "avg_Value=48.25833333333333, sum_Value=289.55",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__Champaign ==,==Illinois in__November ==,==Q3 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'School') OR (Type_of_building = 'Residential' AND Usage = 'Hotel')) AND ((Quarter = 'Q4' AND Month = 'September' AND State = 'Illinois' AND City = 'Champaign') OR (Quarter = 'Q1' AND Month = 'December' AND State = 'Illinois' AND City = 'Springfield') OR (Quarter = 'Q4' AND Month = 'February' AND State = 'Illinois' AND City = 'Springfield') OR (Quarter = 'Q1' AND Month = 'March' AND State = 'Illinois' AND City = 'Champaign'))",
+      "GTresult": "Value=20.51; Value=23.47; Value=32.13; Value=35.33; Value=58.94; Value=61.96; Value=67.85; Value=74.42",
+      "NLquestions": [
+        "What is the number of__ in__Champaign or Springfield ==,==Illinois in__September or December or February or March ==,==Q4 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Administration')) AND ((Quarter = 'Q3' AND Month = 'July' AND State = 'Illinois' AND City = 'Springfield') OR (Quarter = 'Q1' AND Month = 'December' AND State = 'Illinois' AND City = 'Springfield') OR (Quarter = 'Q1' AND Month = 'March' AND State = 'Illinois' AND City = 'Champaign'))",
+      "GTresult": "avg_Value=11.073333333333332, sum_Value=33.22",
+      "NLquestions": [
+        "What is/are_the_ /numbers of__ in__Springfield or Champaign ==,==Illinois in__July or December or March ==,==Q3 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Type_of_building, Usage, min(Value) AS min_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Administration') OR (Type_of_building = 'Production' AND Usage = 'Apartment') OR (Type_of_building = 'Production' AND Usage = 'Factory') OR (Type_of_building = 'Service' AND Usage = 'Workshop')) AND ((Quarter = 'Q3' AND Month = 'November' AND State = 'Illinois' AND City = 'Champaign') OR (Quarter = 'Q4' AND Month = 'February' AND State = 'Illinois' AND City = 'Springfield') OR (Quarter = 'Q1' AND Month = 'March' AND State = 'Illinois' AND City = 'Champaign')) GROUP BY Type_of_building, Usage",
+      "GTresult": "Type_of_building=Production, Usage=Apartment, min_Value=42.7, avg_Value=43.11333333333334; Type_of_building=Production, Usage=Factory, min_Value=79.37, avg_Value=81.72000000000001; Type_of_building=Service, Usage=Administration, min_Value=12.86, avg_Value=16.55666666666667; Type_of_building=Service, Usage=Workshop, min_Value=95.11, avg_Value=97.55",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__Champaign or Springfield ==,==Illinois in__November or February or March ==,==Q3 or Q4 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'House')) AND ((Quarter = 'Q4') OR (Quarter = 'Q1')) GROUP BY Quarter",
+      "GTresult": "min_Value=42.37; min_Value=42.33",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q4 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Quarter, avg(Value) AS avg_Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Factory')) AND ((Quarter = 'Q3') OR (Quarter = 'Q4')) GROUP BY Quarter",
+      "GTresult": "Quarter=Q3, avg_Value=77.37; Quarter=Q4, avg_Value=79.575",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q3 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Quarter, Type_of_building, Usage, avg(Value) AS avg_Value FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'School') OR (Type_of_building = 'Production' AND Usage = 'Apartment') OR (Type_of_building = 'Service' AND Usage = 'House')) AND ((Quarter = 'Q3') OR (Quarter = 'Q4')) GROUP BY Quarter, Type_of_building, Usage",
+      "GTresult": "Quarter=Q3, Type_of_building=Production, Usage=Apartment, avg_Value=40.525000000000006; Quarter=Q3, Type_of_building=Residential, Usage=School, avg_Value=24.825000000000003; Quarter=Q3, Type_of_building=Service, Usage=House, avg_Value=46.93; Quarter=Q4, Type_of_building=Production, Usage=Apartment, avg_Value=41.345; Quarter=Q4, Type_of_building=Residential, Usage=School, avg_Value=26.32; Quarter=Q4, Type_of_building=Service, Usage=House, avg_Value=46.31",
+      "NLquestions": [
+        "What is/are_the_ /numbers of_((buildings)) of__ in__ ==,== in__ ==,==Q3 or Q4 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'Workshop')) AND ((Quarter = 'Q3') OR (Quarter = 'Q1')) ORDER BY Value DESC LIMIT 3",
+      "GTresult": "Value=98.63; Value=95.11; Value=90.35",
+      "NLquestions": [
+        "What are the top/bottom_ numbers of__ in__ ==,== in__ ==,==Q3 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Type_of_building = 'Service' AND Usage = 'House')) AND ((Quarter = 'Q3') OR (Quarter = 'Q1')) ORDER BY Value ASC",
+      "GTresult": "Value=42.37; Value=44.62; Value=49.24; Value=54.09",
+      "NLquestions": [
+        "What are the numbers /ascending_values of__ in__ ==,== in__ ==,==Q3 or Q1 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Quarter, Month, State, City FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Hotel')) AND Value < 51.73",
+      "GTresult": "",
+      "NLquestions": [
+        "What is/are_the_ the number of__ in__ ==,== in__ ==,== is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Quarter, Month, State, City, Value FROM DBdata WHERE ((Type_of_building = 'Production' AND Usage = 'Factory')) AND (Quarter, Month, State, City) IN (SELECT Quarter, Month, State, City FROM DBdata WHERE ((Type_of_building = 'Residential' AND Usage = 'Hotel')) AND Value < 51.73)",
+      "GTresult": "",
+      "NLquestions": []
+    }
+  ]
+}

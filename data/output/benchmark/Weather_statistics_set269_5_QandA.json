@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set269_5_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'Maryland' AND City = 'Chicago')) AND ((Characteristic = 'Wind' AND Intensity = 'Breeze'))",
+      "GTresult": "Value=9.74",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Chicago ==,==Maryland in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Illinois' AND City = 'Aberdeen')) AND ((Characteristic = 'Humidity' AND Intensity = 'Medium') OR (Characteristic = 'Wind' AND Intensity = 'Low') OR (Characteristic = 'Humidity' AND Intensity = 'Calm') OR (Characteristic = 'Wind' AND Intensity = 'Breeze') OR (Characteristic = 'Wind' AND Intensity = 'Medium'))",
+      "GTresult": "Value=26.55; Value=26.85; Value=26.73; Value=24.87; Value=17.97",
+      "NLquestions": [
+        "How many days with__ Humidity or Wind were there in__Aberdeen ==,==Illinois in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Illinois' AND City = 'Springfield') OR (Year = '2017' AND State = 'Maryland' AND City = 'Chicago') OR (Year = '2019' AND State = 'Illinois' AND City = 'Baltimore') OR (Year = '2017' AND State = 'Maryland' AND City = 'Columbia')) AND ((Characteristic = 'Humidity' AND Intensity = 'Medium'))",
+      "GTresult": "Value=1.94; Value=7.7; Value=14.38; Value=20.24",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Springfield or Chicago or Baltimore or Columbia ==,==Illinois or Maryland in_2019 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Illinois' AND City = 'Springfield') OR (Year = '2019' AND State = 'Illinois' AND City = 'Baltimore') OR (Year = '2017' AND State = 'Maryland' AND City = 'Columbia') OR (Year = '2019' AND State = 'Illinois' AND City = 'Aberdeen')) AND ((Characteristic = 'Wind' AND Intensity = 'Medium'))",
+      "GTresult": "sum_Value=64.92, min_Value=2.97",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind in__Springfield or Baltimore or Columbia or Aberdeen ==,==Illinois or Maryland in_2019 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Illinois' AND City = 'Springfield') OR (Year = '2017' AND State = 'Maryland' AND City = 'Chicago') OR (Year = '2019' AND State = 'Illinois' AND City = 'Baltimore') OR (Year = '2017' AND State = 'Maryland' AND City = 'Columbia') OR (Year = '2019' AND State = 'Illinois' AND City = 'Aberdeen')) AND ((Characteristic = 'Humidity' AND Intensity = 'Medium') OR (Characteristic = 'Wind' AND Intensity = 'Breeze') OR (Characteristic = 'Humidity' AND Intensity = 'Storm') OR (Characteristic = 'Wind' AND Intensity = 'Medium'))",
+      "GTresult": "Value=1.94; Value=2.23; Value=4.66; Value=2.97; Value=7.7; Value=9.74; Value=12.0; Value=13.8; Value=14.38; Value=14.19; Value=18.57; Value=19.32; Value=20.24; Value=23.54; Value=24.78; Value=24.66; Value=26.55; Value=24.87; Value=25.71; Value=17.97",
+      "NLquestions": [
+        "How many days with__ Humidity or Wind were there in__Springfield or Chicago or Baltimore or Columbia or Aberdeen ==,==Illinois or Maryland in_2019 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT min(Value) AS min_Value, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Illinois' AND City = 'Springfield')) AND ((Characteristic = 'Humidity' AND Intensity = 'Calm') OR (Characteristic = 'Wind' AND Intensity = 'Breeze') OR (Characteristic = 'Humidity' AND Intensity = 'Storm'))",
+      "GTresult": "min_Value=2.23, max_Value=4.66",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Springfield ==,==Illinois in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Illinois' AND City = 'Springfield') OR (Year = '2017' AND State = 'Maryland' AND City = 'Chicago') OR (Year = '2019' AND State = 'Illinois' AND City = 'Baltimore') OR (Year = '2017' AND State = 'Maryland' AND City = 'Columbia') OR (Year = '2019' AND State = 'Illinois' AND City = 'Aberdeen')) AND ((Characteristic = 'Humidity' AND Intensity = 'Medium') OR (Characteristic = 'Wind' AND Intensity = 'Low') OR (Characteristic = 'Wind' AND Intensity = 'Breeze') OR (Characteristic = 'Humidity' AND Intensity = 'Storm') OR (Characteristic = 'Wind' AND Intensity = 'Medium')) GROUP BY Year, State, City",
+      "GTresult": "Year=2017, State=Maryland, City=Chicago, avg_Value=10.629999999999999, sum_Value=53.15; Year=2017, State=Maryland, City=Columbia, avg_Value=22.880000000000003, sum_Value=114.4; Year=2019, State=Illinois, City=Aberdeen, avg_Value=24.39, sum_Value=121.95; Year=2019, State=Illinois, City=Baltimore, avg_Value=16.234, sum_Value=81.17; Year=2019, State=Illinois, City=Springfield, avg_Value=2.854, sum_Value=14.27",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Springfield or Chicago or Baltimore or Columbia or Aberdeen ==,==Illinois or Maryland in_2019 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2017' AND State = 'Maryland' AND City = 'Columbia')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "min_Value=20.24; min_Value=21.18",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Columbia ==,==Maryland in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2017' AND State = 'Maryland' AND City = 'Columbia')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Humidity, sum_Value=67.00999999999999; Characteristic=Wind, sum_Value=69.38",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Columbia ==,==Maryland in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Illinois' AND City = 'Springfield') OR (Year = '2019' AND State = 'Illinois' AND City = 'Aberdeen')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Humidity, Year=2019, State=Illinois, City=Aberdeen, min_Value=25.71; Characteristic=Humidity, Year=2019, State=Illinois, City=Springfield, min_Value=1.94; Characteristic=Wind, Year=2019, State=Illinois, City=Aberdeen, min_Value=17.97; Characteristic=Wind, Year=2019, State=Illinois, City=Springfield, min_Value=2.23",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Wind in__Springfield or Aberdeen ==,==Illinois in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'Maryland' AND City = 'Chicago')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=13.8; Value=12.0; Value=10.49; Value=9.91; Value=9.74",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Humidity or Wind in__Chicago ==,==Maryland in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'Maryland' AND City = 'Columbia')) AND ((Characteristic = 'Humidity') OR (Characteristic = 'Wind')) ORDER BY Value DESC",
+      "GTresult": "Value=24.78; Value=24.66; Value=23.54; Value=21.99; Value=21.18; Value=20.24",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Humidity or Wind in__Columbia ==,==Maryland in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2019' AND State = 'Illinois' AND City = 'Aberdeen')) AND Value < 15.44",
+      "GTresult": "",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Aberdeen ==,==Illinois in_2019 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2017' AND State = 'Maryland' AND City = 'Columbia')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2019' AND State = 'Illinois' AND City = 'Aberdeen')) AND Value < 15.44)",
+      "GTresult": "",
+      "NLquestions": []
+    }
+  ]
+}

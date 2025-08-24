@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set357_1_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'Illinois' AND City = 'Malibu')) AND ((Characteristic = 'Wind' AND Intensity = 'Calm'))",
+      "GTresult": "Value=23.57",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Malibu ==,==Illinois in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'Nevada' AND City = 'Los-Angeles')) AND ((Characteristic = 'Temperature' AND Intensity = '31-40') OR (Characteristic = 'Wind' AND Intensity = '0-10') OR (Characteristic = 'Temperature' AND Intensity = 'Storm') OR (Characteristic = 'Wind' AND Intensity = 'Calm'))",
+      "GTresult": "Value=13.92; Value=13.08; Value=15.35; Value=16.37",
+      "NLquestions": [
+        "How many days with__ Temperature or Wind were there in__Los-Angeles ==,==Nevada in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Nevada' AND City = 'Boulder City') OR (Year = '2017' AND State = 'California' AND City = 'Reno') OR (Year = '2017' AND State = 'Nevada' AND City = 'Los-Angeles') OR (Year = '2016' AND State = 'California' AND City = 'San Francisco') OR (Year = '2017' AND State = 'Illinois' AND City = 'Malibu') OR (Year = '2016' AND State = 'Nevada' AND City = 'Champaign') OR (Year = '2016' AND State = 'Illinois' AND City = 'Springfield')) AND ((Characteristic = 'Wind' AND Intensity = '0-10'))",
+      "GTresult": "Value=2.44; Value=6.41; Value=13.08; Value=16.97; Value=17.01; Value=25.5; Value=0.16",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Boulder City or Reno or Los-Angeles or San Francisco or Malibu or Champaign or Springfield ==,==Nevada or California or Illinois in_2016 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2016' AND State = 'California' AND City = 'San Francisco') OR (Year = '2017' AND State = 'Illinois' AND City = 'Malibu')) AND ((Characteristic = 'Wind' AND Intensity = 'Calm'))",
+      "GTresult": "avg_Value=20.155, sum_Value=40.31",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind in__San Francisco or Malibu ==,==California or Illinois in_2016 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Illinois' AND City = 'Las Vegas') OR (Year = '2016' AND State = 'Nevada' AND City = 'Champaign') OR (Year = '2017' AND State = 'California' AND City = 'Chicago') OR (Year = '2016' AND State = 'Illinois' AND City = 'Springfield')) AND ((Characteristic = 'Temperature' AND Intensity = '31-40') OR (Characteristic = 'Temperature' AND Intensity = 'Storm') OR (Characteristic = 'Wind' AND Intensity = 'Calm'))",
+      "GTresult": "Value=7.79; Value=11.62; Value=7.74; Value=25.84; Value=26.45; Value=24.1; Value=21.63; Value=23.52; Value=23.88; Value=5.18; Value=15.98; Value=7.21",
+      "NLquestions": [
+        "How many days with__ Temperature or Wind were there in__Las Vegas or Champaign or Chicago or Springfield ==,==Illinois or Nevada or California in_2016 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT max(Value) AS max_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2017' AND State = 'California' AND City = 'Reno')) AND ((Characteristic = 'Wind' AND Intensity = '0-10') OR (Characteristic = 'Wind' AND Intensity = 'Calm'))",
+      "GTresult": "max_Value=6.41, min_Value=4.17",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind in__Reno ==,==California in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, max(Value) AS max_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Nevada' AND City = 'Boulder City') OR (Year = '2017' AND State = 'California' AND City = 'Reno') OR (Year = '2016' AND State = 'California' AND City = 'San Francisco') OR (Year = '2017' AND State = 'California' AND City = 'Chicago')) AND ((Characteristic = 'Temperature' AND Intensity = '31-40') OR (Characteristic = 'Wind' AND Intensity = '0-10') OR (Characteristic = 'Wind' AND Intensity = 'Calm')) GROUP BY Year, State, City",
+      "GTresult": "Year=2016, State=California, City=San Francisco, max_Value=16.97, min_Value=16.39; Year=2016, State=Nevada, City=Boulder City, max_Value=4.29, min_Value=0.58; Year=2017, State=California, City=Chicago, max_Value=26.78, min_Value=21.63; Year=2017, State=California, City=Reno, max_Value=6.41, min_Value=4.17",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Boulder City or Reno or San Francisco or Chicago ==,==Nevada or California in_2016 or 2017 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2016' AND State = 'Illinois' AND City = 'Las Vegas')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "min_Value=7.79; min_Value=7.74",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Las Vegas ==,==Illinois in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2016' AND State = 'California' AND City = 'San Francisco')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Temperature, avg_Value=17.11; Characteristic=Wind, avg_Value=16.854999999999997",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__San Francisco ==,==California in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2017' AND State = 'Nevada' AND City = 'Los-Angeles') OR (Year = '2016' AND State = 'Illinois' AND City = 'Springfield')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Temperature, Year=2016, State=Illinois, City=Springfield, max_Value=15.98; Characteristic=Temperature, Year=2017, State=Nevada, City=Los-Angeles, max_Value=15.35; Characteristic=Wind, Year=2016, State=Illinois, City=Springfield, max_Value=7.21; Characteristic=Wind, Year=2017, State=Nevada, City=Los-Angeles, max_Value=16.37",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Los-Angeles or Springfield ==,==Nevada or Illinois in_2017 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Nevada' AND City = 'Champaign')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) ORDER BY Value DESC LIMIT 3",
+      "GTresult": "Value=26.45; Value=25.84; Value=25.5",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Temperature or Wind in__Champaign ==,==Nevada in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'Illinois' AND City = 'Malibu')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) ORDER BY Value ASC",
+      "GTresult": "Value=17.01; Value=20.07; Value=21.49; Value=23.57",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Temperature or Wind in__Malibu ==,==Illinois in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2017' AND State = 'Illinois' AND City = 'Malibu')) AND Value < 14.04",
+      "GTresult": "",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Malibu ==,==Illinois in_2017 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2017' AND State = 'California' AND City = 'Chicago')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2017' AND State = 'Illinois' AND City = 'Malibu')) AND Value < 14.04)",
+      "GTresult": "",
+      "NLquestions": []
+    }
+  ]
+}

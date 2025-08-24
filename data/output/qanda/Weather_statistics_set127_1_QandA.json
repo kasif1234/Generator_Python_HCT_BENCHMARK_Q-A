@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set127_1_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Michigan' AND City = 'Detroit')) AND ((Characteristic = 'Temperature' AND Intensity = '21-30'))",
+      "GTresult": "Value=24.67",
+      "NLquestions": [
+        "How many days with__ Temperature were there in__Detroit ==,==Michigan in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2016' AND State = 'Maryland' AND City = 'Flint')) AND ((Characteristic = 'Temperature' AND Intensity = '11-20') OR (Characteristic = 'Wind' AND Intensity = '0-10') OR (Characteristic = 'Temperature' AND Intensity = '21-30') OR (Characteristic = 'Temperature' AND Intensity = 'Storm') OR (Characteristic = 'Wind' AND Intensity = 'Calm'))",
+      "GTresult": "Value=23.64; Value=25.81; Value=25.94; Value=11.16; Value=11.04",
+      "NLquestions": [
+        "How many days with__ Temperature or Wind were there in__Flint ==,==Maryland in_2016 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'California' AND City = 'Los-Angeles') OR (Year = '2016' AND State = 'Maryland' AND City = 'Berkeley') OR (Year = '2017' AND State = 'California' AND City = 'Port Huron') OR (Year = '2020' AND State = 'Michigan' AND City = 'Detroit') OR (Year = '2020' AND State = 'Michigan' AND City = 'Aberdeen')) AND ((Characteristic = 'Wind' AND Intensity = '0-10'))",
+      "GTresult": "Value=1.67; Value=13.65; Value=13.96; Value=24.25; Value=18.29",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Los-Angeles or Berkeley or Port Huron or Detroit or Aberdeen ==,==California or Maryland or Michigan in_2017 or 2016 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2017' AND State = 'California' AND City = 'Los-Angeles') OR (Year = '2020' AND State = 'Michigan' AND City = 'San Francisco') OR (Year = '2016' AND State = 'Maryland' AND City = 'Berkeley') OR (Year = '2017' AND State = 'California' AND City = 'Port Huron') OR (Year = '2020' AND State = 'Michigan' AND City = 'Detroit') OR (Year = '2016' AND State = 'Maryland' AND City = 'Flint') OR (Year = '2017' AND State = 'California' AND City = 'Baltimore')) AND ((Characteristic = 'Wind' AND Intensity = 'Calm'))",
+      "GTresult": "avg_Value=14.941428571428572, sum_Value=104.59",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind in__Los-Angeles or San Francisco or Berkeley or Port Huron or Detroit or Flint or Baltimore ==,==California or Michigan or Maryland in_2017 or 2020 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Michigan' AND City = 'San Francisco') OR (Year = '2016' AND State = 'Maryland' AND City = 'Berkeley') OR (Year = '2016' AND State = 'Maryland' AND City = 'Flint')) AND ((Characteristic = 'Temperature' AND Intensity = '11-20') OR (Characteristic = 'Wind' AND Intensity = '0-10') OR (Characteristic = 'Wind' AND Intensity = 'Breeze'))",
+      "GTresult": "Value=6.05; Value=6.98; Value=9.02; Value=11.44; Value=13.65; Value=14.53; Value=23.64; Value=25.81; Value=25.06",
+      "NLquestions": [
+        "How many days with__ Temperature or Wind were there in__San Francisco or Berkeley or Flint ==,==Michigan or Maryland in_2020 or 2016 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2020' AND State = 'Michigan' AND City = 'Aberdeen')) AND ((Characteristic = 'Temperature' AND Intensity = '11-20') OR (Characteristic = 'Wind' AND Intensity = '0-10') OR (Characteristic = 'Temperature' AND Intensity = '21-30') OR (Characteristic = 'Wind' AND Intensity = 'Breeze') OR (Characteristic = 'Temperature' AND Intensity = 'Storm'))",
+      "GTresult": "sum_Value=56.58, min_Value=0.08",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Aberdeen ==,==Michigan in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, min(Value) AS min_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2017' AND State = 'California' AND City = 'Los-Angeles') OR (Year = '2017' AND State = 'California' AND City = 'Baltimore') OR (Year = '2020' AND State = 'Michigan' AND City = 'Aberdeen')) AND ((Characteristic = 'Temperature' AND Intensity = '11-20') OR (Characteristic = 'Temperature' AND Intensity = '21-30') OR (Characteristic = 'Wind' AND Intensity = 'Breeze') OR (Characteristic = 'Temperature' AND Intensity = 'Storm') OR (Characteristic = 'Wind' AND Intensity = 'Calm')) GROUP BY Year, State, City",
+      "GTresult": "Year=2017, State=California, City=Baltimore, min_Value=0.62, sum_Value=62.21; Year=2017, State=California, City=Los-Angeles, min_Value=0.61, sum_Value=13.2; Year=2020, State=Michigan, City=Aberdeen, min_Value=0.08, sum_Value=61.03",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Los-Angeles or Baltimore or Aberdeen ==,==California or Michigan in_2017 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2020' AND State = 'Michigan' AND City = 'Detroit')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "min_Value=24.54; min_Value=24.25",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Detroit ==,==Michigan in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2020' AND State = 'Michigan' AND City = 'San Francisco')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Temperature, min_Value=2.95; Characteristic=Wind, min_Value=6.98",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__San Francisco ==,==Michigan in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2017' AND State = 'California' AND City = 'Los-Angeles') OR (Year = '2017' AND State = 'California' AND City = 'Port Huron')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Temperature, Year=2017, State=California, City=Los-Angeles, max_Value=4.52; Characteristic=Temperature, Year=2017, State=California, City=Port Huron, max_Value=20.85; Characteristic=Wind, Year=2017, State=California, City=Los-Angeles, max_Value=3.32; Characteristic=Wind, Year=2017, State=California, City=Port Huron, max_Value=21.64",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Wind in__Los-Angeles or Port Huron ==,==California in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2017' AND State = 'California' AND City = 'Baltimore')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=16.32; Value=15.8; Value=15.42; Value=14.05; Value=13.14",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Temperature or Wind in__Baltimore ==,==California in_2017 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2020' AND State = 'Michigan' AND City = 'Detroit')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Wind')) ORDER BY Value DESC",
+      "GTresult": "Value=27.97; Value=25.17; Value=24.67; Value=24.54; Value=24.31; Value=24.25",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Temperature or Wind in__Detroit ==,==Michigan in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2016' AND State = 'Maryland' AND City = 'Flint')) AND Value < 14.38",
+      "GTresult": "Characteristic=Temperature, Intensity=Storm; Characteristic=Wind, Intensity=Calm",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Flint ==,==Maryland in_2016 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2020' AND State = 'Michigan' AND City = 'Detroit')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2016' AND State = 'Maryland' AND City = 'Flint')) AND Value < 14.38)",
+      "GTresult": "Characteristic=Temperature, Intensity=Storm, Value=27.97; Characteristic=Wind, Intensity=Calm, Value=25.17",
+      "NLquestions": []
+    }
+  ]
+}

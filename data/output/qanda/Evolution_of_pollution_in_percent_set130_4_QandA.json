@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Evolution_of_pollution_in_percent_set130_4_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Cambridge' AND Year = '2020')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Surface water'))",
+      "GTresult": "Value=24.79",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air in__Cambridge ==,==Maryland in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Port Huron' AND Year = '2015')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Light') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Groundwater'))",
+      "GTresult": "Value=-51.6; Value=77.12",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Water or Air in__Port Huron ==,==Massachusetts in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Lenox' AND Year = '2015') OR (State = 'Michigan' AND City = 'Boston' AND Year = '2015') OR (State = 'Massachusetts' AND City = 'Baltimore' AND Year = '2020') OR (State = 'Maryland' AND City = 'Columbia' AND Year = '2015') OR (State = 'Michigan' AND City = 'Aberdeen' AND Year = '2020') OR (State = 'Maryland' AND City = 'Flint' AND Year = '2020')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Surface water'))",
+      "GTresult": "Value=5.05; Value=-85.26; Value=52.73; Value=62.58; Value=71.33; Value=-44.37",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air in__Lenox or Boston or Baltimore or Columbia or Aberdeen or Flint ==,==Massachusetts or Michigan or Maryland in_2015 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT min(Value) AS min_Value, max(Value) AS max_Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Lenox' AND Year = '2015') OR (State = 'Maryland' AND City = 'Cambridge' AND Year = '2020') OR (State = 'Michigan' AND City = 'Boston' AND Year = '2015') OR (State = 'Massachusetts' AND City = 'Baltimore' AND Year = '2020') OR (State = 'Maryland' AND City = 'Flint' AND Year = '2020') OR (State = 'Michigan' AND City = 'Detroit' AND Year = '2015')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Groundwater'))",
+      "GTresult": "min_Value=-82.92, max_Value=30.38",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air in__Lenox or Cambridge or Boston or Baltimore or Flint or Detroit ==,==Massachusetts or Maryland or Michigan in_2015 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Michigan' AND City = 'Boston' AND Year = '2015') OR (State = 'Maryland' AND City = 'Flint' AND Year = '2020') OR (State = 'Michigan' AND City = 'Detroit' AND Year = '2015')) AND ((Polluted_element = 'Air' AND Type_of_pollution = 'Thermal') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Surface water') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Chemical'))",
+      "GTresult": "Value=37.49; Value=-85.26; Value=-85.15; Value=-44.43; Value=-44.37; Value=90.34; Value=-34.7; Value=-28.49; Value=-27.94",
+      "NLquestions": [
+        "What is the evolution of_((pollution)) of_ of_Air or Water in__Boston or Flint or Detroit ==,==Michigan or Maryland in_2015 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT min(Value) AS min_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((State = 'Michigan' AND City = 'Aberdeen' AND Year = '2020')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Chemical') OR (Polluted_element = 'Air' AND Type_of_pollution = 'Groundwater'))",
+      "GTresult": "min_Value=-55.17, avg_Value=8.094999999999999",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water or Air in__Aberdeen ==,==Michigan in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT State, City, Year, max(Value) AS max_Value, avg(Value) AS avg_Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Lenox' AND Year = '2015') OR (State = 'Massachusetts' AND City = 'Baltimore' AND Year = '2020') OR (State = 'Maryland' AND City = 'Columbia' AND Year = '2015') OR (State = 'Michigan' AND City = 'Aberdeen' AND Year = '2020') OR (State = 'Maryland' AND City = 'Flint' AND Year = '2020')) AND ((Polluted_element = 'Water' AND Type_of_pollution = 'Light') OR (Polluted_element = 'Water' AND Type_of_pollution = 'Chemical')) GROUP BY State, City, Year",
+      "GTresult": "State=Maryland, City=Columbia, Year=2015, max_Value=-67.92, avg_Value=-68.36; State=Maryland, City=Flint, Year=2020, max_Value=90.34, avg_Value=23.16; State=Massachusetts, City=Baltimore, Year=2020, max_Value=56.48, avg_Value=-11.135000000000002; State=Massachusetts, City=Lenox, Year=2015, max_Value=12.01, avg_Value=7.525; State=Michigan, City=Aberdeen, Year=2020, max_Value=71.36, avg_Value=5.984999999999999",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Water in__Lenox or Baltimore or Columbia or Aberdeen or Flint ==,==Massachusetts or Maryland or Michigan in_2015 or 2020 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((State = 'Michigan' AND City = 'Aberdeen' AND Year = '2020')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Water')) GROUP BY Polluted_element",
+      "GTresult": "min_Value=-63.92; min_Value=-59.39",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Water in__Aberdeen ==,==Michigan in_2020 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Polluted_element, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Michigan' AND City = 'Boston' AND Year = '2015')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Water')) GROUP BY Polluted_element",
+      "GTresult": "Polluted_element=Air, sum_Value=-130.69; Polluted_element=Water, sum_Value=-126.99000000000001",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Water in__Boston ==,==Michigan in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Polluted_element, State, City, Year, sum(Value) AS sum_Value FROM DBdata WHERE ((State = 'Maryland' AND City = 'Columbia' AND Year = '2015') OR (State = 'Massachusetts' AND City = 'Port Huron' AND Year = '2015') OR (State = 'Michigan' AND City = 'Detroit' AND Year = '2015')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Water')) GROUP BY Polluted_element, State, City, Year",
+      "GTresult": "Polluted_element=Air, State=Maryland, City=Columbia, Year=2015, sum_Value=59.05; Polluted_element=Air, State=Massachusetts, City=Port Huron, Year=2015, sum_Value=102.12; Polluted_element=Air, State=Michigan, City=Detroit, Year=2015, sum_Value=-84.66; Polluted_element=Water, State=Maryland, City=Columbia, Year=2015, sum_Value=-200.29; Polluted_element=Water, State=Massachusetts, City=Port Huron, Year=2015, sum_Value=-20.550000000000004; Polluted_element=Water, State=Michigan, City=Detroit, Year=2015, sum_Value=48.61",
+      "NLquestions": [
+        "What is/are_the_ /evolutions of_((pollution)) of_ of_Air or Water in__Columbia or Port Huron or Detroit ==,==Maryland or Massachusetts or Michigan in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Michigan' AND City = 'Detroit' AND Year = '2015')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Water')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=95.88; Value=-19.33; Value=-21.47; Value=-27.94; Value=-28.49",
+      "NLquestions": [
+        "What are the top/bottom_ evolutions of_((pollution)) of_ of_Air or Water in__Detroit ==,==Michigan in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Lenox' AND Year = '2015')) AND ((Polluted_element = 'Air') OR (Polluted_element = 'Water')) ORDER BY Value DESC",
+      "GTresult": "Value=16.98; Value=15.26; Value=12.01; Value=5.05; Value=3.35; Value=3.04",
+      "NLquestions": [
+        "What are the evolutions /increasing_values of_((pollution)) of_ of_Air or Water in__Lenox ==,==Massachusetts in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Michigan' AND City = 'Aberdeen' AND Year = '2020')) AND Value < -10.15",
+      "GTresult": "Polluted_element=Air, Type_of_pollution=Thermal; Polluted_element=Water, Type_of_pollution=Light; Polluted_element=Air, Type_of_pollution=Groundwater; Polluted_element=Water, Type_of_pollution=Thermal",
+      "NLquestions": [
+        "What is/are_the_ the evolution of_((pollution)) of_ of_ in__Aberdeen ==,==Michigan in_2020 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Polluted_element, Type_of_pollution, Value FROM DBdata WHERE ((State = 'Massachusetts' AND City = 'Lenox' AND Year = '2015')) AND (Polluted_element, Type_of_pollution) IN (SELECT Polluted_element, Type_of_pollution FROM DBdata WHERE ((State = 'Michigan' AND City = 'Aberdeen' AND Year = '2020')) AND Value < -10.15)",
+      "GTresult": "Polluted_element=Air, Type_of_pollution=Thermal, Value=3.35; Polluted_element=Water, Type_of_pollution=Light, Value=3.04; Polluted_element=Air, Type_of_pollution=Groundwater, Value=15.26; Polluted_element=Water, Type_of_pollution=Thermal, Value=16.98",
+      "NLquestions": []
+    }
+  ]
+}

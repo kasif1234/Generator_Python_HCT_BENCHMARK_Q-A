@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set130_4_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2018' AND State = 'Maryland' AND City = 'Washington')) AND ((Characteristic = 'Temperature' AND Intensity = 'Breeze'))",
+      "GTresult": "Value=22.83",
+      "NLquestions": [
+        "How many days with__ Temperature were there in__Washington ==,==Maryland in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2018' AND State = 'Maryland' AND City = 'Aberdeen')) AND ((Characteristic = 'Wind' AND Intensity = 'Calm') OR (Characteristic = 'Temperature' AND Intensity = 'Breeze') OR (Characteristic = 'Wind' AND Intensity = 'Storm') OR (Characteristic = 'Temperature' AND Intensity = '0-10') OR (Characteristic = 'Wind' AND Intensity = '21-30') OR (Characteristic = 'Temperature' AND Intensity = '31-40'))",
+      "GTresult": "Value=2.23; Value=2.44; Value=4.24; Value=6.93; Value=7.79; Value=8.79",
+      "NLquestions": [
+        "How many days with__ Wind or Temperature were there in__Aberdeen ==,==Maryland in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2018' AND State = 'Maryland' AND City = 'Aberdeen') OR (Year = '2015' AND State = 'Georgia' AND City = 'Columbia') OR (Year = '2018' AND State = 'Maryland' AND City = 'Albany') OR (Year = '2015' AND State = 'Georgia' AND City = 'Columbus') OR (Year = '2018' AND State = 'Maryland' AND City = 'Washington')) AND ((Characteristic = 'Wind' AND Intensity = '21-30'))",
+      "GTresult": "Value=7.79; Value=8.84; Value=19.42; Value=20.94; Value=9.8",
+      "NLquestions": [
+        "How many days with__ Wind were there in__Aberdeen or Columbia or Albany or Columbus or Washington ==,==Maryland or Georgia in_2018 or 2015 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT avg(Value) AS avg_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2018' AND State = 'Maryland' AND City = 'Aberdeen') OR (Year = '2015' AND State = 'Georgia' AND City = 'Columbia') OR (Year = '2018' AND State = 'Maryland' AND City = 'Albany') OR (Year = '2015' AND State = 'Georgia' AND City = 'Columbus') OR (Year = '2018' AND State = 'Maryland' AND City = 'Washington')) AND ((Characteristic = 'Wind' AND Intensity = '21-30'))",
+      "GTresult": "avg_Value=13.358, sum_Value=66.79",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind in__Aberdeen or Columbia or Albany or Columbus or Washington ==,==Maryland or Georgia in_2018 or 2015 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2018' AND State = 'Maryland' AND City = 'Aberdeen') OR (Year = '2018' AND State = 'Maryland' AND City = 'Albany') OR (Year = '2018' AND State = 'Maryland' AND City = 'Washington')) AND ((Characteristic = 'Wind' AND Intensity = 'Calm') OR (Characteristic = 'Temperature' AND Intensity = '0-10') OR (Characteristic = 'Wind' AND Intensity = '21-30'))",
+      "GTresult": "Value=2.23; Value=6.93; Value=7.79; Value=15.93; Value=18.88; Value=19.42; Value=27.12; Value=24.71; Value=9.8",
+      "NLquestions": [
+        "How many days with__ Wind or Temperature were there in__Aberdeen or Albany or Washington ==,==Maryland in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Georgia' AND City = 'Columbus')) AND ((Characteristic = 'Wind' AND Intensity = 'Storm') OR (Characteristic = 'Temperature' AND Intensity = '0-10') OR (Characteristic = 'Wind' AND Intensity = '21-30'))",
+      "GTresult": "sum_Value=61.82000000000001, min_Value=16.62",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Columbus ==,==Georgia in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, max(Value) AS max_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2018' AND State = 'Maryland' AND City = 'Aberdeen') OR (Year = '2018' AND State = 'Maryland' AND City = 'Albany') OR (Year = '2015' AND State = 'Georgia' AND City = 'Columbus') OR (Year = '2018' AND State = 'Maryland' AND City = 'Washington')) AND ((Characteristic = 'Wind' AND Intensity = 'Calm') OR (Characteristic = 'Wind' AND Intensity = 'Storm') OR (Characteristic = 'Wind' AND Intensity = '21-30') OR (Characteristic = 'Temperature' AND Intensity = '31-40')) GROUP BY Year, State, City",
+      "GTresult": "Year=2015, State=Georgia, City=Columbus, max_Value=26.88, min_Value=16.62; Year=2018, State=Maryland, City=Aberdeen, max_Value=8.79, min_Value=2.23; Year=2018, State=Maryland, City=Albany, max_Value=19.42, min_Value=15.52; Year=2018, State=Maryland, City=Washington, max_Value=27.12, min_Value=9.07",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Aberdeen or Albany or Columbus or Washington ==,==Maryland or Georgia in_2018 or 2015 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Georgia' AND City = 'Columbus')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) GROUP BY Characteristic",
+      "GTresult": "min_Value=21.64; min_Value=16.62",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Columbus ==,==Georgia in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2018' AND State = 'Maryland' AND City = 'Aberdeen')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Temperature, sum_Value=18.16; Characteristic=Wind, sum_Value=14.26",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Aberdeen ==,==Maryland in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, avg(Value) AS avg_Value FROM DBdata WHERE ((Year = '2018' AND State = 'Maryland' AND City = 'Aberdeen') OR (Year = '2015' AND State = 'Georgia' AND City = 'Columbus') OR (Year = '2018' AND State = 'Maryland' AND City = 'Washington')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Temperature, Year=2015, State=Georgia, City=Columbus, avg_Value=24.26; Characteristic=Temperature, Year=2018, State=Maryland, City=Aberdeen, avg_Value=6.053333333333334; Characteristic=Temperature, Year=2018, State=Maryland, City=Washington, avg_Value=18.87; Characteristic=Wind, Year=2015, State=Georgia, City=Columbus, avg_Value=19.63; Characteristic=Wind, Year=2018, State=Maryland, City=Aberdeen, avg_Value=4.753333333333333; Characteristic=Wind, Year=2018, State=Maryland, City=Washington, avg_Value=20.900000000000002",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Temperature in__Aberdeen or Columbus or Washington ==,==Maryland or Georgia in_2018 or 2015 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2015' AND State = 'Georgia' AND City = 'Columbus')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) ORDER BY Value DESC LIMIT 5",
+      "GTresult": "Value=26.88; Value=24.26; Value=21.64; Value=21.33; Value=20.94",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Wind or Temperature in__Columbus ==,==Georgia in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2018' AND State = 'Maryland' AND City = 'Washington')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Temperature')) ORDER BY Value DESC",
+      "GTresult": "Value=27.12; Value=25.78; Value=24.71; Value=22.83; Value=9.8; Value=9.07",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Wind or Temperature in__Washington ==,==Maryland in_2018 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2015' AND State = 'Georgia' AND City = 'Columbia')) AND Value < 14.85",
+      "GTresult": "Characteristic=Wind, Intensity=Calm; Characteristic=Temperature, Intensity=Breeze; Characteristic=Wind, Intensity=Storm; Characteristic=Temperature, Intensity=0-10; Characteristic=Wind, Intensity=21-30; Characteristic=Temperature, Intensity=31-40",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Columbia ==,==Georgia in_2015 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2018' AND State = 'Maryland' AND City = 'Aberdeen')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2015' AND State = 'Georgia' AND City = 'Columbia')) AND Value < 14.85)",
+      "GTresult": "Characteristic=Wind, Intensity=Calm, Value=2.23; Characteristic=Temperature, Intensity=Breeze, Value=2.44; Characteristic=Wind, Intensity=Storm, Value=4.24; Characteristic=Temperature, Intensity=0-10, Value=6.93; Characteristic=Wind, Intensity=21-30, Value=7.79; Characteristic=Temperature, Intensity=31-40, Value=8.79",
+      "NLquestions": []
+    }
+  ]
+}

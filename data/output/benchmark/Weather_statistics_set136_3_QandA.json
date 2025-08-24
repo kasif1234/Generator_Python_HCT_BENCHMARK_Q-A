@@ -1,0 +1,115 @@
+{
+  "filename": "C:\\Users\\kasif\\Documents\\generator\\data\\output\\tables\\Weather_statistics_set136_3_DB.csv",
+  "questions": [
+    {
+      "name": "template_1",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Georgia' AND City = 'Malibu')) AND ((Characteristic = 'Humidity' AND Intensity = '21-30'))",
+      "GTresult": "Value=5.05",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Malibu ==,==Georgia in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_2",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Oregon' AND City = 'Redmond')) AND ((Characteristic = 'Temperature' AND Intensity = '31-40') OR (Characteristic = 'Wind' AND Intensity = '0-10') OR (Characteristic = 'Humidity' AND Intensity = '21-30') OR (Characteristic = 'Temperature' AND Intensity = 'Calm') OR (Characteristic = 'Wind' AND Intensity = 'Breeze') OR (Characteristic = 'Humidity' AND Intensity = 'Storm') OR (Characteristic = 'Temperature' AND Intensity = 'High') OR (Characteristic = 'Humidity' AND Intensity = 'Medium'))",
+      "GTresult": "Value=7.83; Value=8.66; Value=8.43; Value=9.51; Value=10.8; Value=11.71; Value=12.2; Value=14.03",
+      "NLquestions": [
+        "How many days with__ Temperature or Wind or Humidity were there in__Redmond ==,==Oregon in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_3",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'California' AND City = 'Columbus') OR (Year = '2015' AND State = 'Georgia' AND City = 'Portland') OR (Year = '2019' AND State = 'Oregon' AND City = 'Redmond') OR (Year = '2015' AND State = 'California' AND City = 'Los-Angeles') OR (Year = '2019' AND State = 'Georgia' AND City = 'Malibu')) AND ((Characteristic = 'Humidity' AND Intensity = '21-30'))",
+      "GTresult": "Value=14.65; Value=22.75; Value=8.43; Value=16.0; Value=5.05",
+      "NLquestions": [
+        "How many days with__ Humidity were there in__Columbus or Portland or Redmond or Los-Angeles or Malibu ==,==California or Georgia or Oregon in_2019 or 2015 ?"
+      ]
+    },
+    {
+      "name": "template_4",
+      "sql": "SELECT sum(Value) AS sum_Value, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2015' AND State = 'Oregon' AND City = 'Albany') OR (Year = '2019' AND State = 'California' AND City = 'Columbus') OR (Year = '2015' AND State = 'Georgia' AND City = 'Portland') OR (Year = '2015' AND State = 'California' AND City = 'Los-Angeles') OR (Year = '2019' AND State = 'Georgia' AND City = 'Malibu')) AND ((Characteristic = 'Temperature' AND Intensity = 'High'))",
+      "GTresult": "sum_Value=79.25999999999999, min_Value=4.47",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature in__Albany or Columbus or Portland or Los-Angeles or Malibu ==,==Oregon or California or Georgia in_2015 or 2019 ?"
+      ]
+    },
+    {
+      "name": "template_6",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Georgia' AND City = 'Washington') OR (Year = '2015' AND State = 'Oregon' AND City = 'Albany') OR (Year = '2019' AND State = 'Oregon' AND City = 'Redmond')) AND ((Characteristic = 'Temperature' AND Intensity = '31-40') OR (Characteristic = 'Wind' AND Intensity = 'Breeze') OR (Characteristic = 'Temperature' AND Intensity = 'High') OR (Characteristic = 'Wind' AND Intensity = 'Low'))",
+      "GTresult": "Value=1.51; Value=4.99; Value=6.57; Value=7.76; Value=7.87; Value=12.53; Value=15.61; Value=16.78; Value=7.83; Value=10.8; Value=12.2; Value=13.36",
+      "NLquestions": [
+        "How many days with__ Temperature or Wind were there in__Washington or Albany or Redmond ==,==Georgia or Oregon in_2019 or 2015 ?"
+      ]
+    },
+    {
+      "name": "template_7",
+      "sql": "SELECT max(Value) AS max_Value, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2015' AND State = 'California' AND City = 'Los-Angeles')) AND ((Characteristic = 'Humidity' AND Intensity = '21-30') OR (Characteristic = 'Temperature' AND Intensity = 'Calm') OR (Characteristic = 'Humidity' AND Intensity = 'Medium'))",
+      "GTresult": "max_Value=17.14, sum_Value=49.370000000000005",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Humidity or Temperature in__Los-Angeles ==,==California in_2015 ?"
+      ]
+    },
+    {
+      "name": "template_8",
+      "sql": "SELECT Year, State, City, avg(Value) AS avg_Value, max(Value) AS max_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Georgia' AND City = 'Washington') OR (Year = '2019' AND State = 'Oregon' AND City = 'Redmond') OR (Year = '2019' AND State = 'Georgia' AND City = 'Malibu')) AND ((Characteristic = 'Wind' AND Intensity = '0-10') OR (Characteristic = 'Humidity' AND Intensity = '21-30') OR (Characteristic = 'Humidity' AND Intensity = 'Storm') OR (Characteristic = 'Temperature' AND Intensity = 'High') OR (Characteristic = 'Wind' AND Intensity = 'Low')) GROUP BY Year, State, City",
+      "GTresult": "Year=2019, State=Georgia, City=Malibu, avg_Value=8.006, max_Value=19.58; Year=2019, State=Georgia, City=Washington, avg_Value=4.728, max_Value=7.76; Year=2019, State=Oregon, City=Redmond, avg_Value=10.872, max_Value=13.36",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity or Temperature in__Washington or Redmond or Malibu ==,==Georgia or Oregon in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_9",
+      "sql": "SELECT min(Value) AS min_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Georgia' AND City = 'Washington')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) GROUP BY Characteristic",
+      "GTresult": "min_Value=2.72; min_Value=1.04",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Washington ==,==Georgia in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_10",
+      "sql": "SELECT Characteristic, min(Value) AS min_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Georgia' AND City = 'Washington')) AND ((Characteristic = 'Wind') OR (Characteristic = 'Humidity')) GROUP BY Characteristic",
+      "GTresult": "Characteristic=Humidity, min_Value=2.72; Characteristic=Wind, min_Value=1.04",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Wind or Humidity in__Washington ==,==Georgia in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_11",
+      "sql": "SELECT Characteristic, Year, State, City, sum(Value) AS sum_Value FROM DBdata WHERE ((Year = '2019' AND State = 'Georgia' AND City = 'Washington') OR (Year = '2015' AND State = 'California' AND City = 'Los-Angeles')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) GROUP BY Characteristic, Year, State, City",
+      "GTresult": "Characteristic=Humidity, Year=2015, State=California, City=Los-Angeles, sum_Value=49.56; Characteristic=Humidity, Year=2019, State=Georgia, City=Washington, sum_Value=16.72; Characteristic=Temperature, Year=2015, State=California, City=Los-Angeles, sum_Value=36.52; Characteristic=Temperature, Year=2019, State=Georgia, City=Washington, sum_Value=11.73",
+      "NLquestions": [
+        "What is/are_the_ /numbers_of_days with__ Temperature or Humidity in__Washington or Los-Angeles ==,==Georgia or California in_2019 or 2015 ?"
+      ]
+    },
+    {
+      "name": "template_12",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Georgia' AND City = 'Washington')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) ORDER BY Value ASC LIMIT 5",
+      "GTresult": "Value=1.51; Value=2.72; Value=3.65; Value=5.55; Value=6.57",
+      "NLquestions": [
+        "What are the largest/smallest_ numbers_of_days with__ Temperature or Humidity in__Washington ==,==Georgia in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_13",
+      "sql": "SELECT Value FROM DBdata WHERE ((Year = '2019' AND State = 'Oregon' AND City = 'Redmond')) AND ((Characteristic = 'Temperature') OR (Characteristic = 'Humidity')) ORDER BY Value DESC",
+      "GTresult": "Value=14.03; Value=12.2; Value=11.71; Value=9.51; Value=8.43; Value=7.83",
+      "NLquestions": [
+        "What are the numbers of days /ascending_values with__ Temperature or Humidity in__Redmond ==,==Oregon in_2019 ?"
+      ]
+    },
+    {
+      "name": "template_14",
+      "sql": "SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2015' AND State = 'Georgia' AND City = 'Portland')) AND Value < 13.32",
+      "GTresult": "Characteristic=Wind, Intensity=Breeze; Characteristic=Humidity, Intensity=Medium",
+      "NLquestions": [
+        "What is/are_the_ the number of days with__ in__Portland ==,==Georgia in_2015 is_ ?"
+      ]
+    },
+    {
+      "name": "template_15",
+      "sql": "SELECT Characteristic, Intensity, Value FROM DBdata WHERE ((Year = '2015' AND State = 'California' AND City = 'Los-Angeles')) AND (Characteristic, Intensity) IN (SELECT Characteristic, Intensity FROM DBdata WHERE ((Year = '2015' AND State = 'Georgia' AND City = 'Portland')) AND Value < 13.32)",
+      "GTresult": "Characteristic=Wind, Intensity=Breeze, Value=16.3; Characteristic=Humidity, Intensity=Medium, Value=17.14",
+      "NLquestions": []
+    }
+  ]
+}
