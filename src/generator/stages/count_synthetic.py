@@ -1,4 +1,6 @@
 # src/generator/stages/count_benchmark.py
+# STAGE 6: Counting synthetic benchmark HCT and Q&A -> jUST PRINTS SUMMARY
+# - input: benchmark Q&A files
 
 from __future__ import annotations
 from pathlib import Path

@@ -1,4 +1,6 @@
 # src/generator/stages/cleanup_and_benchmark.py
+# STAGE 5: Cleanup and collect complete files into Benchmark folder
+# - input: all previous outputs
 
 from __future__ import annotations
 from pathlib import Path

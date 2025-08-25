@@ -1,4 +1,6 @@
 # src/generator/stages/non_semantic_tables_and_qna.py
+# STAGE 4: Generate non-semantic versions of tables and Q&A
+# - input: semantic Q&A and tables
 from __future__ import annotations
 
 import random

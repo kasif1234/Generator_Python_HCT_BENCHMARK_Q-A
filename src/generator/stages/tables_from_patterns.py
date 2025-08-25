@@ -1,4 +1,7 @@
-# src/generator/stages/tables_from_patterns.py
+# src/generator/stages/tables_from_patterns.py 
+# STAGE 1: Generate table specifications from patterns and parameters
+# - input: semantics.json, table_templates.json
+
 from __future__ import annotations
 
 import sys, pathlib

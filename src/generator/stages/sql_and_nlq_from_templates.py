@@ -1,4 +1,6 @@
 # src/generator/stages/sql_and_nlq_from_templates.py
+# STAGE 3: Generate SQL queries and NL questions from table instances
+
 from __future__ import annotations
 
 import json

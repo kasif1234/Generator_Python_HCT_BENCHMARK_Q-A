@@ -1,4 +1,7 @@
 # src/generator/stages/hct_from_json_tables.py
+# STAGE 2: Generate HCT HTML/CSV and DB CSV/HTML from table specifications
+# - input: semantics.json, table_to_gen.json
+
 from __future__ import annotations
 
 import os, json, csv, random, itertools
