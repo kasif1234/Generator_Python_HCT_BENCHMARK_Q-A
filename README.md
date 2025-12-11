@@ -20,8 +20,8 @@ Pipeline Controls
 You can run the pipeline in multiple modes using the commands below:
 
 ===============================================================================
-               COMMANDS FOR FLEXIBLE PIPELINE EXECUTION
-===============================================================================
+               COMMANDS FOR FLEXIBLE PIPELINE EXECUTION:
+
 1. Run the full pipeline (Stages 1 → 6):
    python -m src.generator.pipeline
 
