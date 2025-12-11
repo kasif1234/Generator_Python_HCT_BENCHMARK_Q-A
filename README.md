@@ -14,7 +14,7 @@ generator/stages/
 This directory contains the main logic of the repository.
 The pipeline is divided into six sequential stages, all orchestrated through pipeline.py.
 
-Pipeline Controls@
+Pipeline Controls:
 You can run the pipeline in multiple modes using the commands below:
 
 
