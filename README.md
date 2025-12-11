@@ -6,15 +6,15 @@ pip install -r requirements.txt
 
 2. Codebase Overview
    
-configs/
+configs/ -> 
 This folder contains all configuration files, including the metrics and metadata used to construct the synthetic tables.
 Intermediate computed values referenced in these configs can be inspected in data/cache/.
 
-generator/stages/
+generator/stages/ -> 
 This directory contains the main logic of the repository.
 The pipeline is divided into six sequential stages, all orchestrated through pipeline.py.
 
-Pipeline Controls:
+Pipeline Controls -> 
 You can run the pipeline in multiple modes using the commands below:
 
 
@@ -37,6 +37,6 @@ You can run the pipeline in multiple modes using the commands below:
 ===============================================================================
 
 
-data/cache/
+data/cache/ ->
 This directory stores intermediate outputs generated at different stages of the pipeline.
 It is useful for debugging, verification, and understanding how data evolves through the system.
