@@ -5,6 +5,10 @@ A Python-based pipeline for generating synthetic benchmark tables and question-a
 This repository is designed as a configurable data generation system. It uses metadata, metrics, and staged processing logic to construct synthetic tables, store intermediate outputs, and support flexible pipeline execution.
 
 ---
+## Research Poster related to this project
+
+<img width="1952" height="1379" alt="Image" src="https://github.com/user-attachments/assets/7d28c000-708a-4fd1-b916-358c6f99ec80" />
+---
 
 ## Project Overview
 
